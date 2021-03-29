@@ -5,17 +5,17 @@
 	"main": "main.js",
 	"homepage": "https://revivalengine.github.io/",
 	"dependencies": {
-		"@msgpack/msgpack": "^2.5.1",
-		"babylonjs": "^4.2.0",
-		"babylonjs-gui": "^4.2.0",
-		"babylonjs-loaders": "^4.2.0",
-		"babylonjs-materials": "^4.2.0",
-		"babylonjs-serializers": "^4.2.0",
+		"@msgpack/msgpack": "2.5.1",
+		"babylonjs": "4.2.0",
+		"babylonjs-gui": "4.2.0",
+		"babylonjs-loaders": "4.2.0",
+		"babylonjs-materials": "4.2.0",
+		"babylonjs-serializers": "4.2.0",
 		"bmp-js": "^0.1.0"
 	},
 	"devDependencies": {
-		"devtron": "^1.4.0",
-		"electron": "^11.1.1"
+		"devtron": "1.4.0",
+		"electron": "11.1.1"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
