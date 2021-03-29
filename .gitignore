@@ -1,0 +1,6 @@
+# Electron/NodeJS stuff
+node_modules/
+
+# These are intended for user scripts/game data
+Assets/
+Interface/Addons/
