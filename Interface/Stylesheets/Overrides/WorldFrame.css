@@ -1,0 +1,7 @@
+/* The actual canvas object that the WebGL renderer will draw on. */
+#WorldFrame {
+	position: absolute;
+
+	width: 100%;
+	height: 100%;
+}

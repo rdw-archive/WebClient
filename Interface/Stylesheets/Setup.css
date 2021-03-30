@@ -1,0 +1,41 @@
+/*
+	Global settings for the WebClient's UI framework that fix annoyances and help create a blank slate.
+
+	The UI elements themselves should be styled separately to maintain consistency.
+*/
+
+/* Globally disable dragging of UI elements that shouldn't be modified in any way. This trick is necessary in order to make HTML elements appear like native UI frames and not a cheap knockoff. */
+* {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Chrome hightlights some elements with outlines when clicked on. It looks horrible. Don't do this, Chrome. */
+*:focus,
+*:focus {
+	outline: none;
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
+}
+
+/* Align the viewport properly to make sure the UI and world are centered. */
+body {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	white-space: pre-line;
+
+	/* Override the silly default settings */
+	padding: 0px;
+	margin: 0px;
+}
+
+/* Anything else is insane, unless you want to spend hours debugging layouts. Why is this not the default? */
+div {
+	box-sizing: border-box;
+}

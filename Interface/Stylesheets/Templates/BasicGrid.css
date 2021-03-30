@@ -1,0 +1,30 @@
+.BasicGrid {
+	display: grid;
+	grid-template-columns: repeat(7, 50px);
+	grid-template-rows: repeat(3, 50px);
+	grid-auto-flow: row;
+	grid-gap: 5px;
+
+	border: 2px solid #dedede;
+	background-color: grey;
+
+	width: 100%;
+	/* Why is this height fixed? That doesn't seem right... */
+	height: 220px;
+}
+
+/* Is this really specific to grid layouts? Maybe move it elsewhere? */
+.ContentColumn {
+	display: flex;
+	flex-direction: column;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.ContentRow {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}

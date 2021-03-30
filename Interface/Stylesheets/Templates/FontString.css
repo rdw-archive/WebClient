@@ -1,0 +1,101 @@
+/*
+	Default font templates supported by the WebClient.
+
+	These can be used (in code) by simply creating a FontString with the given template name.
+	The functionality is inspired by the World of Warcraft client, but utilizes standard CSS/JavaScript APIs.
+	See https://wow.gamepedia.com/UIOBJECT_Font for more details on the concept of font instances/templates */
+
+.GameFontHuge {
+	font-family: IngameFont;
+	font-size: 72pt;
+}
+
+.GameFontLargest {
+	font-family: IngameFont;
+	font-size: 48pt;
+}
+
+.GameFontLarger {
+	font-family: IngameFont;
+	font-size: 24pt;
+}
+
+.GameFontLarge {
+	font-family: IngameFont;
+	font-size: 16pt;
+}
+
+.GameFontNormal {
+	font-family: IngameFont;
+	font-size: 12pt;
+}
+
+.GameFontSmall {
+	font-family: IngameFont;
+	font-size: 11pt;
+}
+
+.GameFontSmaller {
+	font-family: IngameFont;
+	font-size: 10pt;
+}
+
+.GameFontSmallest {
+	font-family: IngameFont;
+	font-size: 8pt;
+}
+
+.BoldFontNormal {
+	font-family: BoldFont;
+	font-size: 12pt;
+}
+
+.BoldFontSmall {
+	font-family: BoldFont;
+	font-size: 11pt;
+}
+
+.BoldFontSmaller {
+	font-family: BoldFont;
+	font-size: 10pt;
+}
+
+.BoldFontSmallest {
+	font-family: BoldFont;
+	font-size: 8pt;
+}
+
+.TitleFontLarge {
+	font-family: IngameFont;
+	font-size: 72pt;
+}
+
+.TitleFontNormal {
+	font-family: IngameFont;
+	font-size: 24pt;
+}
+
+.TitleFontSmall {
+	font-family: IngameFont;
+	font-size: 12pt;
+}
+
+.TitleFontSmaller {
+	font-family: IngameFont;
+	font-size: 10pt;
+}
+
+.CaptionFontSmall {
+	font-family: InterfaceFont;
+	font-size: 14pt;
+}
+
+.CaptionFontNormal {
+	font-family: InterfaceFont;
+	font-size: 18pt;
+}
+
+.CaptionFontLarge {
+	font-family: InterfaceFont;
+	font-size: 30pt;
+}

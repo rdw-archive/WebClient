@@ -1,0 +1,13 @@
+/* This is the container for the WebGL canvas, which displays the world content.
+Since it contains the UIParent frame, and therefore the entire UI, it should probably take up all available space. */
+#ViewportContainer {
+	position: fixed;
+
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+
+	width: 100vw;
+	height: 100vh;
+}
