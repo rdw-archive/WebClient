@@ -5,6 +5,7 @@
 */
 
 @import "Overrides/GameMenuFrame.css";
+@import "Overrides/FpsCounterFrame.css";
 @import "Overrides/SystemMessagesFrame.css";
 @import "Overrides/UIParent.css";
 @import "Overrides/ViewportContainer.css";
