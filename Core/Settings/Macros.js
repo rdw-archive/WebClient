@@ -1,0 +1,1 @@
+const DEFAULT_MACRO_ICON_PATH = WEBCLIENT_INTERFACE_DIR + "/Icons/QuestionMarkBlack3D.png";
