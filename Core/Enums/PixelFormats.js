@@ -1,0 +1,2 @@
+const PIXEL_FORMAT_ABGR = "ABGR";
+const PIXEL_FORMAT_ARGB = "ARGB";
