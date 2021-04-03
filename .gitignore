@@ -4,3 +4,6 @@ node_modules/
 # These are intended for user scripts/game data
 Assets/
 Interface/Addons/
+
+# Debug output shouldn't be saved
+Exports/
