@@ -24,7 +24,7 @@
 		"dev": "electron --js-flags=--max-old-space-size=500 . "
 	},
 	"keywords": [],
-	"author": "",
+	"author": "RDW",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
