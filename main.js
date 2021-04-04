@@ -8,7 +8,7 @@ function createWindow() {
 		frame: false,
 		show: false, // trigger manually after first render to avoid visual flash (mostly for windowed/frame mode)
 		fullscreen: true,
-		icon: "favicon.png",
+		icon: "icon.ico",
 		webPreferences: {
 			nodeIntegration: true,
 			devTools: true,
