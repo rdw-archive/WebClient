@@ -8,6 +8,7 @@
 		"WorldFrame",
 		"UIParent",
 		"FpsCounterFrame",
+		"KeyboardInputFrame",
 		"LoadingScreenFrame",
 		"GameMenuFrame"
 	],
