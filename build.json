@@ -4,6 +4,9 @@
 	"mac": {
 		"category": "public.app-category.games"
 	},
+	"linux": {
+        "icon": "icon_512x512.png"
+	},
 	"nsis": {
 		"oneClick": false,
 		"allowToChangeInstallationDirectory": true,
