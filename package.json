@@ -22,7 +22,14 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "electron .",
 		"oom": "electron --js-flags='--max-old-space-size=10192' .",
-		"dev": "electron --js-flags=--max-old-space-size=500 . "
+		"dev": "electron --js-flags=--max-old-space-size=500 . ",
+		"pack": "electron-builder --dir --config build.json",
+		"make": "electron-builder --config build.json",
+		"make-win64": "electron-builder --windows nsis:x64 --config build.json",
+		"make-win64-portable": "electron-builder --windows portable:x64 --config build.json",
+		"make-ubuntu": "electron-builder --linux deb --config build.json",
+		"make-all": "electron-builder -mwl --config build.json",
+		"make-windows-linux": "electron-builder -wl --config build.json"
 	},
 	"keywords": [],
 	"author": "RDW",
