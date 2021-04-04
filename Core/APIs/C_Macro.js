@@ -1,6 +1,5 @@
 const C_Macro = {
 	macros: [],
-	MACRO_CACHE_FILE_PATH: WEBCLIENT_INTERFACE_DIR + "/macro-cache.json",
 };
 
 C_Macro.create = function (name, icon, macroText) {
@@ -54,7 +53,7 @@ C_Macro.saveToDisk = function (macroID) {};
 C_Macro.restoreMacroCache = function () {
 	DEBUG("Reloading macro cache from disk");
 
-	const macroCache = C_FileSystem.readJSON(this.MACRO_CACHE_FILE_PATH);
+	const macroCache = C_FileSystem.readJSON(MACRO_CACHE_FILE_PATH);
 	for (macroID in macroCache) {
 		const macroInfo = macroCache[macroID];
 		DEBUG(format("Deserializing macro %s", macroID));
@@ -83,8 +82,8 @@ C_Macro.saveMacroCache = function () {
 		// macroCache[macroID] = serializedMacro;
 		macroCache.push(serializedMacro);
 	}
-	DEBUG(format("Writing macro cache to file %s", this.MACRO_CACHE_FILE_PATH));
-	C_FileSystem.writeJSON(this.MACRO_CACHE_FILE_PATH, macroCache);
+	DEBUG(format("Writing macro cache to file %s", MACRO_CACHE_FILE_PATH));
+	C_FileSystem.writeJSON(MACRO_CACHE_FILE_PATH, macroCache);
 };
 
 C_Macro.getNextMacroID = function () {
