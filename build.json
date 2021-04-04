@@ -1,0 +1,22 @@
+{
+	"appId": "RevivalEngine.WebClient",
+	"productName": "Revival WebClient",
+	"mac": {
+		"category": "public.app-category.games"
+	},
+	"nsis": {
+		"oneClick": false,
+		"allowToChangeInstallationDirectory": true,
+		"createDesktopShortcut": false
+	},
+	"files": [
+		"!**/Assets/${/*}",
+		"!**/Interface/Addons/${/*}",
+		"!**/Exports/${/*}"],
+	"directories": {
+		"buildResources": "."
+	},
+	"asar": false,
+	"asarUnpack": ["**/*"],
+	"copyright": "Copyright © 2019 - 2021 The RevivalEngine Team"
+}
