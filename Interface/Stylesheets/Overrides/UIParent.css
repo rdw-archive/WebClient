@@ -1,0 +1,11 @@
+/* This is the root element for any ingame Frames, which is mapped 1:1 to the world (canvas) and must not be resized */
+#UIParent {
+	width: 100%;
+	height: 100%;
+
+	position: absolute;
+
+	/* The z index should probably be computed automatically,
+	but there's no widget hierarchy implemented in code yet */
+	z-index: 10;
+}

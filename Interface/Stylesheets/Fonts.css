@@ -1,0 +1,45 @@
+/*
+	Default styles for fonts used by the WebClient.
+
+	We want to be able to globally swap the UI fonts, so any changes should be made here rather than hardcoding them.
+*/
+
+@font-face {
+	font-family: IngameFont;
+	src: url("../Fonts/VeranaSans.ttf");
+}
+
+@font-face {
+	font-family: IngameFontAlt;
+	src: url("../Fonts/Ubuntu-Regular.ttf");
+}
+
+@font-face {
+	font-family: IngameFontUnicode;
+	src: url("../Fonts/DejaVuSans.ttf");
+}
+
+@font-face {
+	font-family: BoldFont;
+	src: url("../Fonts/Sword.otf");
+}
+
+@font-face {
+	font-family: SemiBoldFont;
+	src: url("../Fonts/OpenSans-Semibold.ttf");
+}
+
+@font-face {
+	font-family: TitleFont;
+	src: url("../Fonts/Sword.otf");
+}
+
+@font-face {
+	font-family: RegularFont;
+	src: url("../Fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+	font-family: InterfaceFont;
+	src: url("../Fonts/BebasNeue.ttf");
+}

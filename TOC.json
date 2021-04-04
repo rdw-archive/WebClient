@@ -1,0 +1,19 @@
+{
+	"authors": ["RDW"],
+	"websiteURL": "https://github.com/RevivalEngine",
+	"titleString": "Revival WebClient",
+	"versionString": "0.20.12-prototype",
+	"defaultFrames": [
+		"ViewportContainer",
+		"WorldFrame",
+		"UIParent",
+		"FpsCounterFrame",
+		"KeyboardInputFrame",
+		"LoadingScreenFrame",
+		"GameMenuFrame"
+	],
+	"addons": {
+	},
+	"settings": {
+	}
+}

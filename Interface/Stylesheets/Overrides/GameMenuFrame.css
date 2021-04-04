@@ -1,0 +1,36 @@
+/*
+	Overrides for the game menu.
+
+	This is the menu that is designed to appear when ESCAPE is pressed.
+	It should provide quick access to the most important settings and actions.
+*/
+#GameMenuFrame {
+	position: absolute;
+
+	display: flex;
+	flex-direction: column;
+
+	padding: 2px;
+	border: 2px solid grey;
+	background-color: rgba(128, 128, 128, 0.5);
+
+	/* To make it centered at all times */
+	left: 50%;
+	bottom: 50%;
+	transform: translate(-50%, 50%);
+}
+
+#GameMenuFrame input {
+	margin: 2px;
+}
+
+/* The content is separated into groups to allow custom spacing.
+This is much easier on the eyes and improves the UX than one giant pile of buttons */
+#GameMenu_MetaGroup,
+#GameMenu_OptionsGroup,
+#GameMenu_ExitGroup,
+#GameMenu_ReturnGroup {
+	margin: 5px;
+	display: flex;
+	flex-direction: column;
+}

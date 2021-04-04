@@ -1,0 +1,129 @@
+<html>
+
+<head>
+    <!-- The default title isn't localized, but it will be when the client is initialized -->
+    <title>Loading...</title>
+
+    <link href="Interface/Stylesheets/Imports.css" rel="stylesheet" type="text/css" />
+
+    <link rel="icon" type="image/png" sizes="24x24" href="favicon.png">
+
+    <!-- Libraries should be loaded first of all to make sure they're available globally -->
+    <script src="Libs/Node.js"></script>
+    <script src="Libs/NodePackages.js"></script>
+    <script src="Libs/Format.js"></script>
+
+    <!-- Shared constants and settings are used throughout the engine -->
+    <script src="Core/Enums/FogModes.js"></script>
+    <script src="Core/Enums/KeyCodes.js"></script>
+    <script src="Core/Enums/Locales.js"></script>
+    <script src="Core/Enums/LogLevels.js"></script>
+    <script src="Core/Enums/PixelFormats.js"></script>
+    <script src="Core/Enums/ResourceStates.js"></script>
+    <script src="Core/Enums/UnitIDs.js"></script>
+    <script src="Core/Enums/WidgetTemplates.js"></script>
+
+    <!-- These provide constants that may be used as default settings -->
+    <script src="Core/Classes/Color.js"></script>
+
+    <!-- Load before the Core APIs as they may be used in initialization -->
+    <script src="Core/Settings/Debugging.js"></script>
+    <script src="Core/Settings/Events.js"></script>
+    <script src="Core/Settings/Folders.js"></script>
+    <script src="Core/Settings/Keybindings.js"></script>
+    <script src="Core/Settings/Localization.js"></script>
+    <script src="Core/Settings/Logging.js"></script>
+    <script src="Core/Settings/Macros.js"></script>
+    <script src="Core/Settings/Networking.js"></script>
+    <script src="Core/Settings/Rendering.js"></script>
+
+    <!-- The core/engine must be loaded before the WebClient can be started -->
+    <script src="Core/Classes/Decoder.js"></script>
+
+    <script src="Core/Classes/HeightMap.js"></script>
+    <script src="Core/Classes/NavigationMap.js"></script>
+    <script src="Core/Classes/TerrainMap.js"></script>
+
+    <script src="Core/Classes/Macro.js"></script>
+
+    <script src="Core/Classes/Logger.js"></script>
+    <script src="Core/Classes/Renderer.js"></script>
+    <script src="Core/Classes/Resource.js"></script>
+    <script src="Core/Classes/TextureAtlas.js"></script>
+    <script src="Core/Classes/Vector3D.js"></script>
+    <script src="Core/WebClient.js"></script>
+
+    <!-- Network packet definitions, to be loaded before the packet DB can be used -->
+    <script src="Core/Packets/MessageDB.js"></script>
+
+    <!-- APIs aren't needed before the client is actually started -->
+    <script src="Core/APIs/C_Addons.js"></script>
+    <script src="Core/APIs/C_Bitmap.js"></script>
+    <script src="Core/APIs/C_Debug.js"></script>
+    <script src="Core/APIs/C_ContentInfo.js"></script>
+    <script src="Core/APIs/C_Decoding.js"></script>
+    <script src="Core/APIs/C_EventSystem.js"></script>
+    <script src="Core/APIs/C_FileSystem.js"></script>
+    <script src="Core/APIs/C_Keybindings.js"></script>
+    <script src="Core/APIs/C_Locales.js"></script>
+    <script src="Core/APIs/C_Logging.js"></script>
+    <script src="Core/APIs/C_Macro.js"></script>
+    <script src="Core/APIs/C_Navigation.js"></script>
+    <script src="Core/APIs/C_Message.js"></script>
+    <script src="Core/APIs/C_Networking.js"></script>
+    <script src="Core/APIs/C_Profiling.js"></script>
+    <script src="Core/APIs/C_Rendering.js"></script>
+    <script src="Core/APIs/C_Resources.js"></script>
+    <script src="Core/APIs/C_Settings.js"></script>
+    <script src="Core/APIs/C_WebView.js"></script>
+    <script src="Core/APIs/C_WebGL.js"></script>
+
+    <!-- UI-related things can also wait, though widgets should be loaded before frames and the UIParent/ViewportContainer must come first -->
+    <script src="Interface/Widgets/ScriptObject.js"></script>
+    <script src="Interface/Widgets/Widget.js"></script>
+
+    <script src="Interface/Widgets/Button.js"></script>
+    <script src="Interface/Widgets/Canvas.js"></script>
+    <script src="Interface/Widgets/CheckButton.js"></script>
+    <script src="Interface/Widgets/EditBox.js"></script>
+    <script src="Interface/Widgets/FieldSet.js"></script>
+    <script src="Interface/Widgets/FontString.js"></script>
+    <script src="Interface/Widgets/Frame.js"></script>
+    <script src="Interface/Widgets/Label.js"></script>
+    <script src="Interface/Widgets/MultiLineEditBox.js"></script>
+    <script src="Interface/Widgets/Image2D.js"></script>
+    <script src="Interface/Widgets/OptionsFrame.js"></script>
+    <script src="Interface/Widgets/OptionsGroup.js"></script>
+    <script src="Interface/Widgets/ProgressBar.js"></script>
+    <script src="Interface/Widgets/Legend.js"></script>
+    <script src="Interface/Widgets/Window.js"></script>
+
+    <!-- This stuff is currently being reviewed and will be refactored later -->
+    <script src="Libs/BinaryReader.js"></script>
+    <script src="Libs/RemoveConsoleSpam.js"></script>
+    <script src="Libs/BabylonJS/Arrow2D.js" type="text/javascript"></script>
+    <!-- <script src="Libs/BabylonJS/AnimatedSprite.js" type="text/javascript"></script> -->
+    <script src="Libs/ImageProcessing/BinPacker.js" type="text/javascript"></script>
+    <script src="Libs/ImageProcessing/Bitmap.js" type="text/javascript"></script>
+    <script src="Libs/ImageProcessing/Blitter.js" type="text/javascript"></script>
+    <script src="Libs/ImageProcessing.js"></script>
+    <script src="Libs/MaxRectsPacker/maxrects-packer.js" type="text/javascript"></script>
+    <script src="Libs/Filters/xbr.js" type="text/javascript"></script>
+    <script src="Libs/Filters/hqx.js" type="text/javascript"></script>
+    <script src="Libs/Include.js"></script>
+    <script src="Libs/Math3D.js"></script>
+
+    <meta content="text/html" charset="utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+
+<body oncontextmenu="return false">
+    <script src="init.js"></script>
+    <script>
+        StartWebClient();
+    </script>
+</body>
+
+</html>

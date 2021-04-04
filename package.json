@@ -1,0 +1,33 @@
+{
+	"name": "revival-webclient",
+	"version": "0.21.04",
+	"description": "Browser-based client capable of rendering networked multiplayer games using modern web technologies.",
+	"main": "main.js",
+	"homepage": "https://revivalengine.github.io/",
+	"dependencies": {
+		"@msgpack/msgpack": "2.5.1",
+		"babylonjs": "4.2.0",
+		"babylonjs-gui": "4.2.0",
+		"babylonjs-loaders": "4.2.0",
+		"babylonjs-materials": "4.2.0",
+		"babylonjs-serializers": "4.2.0",
+		"bmp-js": "^0.1.0"
+	},
+	"devDependencies": {
+		"devtron": "1.4.0",
+		"electron": "11.1.1"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "electron .",
+		"oom": "electron --js-flags='--max-old-space-size=10192' .",
+		"dev": "electron --js-flags=--max-old-space-size=500 . "
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/RevivalEngine/WebClient.git"
+	}
+}

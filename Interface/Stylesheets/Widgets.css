@@ -1,0 +1,12 @@
+/*
+	Loader for the default UI stylesheets.
+
+	They consists of templates applicable to ALL elements of a given type, and individual overrides used to adjust the styles for certain types of elements.
+*/
+
+@import "Templates/BasicGrid.css";
+@import "Templates/Button.css";
+@import "Templates/CheckButton.css";
+@import "Templates/EditBox.css";
+@import "Templates/FontString.css";
+@import "Templates/Window.css";

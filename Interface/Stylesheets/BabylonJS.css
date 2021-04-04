@@ -1,0 +1,11 @@
+/*
+	Default styles for elements provided by the BabylonJS framework.
+
+	There's currently no point in re-styling these, as they're only used for debugging. But if want to, you can.
+*/
+
+/* The viewport actually doesn't listen to any pointer events, as they're passed to the WorldFrame (scene) if no UI level Frames (DOM elements) are rendered on top, so we must restore the normal functionality here in order to allow interacting with the BJS widgets */
+#inspector-host,
+#scene-explorer-host {
+	pointer-events: all;
+}
