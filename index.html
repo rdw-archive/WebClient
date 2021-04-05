@@ -1,4 +1,5 @@
 <html>
+<base href="./">
 
 <head>
     <!-- The default title isn't localized, but it will be when the client is initialized -->
@@ -6,7 +7,7 @@
 
     <link href="Interface/Stylesheets/Imports.css" rel="stylesheet" type="text/css" />
 
-    <link rel="icon" type="image/png" sizes="24x24" href="favicon.png">
+    <link rel="icon" type="image/x-icon" sizes="128x128" href="icon.ico">
 
     <!-- Libraries should be loaded first of all to make sure they're available globally -->
     <script src="Libs/Node.js"></script>
@@ -27,6 +28,7 @@
     <script src="Core/Classes/Color.js"></script>
 
     <!-- Load before the Core APIs as they may be used in initialization -->
+    <script src="Core/Settings/AddOns.js"></script>
     <script src="Core/Settings/Debugging.js"></script>
     <script src="Core/Settings/Events.js"></script>
     <script src="Core/Settings/Folders.js"></script>

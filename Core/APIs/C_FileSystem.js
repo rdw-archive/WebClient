@@ -24,6 +24,8 @@ let C_FileSystem = {
 		NODE.FileSystem.writeFileSync(filePath, JSON.stringify(object));
 	},
 	getFilesInFolder(folderPath) {
+		if (!this.fileExists(folderPath)) return [];
+
 		return NODE.FileSystem.readdirSync(folderPath);
 	},
 	fileExists(folderPath) {

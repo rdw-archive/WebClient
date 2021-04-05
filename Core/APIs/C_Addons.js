@@ -5,6 +5,12 @@ const C_Addons = {
 
 		// Load table of contents (manifest)
 		const filePath = WEBCLIENT_ADDONS_DIR + "/" + addonName + "/";
+
+		if (!C_FileSystem.fileExists(filePath + "/contents.json")) {
+			WARNING("Failed to load addon %s  (contents.json not found)", addonName);
+			return;
+		}
+
 		const addonMetadata = C_FileSystem.readJSON(filePath + "/contents.json");
 		this.loadedAddons[addonName] = addonMetadata;
 

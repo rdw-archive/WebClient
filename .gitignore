@@ -1,5 +1,6 @@
 # Electron/NodeJS stuff
 node_modules/
+dist/
 
 # These are intended for user scripts/game data
 Assets/

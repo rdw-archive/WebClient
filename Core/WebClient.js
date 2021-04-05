@@ -57,7 +57,7 @@ class WebClient {
 		document.head.appendChild(link);
 	}
 	static loadManifest() {
-		const filePath = "TOC.json";
+		const filePath = WEBCLIENT_ROOT_DIR + "/TOC.json";
 		DEBUG("Loading application manifest from " + filePath);
 		this.metadata = C_FileSystem.readJSON(filePath);
 	}
@@ -73,7 +73,8 @@ class WebClient {
 		const installedAddons = C_Addons.getInstalledAddons();
 
 		for (const addonName of installedAddons) {
-			const isEnabled = this.metadata.addons[addonName];
+			let isEnabled = this.metadata.addons[addonName];
+			if (isEnabled === undefined && WEBCLIENT_LOAD_ADDONS_INITIALLY) isEnabled = true;
 			DEBUG(format("Addon %s is set to enabled = %s", addonName, isEnabled));
 			if (!isEnabled) {
 				DEBUG(format("Skipped loading of disabled addon %s", addonName));
@@ -86,7 +87,7 @@ class WebClient {
 	static onScriptExecutionFinished(event, URL) {
 		// Kinda ugly, but alas. It's better than entering callback hell and sync loading doesn't work at all for this
 		DEBUG(format("SCRIPT_EXECUTION_FINISHED triggered for URL %s", URL));
-		if (URL !== "./Interface/Frames/WorldFrame.js") return;
+		if (URL !== WEBCLIENT_INTERFACE_DIR + "/Frames/WorldFrame.js") return;
 
 		// process.on("exit", function () {
 		window.onbeforeunload = function () {
