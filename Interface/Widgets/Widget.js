@@ -65,4 +65,7 @@ class Widget extends ScriptObject {
 		element.parentNode.removeChild(element);
 		// It's not actually destroyed, but should be garbage-collected once it's no longer referenced?
 	}
+	setClass(className) {
+		this._obj.className = className;
+	}
 }
