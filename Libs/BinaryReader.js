@@ -23,8 +23,7 @@ class BinaryReader {
 			if(byte === 92) character = "/"; // backslash...
 			string = string + character;
 		}
-		string = string.split("\0").shift(); // null-terminated string => cut off the garbage data
-		// string = escape(string); // In case someone had the glorious idea of using single backslashes...
+		string = string.split("\0").shift(); // null-terminated string => discard the garbage data
 		return string
 	}
 
