@@ -27,7 +27,7 @@ C_Navigation.isTileWalkable = function (u, v) {
 	return this.navigationMap.isWalkable(u * v);
 };
 
-C_Navigation.getTileAltitude = function (u, v) {
+C_Navigation.getTerrainAltitude = function (u, v) {
 	return this.heightMap.getAltitude(u * v);
 };
 
