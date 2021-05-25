@@ -447,11 +447,12 @@ C_WebGL.toggleBloomEffect = function () {
 };
 
 // obsolete?
-C_WebGL.createBloomEffect = function (kernelSize, scale, threshold, weight) {
-	pipeline.bloomKernel = kernelSize; // 64 by default
-	pipeline.bloomScale = scale; // 0.5 by default
-	pipeline.bloomThreshold = threshold; // 0.9 by default
-	pipeline.bloomWeight = weight; // 0.15 by default
+C_WebGL.createBloomEffect = function (kernelSize = 64, scale = 0.5, threshold = 0.9, weight = 0.15) {
+	const pipeline = this.pipeline;
+	pipeline.bloomKernel = kernelSize;
+	pipeline.bloomScale = scale;
+	pipeline.bloomThreshold = threshold;
+	pipeline.bloomWeight = weight;
 };
 
 // FXAA
