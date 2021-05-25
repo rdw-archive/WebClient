@@ -156,6 +156,34 @@ C_WebGL.createDirectionalLight = function (name, properties) {
 	return directionalLight;
 };
 
+C_WebGL.createSphere = function (name, properties) {
+
+	const positionVector3D = properties.position;
+	const radiusInWorldUnits = properties.radiusl;
+	const color = properties.color;
+
+	const options = {
+		diameterX: radiusInWorldUnits * 2,
+		diameterY: radiusInWorldUnits * 2,
+		diameterZ: radiusInWorldUnits * 2,
+	};
+
+	const sphere = BABYLON.MeshBuilder.CreateSphere(name, options);
+	sphere.position.x = positionVector3D.x;
+	sphere.position.y = positionVector3D.y;
+	sphere.position.z = positionVector3D.z;
+
+	sphere.material = new BABYLON.StandardMaterial(name + "Material");
+	sphere.material.diffuseColor = new BABYLON.Color4(
+		color.red / 255,
+		color.green / 255,
+		color.blue / 255,
+		color.alpha / 255
+	);
+
+	return sphere;
+};
+
 C_WebGL.createAmbientLight = function (name, properties) {
 	const specularColor = new BABYLON.Color3(
 		properties.specularColor.red,
