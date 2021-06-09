@@ -18,6 +18,20 @@ C_Debug.drawLine = function (sourceVector3D, destinationVector3D, color = Color.
 	return lineSystem;
 };
 
+C_Debug.drawSphere = function (
+	positionVector3D = Vector3D.ORIGIN,
+	radiusInWorldUnits = 1,
+	color = Color.RED
+) {
+	const properties = {
+		position: positionVector3D,
+		radius: radiusInWorldUnits,
+		color: color
+	}
+	const sphere = C_WebGL.createSphere("DebugSphere" + WebClient.getNextAvailableGUID(), properties);
+	return sphere;
+};
+
 C_Debug.createTextPlane = function (text, parentNode) {
 	textPlane = C_WebGL.makeTextPlane(text);
 	textPlane.parent = parentNode;
