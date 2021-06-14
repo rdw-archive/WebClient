@@ -1,4 +1,5 @@
 const LOG_LEVEL_NONE = "NONE";
+const LOG_LEVEL_TEST = "TEST";
 const LOG_LEVEL_DEBUG = "DEBUG";
 const LOG_LEVEL_INFO = "INFO";
 const LOG_LEVEL_NOTICE = "NOTICE";

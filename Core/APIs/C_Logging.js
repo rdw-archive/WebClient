@@ -2,6 +2,7 @@ const C_Logging = {
 	loggers: {},
 	createLoggers() {
 		this.loggers[LOG_LEVEL_NONE] = new Logger({ [LOG_LEVEL_NONE]: true });
+		this.loggers[LOG_LEVEL_TEST] = new Logger({ [LOG_LEVEL_TEST]: true });
 		this.loggers[LOG_LEVEL_DEBUG] = new Logger({ [LOG_LEVEL_DEBUG]: true });
 		this.loggers[LOG_LEVEL_INFO] = new Logger({ [LOG_LEVEL_INFO]: true });
 		this.loggers[LOG_LEVEL_NOTICE] = new Logger({ [LOG_LEVEL_NOTICE]: true });
@@ -13,6 +14,11 @@ const C_Logging = {
 	},
 	createLoggingAliases() {
 		const self = this;
+		window.TEST = function (message) {
+			if (!WEBCLIENT_ACTIVE_LOGGERS[LOG_LEVEL_TEST]) return;
+			self.loggers[LOG_LEVEL_TEST].log(message, LOG_LEVEL_TEST);
+		};
+
 		window.DEBUG = function (message) {
 			if (!WEBCLIENT_ACTIVE_LOGGERS[LOG_LEVEL_DEBUG]) return;
 			self.loggers[LOG_LEVEL_DEBUG].log(message, LOG_LEVEL_DEBUG);
