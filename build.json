@@ -10,9 +10,7 @@
 	},
 	"linux": {
         "icon": "icon_512x512.png",
-		"publish": [
-			"github"
-		]
+		"publish": "never"
 	},
 	"nsis": {
 		"oneClick": false,
