@@ -11,19 +11,19 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
-      max-parallel: 1
+      max-parallel: 6
       fail-fast: false
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
         include:
           - os: windows-latest
-            os-prefix: win
+            os-prefix: Windows
             build-dir: win-unpacked
           - os: macos-latest
-            os-prefix: mac
+            os-prefix: MacOS
             build-dir: mac
           - os: ubuntu-latest
-            os-prefix: linux
+            os-prefix: Ubuntu
             build-dir: linux-unpacked
 
     steps:
@@ -44,7 +44,6 @@ jobs:
       - name: Create release assets
         uses: papeloto/action-zip@v1
         with:
-          # TODO Mac/Linux paths?
           files: dist/${{ matrix.build-dir }}
           dest: dist/WebClient-${{ matrix.os-prefix }}.zip
 
@@ -56,7 +55,7 @@ jobs:
         with:
           files: dist/WebClient-${{ matrix.os-prefix }}.zip
         env:
-          github_token: ${{ secrets.github_token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - name: Build/release Electron app
       #   uses: samuelmeuli/action-electron-builder@v1
       #   with:
