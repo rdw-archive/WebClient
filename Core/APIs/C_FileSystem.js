@@ -31,7 +31,11 @@ let C_FileSystem = {
 	fileExists(folderPath) {
 		return NODE.FileSystem.existsSync(folderPath);
 	},
-	makeDirectory(path) {
-		NODE.FileSystem.mkdirSync(path);
+	makeDirectory(filePath) {
+		if (this.fileExists(filePath)) return;
+
+		DEBUG(format("Making directory %s", filePath));
+		NODE.FileSystem.mkdirSync(filePath);
+	},
 	},
 };
