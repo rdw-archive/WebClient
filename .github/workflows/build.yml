@@ -30,7 +30,7 @@ jobs:
 
       - name: Run predefined build process
         run: npm run make
-        with:
+        env:
           github_token: ${{ secrets.github_token }}
 
       - name: Create release assets
