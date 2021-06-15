@@ -15,6 +15,15 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
+          include:
+            # includes a new variable of npm with a value of 6
+            # for the matrix leg matching the os and version
+            - os: windows-latest
+              os-prefix: win
+            - os: macos-latest
+              os-prefix: mac
+            - os: ubuntu-latest
+              os-prefix: linux
 
     steps:
       - name: Check out Git repository
@@ -35,7 +44,7 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           # TODO Mac/Linux paths?
-          files: dist/win-unpacked
+          files: dist/${{ matrix.os-prefix }}-unpacked
           dest: dist/WebClient-${{ matrix.os }}.zip
 
       - name: Publish release assets

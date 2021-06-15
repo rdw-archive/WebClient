@@ -11,7 +11,7 @@
 	},
 	"linux": {
         "icon": "icon_512x512.png",
-		"target": "deb",
+		"target": "tar.gz",
 		"publish": null
 	},
 	"nsis": {
