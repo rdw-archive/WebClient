@@ -30,8 +30,8 @@ let C_FileSystem = {
 
 		return NODE.FileSystem.readdirSync(folderPath);
 	},
-	fileExists(folderPath) {
-		return NODE.FileSystem.existsSync(folderPath);
+	fileExists(filePath) {
+		return NODE.FileSystem.existsSync(filePath);
 	},
 	makeDirectory(filePath) {
 		if (this.fileExists(filePath)) return;
