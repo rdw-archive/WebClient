@@ -35,7 +35,7 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           # TODO Mac/Linux paths?
-          files: dist/win-unpacked/resources/app
+          files: dist/win-unpacked
           dest: dist/WebClient.zip
 
       - name: Publish release assets
