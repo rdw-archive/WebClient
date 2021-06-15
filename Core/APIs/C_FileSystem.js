@@ -37,5 +37,13 @@ let C_FileSystem = {
 		DEBUG(format("Making directory %s", filePath));
 		NODE.FileSystem.mkdirSync(filePath);
 	},
+	removeDirectory(filePath) {
+		if (!this.fileExists(filePath)) return;
+		NODE.FileSystem.rmdirSync(filePath);
+	},
+	removeFile(filePath) {
+		if (!this.fileExists(filePath)) return;
+		DEBUG(format("Attempting to remove file %s", filePath));
+		NODE.FileSystem.unlinkSync(filePath);
 	},
 };
