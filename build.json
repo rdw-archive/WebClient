@@ -6,10 +6,12 @@
 		},
 	"mac": {
 		"category": "public.app-category.games",
-		"icon": "icon_512x512.png"
+		"icon": "icon_512x512.png",
+		"publish": null
 	},
 	"linux": {
         "icon": "icon_512x512.png",
+		"target": "deb",
 		"publish": null
 	},
 	"nsis": {
