@@ -43,6 +43,13 @@ let C_FileSystem = {
 		if (!this.fileExists(filePath)) return;
 		NODE.FileSystem.rmdirSync(filePath);
 	},
+	computeChecksum(filePath) {
+		const buffer = this.readFileBinary(filePath);
+
+		const checksum = CRC32.fromArrayBuffer(buffer);
+		DEBUG(format("Computed CRC32 for file %s: %d (%x)", filePath, checksum, checksum));
+		return checksum;
+	},
 	removeFile(filePath) {
 		if (!this.fileExists(filePath)) return;
 		DEBUG(format("Attempting to remove file %s", filePath));
