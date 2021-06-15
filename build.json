@@ -5,7 +5,8 @@
 		"target": ["portable"]
 		},
 	"mac": {
-		"category": "public.app-category.games"
+		"category": "public.app-category.games",
+		"icon": "icon_512x512.png"
 	},
 	"linux": {
         "icon": "icon_512x512.png",
