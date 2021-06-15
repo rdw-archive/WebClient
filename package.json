@@ -1,6 +1,6 @@
 {
 	"name": "revival-webclient",
-	"version": "0.21.06157",
+	"version": "0.21.06158",
 	"description": "Browser-based client capable of rendering networked multiplayer games using modern web technologies.",
 	"main": "main.js",
 	"homepage": "https://revivalengine.github.io/",

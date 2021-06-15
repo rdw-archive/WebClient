@@ -10,7 +10,7 @@
 	},
 	"linux": {
         "icon": "icon_512x512.png",
-		"publish": "never"
+		"publish": null
 	},
 	"nsis": {
 		"oneClick": false,
