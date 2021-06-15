@@ -17,10 +17,12 @@ let C_FileSystem = {
 		NODE.FileSystem.writeFileSync(filePath, buffer);
 	},
 	readJSON(filePath) {
+		DEBUG(format("Reading JSON from file %s", filePath));
 		const fileContents = this.readFile(filePath);
 		return JSON.parse(fileContents);
 	},
 	writeJSON(filePath, object) {
+		DEBUG(format("Writing JSON to file %s", filePath));
 		NODE.FileSystem.writeFileSync(filePath, JSON.stringify(object));
 	},
 	getFilesInFolder(folderPath) {
