@@ -15,15 +15,13 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
-          include:
-            # includes a new variable of npm with a value of 6
-            # for the matrix leg matching the os and version
-            - os: windows-latest
-              os-prefix: win
-            - os: macos-latest
-              os-prefix: mac
-            - os: ubuntu-latest
-              os-prefix: linux
+        include:
+          - os: windows-latest
+            os-prefix: win
+          - os: macos-latest
+            os-prefix: mac
+          - os: ubuntu-latest
+            os-prefix: linux
 
     steps:
       - name: Check out Git repository
