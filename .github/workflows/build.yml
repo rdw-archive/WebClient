@@ -18,10 +18,13 @@ jobs:
         include:
           - os: windows-latest
             os-prefix: win
+            build-dir: win-unpacked
           - os: macos-latest
             os-prefix: mac
+            build-dir: mac
           - os: ubuntu-latest
             os-prefix: linux
+            build-dir: linux-unpacked
 
     steps:
       - name: Check out Git repository
@@ -42,7 +45,7 @@ jobs:
         uses: papeloto/action-zip@v1
         with:
           # TODO Mac/Linux paths?
-          files: dist/${{ matrix.os-prefix }}-unpacked
+          files: dist/${{ matrix.build-dir }}
           dest: dist/WebClient-${{ matrix.os-prefix }}.zip
 
       - name: Publish release assets
