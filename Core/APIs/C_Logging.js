@@ -14,6 +14,11 @@ const C_Logging = {
 	},
 	createLoggingAliases() {
 		const self = this;
+
+		window.dump = function(...data) {
+			console.table(data);
+		}
+
 		window.TEST = function (message) {
 			if (!WEBCLIENT_ACTIVE_LOGGERS[LOG_LEVEL_TEST]) return;
 			self.loggers[LOG_LEVEL_TEST].log(message, LOG_LEVEL_TEST);
