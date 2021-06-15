@@ -22,14 +22,20 @@ jobs:
         with:
           node-version: 14
 
-      - name: Build/release Electron app
-        uses: samuelmeuli/action-electron-builder@v1
-        with:
-          # GitHub token, automatically provided to the action
-          # (No need to define this secret in the repo settings)
-          github_token: ${{ secrets.github_token }}
+      - name: Install packages
+        run: npm install
 
-          # If the commit is tagged with a version (e.g. "v1.0.0"),
-          # release the app after building
-          release: ${{ startsWith(github.ref, 'refs/tags/v') }}
-          args: --config build.json
+      - name: Run predefined build process
+        run: npm run make
+
+      # - name: Build/release Electron app
+      #   uses: samuelmeuli/action-electron-builder@v1
+      #   with:
+      #     # GitHub token, automatically provided to the action
+      #     # (No need to define this secret in the repo settings)
+      #     github_token: ${{ secrets.github_token }}
+
+      #     # If the commit is tagged with a version (e.g. "v1.0.0"),
+      #     # release the app after building
+      #     release: ${{ startsWith(github.ref, 'refs/tags/v') }}
+      #     args: --config build.json
