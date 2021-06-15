@@ -43,7 +43,7 @@ jobs:
         with:
           # TODO Mac/Linux paths?
           files: dist/${{ matrix.os-prefix }}-unpacked
-          dest: dist/WebClient-${{ matrix.os }}.zip
+          dest: dist/WebClient-${{ matrix.os-prefix }}.zip
 
       - name: Publish release assets
         uses: softprops/action-gh-release@v1
@@ -51,7 +51,7 @@ jobs:
       #     # release the app after building
       #     release: ${{ startsWith(github.ref, 'refs/tags/v') }}
         with:
-          files: dist\WebClient-${{ matrix.os }}.zip
+          files: dist/WebClient-${{ matrix.os-prefix }}.zip
         env:
           github_token: ${{ secrets.github_token }}
       # - name: Build/release Electron app
