@@ -8,7 +8,8 @@
 		"category": "public.app-category.games"
 	},
 	"linux": {
-        "icon": "icon_512x512.png"
+        "icon": "icon_512x512.png",
+		"publish": "github"
 	},
 	"nsis": {
 		"oneClick": false,
