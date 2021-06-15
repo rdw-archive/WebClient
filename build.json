@@ -1,6 +1,9 @@
 {
 	"appId": "RevivalEngine.WebClient",
 	"productName": "Revival WebClient",
+	"win": {
+		"target": ["portable"]
+		},
 	"mac": {
 		"category": "public.app-category.games"
 	},
