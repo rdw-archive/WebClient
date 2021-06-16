@@ -365,3 +365,15 @@ file in a relevant directory) where a recipient would be likely to look
 for such a notice.
 
 You may add additional accurate notices of copyright ownership.
+
+---
+
+Addendum: External resources
+
+Third-party libraries, open fonts etc. that are used (and distributed)
+alongside this project's code are re-distributed under their original licenses.
+
+The terms for these licenses can be found
+a) in a text/markdown file in the same directory,
+b) on the websites of the respective open source projects, or
+c) by individual request (fallback option)
