@@ -23,7 +23,7 @@ jobs:
             os-prefix: MacOS
             build-dir: mac
           - os: ubuntu-latest
-            os-prefix: Ubuntu
+            os-prefix: Linux
             build-dir: linux-unpacked
 
     steps:
