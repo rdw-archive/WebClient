@@ -35,19 +35,19 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install packages
+      - name: Install dependencies
         run: npm install
 
-      - name: Run predefined build process
+      - name: Make executables
         run: npm run make
 
-      - name: Create release assets
+      - name: Create zip archives
         uses: papeloto/action-zip@v1
         with:
           files: dist/${{ matrix.build-dir }}
           dest: dist/WebClient-${{ matrix.os-prefix }}.zip
 
-      - name: Publish release assets
+      - name: Publish new release
         uses: softprops/action-gh-release@v1
       #     # If the commit is tagged with a version (e.g. "v1.0.0"),
       #     # release the app after building
