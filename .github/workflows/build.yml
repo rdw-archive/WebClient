@@ -1,0 +1,55 @@
+# Copy/paste example from https://github.com/marketplace/actions/electron-builder-action
+name: Build/release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      max-parallel: 6
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        include:
+          - os: windows-latest
+            os-prefix: Windows
+            build-dir: win-unpacked
+          - os: macos-latest
+            os-prefix: MacOS
+            build-dir: mac
+          - os: ubuntu-latest
+            os-prefix: Linux
+            build-dir: linux-unpacked
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Make executables
+        run: npm run make
+
+      - name: Create zip archives
+        uses: papeloto/action-zip@v1
+        with:
+          files: dist/${{ matrix.build-dir }}
+          dest: dist/WebClient-${{ matrix.os-prefix }}.zip
+
+      - name: Publish new release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/WebClient-${{ matrix.os-prefix }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
