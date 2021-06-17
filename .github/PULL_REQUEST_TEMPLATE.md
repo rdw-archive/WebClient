@@ -1,20 +1,24 @@
-Goals:
+### Goals
 
-- [ ] Please describe briefly the intended purpose of the change and the rationale behind it
+Please describe briefly the intended purpose of the change and the rationale behind it:
 
-Roadmap:
+- [ ] TBD
 
-- [ ] Please list the exact steps needed to implement the change here in as much detail as you see fit
 
----
+### Roadmap
 
-Testing:
+Please list the exact steps needed to implement the change here in as much detail as you see fit:
+
+- [ ] TBD
+
+
+### Testing
 
 - [ ] All components touched by this change are tested
 - [ ] All public interfaces touched by this change are tested
 - [ ] All interactions involving the systems affected by this change are tested
 
-Documentation:
+### Documentation
 
 - [ ] Tutorials are updated where relevant (if an introduction is needed)
 - [ ] HowTos are updated to account for this change
