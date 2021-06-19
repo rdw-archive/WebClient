@@ -48,4 +48,11 @@ const C_EventSystem = {
 			onEventCallback(event, ...args);
 		}
 	},
+	unregisterEvent(event, listenerID) {
+		if (!this.eventListeners[event][listenerID]) return;
+
+		delete this.eventListeners[event][listenerID];
+
+		DEBUG(format("Unregistered listener %s for event %s", listenerID, event));
+	},
 };
