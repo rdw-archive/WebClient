@@ -1,0 +1,7 @@
+.ScrollFrame {
+	width: 100%;
+	border: 2px solid white;
+	padding: 5px;
+	/* Only show the scroll bar if absolutely necessary, as it looks bad otherwise */
+	overflow-y: auto;
+}

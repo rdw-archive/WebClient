@@ -1,0 +1,6 @@
+#AddonOptionsFrame_InstalledAddonsList {
+	/* Any bigger and it will clash with the MinimapFrame */
+	max-height: 50vh;
+	
+	margin-bottom: 0.5rem;
+}
