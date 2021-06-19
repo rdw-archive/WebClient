@@ -13,7 +13,7 @@ AddonOptionsFrame.createWidgets = function () {
 };
 
 AddonOptionsFrame.createScrollFrame = function () {
-	this.addonList = new Frame("AddonOptionsFrame_InstalledAddonsList", this.content, "ScrollFrame");
+	this.addonList = new ScrollFrame("AddonOptionsFrame_InstalledAddonsList", this.content);
 	this.createCheckButtons();
 	this.updateCheckButtons();
 };
