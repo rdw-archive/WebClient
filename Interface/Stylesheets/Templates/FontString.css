@@ -5,97 +5,202 @@
 	The functionality is inspired by the World of Warcraft client, but utilizes standard CSS/JavaScript APIs.
 	See https://wow.gamepedia.com/UIOBJECT_Font for more details on the concept of font instances/templates */
 
-.GameFontHuge {
-	font-family: IngameFont;
-	font-size: 72pt;
-}
-
-.GameFontLargest {
-	font-family: IngameFont;
-	font-size: 48pt;
-}
-
-.GameFontLarger {
-	font-family: IngameFont;
-	font-size: 24pt;
-}
-
-.GameFontLarge {
-	font-family: IngameFont;
-	font-size: 16pt;
-}
-
-.GameFontNormal {
-	font-family: IngameFont;
-	font-size: 12pt;
-}
-
-.GameFontSmall {
-	font-family: IngameFont;
-	font-size: 11pt;
+.GameFontSmallest {
+    font-family: GameFont;
+    font-size: var(--font-size-smallest);
 }
 
 .GameFontSmaller {
-	font-family: IngameFont;
-	font-size: 10pt;
+    font-family: GameFont;
+    font-size: var(--font-size-smaller);
 }
 
-.GameFontSmallest {
-	font-family: IngameFont;
-	font-size: 8pt;
+.GameFontSmall {
+    font-family: GameFont;
+    font-size: var(--font-size-small);
 }
 
-.BoldFontNormal {
-	font-family: BoldFont;
-	font-size: 12pt;
+.GameFontNormal {
+    font-family: GameFont;
+    font-size: var(--font-size-normal);
 }
 
-.BoldFontSmall {
-	font-family: BoldFont;
-	font-size: 11pt;
+.GameFontLarge {
+    font-family: GameFont;
+    font-size: var(--font-size-large);
 }
 
-.BoldFontSmaller {
-	font-family: BoldFont;
-	font-size: 10pt;
+.GameFontLarger {
+    font-family: GameFont;
+    font-size: var(--font-size-larger);
+}
+
+.GameFontLargest {
+    font-family: GameFont;
+    font-size: var(--font-size-largest);
+}
+
+.GameFontHuge {
+    font-family: GameFont;
+    font-size: var(--font-size-huge);
 }
 
 .BoldFontSmallest {
-	font-family: BoldFont;
-	font-size: 8pt;
+    font-family: BoldFont;
+    font-size: var(--font-size-smallest);
 }
 
-.TitleFontLarge {
-	font-family: IngameFont;
-	font-size: 72pt;
+.BoldFontSmaller {
+    font-family: BoldFont;
+    font-size: var(--font-size-smaller);
 }
 
-.TitleFontNormal {
-	font-family: IngameFont;
-	font-size: 24pt;
+.BoldFontSmall {
+    font-family: BoldFont;
+    font-size: var(--font-size-small);
 }
 
-.TitleFontSmall {
-	font-family: IngameFont;
-	font-size: 12pt;
+.BoldFontNormal {
+    font-family: BoldFont;
+    font-size: var(--font-size-normal);
+}
+
+.BoldFontLarge {
+    font-family: BoldFont;
+    font-size: var(--font-size-large);
+}
+
+.BoldFontLarger {
+    font-family: BoldFont;
+    font-size: var(--font-size-larger);
+}
+
+.BoldFontLargest {
+    font-family: BoldFont;
+    font-size: var(--font-size-largest);
+}
+
+.BoldFontHuge {
+    font-family: BoldFont;
+    font-size: var(--font-size-huge);
+}
+
+.TitleFontSmallest {
+    font-family: TitleFont;
+    font-size: var(--font-size-smallest);
 }
 
 .TitleFontSmaller {
-	font-family: IngameFont;
-	font-size: 10pt;
+    font-family: TitleFont;
+    font-size: var(--font-size-smaller);
+}
+
+.TitleFontSmall {
+    font-family: TitleFont;
+    font-size: var(--font-size-small);
+}
+
+.TitleFontNormal {
+    font-family: TitleFont;
+    font-size: var(--font-size-normal);
+}
+
+.TitleFontLarge {
+    font-family: TitleFont;
+    font-size: var(--font-size-large);
+}
+
+.TitleFontLarger {
+    font-family: TitleFont;
+    font-size: var(--font-size-larger);
+}
+
+.TitleFontLargest {
+    font-family: TitleFont;
+    font-size: var(--font-size-largest);
+}
+
+.TitleFontHuge {
+    font-family: TitleFont;
+    font-size: var(--font-size-huge);
+}
+
+.CaptionFontSmallest {
+    font-family: CaptionFont;
+    font-size: var(--font-size-smallest);
+}
+
+.CaptionFontSmaller {
+    font-family: CaptionFont;
+    font-size: var(--font-size-smaller);
 }
 
 .CaptionFontSmall {
-	font-family: InterfaceFont;
-	font-size: 14pt;
+    font-family: CaptionFont;
+    font-size: var(--font-size-small);
 }
 
 .CaptionFontNormal {
-	font-family: InterfaceFont;
-	font-size: 18pt;
+    font-family: CaptionFont;
+    font-size: var(--font-size-normal);
 }
 
 .CaptionFontLarge {
-	font-family: InterfaceFont;
-	font-size: 30pt;
+    font-family: CaptionFont;
+    font-size: var(--font-size-large);
+}
+
+.CaptionFontLarger {
+    font-family: CaptionFont;
+    font-size: var(--font-size-larger);
+}
+
+.CaptionFontLargest {
+    font-family: CaptionFont;
+    font-size: var(--font-size-largest);
+}
+
+.CaptionFontHuge {
+    font-family: CaptionFont;
+    font-size: var(--font-size-huge);
+}
+
+.ScriptFontSmallest {
+    font-family: ScriptFont;
+    font-size: var(--font-size-smallest);
+}
+
+.ScriptFontSmaller {
+    font-family: ScriptFont;
+    font-size: var(--font-size-smaller);
+}
+
+.ScriptFontSmall {
+    font-family: ScriptFont;
+    font-size: var(--font-size-small);
+}
+
+.ScriptFontNormal {
+    font-family: ScriptFont;
+    font-size: var(--font-size-normal);
+}
+
+.ScriptFontLarge {
+    font-family: ScriptFont;
+    font-size: var(--font-size-large);
+}
+
+.ScriptFontLarger {
+    font-family: ScriptFont;
+    font-size: var(--font-size-larger);
+}
+
+.ScriptFontLargest {
+    font-family: ScriptFont;
+    font-size: var(--font-size-largest);
+}
+
+.ScriptFontHuge {
+    font-family: ScriptFont;
+    font-size: var(--font-size-huge);
 }
