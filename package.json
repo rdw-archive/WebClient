@@ -33,7 +33,7 @@
 	},
 	"keywords": [],
 	"author": "RDW",
-	"license": "MIT",
+	"license": "MPL-2.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/RevivalEngine/WebClient.git"
