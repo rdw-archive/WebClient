@@ -10,7 +10,8 @@
 		"FpsCounterFrame",
 		"KeyboardInputFrame",
 		"LoadingScreenFrame",
-		"GameMenuFrame"
+		"GameMenuFrame",
+		"AddonOptionsFrame"
 	],
 	"addons": {
 	},
