@@ -1,3 +1,11 @@
 .CheckButtonContainer {
-	display: inline-block;
+	display: flex;
+	flex-direction: row;
+	/* Ensures the checkboxes and labels are aligned vertically */
+	justify-content: flex-start;
+	/* margin: 0.15rem; */
+}
+
+.CheckButton {
+	margin-right: 0.25rem;
 }
