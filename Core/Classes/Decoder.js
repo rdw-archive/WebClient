@@ -1,3 +1,7 @@
+/**
+ * Decoding stuff is fun
+ * @see {@link Resource, @link C_Decoding}
+ */
 class Decoder {
 	constructor(fileType, decodingFunction) {
 		this.fileType = fileType;

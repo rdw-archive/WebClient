@@ -1,3 +1,7 @@
+/**
+ * Resources are an in-memory representation of binary data. This standardized format can be created by decoding files from disk or any other input stream that would otherwise be unusable.
+ * @see C_Decoding, Decoder
+ */
 class Resource {
 	constructor(resourceID, isCritical = false, resourceData = []) {
 		this.resourceID = resourceID;
