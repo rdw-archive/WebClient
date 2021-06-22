@@ -74,7 +74,7 @@ class WebClient {
 
 		for (const addonName of installedAddons) {
 			let isEnabled = this.metadata.addons[addonName];
-			if (isEnabled === undefined && WEBCLIENT_LOAD_ADDONS_INITIALLY) isEnabled = true;
+			if (isEnabled === undefined && WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) isEnabled = true;
 			DEBUG(format("Addon %s is set to enabled = %s", addonName, isEnabled));
 			if (!isEnabled) {
 				DEBUG(format("Skipped loading of disabled addon %s", addonName));
