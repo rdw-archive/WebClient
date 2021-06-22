@@ -10,7 +10,8 @@ GameMenuFrame.createButtonGroups = function () {
 GameMenuFrame.createSupportButton = function () {
 	this.addonOptionsButton = new Button("GameMenu_SupportButton", this.metaGroup);
 	this.addonOptionsButton.setText(L["Support"]);
-	this.addonOptionsButton.setScript("OnClick", function () {
+	this.addonOptionsButton.setScript("OnClick", function() {
+		GameMenuFrame.hide();
 		SupportFrame.show();
 	});
 };
@@ -18,7 +19,8 @@ GameMenuFrame.createSupportButton = function () {
 GameMenuFrame.createWhatsNewButton = function () {
 	this.addonOptionsButton = new Button("GameMenu_WhatsNewButton", this.metaGroup);
 	this.addonOptionsButton.setText(L["What's New"]);
-	this.addonOptionsButton.setScript("OnClick", function () {
+	this.addonOptionsButton.setScript("OnClick", function() {
+		GameMenuFrame.hide();
 		ChangeLogSummaryFrame.show();
 	});
 };
@@ -26,7 +28,8 @@ GameMenuFrame.createWhatsNewButton = function () {
 GameMenuFrame.createCreditsButton = function () {
 	this.creditsButton = new Button("GameMenu_CreditsNewButton", this.metaGroup);
 	this.creditsButton.setText(L["Credits"]);
-	this.creditsButton.setScript("OnClick", function () {
+	this.creditsButton.setScript("OnClick", function() {
+		GameMenuFrame.hide();
 		CreditsFrame.show();
 	});
 };
@@ -34,7 +37,8 @@ GameMenuFrame.createCreditsButton = function () {
 GameMenuFrame.createSystemOptionsButton = function () {
 	this.addonOptionsButton = new Button("GameMenu_SystemOptionsButton", this.optionsGroup);
 	this.addonOptionsButton.setText(L["System"]);
-	this.addonOptionsButton.setScript("OnClick", function () {
+	this.addonOptionsButton.setScript("OnClick", function() {
+		GameMenuFrame.hide();
 		SystemOptionsFrame.show();
 	});
 };
@@ -42,7 +46,8 @@ GameMenuFrame.createSystemOptionsButton = function () {
 GameMenuFrame.createInterfaceOptionsButton = function () {
 	this.addonOptionsButton = new Button("GameMenu_InterfaceOptionsButton", this.optionsGroup);
 	this.addonOptionsButton.setText(L["Interface"]);
-	this.addonOptionsButton.setScript("OnClick", function () {
+	this.addonOptionsButton.setScript("OnClick", function() {
+		GameMenuFrame.hide();
 		InterfaceOptionsFrame.show();
 	});
 };
@@ -50,7 +55,8 @@ GameMenuFrame.createInterfaceOptionsButton = function () {
 GameMenuFrame.createKeybindingOptionsButton = function () {
 	this.addonOptionsButton = new Button("GameMenu_KeybindingsOptionsButton", this.optionsGroup);
 	this.addonOptionsButton.setText(L["Keybindings"]);
-	this.addonOptionsButton.setScript("OnClick", function () {
+	this.addonOptionsButton.setScript("OnClick", function() {
+		GameMenuFrame.hide();
 		KeybindingsOptionsFrame.show();
 	});
 };
@@ -58,7 +64,8 @@ GameMenuFrame.createKeybindingOptionsButton = function () {
 GameMenuFrame.createMacroOptionsButton = function () {
 	this.addonOptionsButton = new Button("GameMenu_MacroOptionsButton", this.optionsGroup);
 	this.addonOptionsButton.setText(L["Macros"]);
-	this.addonOptionsButton.setScript("OnClick", function () {
+	this.addonOptionsButton.setScript("OnClick", function() {
+		GameMenuFrame.hide();
 		MacroFrame.show();
 	});
 };
@@ -66,7 +73,8 @@ GameMenuFrame.createMacroOptionsButton = function () {
 GameMenuFrame.createAddonOptionsButton = function () {
 	this.addonOptionsButton = new Button("GameMenu_AddOnsButton", this.optionsGroup);
 	this.addonOptionsButton.setText(L["AddOns"]);
-	this.addonOptionsButton.setScript("OnClick", function () {
+	this.addonOptionsButton.setScript("OnClick", function() {
+		GameMenuFrame.hide();
 		AddonOptionsFrame.show();
 	});
 };
