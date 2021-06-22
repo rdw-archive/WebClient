@@ -1,5 +1,7 @@
 const GameMenuFrame = new Frame("GameMenuFrame");
 
+GameMenuFrame.makeClosable();
+
 GameMenuFrame.createButtonGroups = function () {
 	this.metaGroup = new Frame("GameMenu_MetaGroup", GameMenuFrame);
 	this.optionsGroup = new Frame("GameMenu_OptionsGroup", GameMenuFrame);
