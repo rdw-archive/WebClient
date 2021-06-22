@@ -93,6 +93,13 @@
 	color: #303b51;
 	/* text-transform: capitalize; */
 	/* text-shadow: 0px 0px 1px #303b51; */
+.WindowCloseIcon::after {
+    content: '\2716';
+    top: 5px;
+    right: 10px;
+    /* The icon should be anchored to the Window's top-right corner for a standard UX */
+    position: absolute;
+    font-size: 16pt;
 }
 
 .WindowTitle {

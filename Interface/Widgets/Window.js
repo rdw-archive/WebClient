@@ -10,6 +10,8 @@ class Window extends Widget {
 		this.minButton = new Frame(widgetName + "MinimizeButton", this.titleBar, WIDGET_TEMPLATE_WINDOW_MINIMIZEBUTTON);
 		this.maxButton = new Frame(widgetName + "MaximizeButton", this.titleBar, WIDGET_TEMPLATE_WINDOW_MAXIMIZEBUTTON);
 		this.closeButton = new Frame(widgetName + "CloseButton", this.titleBar, WIDGET_TEMPLATE_WINDOW_CLOSEBUTTON);
+		const closeIcon = this.closeButton.createFontString(widgetName + "CloseButtonIcon", "HIGH", "BoldFontHuge");
+		closeIcon.setClass("WindowCloseIcon");
 
 		const self = this; // It's a thing of beauty... just like the rest of this cursed language
 		function minimizeWindow() {
