@@ -5,7 +5,7 @@ class Window extends Widget {
 		const window = new Frame(widgetName + "Window", parentFrame, template);
 		this._obj = window;
 		this.titleBar = new Frame(widgetName + "TitleBar", window, WIDGET_TEMPLATE_WINDOW_TITLEBAR);
-		this.titleText = this.titleBar.createFontString(widgetName + "TitleText", "HIGH", "WindowTitleFontNormal"); // todo layer NYI, Fonts NYI
+		this.titleText = this.titleBar.createFontString(widgetName + "TitleText", "HIGH", "BoldFontNormal");
 
 		this.minButton = new Frame(widgetName + "MinimizeButton", this.titleBar, WIDGET_TEMPLATE_WINDOW_MINIMIZEBUTTON);
 		this.maxButton = new Frame(widgetName + "MaximizeButton", this.titleBar, WIDGET_TEMPLATE_WINDOW_MAXIMIZEBUTTON);
