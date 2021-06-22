@@ -30,10 +30,14 @@ class Window extends Widget {
 		this.closeButton.setScript("OnClick", closeWindow);
 
 		this.content = new Frame(widgetName + "Content", window, WIDGET_TEMPLATE_WINDOW_CONTENTPANE);
-		this.statusBar = new Frame(widgetName + "StatusBar", window, WIDGET_TEMPLATE_WINDOW_STATUSBAR);
 
 		window.enableMouse(true); // clicks shouldn't pass through as it makes it feel like an overlay and not an actual window
 		this.content.enableMouse(true);
+
+		if (!DISPLAY_WINDOW_DEBUG_INFO) return;
+		this.statusBar = new Frame(widgetName + "StatusBar", window, WIDGET_TEMPLATE_WINDOW_STATUSBAR);
+		this.statusText = this.statusBar.createFontString(widgetName + "StatusText", "HIGH", "GameFontSmallest");
+		this.statusText.setText(format("%s: %s (%s)", L["Debug Info"], this.name, template));
 	}
 	setTitle(text) {
 		this.titleText.setText(text);
