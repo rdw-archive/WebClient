@@ -59,4 +59,9 @@ class Window extends Widget {
 	addContent(frame) {
 		frame.setParent(this.content);
 	}
+	addParagraph(template) {
+		const paragraph = new Paragraph(null, this.content, template);
+		// paragraph.setParent(this.content);
+		return paragraph;
+	}
 }
