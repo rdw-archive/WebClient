@@ -407,6 +407,18 @@ C_WebGL.registerPointerEvents = function (scene) {
 			keyboardEvent.preventDefault();
 			// return;
 		}
+
+		// If another widget is handling input we don't want to also prcoess it globally, except for closing windows
+		// if (
+		// 	WorldFrame.getLastVisibleClosableWindow()
+		// 	//  && keyCode !== KEY_CODE_ESC
+		// )
+		// 	// {
+		// 	// if (WorldFrame.getLastVisibleClosableWindow().isShown() && keyCode === KEY_CODE_ESC)
+		// 	// 	WorldFrame.getLastVisibleClosableWindow().hide();
+		// 	return;
+		// // }
+
 		switch (keyboardEvent.type) {
 			case "keydown":
 				// console.log("KEY DOWN: ", keyboardEvent.key);
@@ -421,6 +433,8 @@ C_WebGL.registerPointerEvents = function (scene) {
 				if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_UP) C_Keybindings.executeBinding(keyCode);
 				break;
 		}
+
+		keyboardEvent.stopPropagation();
 	};
 
 	window.onkeydown = processKeyboardEvent;
