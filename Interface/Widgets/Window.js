@@ -56,4 +56,7 @@ class Window extends Widget {
 	hide() {
 		this._obj.hide();
 	}
+	addContent(frame) {
+		frame.setParent(this.content);
+	}
 }
