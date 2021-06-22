@@ -1,4 +1,50 @@
 .Button {
-	font-family: IngameFont;
-	font-size: 12pt;
+    font-family: GameFont;
+    /* Sync with GameFont (via vars)? */
+    font-size: 10pt;
+    font-weight: 700;
+    /* Sync with frame border radius */
+    border-radius: 0.37rem;
+    /* Sync with text color */
+    border: 2px solid white;
+    color: white;
+    color: black;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.75);
+    background: white;
+    margin: 0.25rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    min-width: 4rem;
+    min-height: 1.5rem;
 }
+
+.Button:hover {
+    /* "Hide" the border via synchronizing both colors */
+    border: 2px solid #0b5ed7;
+    color: #333333;
+    /* sync with default color theme */
+    background-color: #0b5ed7;
+    border-color: white;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #0b5ed7;
+    background: white;
+    color: rgba(0, 0, 0, 0.75);
+}
+
+.Button:disabled {
+    border: 1px solid #ADADAD;
+    color: #adadad;
+    border: 2px solid #bdbdbd;
+    color: #bdbdbd;
+    background: rgba(0, 0, 0, 0);
+    border-color: #666;
+    color: #666;
+}
+
+.Button:active {
+    border: 2px solid #0b5ed7;
+    background-color: #0b5ed7;
+    color: white;
+}
+
