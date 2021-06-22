@@ -12,6 +12,13 @@ C_Resources.unload = function(resourceID, reasonString = "none") {
 	delete this.cachedResources[resourceID];
 };
 
+C_Resources.unloadAll = function(reasonString = "none") {
+	DEBUG(format("Unloading ALL resources (reason: %s)", reasonString));
+	for (const resourceID in this.cachedResources) {
+		this.unload(resourceID, reasonString);
+	}
+};
+
 C_Resources.load = function(resourceID, isCritical = false) {
 	if (this.isResourceCached(resourceID)) {
 		const resource = this.cachedResources[resourceID];

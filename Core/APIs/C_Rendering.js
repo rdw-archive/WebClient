@@ -6,6 +6,8 @@ const C_Rendering = {
 C_Rendering.loadScene = function() {};
 C_Rendering.unloadScene = function() {};
 C_Rendering.switchScene = function() {
+	DEBUG("Disposing resources before switching scenes");
+	C_Resources.unloadAll("Switching scenes");
 	for (const mesh of this.meshes) {
 		DEBUG(format("Disposing mesh %s", mesh.name));
 		mesh.dispose();
