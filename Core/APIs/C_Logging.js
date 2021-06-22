@@ -32,8 +32,8 @@ const C_Logging = {
 		const self = this;
 
 		window.dump = function(...data) {
-			console.table(data);
-		}
+			console.log(data);
+		};
 
 		window.TEST = function(message) {
 			if (!WEBCLIENT_ACTIVE_LOGGERS[LOG_LEVEL_TEST]) return;
