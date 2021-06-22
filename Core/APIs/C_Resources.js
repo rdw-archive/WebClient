@@ -3,16 +3,16 @@ const C_Resources = {
 	cachedResources: {},
 };
 
-C_Resources.getCachedResources = function () {
+C_Resources.getCachedResources = function() {
 	return this.cachedResources;
 };
 
-C_Resources.unload = function (resourceID, reasonString = "none") {
+C_Resources.unload = function(resourceID, reasonString = "none") {
 	DEBUG(format("Unloaded resource %s (reason: %s)", resourceID, reasonString));
 	delete this.cachedResources[resourceID];
 };
 
-C_Resources.load = function (resourceID, isCritical = false) {
+C_Resources.load = function(resourceID, isCritical = false) {
 	if (this.isResourceCached(resourceID)) {
 		const resource = this.cachedResources[resourceID];
 		resource.touch();
@@ -38,7 +38,7 @@ C_Resources.load = function (resourceID, isCritical = false) {
 	return resource;
 };
 
-C_Resources.loadAsync = function (resourceID, isCritical = false) {
+C_Resources.loadAsync = function(resourceID, isCritical = false) {
 	DEBUG(format("Starting async loading of resource %s", resourceID));
 
 	if (this.isResourceCached(resourceID)) {
@@ -50,7 +50,7 @@ C_Resources.loadAsync = function (resourceID, isCritical = false) {
 	this.addResource(resourceID, resource);
 };
 
-C_Resources.addResource = function (resourceID, resource) {
+C_Resources.addResource = function(resourceID, resource) {
 	if (this.isResourceCached(resourceID)) {
 		WARNING(format("Failed to add resource %s (resourceID already taken)", resourceID));
 		return;
@@ -60,15 +60,15 @@ C_Resources.addResource = function (resourceID, resource) {
 	this.cachedResources[resourceID] = resource;
 };
 
-C_Resources.isResourceCached = function (resourceID) {
+C_Resources.isResourceCached = function(resourceID) {
 	return this.cachedResources[resourceID] !== undefined;
 };
 
-C_Resources.updateCachedResource = function (resourceID, updatedResource) {
+C_Resources.updateCachedResource = function(resourceID, updatedResource) {
 	updatedResource.touch();
 	this.cachedResources[resourceID] = updatedResource;
 };
 
-C_Resources.getCachedResourcesCount = function () {
+C_Resources.getCachedResourcesCount = function() {
 	return Object.keys(this.cachedResources).length;
 };
