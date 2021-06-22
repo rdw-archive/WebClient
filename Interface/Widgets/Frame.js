@@ -27,4 +27,7 @@ class Frame extends Widget {
 	hideScrollbarY() {
 		this._obj.style.removeProperty("overflow-y");
 	}
+	makeClosable() {
+		WorldFrame.addClosableWindow(this);
+	}
 }

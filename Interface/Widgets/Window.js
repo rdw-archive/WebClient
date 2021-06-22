@@ -11,6 +11,8 @@ class Window extends Widget {
 		this.maxButton = new Frame(widgetName + "MaximizeButton", this.titleBar, WIDGET_TEMPLATE_WINDOW_MAXIMIZEBUTTON);
 		this.closeButton = new Frame(widgetName + "CloseButton", this.titleBar, WIDGET_TEMPLATE_WINDOW_CLOSEBUTTON);
 
+		WorldFrame.addClosableWindow(this);
+
 		const self = this; // It's a thing of beauty... just like the rest of this cursed language
 		function minimizeWindow() {
 			self.minimize();

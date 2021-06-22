@@ -111,8 +111,15 @@ GameMenuFrame.createExitButton();
 
 GameMenuFrame.createReturnButton();
 
-C_Keybindings.setBinding(KEY_CODE_ESC, function () {
+// C_Keybindings.setBinding(KEY_CODE_ESC, function () {
+// We want this as a fallback option only; it should not
+// if (!GameMenuFrame.isShown() && WorldFrame.areAllClosableWindowsHidden()) GameMenuFrame.show();
+// GameMenuFrame.toggle();
+// });
+
+GameMenuFrame.onEscapeKeyPressed = function() {
+	// if (!GameMenuFrame.isShown()) GameMenuFrame.show();
 	GameMenuFrame.toggle();
-});
+};
 
 GameMenuFrame.hide();
