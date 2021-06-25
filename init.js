@@ -13,6 +13,7 @@ function StartWebClient() {
 
 	WebClient.loadManifest();
 	WebClient.createUserInterface();
+	C_Addons.loadAddonCache();
 	C_Addons.loadEnabledAddons();
 
 	const TOC = WebClient.metadata;

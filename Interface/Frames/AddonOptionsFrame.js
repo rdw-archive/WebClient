@@ -5,7 +5,6 @@ AddonOptionsFrame.hide();
 AddonOptionsFrame.onLoad = function() {
 	this.createWidgets();
 	this.registerEvents();
-	C_Addons.loadAddonCache();
 };
 
 AddonOptionsFrame.createWidgets = function() {
@@ -64,20 +63,10 @@ AddonOptionsFrame.createReloadButton = function() {
 
 AddonOptionsFrame.registerEvents = function() {
 	C_EventSystem.registerEvent("ADDON_LOADED", "AddonOptionsFrame", this.onAddonLoaded);
-	C_EventSystem.registerEvent("APPLICATION_SHUTDOWN", "AddonOptionsFrame", this.onApplicationShutdown);
 };
 
 AddonOptionsFrame.onAddonLoaded = function(event, addonName) {
 	AddonOptionsFrame.updateCheckButtons();
-};
-
-// Might not be a great fit here, but there's no better place currently
-AddonOptionsFrame.onApplicationShutdown = function(event) {
-	AddonOptionsFrame.saveLoadedAddons();
-};
-
-AddonOptionsFrame.saveLoadedAddons = function(event) {
-	C_Addons.loadAddonCache();
 };
 
 AddonOptionsFrame.onLoad();

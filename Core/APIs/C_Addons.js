@@ -8,9 +8,10 @@ const C_Addons = {
 		const installedAddons = C_Addons.getInstalledAddons();
 		this.installedAddons = installedAddons;
 		for (const addonName of installedAddons) {
+
 			this.loadAddonMetadata(addonName); // We want to be aware of even the disabled ones
-			let isEnabled = WebClient.metadata.addons[addonName];
-			if (isEnabled === undefined && WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) isEnabled = true;
+			let isEnabled = this.isAddonEnabled(addonName);
+
 			DEBUG(format("Addon %s is set to enabled = %s", addonName, isEnabled));
 			if (!isEnabled) {
 				DEBUG(format("Skipped loading of disabled addon %s", addonName));
@@ -88,8 +89,11 @@ const C_Addons = {
 	},
 	isAddonEnabled(addonName) {
 		const addonCache = this.addonCache;
+		const isLoadedStateCached = addonCache[addonName] !== undefined;
+
 		let isEnabled = addonCache[addonName];
-		if (!isEnabled && WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) isEnabled = true;
+		if (!isLoadedStateCached && WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) isEnabled = true;
+
 		return isEnabled;
 	},
 	loadAddonCache() {
@@ -99,7 +103,7 @@ const C_Addons = {
 		return addonCache;
 	},
 	saveAddonCache() {
-		DEBUG("Saving addon cache");
+		DEBUG(format("Saving addon cache to file %s", this.ADDON_CACHE_FILE_PATH));
 		C_FileSystem.writeJSON(this.ADDON_CACHE_FILE_PATH, this.addonCache);
 	},
 	enableAddon(addonName) {
@@ -116,19 +120,15 @@ const C_Addons = {
 		this.loadAddon(addonName);
 	},
 	disableAddon(addonName) {
+		if (!this.isAddonLoadable(addonName)) return;
 		this.setAddonEnabledState(addonName, false);
 		DEBUG(format("Disabled addon %s (restart required)", addonName));
 		C_EventSystem.triggerEvent("ADDON_DISABLED", addonName);
 	},
 	setAddonEnabledState(addonName, enabledState) {
-		// const addonCache = C_FileSystem.readJSON(this.ADDON_CACHE_FILE_PATH);
-		// addonCache[addonName] = enabledState;
-		// C_FileSystem.writeJSON(this.ADDON_CACHE_FILE_PATH, addonCache);
+		this.addonCache[addonName] = enabledState;
 	},
 	getAddonInfo(addonName) {
 		return this.loadedAddons[addonName];
-	},
-	saveAddonCache() {
-		// C_FileSystem.writeJSON(this.ADDON_CACHE_FILE_PATH, addonCache);
 	},
 };

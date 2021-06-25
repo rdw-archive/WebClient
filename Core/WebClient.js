@@ -82,7 +82,7 @@ class WebClient {
 
 			C_EventSystem.registerEvent("APPLICATION_SHUTDOWN", "WebClient", function () {
 				DEBUG("Application shutting down; performing cleanup tasks");
-				C_Macro.saveAddonCache();
+				C_Addons.saveAddonCache();
 				C_Macro.saveMacroCache();
 			});
 
