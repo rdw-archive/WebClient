@@ -1,17 +1,28 @@
 const C_Addons = {
-	loadedAddons: {},
+	ADDON_CACHE_FILE_PATH: WEBCLIENT_INTERFACE_DIR + "/addon-cache.json",
+	addonCache: {}, // Loaded state for each addon - seems awkard?
+	loadedAddons: {}, // metadata (loaded only)
+	installedAddons: {}, // metadata (all addons)
+	loadEnabledAddons() {
+		DEBUG("Loading enabled addons");
+		const installedAddons = C_Addons.getInstalledAddons();
+		this.installedAddons = installedAddons;
+		for (const addonName of installedAddons) {
+			this.loadAddonMetadata(addonName); // We want to be aware of even the disabled ones
+			let isEnabled = WebClient.metadata.addons[addonName];
+			if (isEnabled === undefined && WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) isEnabled = true;
+			DEBUG(format("Addon %s is set to enabled = %s", addonName, isEnabled));
+			if (!isEnabled) {
+				DEBUG(format("Skipped loading of disabled addon %s", addonName));
+				continue;
+			}
+			C_Addons.loadAddon(addonName);
+		}
+	},
 	loadAddon(addonName) {
 		DEBUG(format("Loading addon %s from disk", addonName));
 
-		// Load table of contents (manifest)
-		const filePath = WEBCLIENT_ADDONS_DIR + "/" + addonName + "/";
-
-		if (!C_FileSystem.fileExists(filePath + "/contents.json")) {
-			WARNING("Failed to load addon %s  (contents.json not found)", addonName);
-			return;
-		}
-
-		const addonMetadata = C_FileSystem.readJSON(filePath + "/contents.json");
+		const addonMetadata = this.getAddonMetadata(addonName);
 		this.loadedAddons[addonName] = addonMetadata;
 
 		// Make sure all files are loaded before the addon is actually ready to be used
@@ -22,15 +33,102 @@ const C_Addons = {
 		}
 
 		// Load all files in order
+		const addonFolder = WEBCLIENT_ADDONS_DIR + "/" + addonName + "/";
 		for (const loadIndex in addonMetadata.files) {
 			const fileName = addonMetadata.files[loadIndex];
 			const fileType = C_Decoding.getFileType(fileName);
-			if (fileType === "js") WebClient.loadScript(filePath + fileName, onFileLoadedCallback);
-			if (fileType === "css") WebClient.loadStylesheet(filePath + fileName, onFileLoadedCallback);
+			if (fileType === "js") WebClient.loadScript(addonFolder + fileName, onFileLoadedCallback); // ... loadScriptAsync
+			if (fileType === "css") WebClient.loadStylesheet(addonFolder + fileName, onFileLoadedCallback); // loadStylesheetAsync
 		}
 	},
 	getInstalledAddons() {
 		const addonFolders = C_FileSystem.getFilesInFolder(WEBCLIENT_ADDONS_DIR);
-		return addonFolders;
+		const installedAddons = [];
+		for (const index in addonFolders) {
+			const fileName = addonFolders[index];
+			if (this.isAddonLoadable(fileName)) installedAddons.push(fileName);
+		}
+		return installedAddons;
+	},
+	isAddonLoadable(addonName) {
+		if (!this.isAddonLoaded(addonName)) this.loadAddonMetadata(addonName);
+
+		const addonMetadata = this.getAddonMetadata(addonName);
+		if (!addonMetadata) return false;
+
+		const isValidMetadata = C_Validation.validateAddonMetadata(addonMetadata);
+
+		if (!isValidMetadata) return false;
+
+		return true;
+	},
+	loadAddonMetadata(addonName) {
+		// loadAddonManifest, getAddonManifest
+		const manifestFilePath = WEBCLIENT_ADDONS_DIR + "/" + addonName + "/contents.json";
+
+		if (!C_FileSystem.fileExists(manifestFilePath)) {
+			WARNING(format("Failed to load addon manifest from URL %s  (contents.json not found)", manifestFilePath));
+			return false;
+		}
+
+		const addonMetadata = C_FileSystem.readJSON(manifestFilePath);
+		this.installedAddons[addonName] = addonMetadata;
+
+		return true;
+	},
+	getAddonMetadata(addonName, fieldName = null) {
+		const addonMetadata = this.installedAddons[addonName];
+		if (!addonMetadata) return null;
+
+		if (!fieldName) return addonMetadata;
+		return addonMetadata[fieldName];
+	},
+	isAddonLoaded(addonName) {
+		return this.loadedAddons[addonName] !== undefined;
+	},
+	isAddonEnabled(addonName) {
+		const addonCache = this.addonCache;
+		let isEnabled = addonCache[addonName];
+		if (!isEnabled && WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) isEnabled = true;
+		return isEnabled;
+	},
+	loadAddonCache() {
+		DEBUG("Loading addon cache");
+		const addonCache = C_FileSystem.readJSON(this.ADDON_CACHE_FILE_PATH);
+		this.addonCache = addonCache;
+		return addonCache;
+	},
+	saveAddonCache() {
+		DEBUG("Saving addon cache");
+		C_FileSystem.writeJSON(this.ADDON_CACHE_FILE_PATH, this.addonCache);
+	},
+	enableAddon(addonName) {
+		this.setAddonEnabledState(addonName, true);
+		DEBUG(format("Enabled addon %s (will attempt to load immediately)", addonName));
+		C_EventSystem.triggerEvent("ADDON_ENABLED", addonName);
+
+		if (!WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) return;
+
+		if (!this.isAddonLoadable(addonName)) return;
+
+		if (this.isAddonLoaded(addonName)) return;
+
+		this.loadAddon(addonName);
+	},
+	disableAddon(addonName) {
+		this.setAddonEnabledState(addonName, false);
+		DEBUG(format("Disabled addon %s (restart required)", addonName));
+		C_EventSystem.triggerEvent("ADDON_DISABLED", addonName);
+	},
+	setAddonEnabledState(addonName, enabledState) {
+		// const addonCache = C_FileSystem.readJSON(this.ADDON_CACHE_FILE_PATH);
+		// addonCache[addonName] = enabledState;
+		// C_FileSystem.writeJSON(this.ADDON_CACHE_FILE_PATH, addonCache);
+	},
+	getAddonInfo(addonName) {
+		return this.loadedAddons[addonName];
+	},
+	saveAddonCache() {
+		// C_FileSystem.writeJSON(this.ADDON_CACHE_FILE_PATH, addonCache);
 	},
 };

@@ -13,7 +13,7 @@ function StartWebClient() {
 
 	WebClient.loadManifest();
 	WebClient.createUserInterface();
-	WebClient.loadEnabledAddons();
+	C_Addons.loadEnabledAddons();
 
 	const TOC = WebClient.metadata;
 	const windowTitle = format("%s (%s)", TOC.titleString, TOC.versionString);
