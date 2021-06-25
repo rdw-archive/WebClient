@@ -1,1 +1,0 @@
-[{"name":"TestMacro#1","icon":"./Interface/Icons/QuestionMarkBlack3D.png","text":""},{"name":"HelloWorld","icon":"./Interface/Icons/QuestionMarkBlack3D.png","text":"// You can enter arbitrary code here\n// It will be executed when the macro is run\nconsole.log(\"Hello World!\");"},{"name":"","icon":"./Interface/Icons/QuestionMarkBlack3D.png","text":""}]
