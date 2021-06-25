@@ -68,36 +68,23 @@ class WebClient {
 			this.loadScript(format(WEBCLIENT_INTERFACE_DIR + "/Frames/" + fileName + ".js"));
 		}
 	}
-	static loadEnabledAddons() {
-		DEBUG("Loading enabled addons");
-		const installedAddons = C_Addons.getInstalledAddons();
-
-		for (const addonName of installedAddons) {
-			let isEnabled = this.metadata.addons[addonName];
-			if (isEnabled === undefined && WEBCLIENT_LOAD_ADDONS_INITIALLY) isEnabled = true;
-			DEBUG(format("Addon %s is set to enabled = %s", addonName, isEnabled));
-			if (!isEnabled) {
-				DEBUG(format("Skipped loading of disabled addon %s", addonName));
-				continue;
-			}
-			C_Addons.loadAddon(addonName);
-		}
-	}
 	// Defer render loop until the WorldFrame (canvas) exists
 	static onScriptExecutionFinished(event, URL) {
+
 		// Kinda ugly, but alas. It's better than entering callback hell and sync loading doesn't work at all for this
 		DEBUG(format("SCRIPT_EXECUTION_FINISHED triggered for URL %s", URL));
 		if (URL !== WEBCLIENT_INTERFACE_DIR + "/Frames/WorldFrame.js") return;
 
 		// process.on("exit", function () {
-		window.onbeforeunload = function () {
-			C_EventSystem.triggerEvent("APPLICATION_SHUTDOWN");
-		};
+			window.onbeforeunload = function () {
+				C_EventSystem.triggerEvent("APPLICATION_SHUTDOWN");
+			};
 
-		C_EventSystem.registerEvent("APPLICATION_SHUTDOWN", "WebClient", function () {
-			DEBUG("Application shutting down; performing cleanup tasks");
-			C_Macro.saveMacroCache();
-		});
+			C_EventSystem.registerEvent("APPLICATION_SHUTDOWN", "WebClient", function () {
+				DEBUG("Application shutting down; performing cleanup tasks");
+				C_Addons.saveAddonCache();
+				C_Macro.saveMacroCache();
+			});
 
 		WebClient.run();
 	}

@@ -8,3 +8,9 @@ Interface/Addons/
 
 # Debug output shouldn't be saved
 Exports/
+
+# These caches are managed by the Client
+addon-cache.json
+macro-cache.json
+bindings-cache.json
+layout-cache.json

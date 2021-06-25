@@ -4,6 +4,7 @@
 	These are overrides for individual UI elements, which serve to add minor modifications that aren't suitably covered by the widget templates themselves.
 */
 
+@import "Overrides/AddonOptionsFrame.css";
 @import "Overrides/GameMenuFrame.css";
 @import "Overrides/FpsCounterFrame.css";
 @import "Overrides/SystemMessagesFrame.css";
