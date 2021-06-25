@@ -1,4 +1,4 @@
-.Button {
+.Button, .HighlightButton {
     font-family: GameFont;
     /* Sync with GameFont (via vars)? */
     font-size: 10pt;
@@ -19,7 +19,7 @@
     min-height: 1.5rem;
 }
 
-.Button:hover {
+.Button:hover, .HighlightButton:hover {
     /* "Hide" the border via synchronizing both colors */
     border: 2px solid #0b5ed7;
     color: #333333;
@@ -42,9 +42,25 @@
     color: #666;
 }
 
-.Button:active {
+.Button:active, .HighlightButton:active {
     border: 2px solid #0b5ed7;
     background-color: #0b5ed7;
     color: white;
 }
 
+@keyframes glowing {
+    0% {
+        box-shadow: 0 0 5px #FCF24E;
+    }
+    50% {
+        box-shadow: 0 0 10px #FCF24E;
+    }
+    100% {
+        box-shadow: 0 0 5px #FCF24E;
+    }
+}
+
+.HighlightButton {
+    animation: glowing 2500ms infinite;
+    border-color: #FCF24E;
+}

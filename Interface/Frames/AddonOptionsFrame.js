@@ -9,16 +9,9 @@ AddonOptionsFrame.onLoad = function() {
 
 AddonOptionsFrame.createWidgets = function() {
 	this.createScrollFrame();
-	this.createReloadReminderText();
 	this.createReloadButton();
 };
 
-AddonOptionsFrame.createReloadReminderText = function() {
-	const paragraph = AddonOptionsFrame.addParagraph("GameFontSmaller");
-	paragraph.setText(L["A restart is required to apply your changes."]);
-	this.reloadReminder = paragraph;
-	paragraph.hide();
-};
 
 AddonOptionsFrame.createScrollFrame = function() {
 	this.addonList = new ScrollFrame("AddonOptionsFrame_InstalledAddonsList", this.content);
@@ -39,7 +32,7 @@ AddonOptionsFrame.createCheckButtons = function() {
 			if (loadedState) C_Addons.enableAddon(addonName);
 			else C_Addons.disableAddon(addonName);
 
-			if(!loadedState) AddonOptionsFrame.reloadReminder.show();
+			if (!loadedState) AddonOptionsFrame.reloadButton.setClass("HighlightButton");
 		});
 
 		this.checkboxes[addonName] = checkbox;
