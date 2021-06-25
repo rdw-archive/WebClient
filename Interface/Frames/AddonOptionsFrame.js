@@ -38,6 +38,8 @@ AddonOptionsFrame.createCheckButtons = function() {
 			const loadedState = checkbox.isChecked();
 			if (loadedState) C_Addons.enableAddon(addonName);
 			else C_Addons.disableAddon(addonName);
+
+			if(!loadedState) AddonOptionsFrame.reloadReminder.show();
 		});
 
 		this.checkboxes[addonName] = checkbox;
