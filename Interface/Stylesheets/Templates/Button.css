@@ -17,6 +17,7 @@
     color: white;
     min-width: 4rem;
     min-height: 1.5rem;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
 }
 
 .Button:hover, .HighlightButton:hover {
