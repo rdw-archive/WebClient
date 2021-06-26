@@ -98,6 +98,11 @@ const C_Addons = {
 	},
 	loadAddonCache() {
 		DEBUG("Loading addon cache");
+		if (!C_FileSystem.fileExists(this.ADDON_CACHE_FILE_PATH)) {
+			this.addonCache = {};
+			DEBUG("Re-created addon cache since it couldn't be read from disk");
+			return;
+		}
 		const addonCache = C_FileSystem.readJSON(this.ADDON_CACHE_FILE_PATH);
 		this.addonCache = addonCache;
 		return addonCache;
