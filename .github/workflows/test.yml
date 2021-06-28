@@ -25,7 +25,7 @@ jobs:
       - name: Install development dependencies
         run: npm install --also=dev
 		
-	   - name: Install electron-mocha globally
+      - name: Install electron-mocha globally
         run: npm install -g electron-mocha
 
       - name: Run automated tests
