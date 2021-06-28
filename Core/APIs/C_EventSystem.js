@@ -9,7 +9,7 @@ const C_EventSystem = {
 	},
 	registerEvent(event, listenerID, onEventCallback) {
 		if (!this.isEventEnabled(event)) {
-			WARNING(format("Failed to register %s for event %s (trigger is not enabled)", listenerID, event));
+			WARNING(format("Failed to register %s for event %s (triggers for this event are disabled)", listenerID, event));
 			return;
 		}
 
