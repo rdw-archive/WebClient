@@ -23,7 +23,7 @@ jobs:
           node-version: 14
 
       - name: Install development dependencies
-        run: npm install --dev
+        run: npm install --also=dev
 
       - name: Run automated tests
         run: npm test
