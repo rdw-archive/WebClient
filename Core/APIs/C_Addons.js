@@ -68,7 +68,7 @@ const C_Addons = {
 		const manifestFilePath = WEBCLIENT_ADDONS_DIR + "/" + addonName + "/contents.json";
 
 		if (!C_FileSystem.fileExists(manifestFilePath)) {
-			WARNING(format("Failed to load addon manifest from URL %s  (contents.json not found)", manifestFilePath));
+			NOTICE(format("Failed to load addon manifest from URL %s  (contents.json not found)", manifestFilePath));
 			return false;
 		}
 
