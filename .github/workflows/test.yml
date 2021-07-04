@@ -11,8 +11,14 @@ jobs:
       max-parallel: 6
       fail-fast: false
       matrix:
-        os: [macos-latest, windows-latest]
-
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        include:
+          - os: windows-latest
+            ubuntu-workaround-prefix-string: ''
+          - os: macos-latest
+            ubuntu-workaround-prefix-string: ''
+          - os: ubuntu-latest
+            ubuntu-workaround-prefix-string: export DISPLAY=:45 && xvfb-run --server-num 45
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v1
@@ -26,4 +32,4 @@ jobs:
         run: npm install --also=dev
 
       - name: Run automated tests
-        run: npm test
+        run: ${{ matrix.ubuntu-workaround-prefix-string }} npm test
