@@ -63,7 +63,22 @@ describe("Electron App Loader", function() {
             fs.unlinkSync(settingsFilePath);
         });
 
-        it("should import the settings if the configured settings file is valid", function() {});
+        it("should import the settings if the configured settings file is valid", function() {
+            const settingsFilePath = "validSettings.json";
+            const validSettings = {
+                enableDevTools: true,
+                devToolsDockingMode: "undocked"
+            };
+
+            fs.writeFileSync(settingsFilePath, JSON.stringify(validSettings));
+
+            loader.setSettingsPath(settingsFilePath);
+            loader.loadSettingsFromDisk();
+
+            assert.deepStrictEqual(loader.settings, validSettings);
+
+            fs.unlinkSync(settingsFilePath);
+        });
     });
     describe("Saving settings to disk", function() {
         it("should save the updated settings if they have been changed", function() {});
