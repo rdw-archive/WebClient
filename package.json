@@ -11,7 +11,8 @@
 		"babylonjs-loaders": "4.2.0",
 		"babylonjs-materials": "4.2.0",
 		"babylonjs-serializers": "4.2.0",
-		"bmp-js": "^0.1.0"
+		"bmp-js": "^0.1.0",
+		"joi": "17.4.1"
 	},
 	"devDependencies": {
 		"electron": "11.1.1",
