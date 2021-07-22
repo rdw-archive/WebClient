@@ -32,7 +32,36 @@ describe("Electron App Loader", function() {
             fs.unlinkSync(settingsFilePath);
         });
 
-        it("should fail with an error if the configured settings file contains invalid fields", function() {});
+        it("should fail with an error if the configured settings file contains invalid fields", function() {
+            const settingsFilePath = "invalidFields.json";
+            const jsonWithInvalidFields = {
+                someInvalidField: 42
+            };
+            fs.writeFileSync(settingsFilePath, JSON.stringify(jsonWithInvalidFields));
+
+            loader.setSettingsPath(settingsFilePath);
+            assert.throws(function() {
+                loader.loadSettingsFromDisk();
+            }, Error("Failed to load settings from file " + settingsFilePath + " (Settings are invalid)"));
+
+            fs.unlinkSync(settingsFilePath);
+        });
+
+        it("should fail with an error if the configured settings file contains invalid properties", function() {
+            const settingsFilePath = "invalidValues.json";
+            const jsonWithInvalidValues = {
+                enableDevTools: 42,
+                devToolsDockingMode: 42
+            };
+            fs.writeFileSync(settingsFilePath, JSON.stringify(jsonWithInvalidValues));
+
+            loader.setSettingsPath(settingsFilePath);
+            assert.throws(function() {
+                loader.loadSettingsFromDisk();
+            }, Error("Failed to load settings from file " + settingsFilePath + " (Settings are invalid)"));
+
+            fs.unlinkSync(settingsFilePath);
+        });
 
         it("should import the settings if the configured settings file is valid", function() {});
     });
