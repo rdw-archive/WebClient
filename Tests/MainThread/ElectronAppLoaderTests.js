@@ -131,6 +131,32 @@ describe("Electron App Loader", function() {
 
             fs.unlinkSync(settingsFilePath);
         });
-        it("should only persist fields that are valid and ignore the others", function() {});
+        it("should only persist fields that are valid and ignore the others", function() {
+            const settingsWithUnsupportedEntriesFilePath = "settingsWithUnsupportedEntries.json";
+            const settingsWithUnsupportedEntries = {
+                enableDevTools: true,
+                devToolsDockingMode: "undocked",
+                thisSettingShouldNotBeSaved: 42,
+                thisAlsoShouldBeDropped: "cats are awesome"
+            };
+
+            const settingsWithOnlySupportedFields = {
+                enableDevTools: true,
+                devToolsDockingMode: "undocked"
+            };
+
+            loader.settings = settingsWithUnsupportedEntries;
+            loader.settingsPath = settingsWithUnsupportedEntriesFilePath;
+
+            fs.existsSync(settingsWithUnsupportedEntriesFilePath, false);
+            loader.saveSettingsToDisk();
+            fs.existsSync(settingsWithUnsupportedEntriesFilePath, true);
+
+            const fileContents = fs.readFileSync(settingsWithUnsupportedEntriesFilePath);
+            const serializedSettings = JSON.parse(fileContents);
+            assert.deepStrictEqual(serializedSettings, settingsWithOnlySupportedFields);
+
+            fs.unlinkSync(settingsWithUnsupportedEntriesFilePath);
+        });
     });
 });
