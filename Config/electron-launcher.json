@@ -1,0 +1,13 @@
+{
+	"enableDevTools": true,
+	"devToolsWindowStartPosition": {
+		"x": 1912,
+		"y": -128
+	},
+	"devToolsWindowStartDimensions": {
+		"width": 1936,
+		"height": 1216
+	},
+	"maximizeDevToolsWindow": true,
+	"hideDevToolsWindowTitle": false
+}

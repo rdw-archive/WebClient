@@ -11,7 +11,8 @@
 		"babylonjs-loaders": "4.2.0",
 		"babylonjs-materials": "4.2.0",
 		"babylonjs-serializers": "4.2.0",
-		"bmp-js": "^0.1.0"
+		"bmp-js": "^0.1.0",
+		"joi": "17.4.1"
 	},
 	"devDependencies": {
 		"electron": "11.1.1",
@@ -21,16 +22,18 @@
 	},
 	"scripts": {
 		"test": "electron-mocha --renderer --url index.html Tests",
+		"test-main": "electron-mocha Tests/Electron",
+		"all-tests": "electron-mocha Tests/Electron && electron-mocha --renderer --url index.html Tests",
 		"start": "electron .",
 		"oom": "electron --js-flags='--max-old-space-size=10192' .",
 		"dev": "electron --js-flags=--max-old-space-size=500 . ",
-		"pack": "electron-builder --dir --config build.json",
-		"make": "electron-builder --config build.json",
-		"make-win64": "electron-builder --windows nsis:x64 --config build.json",
-		"make-win64-portable": "electron-builder --windows portable:x64 --config build.json",
-		"make-ubuntu": "electron-builder --linux deb --config build.json",
-		"make-all": "electron-builder -mwl --config build.json",
-		"make-windows-linux": "electron-builder -wl --config build.json"
+		"pack": "electron-builder --dir --config Config/electron-builder.json",
+		"make": "electron-builder --config Config/electron-builder.json",
+		"make-win64": "electron-builder --windows nsis:x64 --config Config/electron-builder.json",
+		"make-win64-portable": "electron-builder --windows portable:x64 --config Config/electron-builder.json",
+		"make-ubuntu": "electron-builder --linux deb --config Config/electron-builder.json",
+		"make-all": "electron-builder -mwl --config Config/electron-builder.json",
+		"make-windows-linux": "electron-builder -wl --config Config/electron-builder.json"
 	},
 	"keywords": [],
 	"author": "RDW",
