@@ -32,4 +32,4 @@ jobs:
         run: npm install --also=dev
 
       - name: Run automated tests
-        run: ${{ matrix.ubuntu-workaround-prefix-string }} npm test
+        run: ${{ matrix.ubuntu-workaround-prefix-string }} npm test && npm run test-main
