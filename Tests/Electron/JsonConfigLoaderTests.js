@@ -1,7 +1,7 @@
 const assert = require("assert");
 const fs = require("fs");
 
-const ElectronAppLoader = require("./../../Core/ElectronAppLoader");
+const JsonConfigLoader = require("./../../Core/JsonConfigLoader");
 
 const VALID_SETTINGS_EXAMPLE_FILE_PATH = "tempValidSettings.json";
 const VALID_SETTINGS_EXAMPLE = {
@@ -20,7 +20,7 @@ function removeTemporarySettingsFiles() {
 beforeEach(createTemporarySettingsFiles);
 afterEach(removeTemporarySettingsFiles);
 
-const loader = new ElectronAppLoader();
+const loader = new JsonConfigLoader();
 
 describe("Electron App Loader", function() {
     describe("Loading settings from disk", function() {

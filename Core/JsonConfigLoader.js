@@ -18,8 +18,9 @@ const schema = Joi.object({
 });
 
 const DEFAULT_MAIN_THREAD_SETTINGS_PATH = "Config/electron-main.js";
-// ElectronAppLauncher
-class ElectronAppLoader {
+
+// Some people say using JSON configuration files is wrong, but it's far less annoying than the alternatives :/
+class JsonConfigLoader {
     constructor() {
         this.settings = {};
         this.settingsPath = DEFAULT_MAIN_THREAD_SETTINGS_PATH;
@@ -57,4 +58,4 @@ class ElectronAppLoader {
     }
 }
 
-module.exports = ElectronAppLoader;
+module.exports = JsonConfigLoader;

@@ -1,9 +1,9 @@
 const { app, BrowserWindow } = require("electron");
 
-const ElectronAppLoader = require("./ElectronAppLoader");
+const JsonConfigLoader = require("./JsonConfigLoader");
 
 // This surely isn't a great feat of engineering, but at least I don't have to see it anymore
-const loader = new ElectronAppLoader();
+const configLoader = new JsonConfigLoader();
 let devToolsWindow = null;
 
 const MAIN_THREAD_SETTINGS_PATH = "./Config/electron-launcher.json";
@@ -33,8 +33,8 @@ class ElectronApp {
         });
     }
     loadConfiguration() {
-        loader.setSettingsPath(MAIN_THREAD_SETTINGS_PATH);
-        loader.loadSettingsFromDisk();
+        configLoader.setSettingsPath(MAIN_THREAD_SETTINGS_PATH);
+        configLoader.loadSettingsFromDisk();
     }
     onApplicationInitialized() {
         this.loadConfiguration();
@@ -63,7 +63,7 @@ class ElectronApp {
 
         mainWindow.once("ready-to-show", () => {
             mainWindow.show();
-            if (loader.settings.enableDevTools) this.createDevToolsWindow(mainWindow);
+            if (configLoader.settings.enableDevTools) this.createDevToolsWindow(mainWindow);
         });
 
         this.mainWindow = mainWindow;
@@ -72,13 +72,13 @@ class ElectronApp {
         const mainWindow = this.mainWindow;
 
         const devToolsOptions = {
-            mode: loader.settings.devToolsDockingMode || DEFAULT_DEV_TOOLS_DOCKING_MODE,
-            position: loader.settings.devToolsWindowStartPosition || DEFAULT_DEV_TOOLS_WINDOW_START_POSITION,
-            dimensions: loader.settings.devToolsWindowStartDimensions || DEFAULT_DEV_TOOLS_WINDOW_START_DIMENSIONS
+            mode: configLoader.settings.devToolsDockingMode || DEFAULT_DEV_TOOLS_DOCKING_MODE,
+            position: configLoader.settings.devToolsWindowStartPosition || DEFAULT_DEV_TOOLS_WINDOW_START_POSITION,
+            dimensions: configLoader.settings.devToolsWindowStartDimensions || DEFAULT_DEV_TOOLS_WINDOW_START_DIMENSIONS
         };
 
         devToolsWindow = new BrowserWindow({
-            frame: !(loader.settings.hideDevToolsWindowTitle || false),
+            frame: !(configLoader.settings.hideDevToolsWindowTitle || false),
             parent: mainWindow,
             skipTaskbar: true
         });
@@ -91,7 +91,7 @@ class ElectronApp {
 
         devToolsWindow.blur(); // Focus should remain on the main window
 
-        if (loader.settings.maximizeDevToolsWindow) devToolsWindow.maximize();
+        if (configLoader.settings.maximizeDevToolsWindow) devToolsWindow.maximize();
 
         mainWindow.webContents.once("did-finish-load", function() {
             devToolsWindow.setPosition(devToolsOptions.position.x, devToolsOptions.position.y);
@@ -112,9 +112,9 @@ class ElectronApp {
     persistDevToolsWindowSettings() {
         if (!devToolsWindow || devToolsWindow.isDestroyed()) return; // It was probably closed manually and the settings should already be saved
         const bounds = devToolsWindow.getBounds();
-        loader.settings.devToolsWindowStartPosition = { x: bounds.x, y: bounds.y };
-        loader.settings.devToolsWindowStartDimensions = { width: bounds.width, height: bounds.height };
-        loader.saveSettingsToDisk();
+        configLoader.settings.devToolsWindowStartPosition = { x: bounds.x, y: bounds.y };
+        configLoader.settings.devToolsWindowStartDimensions = { width: bounds.width, height: bounds.height };
+        configLoader.saveSettingsToDisk();
 
         devToolsWindow = null; // Mark as destroyed, I guess?
     }
