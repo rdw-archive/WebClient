@@ -3,7 +3,18 @@ const Joi = require("joi");
 
 const schema = Joi.object({
     enableDevTools: Joi.boolean().optional(),
-    devToolsDockingMode: Joi.string().optional().valid("right", "bottom", "undocked", "detach")
+    // We don't support embedded docking modes since they break horribly (when using two windows) and I haven't found a way around it
+    devToolsDockingMode: Joi.string().optional().valid("detach"),
+    devToolsWindowStartPosition: Joi.object({
+        x: Joi.number().required(),
+        y: Joi.number().required()
+    }).optional(),
+    devToolsWindowStartDimensions: Joi.object({
+        width: Joi.number().required(),
+        height: Joi.number().required()
+    }).optional(),
+    maximizeDevToolsWindow: Joi.boolean().optional(),
+    hideDevToolsWindowTitle: Joi.boolean().optional()
 });
 
 const DEFAULT_MAIN_THREAD_SETTINGS_PATH = "Config/electron-main.js";

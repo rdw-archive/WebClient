@@ -84,7 +84,7 @@ describe("Electron App Loader", function() {
             const settingsFilePath = "validSettings.json";
             const validSettings = {
                 enableDevTools: true,
-                devToolsDockingMode: "undocked"
+                devToolsDockingMode: "detach"
             };
 
             fs.writeFileSync(settingsFilePath, JSON.stringify(validSettings));
@@ -106,7 +106,7 @@ describe("Electron App Loader", function() {
 
             const modifiedSettings = {
                 enableDevTools: true,
-                devToolsDockingMode: "undocked"
+                devToolsDockingMode: "detach"
             };
 
             loader.settings = modifiedSettings;
@@ -135,14 +135,14 @@ describe("Electron App Loader", function() {
             const settingsWithUnsupportedEntriesFilePath = "settingsWithUnsupportedEntries.json";
             const settingsWithUnsupportedEntries = {
                 enableDevTools: true,
-                devToolsDockingMode: "undocked",
+                devToolsDockingMode: "detach",
                 thisSettingShouldNotBeSaved: 42,
                 thisAlsoShouldBeDropped: "cats are awesome"
             };
 
             const settingsWithOnlySupportedFields = {
                 enableDevTools: true,
-                devToolsDockingMode: "undocked"
+                devToolsDockingMode: "detach"
             };
 
             loader.settings = settingsWithUnsupportedEntries;
