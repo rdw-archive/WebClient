@@ -31,5 +31,8 @@ jobs:
       - name: Install development dependencies
         run: npm install --also=dev
 
-      - name: Run automated tests
-        run: ${{ matrix.ubuntu-workaround-prefix-string }} npm test && npm run test-main
+      - name: Run automated tests (main thread)
+        run: ${{ matrix.ubuntu-workaround-prefix-string }} npm run test-main
+
+      - name: Run automated tests (render thread)
+        run: ${{ matrix.ubuntu-workaround-prefix-string }} npm test
