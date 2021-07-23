@@ -3,6 +3,23 @@ const fs = require("fs");
 
 const ElectronAppLoader = require("./../../Core/ElectronAppLoader");
 
+const VALID_SETTINGS_EXAMPLE_FILE_PATH = "tempValidSettings.json";
+const VALID_SETTINGS_EXAMPLE = {
+    enableDevTools: false,
+    devToolsDockingMode: "detach"
+};
+
+function createTemporarySettingsFiles() {
+    fs.writeFileSync(VALID_SETTINGS_EXAMPLE_FILE_PATH, JSON.stringify(VALID_SETTINGS_EXAMPLE));
+}
+
+function removeTemporarySettingsFiles() {
+    fs.unlinkSync(VALID_SETTINGS_EXAMPLE_FILE_PATH);
+}
+
+beforeEach(createTemporarySettingsFiles);
+afterEach(removeTemporarySettingsFiles);
+
 const loader = new ElectronAppLoader();
 
 describe("Electron App Loader", function() {
@@ -81,7 +98,24 @@ describe("Electron App Loader", function() {
         });
     });
     describe("Saving settings to disk", function() {
-        it("should save the updated settings if they have been changed", function() {});
+        it("should save the updated settings if they have been changed", function() {
+            loader.setSettingsPath(VALID_SETTINGS_EXAMPLE_FILE_PATH);
+            loader.loadSettingsFromDisk();
+
+            assert.deepStrictEqual(loader.settings, VALID_SETTINGS_EXAMPLE);
+
+            const modifiedSettings = {
+                enableDevTools: true,
+                devToolsDockingMode: "undocked"
+            };
+
+            loader.settings = modifiedSettings;
+            loader.saveSettingsToDisk();
+
+            const fileContents = fs.readFileSync(VALID_SETTINGS_EXAMPLE_FILE_PATH);
+            const serializedSettings = JSON.parse(fileContents);
+            assert.deepStrictEqual(serializedSettings, modifiedSettings);
+        });
         it("should create the settings file if it doesn't exist", function() {});
         it("should only persist fields that are valid and ignore the others", function() {});
     });
