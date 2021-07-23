@@ -41,7 +41,7 @@ class ElectronAppLoader {
             if (!validationResult.error) validatedSettings[fieldName] = value;
         }
 
-        const serializedSettingsString = JSON.stringify(validatedSettings);
+        const serializedSettingsString = JSON.stringify(validatedSettings, null, "\t");
         writeFileSync(this.settingsPath, serializedSettingsString);
     }
 }
