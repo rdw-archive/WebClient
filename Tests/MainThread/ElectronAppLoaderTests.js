@@ -116,7 +116,21 @@ describe("Electron App Loader", function() {
             const serializedSettings = JSON.parse(fileContents);
             assert.deepStrictEqual(serializedSettings, modifiedSettings);
         });
-        it("should create the settings file if it doesn't exist", function() {});
+        it("should create the settings file if it doesn't exist", function() {
+            const settingsFilePath = "this-test-file-does-not-exist-probably.json";
+            assert.strictEqual(fs.existsSync(settingsFilePath), false);
+
+            loader.setSettingsPath(settingsFilePath);
+
+            loader.settings = VALID_SETTINGS_EXAMPLE;
+            loader.saveSettingsToDisk();
+
+            const fileContents = fs.readFileSync(settingsFilePath);
+            const serializedSettings = JSON.parse(fileContents);
+            assert.deepStrictEqual(serializedSettings, VALID_SETTINGS_EXAMPLE);
+
+            fs.unlinkSync(settingsFilePath);
+        });
         it("should only persist fields that are valid and ignore the others", function() {});
     });
 });
