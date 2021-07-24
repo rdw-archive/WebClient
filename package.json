@@ -19,7 +19,8 @@
 		"electron-builder": "22.11.7",
 		"electron-mocha": "10.1.0",
 		"eslint": "7.31.0",
-		"mocha": "9.0.2"
+		"mocha": "9.0.2",
+		"prettier": "2.3.2"
 	},
 	"scripts": {
 		"test": "electron-mocha --renderer --url index.html Tests",
