@@ -2,9 +2,9 @@
 
 Thank you for your interest in this project!
 
-Before submitting any changes, we kindly ask that you read the [Getting Started Guide for Contributors](https://revivalengine.github.io/docs/guides/contributing/). This will hopefully make it clear what steps should be taken and why they're important. Feel free to [ask on Discord](https://discord.gg/QMbSGen9uc) if you encounter any issues; we're happy to help!
+Before submitting changes, we kindly ask that you read the [Getting Started Guide for Contributors](https://revivalengine.github.io/docs/guides/contributing/). This will hopefully make it clear what steps should be taken and why they're important. Feel free to [ask on Discord](https://discord.gg/QMbSGen9uc) if you encounter an issue; we're happy to help!
 
-The checklist below should assist you in organizing your contribution:
+The following checklist will assist you in organizing your contribution:
 
 ### Style and Formatting
 
@@ -21,10 +21,20 @@ Please check **all** of the following:
 - [ ] All interactions with [components](https://revivalengine.github.io/docs/concepts/components/) affected by this change are tested
 - [ ] All interactions with [APIs](https://revivalengine.github.io/docs/concepts/apis/) affected by this change are tested
 
+Alternatively, you can check this:
+
+- [ ] This PR contains no changes that would require additional tests (please briefly explain why below)
+
 ### Documentation
 
 Please check **all that apply** (at least one):
 
-- [ ] The documentation website has been updated to reflect this change (please also create an issue if you only added an outline/bullet points)
-- [ ] An issue for the missing/incomplete documentation was filed (please link to this PR from there)
+- [ ] The documentation website has been updated to reflect this change
+- [ ] An issue for the missing/incomplete documentation was filed
 - [ ] This PR contains no changes that would require an update to the documentation (please briefly explain why below)
+
+If you've created an issue in the [documentation repository](https://github.com/RevivalEngine/revivalengine.github.io), please link to this PR from there. If you added an outline/bullet points and the documentation is still incomplete or otherwise needs to be improved to reflect this PR, please also create an issue there.
+
+---
+
+### Additional Notes (Optional)
