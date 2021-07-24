@@ -28,6 +28,7 @@
 		"all-tests": "electron-mocha Tests/Electron && electron-mocha --renderer --url index.html Tests",
 		"checks": "npx eslint --config Config/eslint.json .",
 		"format": "npx prettier --check --config Config/prettier.json --ignore-path Config/.prettierignore .",
+		"autoformat": "npx prettier --write --config Config/prettier.json --ignore-path Config/.prettierignore .",
 		"start": "electron .",
 		"oom": "electron --js-flags='--max-old-space-size=10192' .",
 		"dev": "electron --js-flags=--max-old-space-size=500 . ",
