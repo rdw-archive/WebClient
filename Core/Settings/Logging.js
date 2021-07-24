@@ -1,12 +1,12 @@
 var WEBCLIENT_ENABLE_LOGGING = true;
 var WEBCLIENT_ACTIVE_LOGGERS = {
-    [LOG_LEVEL_NONE]: true,
-    [LOG_LEVEL_TEST]: true,
-    [LOG_LEVEL_INFO]: true,
-    [LOG_LEVEL_DEBUG]: true,
-    [LOG_LEVEL_NOTICE]: true,
-    [LOG_LEVEL_WARNING]: true,
-    [LOG_LEVEL_SERVER]: true,
-    [LOG_LEVEL_CRITICAL]: true,
+	[LOG_LEVEL_NONE]: true,
+	[LOG_LEVEL_TEST]: true,
+	[LOG_LEVEL_INFO]: true,
+	[LOG_LEVEL_DEBUG]: true,
+	[LOG_LEVEL_NOTICE]: true,
+	[LOG_LEVEL_WARNING]: true,
+	[LOG_LEVEL_SERVER]: true,
+	[LOG_LEVEL_CRITICAL]: true,
 };
 var WEBCLIENT_ENABLE_PROFILING = true;

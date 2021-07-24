@@ -2,7 +2,6 @@
 // Note: The console.log calls during animation updates help with debugging visual glitches, since the chrome debugger doesn't do a great job at capturing async calls... but make sure to disable them afterwards or they will cause severe FPS drops
 // TODO: Take from global Lua state
 
-
 // This is the order in which the directions appear in the animations[animationIndex] array
 // TODO: Super awkward and needs streamlining
 let faceDirectionIndices = [
@@ -139,8 +138,7 @@ class AnimatedSprite {
 			}
 
 			if (thisSprite.anchor !== undefined)
-				thisSprite.currentFrameIndex =
-					thisSprite.anchor.currentFrameIndex; // TODO: No need to actually animate this separately, then? (and remove the other fixes?)
+				thisSprite.currentFrameIndex = thisSprite.anchor.currentFrameIndex; // TODO: No need to actually animate this separately, then? (and remove the other fixes?)
 			// TODO Does not take into account look direction?
 			if (thisSprite.useCorrectionOffsets) {
 				thisSprite.applyCorrectionOffsets();
@@ -202,9 +200,12 @@ class AnimatedSprite {
 		let relativeFaceDirection = this.getRelativeFaceDirection();
 		// let currentAttachmentOffset = activeFrame.anchorPoints[0]; // significance of 0 == BODY?
 
-		if(!this.animationData[this.animationIndex][
-			relativeFaceDirection
-		].frames[attachmentFrameId]) return;
+		if (
+			!this.animationData[this.animationIndex][relativeFaceDirection].frames[
+				attachmentFrameId
+			]
+		)
+			return;
 
 		let currentAttachmentOffset = this.animationData[this.animationIndex][
 			relativeFaceDirection
@@ -213,9 +214,8 @@ class AnimatedSprite {
 			correctionV: 0,
 		}; // use 0 by default IF there are no anchor points only (TODO: Shift responsibility to converter?)
 
-		let anchorCorrectionOffsets = this.getAnchorCorrectionOffsets(
-			attachmentFrameId
-		);
+		let anchorCorrectionOffsets =
+			this.getAnchorCorrectionOffsets(attachmentFrameId);
 		this.anchorPointOffsetU = anchorCorrectionOffsets.correctionU;
 		this.anchorPointOffsetV = anchorCorrectionOffsets.correctionV;
 
@@ -225,8 +225,9 @@ class AnimatedSprite {
 			this.anchorPointOffsetV - currentAttachmentOffset.correctionV;
 
 		if (
-			!this.animationData[this.animationIndex][relativeFaceDirection]
-				.frames[attachmentFrameId].anchorPoints[0]
+			!this.animationData[this.animationIndex][relativeFaceDirection].frames[
+				attachmentFrameId
+			].anchorPoints[0]
 		) {
 			// Ignore anchoring?
 			// console.log("IGNORING ANCHORS");
@@ -279,11 +280,7 @@ class AnimatedSprite {
 		this.animationIndex = animationIndex;
 		this.currentFrameIndex = 0; // Always reset/cancel the old animation, the new one should start at the beginning
 		// Update layer visibility also? Maybe hide all,) { reactivate during updateLayers?
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layer = this.layers[layerIndex];
 			layer.isAnimating = true;
 		}
@@ -305,11 +302,7 @@ class AnimatedSprite {
 	}
 	// TODO: Alias dispose() for consistency (BJS style)
 	destroy() {
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layer = this.layers[layerIndex];
 			layer.sprite.stopAnimation(); // TODO needed?
 			layer.sprite.dispose();
@@ -323,11 +316,7 @@ class AnimatedSprite {
 		this.worldZ = worldZ;
 	}
 	stopAnimating() {
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layer = this.layers[layerIndex];
 			layer.sprite.stopAnimation();
 			layer.isAnimating = false;
@@ -365,14 +354,9 @@ class AnimatedSprite {
 		// 	this.animationSpeedPercent = 1;
 		// }
 		this.animationDelay =
-			currentAnimation.animationDelay /
-			(this.animationSpeedPercent / 100);
+			currentAnimation.animationDelay / (this.animationSpeedPercent / 100);
 
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layerData = activeFrame.layers[layerIndex];
 			this.updateLayer(layerIndex, layerData);
 		}
@@ -410,9 +394,8 @@ class AnimatedSprite {
 		// }
 		// Not all sprites have different animations for all the possible directions
 
-		let currentAnimation = this.animationData[this.animationIndex][
-			relativeFaceDirection
-		];
+		let currentAnimation =
+			this.animationData[this.animationIndex][relativeFaceDirection];
 		return currentAnimation;
 	}
 	getViewDirectionDegrees() {
@@ -438,7 +421,8 @@ class AnimatedSprite {
 	}
 	getCorrectionOffsets(frameIndex) {
 		let frame = this.getActiveFrame();
-		if (!frame) { // out of sync with body?
+		if (!frame) {
+			// out of sync with body?
 			let correctionOffsets = {
 				correctionU: 0,
 				correctionV: 0,
@@ -476,11 +460,7 @@ class AnimatedSprite {
 		this.isFaceDirectionLocked = lockedFlag;
 	}
 	areLayersAnimating() {
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layer = this.layers[layerIndex];
 			if (layer.isAnimating) {
 				return true;
@@ -536,11 +516,7 @@ class AnimatedSprite {
 		// 		this.name
 		// );
 		// Restart layer animation
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layer = this.layers[layerIndex];
 			// layer.sprite.stopAnimation();
 			layer.isAnimating = true;
@@ -550,26 +526,33 @@ class AnimatedSprite {
 		// this.updatePositionForAllLayers(); // if(the cellref or even just offsets changed in between updates, it will appear glitched because the sprite is still displayed at the old location very briefly. Could also hide/show it? But this should normally be rectified with the beforeRender update... hmm..
 		// this.UpdateSpritePositions(); // HACKY to avoid inconsistencies... force update on ALL attachments to keep frames consistent --TODO same perf impact as in the update
 
-
 		let activeFrame = this.getActiveFrame();
 		let soundEffectIndex = activeFrame.soundEffectIndex;
 		let soundEffectFileName = this.animationData.soundEffects[soundEffectIndex];
-		if(soundEffectFileName === undefined) return;
+		if (soundEffectFileName === undefined) return;
 
 		this.playSoundEffect(soundEffectFileName);
 	}
 	playSoundEffect(soundEffectFileName) {
 		// console.log("Playing sound effect " + soundEffectFileName + " for frame " + this.currentFrameIndex);
 		// TODO Do on creation only
-		this.soundFolderPath = "Assets/Sounds/" // todo yikes
+		this.soundFolderPath = "Assets/Sounds/"; // todo yikes
 		// TODO: Reuse, only one should play at once
-		var music = new BABYLON.Sound("music", this.soundFolderPath + soundEffectFileName, this.scene, null, {
-			loop: false,
-			autoplay: true,
-			spatialSound: true
-		  });
-		  // I guess updating it on creation is enough? Not like the unit will move very far while the sound is playing
-		  music.setPosition(new BABYLON.Vector3(this.worldX, this.worldY, this.worldZ));
+		var music = new BABYLON.Sound(
+			"music",
+			this.soundFolderPath + soundEffectFileName,
+			this.scene,
+			null,
+			{
+				loop: false,
+				autoplay: true,
+				spatialSound: true,
+			}
+		);
+		// I guess updating it on creation is enough? Not like the unit will move very far while the sound is playing
+		music.setPosition(
+			new BABYLON.Vector3(this.worldX, this.worldY, this.worldZ)
+		);
 	}
 
 	getSourceDimensions(layerIndex) {
@@ -606,9 +589,7 @@ class AnimatedSprite {
 		for (const [animationIndex, animation] of Object.entries(
 			this.animationData
 		)) {
-			for (const [faceDirection, subAnimation] of Object.entries(
-				animation
-			)) {
+			for (const [faceDirection, subAnimation] of Object.entries(animation)) {
 				// for (const [faceDirection, subAnimation] of Object.entries(animation)) {
 
 				// console.log(`${faceDirection}: ${subAnimation}`);
@@ -626,16 +607,12 @@ class AnimatedSprite {
 	}
 	getAnimationDataForLayer(layerIndex) {
 		let activeFrame = this.getActiveFrame();
-		if(!activeFrame) return;
+		if (!activeFrame) return;
 		return activeFrame.layers[layerIndex];
 	}
 	// PERF 9.4% via BJS Misc/observable.ts.Observable.notifyObservers
 	updatePositionForAllLayers() {
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			this.updatePositionForLayer(layerIndex);
 		}
 		// this.highlightActiveLayer(10);
@@ -643,11 +620,7 @@ class AnimatedSprite {
 	// Debug stuff
 	getActiveLayerCount() {
 		let numActiveLayers = 0;
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layer = this.layers[layerIndex];
 			if (layer.isActive) numActiveLayers++;
 		}
@@ -657,11 +630,7 @@ class AnimatedSprite {
 	// Debug stuff
 	getVisibleLayerCount() {
 		let numVisibleLayers = 0;
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layer = this.layers[layerIndex];
 			if (layer.sprite.isVisible) numVisibleLayers++;
 		}
@@ -709,10 +678,8 @@ class AnimatedSprite {
 			return;
 		}
 
-		let correctionOffsetU =
-			layerData.offsetU + (this.finalCorrectionU || 0);
-		let correctionOffsetV =
-			layerData.offsetV + (this.finalCorrectionV || 0);
+		let correctionOffsetU = layerData.offsetU + (this.finalCorrectionU || 0);
+		let correctionOffsetV = layerData.offsetV + (this.finalCorrectionV || 0);
 
 		// correctionOffsetU = layerData.offsetU;
 		// correctionOffsetV = layerData.offsetV;
@@ -837,11 +804,7 @@ class AnimatedSprite {
 	}
 	validateDimensions() {
 		// Validate width and sourceWidth, because differing dimensions are not supported yet
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layer = this.layers[layerIndex];
 			let layerDimensions = {
 				width: layer.width,
@@ -885,22 +848,14 @@ class AnimatedSprite {
 
 	createVisualizationPlanes(originColor, anchorColor) {
 		if (this.hasVisualizationPlanes) return;
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layer = this.layers[layerIndex];
 			layer.createAnchorVisualization(originColor, anchorColor);
 		}
 		this.hasVisualizationPlanes = true;
 	}
 	destroyVisualizationPlanes() {
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layer = this.layers[layerIndex];
 			layer.destroyVisualizationPlanes();
 		}
@@ -908,11 +863,7 @@ class AnimatedSprite {
 	}
 
 	updateVisualizationPlanes() {
-		for (
-			let layerIndex = 0;
-			layerIndex < this.layers.length;
-			layerIndex++
-		) {
+		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layer = this.layers[layerIndex];
 			layer.updateAnchorVisualization();
 		}

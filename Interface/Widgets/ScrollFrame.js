@@ -5,7 +5,7 @@ class ScrollFrame extends Frame {
 		this.setClass("ScrollFrame");
 		this.setParent(parentFrame);
 
-		if(!template) return;
+		if (!template) return;
 
 		this.setClass(template);
 	}

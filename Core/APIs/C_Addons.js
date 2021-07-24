@@ -8,7 +8,6 @@ const C_Addons = {
 		const installedAddons = C_Addons.getInstalledAddons();
 		this.installedAddons = installedAddons;
 		for (const addonName of installedAddons) {
-
 			this.loadAddonMetadata(addonName); // We want to be aware of even the disabled ones
 			let isEnabled = this.isAddonEnabled(addonName);
 
@@ -30,7 +29,8 @@ const C_Addons = {
 		let numFilesRemaining = addonMetadata.files.length;
 		function onFileLoadedCallback() {
 			numFilesRemaining = numFilesRemaining - 1;
-			if (numFilesRemaining === 0) C_EventSystem.triggerEvent("ADDON_LOADED", addonName);
+			if (numFilesRemaining === 0)
+				C_EventSystem.triggerEvent("ADDON_LOADED", addonName);
 		}
 
 		// Load all files in order
@@ -38,8 +38,10 @@ const C_Addons = {
 		for (const loadIndex in addonMetadata.files) {
 			const fileName = addonMetadata.files[loadIndex];
 			const fileType = C_Decoding.getFileType(fileName);
-			if (fileType === "js") WebClient.loadScript(addonFolder + fileName, onFileLoadedCallback); // ... loadScriptAsync
-			if (fileType === "css") WebClient.loadStylesheet(addonFolder + fileName, onFileLoadedCallback); // loadStylesheetAsync
+			if (fileType === "js")
+				WebClient.loadScript(addonFolder + fileName, onFileLoadedCallback); // ... loadScriptAsync
+			if (fileType === "css")
+				WebClient.loadStylesheet(addonFolder + fileName, onFileLoadedCallback); // loadStylesheetAsync
 		}
 	},
 	getInstalledAddons() {
@@ -65,10 +67,16 @@ const C_Addons = {
 	},
 	loadAddonMetadata(addonName) {
 		// loadAddonManifest, getAddonManifest
-		const manifestFilePath = WEBCLIENT_ADDONS_DIR + "/" + addonName + "/contents.json";
+		const manifestFilePath =
+			WEBCLIENT_ADDONS_DIR + "/" + addonName + "/contents.json";
 
 		if (!C_FileSystem.fileExists(manifestFilePath)) {
-			NOTICE(format("Failed to load addon manifest from URL %s  (contents.json not found)", manifestFilePath));
+			NOTICE(
+				format(
+					"Failed to load addon manifest from URL %s  (contents.json not found)",
+					manifestFilePath
+				)
+			);
 			return false;
 		}
 
@@ -92,7 +100,8 @@ const C_Addons = {
 		const isLoadedStateCached = addonCache[addonName] !== undefined;
 
 		let isEnabled = addonCache[addonName];
-		if (!isLoadedStateCached && WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) isEnabled = true;
+		if (!isLoadedStateCached && WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY)
+			isEnabled = true;
 
 		return isEnabled;
 	},
@@ -113,7 +122,9 @@ const C_Addons = {
 	},
 	enableAddon(addonName) {
 		this.setAddonEnabledState(addonName, true);
-		DEBUG(format("Enabled addon %s (will attempt to load immediately)", addonName));
+		DEBUG(
+			format("Enabled addon %s (will attempt to load immediately)", addonName)
+		);
 		C_EventSystem.triggerEvent("ADDON_ENABLED", addonName);
 
 		if (!WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) return;

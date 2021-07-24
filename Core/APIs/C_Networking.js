@@ -44,7 +44,13 @@ const C_Networking = {
 		DEBUG("Sending message: " + data);
 
 		if (!C_Networking.isSocketOpen) {
-			WARNING(format("Failed to send request %s to URL %s (WebSocket not open)", data, URL));
+			WARNING(
+				format(
+					"Failed to send request %s to URL %s (WebSocket not open)",
+					data,
+					URL
+				)
+			);
 			return;
 		}
 		C_Networking.socket.send(data);

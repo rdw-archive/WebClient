@@ -37,14 +37,16 @@ class Image2D extends Widget {
 		// transparentColor = Color.MAGENTA ?
 		const pixels = this.imageData.data;
 
-
-
 		const r = 0,
 			g = 1,
 			b = 2,
 			a = 3;
 		for (let p = 0; p < pixels.length; p += 4) {
-			if (pixels[p + r] >= 0xfe && pixels[p + g] < 0x04 && pixels[p + b] >= 0xfe) {
+			if (
+				pixels[p + r] >= 0xfe &&
+				pixels[p + g] < 0x04 &&
+				pixels[p + b] >= 0xfe
+			) {
 				// if magenta then change alpha to 0
 				pixels[p + a] = 0;
 				// pixels[p + a] = 255;
@@ -59,7 +61,11 @@ class Image2D extends Widget {
 		this.context.putImageData(this.imageData, 0, 0);
 	}
 	setBitmap(bitmap) {
-		const imageData = new ImageData(bitmap.pixelData, bitmap.width, bitmap.height);
+		const imageData = new ImageData(
+			bitmap.pixelData,
+			bitmap.width,
+			bitmap.height
+		);
 		// reclear pixels? sigh
 		this.imageData = imageData;
 		this.context.putImageData(this.imageData, 0, 0);

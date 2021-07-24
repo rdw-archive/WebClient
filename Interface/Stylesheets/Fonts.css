@@ -5,37 +5,37 @@
 */
 
 :root {
-    --font-size-smallest: 8pt;
-    --font-size-smaller: 10pt;
-    --font-size-small: 11pt;
-    --font-size-normal: 12pt;
-    --font-size-large: 16pt;
-    --font-size-larger: 24pt;
-    --font-size-largest: 36pt;
-    --font-size-huge: 72pt;
+	--font-size-smallest: 8pt;
+	--font-size-smaller: 10pt;
+	--font-size-small: 11pt;
+	--font-size-normal: 12pt;
+	--font-size-large: 16pt;
+	--font-size-larger: 24pt;
+	--font-size-largest: 36pt;
+	--font-size-huge: 72pt;
 }
 
 @font-face {
-    font-family: GameFont;
-    src: url("../Fonts/Raleway.ttf");
+	font-family: GameFont;
+	src: url("../Fonts/Raleway.ttf");
 }
 
 @font-face {
-    font-family: BoldFont;
-    src: url("../Fonts/Poppins-Bold.ttf");
+	font-family: BoldFont;
+	src: url("../Fonts/Poppins-Bold.ttf");
 }
 
 @font-face {
-    font-family: TitleFont;
-    src: url("../Fonts/Sword.otf");
+	font-family: TitleFont;
+	src: url("../Fonts/Sword.otf");
 }
 
 @font-face {
-    font-family: ScriptFont;
-    src: url("../Fonts/DejaVuSans.ttf");
+	font-family: ScriptFont;
+	src: url("../Fonts/DejaVuSans.ttf");
 }
 
 @font-face {
-    font-family: CaptionFont;
-    src: url("../Fonts/Poppins-Regular.ttf");
+	font-family: CaptionFont;
+	src: url("../Fonts/Poppins-Regular.ttf");
 }

@@ -6,63 +6,63 @@
 */
 
 .WindowTitle {
-    margin-bottom: 20px;
-    /* Font settings: TODO Move elsewhere? */
-    /* font-weight: 700; */
-    font-family: CaptionFont;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    justify-content: center;
+	margin-bottom: 20px;
+	/* Font settings: TODO Move elsewhere? */
+	/* font-weight: 700; */
+	font-family: CaptionFont;
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	justify-content: center;
 }
 
 .WindowCloseIcon:hover {
-    /* TODO use a var to ensure it remains consistent */
-    color: #c3c3c3;
+	/* TODO use a var to ensure it remains consistent */
+	color: #c3c3c3;
 }
 
 .WindowCloseIcon:active {
-    /* The default color should be restored here */
-    /* TODO use a var to ensure it remains consistent */
-    color: white;
+	/* The default color should be restored here */
+	/* TODO use a var to ensure it remains consistent */
+	color: white;
 }
 
 .WindowCloseIcon::after {
-    content: '\2716';
-    top: 5px;
-    right: 10px;
-    /* The icon should be anchored to the Window's top-right corner for a standard UX */
-    position: absolute;
-    font-size: 16pt;
+	content: "\2716";
+	top: 5px;
+	right: 10px;
+	/* The icon should be anchored to the Window's top-right corner for a standard UX */
+	position: absolute;
+	font-size: 16pt;
 }
 
 .Window {
-    padding: 20px;
-    /* UI Windows should be centered by default */
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    /* Visual enhancements */
-    /* filter: drop-shadow(0 0 5px #0000007); */
-    background: rgba(0, 0, 0, 0.75);
-    color: white;
-    /* Allow the content to decide the window's size, as long as it's between min/max dimensions */
-    width: fit-content;
-    height: fit-content;
-    border-radius: 0.37rem;
+	padding: 20px;
+	/* UI Windows should be centered by default */
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	/* Visual enhancements */
+	/* filter: drop-shadow(0 0 5px #0000007); */
+	background: rgba(0, 0, 0, 0.75);
+	color: white;
+	/* Allow the content to decide the window's size, as long as it's between min/max dimensions */
+	width: fit-content;
+	height: fit-content;
+	border-radius: 0.37rem;
 }
 
 .WindowContent {
-    /* Content alignment */
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
+	/* Content alignment */
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
 }
 
 .WindowStatus {
-    margin-top: 20px;
-    text-align: center;
+	margin-top: 20px;
+	text-align: center;
 }

@@ -10,7 +10,7 @@ Feel free to ask questions, make suggestions, or give feedback via creating issu
 
 The only reason I opened up the repository already is because it's required for certain things (GitHub pages, CI actions, etc.). Consider this a private repository that may or may not end up in a publicly-releasable state in the future. Or maybe it won't, you never know with these side projects.
 
-Also, assume the git history can change (``rebase``) as I don't expect anyone to actually clone this repository yet. Nothing is set in stone, as far as I'm concerned.
+Also, assume the git history can change (`rebase`) as I don't expect anyone to actually clone this repository yet. Nothing is set in stone, as far as I'm concerned.
 
 ## See also
 

@@ -1,13 +1,13 @@
 textarea {
-	background-color: #FFFFFF;
-	border-top: 2px solid #A9A9A9;
-	border-bottom: 2px solid #A9A9A9;
-	border-left: 2px solid #C3C3C3;
-	border-right: 2px solid #C3C3C3;
+	background-color: #ffffff;
+	border-top: 2px solid #a9a9a9;
+	border-bottom: 2px solid #a9a9a9;
+	border-left: 2px solid #c3c3c3;
+	border-right: 2px solid #c3c3c3;
 	border-radius: 5px;
 	padding: 5px;
 }
 
 textarea:disabled {
-	background-color: #E8E8E8;
+	background-color: #e8e8e8;
 }

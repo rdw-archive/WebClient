@@ -20,11 +20,11 @@ class BinaryReader {
 			let byte = this.view.getUint8(this.offset);
 			this.offset = this.offset + 1;
 			let character = String.fromCharCode(byte);
-			if(byte === 92) character = "/"; // backslash...
+			if (byte === 92) character = "/"; // backslash...
 			string = string + character;
 		}
 		string = string.split("\0").shift(); // null-terminated string => discard the garbage data
-		return string
+		return string;
 	}
 
 	// Retrieves an unsigned integer (32 bytes), starting at the current offset of the buffer. Little endian is assumed, because laziness prevails.

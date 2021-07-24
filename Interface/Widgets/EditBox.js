@@ -35,10 +35,10 @@ class EditBox extends Widget {
 		this._obj.placeholder = text;
 	}
 	showLabel() {
-		this.label.style.display = 'inherit';
+		this.label.style.display = "inherit";
 	}
 	hideLabel() {
-		this.label.style.display = 'none';
+		this.label.style.display = "none";
 	}
 	// tbd dry
 	disable() {

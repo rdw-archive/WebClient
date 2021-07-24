@@ -1,12 +1,17 @@
 //TODO: Make sure that we never add so much padding that a texture is completely invisible on the atlas, or so much padding that the padded areas overlap
 
 // Settings
-const PACKING_MODE = ''; // TODO NYI
+const PACKING_MODE = ""; // TODO NYI
 const ATLAS_PADDING = 128;
 const ATLAS_BORDER = 128;
 
 class BinPacker {
-	constructor(atlasWidth, atlasHeight, padding = ATLAS_PADDING, border = ATLAS_BORDER) {
+	constructor(
+		atlasWidth,
+		atlasHeight,
+		padding = ATLAS_PADDING,
+		border = ATLAS_BORDER
+	) {
 		const options = {
 			smart: true,
 			pot: true,

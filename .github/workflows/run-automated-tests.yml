@@ -14,9 +14,9 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
         include:
           - os: windows-latest
-            ubuntu-workaround-prefix-string: ''
+            ubuntu-workaround-prefix-string: ""
           - os: macos-latest
-            ubuntu-workaround-prefix-string: ''
+            ubuntu-workaround-prefix-string: ""
           - os: ubuntu-latest
             ubuntu-workaround-prefix-string: export DISPLAY=:45 && xvfb-run --server-num 45
     steps:

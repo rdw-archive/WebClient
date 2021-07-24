@@ -1,6 +1,11 @@
 const C_Bitmap = {};
 
-C_Bitmap.export = function (fileName, bitmap, pixelFormat = PIXEL_FORMAT_ABGR, exportDir = WEBCLIENT_EXPORTS_DIR) {
+C_Bitmap.export = function (
+	fileName,
+	bitmap,
+	pixelFormat = PIXEL_FORMAT_ABGR,
+	exportDir = WEBCLIENT_EXPORTS_DIR
+) {
 	DEBUG(format("Exporting BMP to file " + fileName));
 
 	const data = bitmap.pixelData;

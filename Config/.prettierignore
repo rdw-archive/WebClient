@@ -1,0 +1,7 @@
+# Ignore artifacts
+dist/
+
+# Ignore userdata
+Addons/
+Assets/
+Exports/

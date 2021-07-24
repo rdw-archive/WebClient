@@ -65,26 +65,31 @@ class WebClient {
 	static createUserInterface() {
 		for (const fileName of this.metadata.defaultFrames) {
 			DEBUG(format("Creating default interface component %s", fileName));
-			this.loadScript(format(WEBCLIENT_INTERFACE_DIR + "/Frames/" + fileName + ".js"));
+			this.loadScript(
+				format(WEBCLIENT_INTERFACE_DIR + "/Frames/" + fileName + ".js")
+			);
 		}
 	}
 	// Defer render loop until the WorldFrame (canvas) exists
 	static onScriptExecutionFinished(event, URL) {
-
 		// Kinda ugly, but alas. It's better than entering callback hell and sync loading doesn't work at all for this
 		DEBUG(format("SCRIPT_EXECUTION_FINISHED triggered for URL %s", URL));
 		if (URL !== WEBCLIENT_INTERFACE_DIR + "/Frames/WorldFrame.js") return;
 
 		// process.on("exit", function () {
-			window.onbeforeunload = function () {
-				C_EventSystem.triggerEvent("APPLICATION_SHUTDOWN");
-			};
+		window.onbeforeunload = function () {
+			C_EventSystem.triggerEvent("APPLICATION_SHUTDOWN");
+		};
 
-			C_EventSystem.registerEvent("APPLICATION_SHUTDOWN", "WebClient", function () {
+		C_EventSystem.registerEvent(
+			"APPLICATION_SHUTDOWN",
+			"WebClient",
+			function () {
 				DEBUG("Application shutting down; performing cleanup tasks");
 				C_Addons.saveAddonCache();
 				C_Macro.saveMacroCache();
-			});
+			}
+		);
 
 		WebClient.run();
 	}
@@ -95,19 +100,32 @@ class WebClient {
 		function processMessageQueue() {
 			let numProcessedMessages = 0;
 			let nextMessage = null;
-			while ((nextMessage = C_Message.getNextUnprocessedMessage()) !== undefined) {
+			while (
+				(nextMessage = C_Message.getNextUnprocessedMessage()) !== undefined
+			) {
 				DEBUG(format("Processing new message %s", nextMessage));
 				C_Message.processResponse(nextMessage);
 				numProcessedMessages++;
 			}
-			if (numProcessedMessages > 0) DEBUG(format("Finished processing %d new message(s)", numProcessedMessages));
+			if (numProcessedMessages > 0)
+				DEBUG(
+					format("Finished processing %d new message(s)", numProcessedMessages)
+				);
 		}
 
 		function processIncomingMessage(event, messageString) {
 			C_Message.storeUnprocessedMessage(messageString);
 		}
-		C_EventSystem.registerEvent("WEBSOCKET_INCOMING_MESSAGE", "WebClient", processIncomingMessage);
-		C_EventSystem.registerEvent("RENDER_LOOP_UPDATE", "WebClient", processMessageQueue);
+		C_EventSystem.registerEvent(
+			"WEBSOCKET_INCOMING_MESSAGE",
+			"WebClient",
+			processIncomingMessage
+		);
+		C_EventSystem.registerEvent(
+			"RENDER_LOOP_UPDATE",
+			"WebClient",
+			processMessageQueue
+		);
 
 		DEBUG("Starting the render loop");
 		C_Rendering.startRenderLoop();
