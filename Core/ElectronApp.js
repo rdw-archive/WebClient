@@ -50,7 +50,10 @@ class ElectronApp {
 			fullscreen: true,
 			icon: "Interface/Icons/favicon_v2.ico",
 			webPreferences: {
+				// INSECURE, but right now it doesn't matter (see https://github.com/RevivalEngine/WebClient/issues/9)
 				nodeIntegration: true,
+				contextIsolation: false,
+				// TODO: Remove these two settings and all comments referring to them
 				devTools: true,
 				backgroundThrottling: false, // It's really annoying
 				spellcheck: false, // It will automatically mark ALL input fields, which is jucky
