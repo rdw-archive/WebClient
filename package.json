@@ -18,12 +18,14 @@
 		"electron": "13.1.7",
 		"electron-builder": "22.11.7",
 		"electron-mocha": "10.1.0",
+		"eslint": "7.31.0",
 		"mocha": "9.0.2"
 	},
 	"scripts": {
 		"test": "electron-mocha --renderer --url index.html Tests",
 		"test-main": "electron-mocha Tests/Electron",
 		"all-tests": "electron-mocha Tests/Electron && electron-mocha --renderer --url index.html Tests",
+		"checks": "npx eslint --config Config/eslint.json .",
 		"start": "electron .",
 		"oom": "electron --js-flags='--max-old-space-size=10192' .",
 		"dev": "electron --js-flags=--max-old-space-size=500 . ",
