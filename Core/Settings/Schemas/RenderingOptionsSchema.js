@@ -1,0 +1,33 @@
+const RenderingOptionsSchema = JOI.object({
+	showFPS: JOI.boolean().required(),
+	useAntialiasing: JOI.boolean().required(),
+	enableAlphaChannel: JOI.boolean().required(),
+	optimizeSceneLookupOperations: JOI.boolean().required(),
+	enableFogEffect: JOI.boolean().required(),
+	showCoordinateAxes: JOI.boolean().required(),
+	wireframeGeometry: JOI.boolean().required(),
+	fpsUpdateIntervalInFrames: JOI.number().integer().min(1).required(),
+	pixelsPerWorldUnit: JOI.number().integer().min(1).required(),
+	debugMeshRenderGroupID: JOI.number().integer().required(),
+	numSpriteDrawLayers: JOI.number().integer().required(),
+	defaultFogParameters: JOI.object({
+		fogMode: JOI.string().required().valid("LINEAR", "EXP", "EXP2"),
+		minDistanceInWorldUnits: JOI.number().required().positive(),
+		maxDistanceInWorldUnits: JOI.number().required().positive(),
+		nearLimitInWorldUnits: JOI.number().required().positive(),
+		farLimitInWorldUnits: JOI.number().required().positive(),
+		exponentialFogDensity: JOI.number().required().positive(),
+		fogColorRGBA: JOI.object({
+			red: JOI.number().integer().min(0).max(255),
+			green: JOI.number().integer().min(0).max(255),
+			blue: JOI.number().integer().min(0).max(255),
+			alpha: JOI.number().integer().min(0).max(255),
+		}).required(),
+	}),
+	defaultSceneBackgroundColorRGBA: JOI.object({
+		red: JOI.number().integer().min(0).max(255),
+		green: JOI.number().integer().min(0).max(255),
+		blue: JOI.number().integer().min(0).max(255),
+		alpha: JOI.number().integer().min(0).max(255),
+	}).required(),
+});

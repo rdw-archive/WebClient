@@ -1,4 +1,5 @@
 const C_Validation = {
+	// TODO: Move to a proper schema file
 	addonMetadata: {
 		supportedFields: {
 			// Mandatory fields
@@ -28,5 +29,15 @@ const C_Validation = {
 		}
 
 		return true;
+	},
+	validateUsingSchema(objectToValidate, schemaToValidateAgainst) {
+		if (!objectToValidate || !schemaToValidateAgainst) return false; // Always invalid
+
+		const validationResult = schemaToValidateAgainst.validate(objectToValidate);
+		const wasValidationSuccessful = !validationResult.error;
+		if (!wasValidationSuccessful)
+			WARNING(format("Validation failed: %s", validationResult.error.message));
+
+		return wasValidationSuccessful;
 	},
 };
