@@ -6,201 +6,201 @@
 	See https://wow.gamepedia.com/UIOBJECT_Font for more details on the concept of font instances/templates */
 
 .GameFontSmallest {
-    font-family: GameFont;
-    font-size: var(--font-size-smallest);
+	font-family: GameFont;
+	font-size: var(--font-size-smallest);
 }
 
 .GameFontSmaller {
-    font-family: GameFont;
-    font-size: var(--font-size-smaller);
+	font-family: GameFont;
+	font-size: var(--font-size-smaller);
 }
 
 .GameFontSmall {
-    font-family: GameFont;
-    font-size: var(--font-size-small);
+	font-family: GameFont;
+	font-size: var(--font-size-small);
 }
 
 .GameFontNormal {
-    font-family: GameFont;
-    font-size: var(--font-size-normal);
+	font-family: GameFont;
+	font-size: var(--font-size-normal);
 }
 
 .GameFontLarge {
-    font-family: GameFont;
-    font-size: var(--font-size-large);
+	font-family: GameFont;
+	font-size: var(--font-size-large);
 }
 
 .GameFontLarger {
-    font-family: GameFont;
-    font-size: var(--font-size-larger);
+	font-family: GameFont;
+	font-size: var(--font-size-larger);
 }
 
 .GameFontLargest {
-    font-family: GameFont;
-    font-size: var(--font-size-largest);
+	font-family: GameFont;
+	font-size: var(--font-size-largest);
 }
 
 .GameFontHuge {
-    font-family: GameFont;
-    font-size: var(--font-size-huge);
+	font-family: GameFont;
+	font-size: var(--font-size-huge);
 }
 
 .BoldFontSmallest {
-    font-family: BoldFont;
-    font-size: var(--font-size-smallest);
+	font-family: BoldFont;
+	font-size: var(--font-size-smallest);
 }
 
 .BoldFontSmaller {
-    font-family: BoldFont;
-    font-size: var(--font-size-smaller);
+	font-family: BoldFont;
+	font-size: var(--font-size-smaller);
 }
 
 .BoldFontSmall {
-    font-family: BoldFont;
-    font-size: var(--font-size-small);
+	font-family: BoldFont;
+	font-size: var(--font-size-small);
 }
 
 .BoldFontNormal {
-    font-family: BoldFont;
-    font-size: var(--font-size-normal);
+	font-family: BoldFont;
+	font-size: var(--font-size-normal);
 }
 
 .BoldFontLarge {
-    font-family: BoldFont;
-    font-size: var(--font-size-large);
+	font-family: BoldFont;
+	font-size: var(--font-size-large);
 }
 
 .BoldFontLarger {
-    font-family: BoldFont;
-    font-size: var(--font-size-larger);
+	font-family: BoldFont;
+	font-size: var(--font-size-larger);
 }
 
 .BoldFontLargest {
-    font-family: BoldFont;
-    font-size: var(--font-size-largest);
+	font-family: BoldFont;
+	font-size: var(--font-size-largest);
 }
 
 .BoldFontHuge {
-    font-family: BoldFont;
-    font-size: var(--font-size-huge);
+	font-family: BoldFont;
+	font-size: var(--font-size-huge);
 }
 
 .TitleFontSmallest {
-    font-family: TitleFont;
-    font-size: var(--font-size-smallest);
+	font-family: TitleFont;
+	font-size: var(--font-size-smallest);
 }
 
 .TitleFontSmaller {
-    font-family: TitleFont;
-    font-size: var(--font-size-smaller);
+	font-family: TitleFont;
+	font-size: var(--font-size-smaller);
 }
 
 .TitleFontSmall {
-    font-family: TitleFont;
-    font-size: var(--font-size-small);
+	font-family: TitleFont;
+	font-size: var(--font-size-small);
 }
 
 .TitleFontNormal {
-    font-family: TitleFont;
-    font-size: var(--font-size-normal);
+	font-family: TitleFont;
+	font-size: var(--font-size-normal);
 }
 
 .TitleFontLarge {
-    font-family: TitleFont;
-    font-size: var(--font-size-large);
+	font-family: TitleFont;
+	font-size: var(--font-size-large);
 }
 
 .TitleFontLarger {
-    font-family: TitleFont;
-    font-size: var(--font-size-larger);
+	font-family: TitleFont;
+	font-size: var(--font-size-larger);
 }
 
 .TitleFontLargest {
-    font-family: TitleFont;
-    font-size: var(--font-size-largest);
+	font-family: TitleFont;
+	font-size: var(--font-size-largest);
 }
 
 .TitleFontHuge {
-    font-family: TitleFont;
-    font-size: var(--font-size-huge);
+	font-family: TitleFont;
+	font-size: var(--font-size-huge);
 }
 
 .CaptionFontSmallest {
-    font-family: CaptionFont;
-    font-size: var(--font-size-smallest);
+	font-family: CaptionFont;
+	font-size: var(--font-size-smallest);
 }
 
 .CaptionFontSmaller {
-    font-family: CaptionFont;
-    font-size: var(--font-size-smaller);
+	font-family: CaptionFont;
+	font-size: var(--font-size-smaller);
 }
 
 .CaptionFontSmall {
-    font-family: CaptionFont;
-    font-size: var(--font-size-small);
+	font-family: CaptionFont;
+	font-size: var(--font-size-small);
 }
 
 .CaptionFontNormal {
-    font-family: CaptionFont;
-    font-size: var(--font-size-normal);
+	font-family: CaptionFont;
+	font-size: var(--font-size-normal);
 }
 
 .CaptionFontLarge {
-    font-family: CaptionFont;
-    font-size: var(--font-size-large);
+	font-family: CaptionFont;
+	font-size: var(--font-size-large);
 }
 
 .CaptionFontLarger {
-    font-family: CaptionFont;
-    font-size: var(--font-size-larger);
+	font-family: CaptionFont;
+	font-size: var(--font-size-larger);
 }
 
 .CaptionFontLargest {
-    font-family: CaptionFont;
-    font-size: var(--font-size-largest);
+	font-family: CaptionFont;
+	font-size: var(--font-size-largest);
 }
 
 .CaptionFontHuge {
-    font-family: CaptionFont;
-    font-size: var(--font-size-huge);
+	font-family: CaptionFont;
+	font-size: var(--font-size-huge);
 }
 
 .ScriptFontSmallest {
-    font-family: ScriptFont;
-    font-size: var(--font-size-smallest);
+	font-family: ScriptFont;
+	font-size: var(--font-size-smallest);
 }
 
 .ScriptFontSmaller {
-    font-family: ScriptFont;
-    font-size: var(--font-size-smaller);
+	font-family: ScriptFont;
+	font-size: var(--font-size-smaller);
 }
 
 .ScriptFontSmall {
-    font-family: ScriptFont;
-    font-size: var(--font-size-small);
+	font-family: ScriptFont;
+	font-size: var(--font-size-small);
 }
 
 .ScriptFontNormal {
-    font-family: ScriptFont;
-    font-size: var(--font-size-normal);
+	font-family: ScriptFont;
+	font-size: var(--font-size-normal);
 }
 
 .ScriptFontLarge {
-    font-family: ScriptFont;
-    font-size: var(--font-size-large);
+	font-family: ScriptFont;
+	font-size: var(--font-size-large);
 }
 
 .ScriptFontLarger {
-    font-family: ScriptFont;
-    font-size: var(--font-size-larger);
+	font-family: ScriptFont;
+	font-size: var(--font-size-larger);
 }
 
 .ScriptFontLargest {
-    font-family: ScriptFont;
-    font-size: var(--font-size-largest);
+	font-family: ScriptFont;
+	font-size: var(--font-size-largest);
 }
 
 .ScriptFontHuge {
-    font-family: ScriptFont;
-    font-size: var(--font-size-huge);
+	font-family: ScriptFont;
+	font-size: var(--font-size-huge);
 }

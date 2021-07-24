@@ -2,12 +2,11 @@ const RGBA_COLOR_GREEN = {
 	red: 0,
 	green: 255,
 	blue: 0,
-	alpha: 255
-}
+	alpha: 255,
+};
 const DEFAULT_COLOR = RGBA_COLOR_GREEN;
 const DEFAULT_ARROW_WIDTH = 0.1;
 const DEFAULT_TIP_SIZE = 0.25;
-
 
 // Represents a flat (2D) arrow in 3D space
 class Arrow2D {
@@ -59,7 +58,6 @@ class Arrow2D {
 		this.mesh.position.y = worldY;
 		this.mesh.position.z = worldZ;
 		// this.mesh.position.y = this.mesh.position.y + 2;
-
 	}
 
 	setDirection(direction) {
@@ -67,7 +65,6 @@ class Arrow2D {
 
 		this.mesh.rotation = new BABYLON.Vector3(0, direction, 0);
 		// this.mesh.rotate(new BABYLON.Vector3(0, 1, 0), direction); // always rotate in LOCAL space
-
 	}
 
 	setColor(red, green, blue) {
@@ -94,8 +91,8 @@ class Arrow2D {
 	setSourcePoint(x, y, z) {
 		this.sourcePoint.x = x;
 		this.sourcePoint.y = y;
-		this.sourcePoint.z = z
-		this.updateVertices();;
+		this.sourcePoint.z = z;
+		this.updateVertices();
 	}
 
 	setDestinationPoint(x, y, z) {
@@ -120,39 +117,89 @@ class Arrow2D {
 		let tipDirection = destinationPoint3D.subtract(sourcePoint3D);
 		tipDirection.normalize();
 		tipDirection.scaleInPlace(tipSize);
-		let tip = destinationPoint3D.add(new BABYLON.Vector3(tipDirection.x * tipSize, tipDirection.y * tipSize, tipDirection.z * tipSize));
+		let tip = destinationPoint3D.add(
+			new BABYLON.Vector3(
+				tipDirection.x * tipSize,
+				tipDirection.y * tipSize,
+				tipDirection.z * tipSize
+			)
+		);
 		let arrowTip = tipDirection.add(tip);
 
 		let paths = [
 			// Where the arrow originates
 			[
-				new BABYLON.Vector3(sourcePoint3D.x, sourcePoint3D.y, sourcePoint3D.z - thickness / 2),
-				new BABYLON.Vector3(sourcePoint3D.x, sourcePoint3D.y, sourcePoint3D.z + thickness / 2),
+				new BABYLON.Vector3(
+					sourcePoint3D.x,
+					sourcePoint3D.y,
+					sourcePoint3D.z - thickness / 2
+				),
+				new BABYLON.Vector3(
+					sourcePoint3D.x,
+					sourcePoint3D.y,
+					sourcePoint3D.z + thickness / 2
+				),
 			],
 			// Where the arrow points to
 			[
-				new BABYLON.Vector3(destinationPoint3D.x, destinationPoint3D.y, destinationPoint3D.z - thickness / 2),
-				new BABYLON.Vector3(destinationPoint3D.x, destinationPoint3D.y, destinationPoint3D.z + thickness / 2),
+				new BABYLON.Vector3(
+					destinationPoint3D.x,
+					destinationPoint3D.y,
+					destinationPoint3D.z - thickness / 2
+				),
+				new BABYLON.Vector3(
+					destinationPoint3D.x,
+					destinationPoint3D.y,
+					destinationPoint3D.z + thickness / 2
+				),
 			],
 			// Tip of the arrow
 			[
-				new BABYLON.Vector3(destinationPoint3D.x, destinationPoint3D.y, destinationPoint3D.z - tipSize / 2),
-				new BABYLON.Vector3(destinationPoint3D.x, destinationPoint3D.y, destinationPoint3D.z + tipSize / 2),
+				new BABYLON.Vector3(
+					destinationPoint3D.x,
+					destinationPoint3D.y,
+					destinationPoint3D.z - tipSize / 2
+				),
+				new BABYLON.Vector3(
+					destinationPoint3D.x,
+					destinationPoint3D.y,
+					destinationPoint3D.z + tipSize / 2
+				),
 			],
 			[
-				new BABYLON.Vector3(destinationPoint3D.x, destinationPoint3D.y, destinationPoint3D.z - tipSize / 2),
+				new BABYLON.Vector3(
+					destinationPoint3D.x,
+					destinationPoint3D.y,
+					destinationPoint3D.z - tipSize / 2
+				),
 				arrowTip,
 			],
 			[
 				arrowTip,
-				new BABYLON.Vector3(destinationPoint3D.x, destinationPoint3D.y, destinationPoint3D.z + tipSize / 2),
+				new BABYLON.Vector3(
+					destinationPoint3D.x,
+					destinationPoint3D.y,
+					destinationPoint3D.z + tipSize / 2
+				),
 			],
-
 		];
 
-		let ribbon = BABYLON.MeshBuilder.CreateRibbon(name + "Ribbon", { pathArray: paths, sideOrientation: BABYLON.Mesh.DOUBLESIDE, updatable: true, instance: updateInstance }, scene);
+		let ribbon = BABYLON.MeshBuilder.CreateRibbon(
+			name + "Ribbon",
+			{
+				pathArray: paths,
+				sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+				updatable: true,
+				instance: updateInstance,
+			},
+			scene
+		);
 
-		if (ribbon.material === null) ribbon.material = new BABYLON.StandardMaterial(this.name + "Material", scene);
+		if (ribbon.material === null)
+			ribbon.material = new BABYLON.StandardMaterial(
+				this.name + "Material",
+				scene
+			);
 
 		// Color the ribbon
 		let vertexColors = [];
@@ -160,7 +207,12 @@ class Arrow2D {
 		for (let pathIndex = 0; pathIndex < paths.length; pathIndex++) {
 			let vertices = paths[pathIndex];
 			for (let vertexIndex = 0; vertexIndex < vertices.length; vertexIndex++) {
-				vertexColors.push(color.red / 255, color.green / 255, color.blue / 255, color.alpha / 255);
+				vertexColors.push(
+					color.red / 255,
+					color.green / 255,
+					color.blue / 255,
+					color.alpha / 255
+				);
 			}
 		}
 
@@ -169,13 +221,16 @@ class Arrow2D {
 		// ribbon.hasVertexAlpha = true;
 		// console.log(ribbon)
 
-		ribbon.material.emissiveColor = new BABYLON.Color3(color.red / 255, color.green / 255, color.blue / 255);
+		ribbon.material.emissiveColor = new BABYLON.Color3(
+			color.red / 255,
+			color.green / 255,
+			color.blue / 255
+		);
 
 		// ribbon.rotate(new BABYLON.Vector3(0, 1, 0), 180 / 180 * Math.PI);
 
 		this.mesh = ribbon;
 	}
-
 }
 
 BABYLON.Arrow2D = Arrow2D;

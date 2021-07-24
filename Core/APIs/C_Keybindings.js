@@ -2,7 +2,11 @@ const C_Keybindings = {
 	handlers: {},
 	setBinding(keyCode, onKeyPressedHandler) {
 		if (this.handlers[keyCode])
-			WARNING("Set binding for keyCode " + keyCode + " (overriding the existing binding)");
+			WARNING(
+				"Set binding for keyCode " +
+					keyCode +
+					" (overriding the existing binding)"
+			);
 
 		INFO("Set new keybind for keyCode " + keyCode);
 		this.handlers[keyCode] = onKeyPressedHandler;

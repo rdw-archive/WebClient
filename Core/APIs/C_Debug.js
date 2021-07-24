@@ -8,13 +8,20 @@ C_Debug.dump = function (element, showTableOverview = false) {
 	console.table(element);
 };
 
-C_Debug.drawLine = function (sourceVector3D, destinationVector3D, color = Color.RED) {
+C_Debug.drawLine = function (
+	sourceVector3D,
+	destinationVector3D,
+	color = Color.RED
+) {
 	const points = [sourceVector3D, destinationVector3D];
 	const properties = {
 		points: points,
 		color: color,
 	};
-	const lineSystem = C_WebGL.createLines("DebugLineSystem" + WebClient.getNextAvailableGUID(), properties);
+	const lineSystem = C_WebGL.createLines(
+		"DebugLineSystem" + WebClient.getNextAvailableGUID(),
+		properties
+	);
 	return lineSystem;
 };
 
@@ -26,9 +33,12 @@ C_Debug.drawSphere = function (
 	const properties = {
 		position: positionVector3D,
 		radius: radiusInWorldUnits,
-		color: color
-	}
-	const sphere = C_WebGL.createSphere("DebugSphere" + WebClient.getNextAvailableGUID(), properties);
+		color: color,
+	};
+	const sphere = C_WebGL.createSphere(
+		"DebugSphere" + WebClient.getNextAvailableGUID(),
+		properties
+	);
 	return sphere;
 };
 
@@ -78,9 +88,18 @@ C_Debug.createWorldAxesVisualization = function (sizeInWorldUnits = 100) {
 		color: Color.BLUE,
 	};
 
-	const axisX = C_WebGL.createLines("WorldAxesVisualization_LinesX", propertiesX);
-	const axisY = C_WebGL.createLines("WorldAxesVisualization_LinesY", propertiesY);
-	const axisZ = C_WebGL.createLines("WorldAxesVisualization_LinesZ", propertiesZ);
+	const axisX = C_WebGL.createLines(
+		"WorldAxesVisualization_LinesX",
+		propertiesX
+	);
+	const axisY = C_WebGL.createLines(
+		"WorldAxesVisualization_LinesY",
+		propertiesY
+	);
+	const axisZ = C_WebGL.createLines(
+		"WorldAxesVisualization_LinesZ",
+		propertiesZ
+	);
 
 	// Setting the position here isn't ideal; I'd want the WebGL APIs to be decoupled. For now I'll leave it since text planes aren't used directly anywhere
 	const labelTextX = C_WebGL.makeTextPlane("X", "red", sizeInWorldUnits / 10);
@@ -149,11 +168,16 @@ C_Debug.drawNavigationMap = function () {
 	const heightMap = C_Navigation.heightMap;
 
 	if (!navMap || !heightMap) {
-		NOTICE("Failed to draw Navigation Map (navigationMap or heightMap not set)");
+		NOTICE(
+			"Failed to draw Navigation Map (navigationMap or heightMap not set)"
+		);
 		return;
 	}
 
-	const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 1, height: 1 });
+	const ground = BABYLON.MeshBuilder.CreateGround("ground", {
+		width: 1,
+		height: 1,
+	});
 	ground.renderingGroupID = RENDERER_DEBUG_MESH_RENDERING_GROUP_ID;
 
 	const matrices = [];
@@ -164,7 +188,11 @@ C_Debug.drawNavigationMap = function () {
 	for (let v = 0; v < navMap.height; v++) {
 		for (let u = 0; u < navMap.width; u++) {
 			const tileID = u + v * navMap.width;
-			const matrix = BABYLON.Matrix.Translation(u, heightMap.getAltitude(tileID) + epsilon, v);
+			const matrix = BABYLON.Matrix.Translation(
+				u,
+				heightMap.getAltitude(tileID) + epsilon,
+				v
+			);
 
 			matrices.push(matrix);
 			if (navMap.tiles[tileID] === false) colors.push(1, 0, 0, 1);
@@ -197,7 +225,10 @@ C_Debug.visualizeNormals = function (mesh, size, color) {
 		const v2 = v1.add(BABYLON.Vector3.FromArray(normals, i).scaleInPlace(size));
 		lines.push([v1, v2]);
 	}
-	const normalLines = BABYLON.MeshBuilder.CreateLineSystem(mesh.name + "_NormalLines", { lines: lines });
+	const normalLines = BABYLON.MeshBuilder.CreateLineSystem(
+		mesh.name + "_NormalLines",
+		{ lines: lines }
+	);
 	normalLines.color = color;
 
 	mesh.normalsVisualization = normalLines;

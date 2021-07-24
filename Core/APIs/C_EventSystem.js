@@ -9,17 +9,35 @@ const C_EventSystem = {
 	},
 	registerEvent(event, listenerID, onEventCallback) {
 		if (!this.isEventEnabled(event)) {
-			WARNING(format("Failed to register %s for event %s (triggers for this event are disabled)", listenerID, event));
+			WARNING(
+				format(
+					"Failed to register %s for event %s (triggers for this event are disabled)",
+					listenerID,
+					event
+				)
+			);
 			return;
 		}
 
 		if (this.isEventMonitoredByListener(event, listenerID)) {
-			NOTICE(format("Failed to register %s for event %s (already registered)", listenerID, event));
+			NOTICE(
+				format(
+					"Failed to register %s for event %s (already registered)",
+					listenerID,
+					event
+				)
+			);
 			return;
 		}
 
 		if (typeof onEventCallback !== "function") {
-			WARNING(format("Failed to register %s for event %s (onEventCallback not a function)", listenerID, event));
+			WARNING(
+				format(
+					"Failed to register %s for event %s (onEventCallback not a function)",
+					listenerID,
+					event
+				)
+			);
 			return;
 		}
 
@@ -44,7 +62,8 @@ const C_EventSystem = {
 
 		for (const listenerID in registeredListeners) {
 			const onEventCallback = registeredListeners[listenerID];
-			if (!this.squelchedEvents[event]) format("Triggering global UI event %s", event); // No need to spam this notification
+			if (!this.squelchedEvents[event])
+				format("Triggering global UI event %s", event); // No need to spam this notification
 			onEventCallback(event, ...args);
 		}
 	},

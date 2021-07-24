@@ -8,7 +8,11 @@ class Bitmap {
 		this.width = width;
 		this.height = height;
 	}
-	flipHorizontally(pixelData = this.pixelData, imageWidth = this.width, imageHeight = this.height) {
+	flipHorizontally(
+		pixelData = this.pixelData,
+		imageWidth = this.width,
+		imageHeight = this.height
+	) {
 		let flippedPixelData = [];
 		for (let row = 1; row <= imageHeight; row++) {
 			// Swap this row with the one on the other end of the image (and map indices from 1 to 0)
@@ -56,17 +60,26 @@ function Bitmap_createFromFileContents(buffer) {
 
 	// Header
 	let signature = reader.getString(2);
-	if (signature !== "BM") throw new Error("Invalid signature " + signature + "detected ('BM' expected)");
+	if (signature !== "BM")
+		throw new Error(
+			"Invalid signature " + signature + "detected ('BM' expected)"
+		);
 
 	let fileSize = reader.getUint32();
 	let reserved = reader.getUint32(); // todo when writing, set to custom header?
 	let dataOffset = reader.getUint32();
 	// InfoHeader
 	let infoHeaderSize = reader.getUint32(); // always 40?
-	if (infoHeaderSize !== 40) throw new Error("infoHeaderSize is not 40 (other versions aren't currently supported)");
+	if (infoHeaderSize !== 40)
+		throw new Error(
+			"infoHeaderSize is not 40 (other versions aren't currently supported)"
+		);
 	let width = reader.getInt32();
 	let height = reader.getInt32();
-	if (width % 4 !== 0) throw new Error("Bitmap width is not divisible by 4 (padding is not currently supported)");
+	if (width % 4 !== 0)
+		throw new Error(
+			"Bitmap width is not divisible by 4 (padding is not currently supported)"
+		);
 	if (width != 256) console.log("moep");
 	if (height != 256) console.log("moip");
 	if (height < 0) {
@@ -76,7 +89,11 @@ function Bitmap_createFromFileContents(buffer) {
 
 	let numPlanes = reader.getUint16(); // color planes, must be 1 (in version 40, anyway?)
 	if (numPlanes !== 1)
-		throw new Error("Number of planes is " + bitsPerPixel + " (must always be 1 as per the specification)");
+		throw new Error(
+			"Number of planes is " +
+				bitsPerPixel +
+				" (must always be 1 as per the specification)"
+		);
 	let bitsPerPixel = reader.getUint16();
 	// if (bitsPerPixel !== 8)
 	// throw new Error('Color depths is ' + bitsPerPixel + ' (only 256 color bitmaps are currently supported');
@@ -98,7 +115,8 @@ function Bitmap_createFromFileContents(buffer) {
 
 	let bytesPerPixel = bitsPerPixel / NUM_BITS_PER_BYTE;
 	let requiredPaddingBytes = (width * bytesPerPixel) % 4; // (width * channels) % 4 ?
-	if (requiredPaddingBytes !== 0) throw new Error("Padding is not currently supported");
+	if (requiredPaddingBytes !== 0)
+		throw new Error("Padding is not currently supported");
 
 	// ColorTable
 	let colorTable = [];
@@ -144,7 +162,12 @@ function Bitmap_createFromFileContents(buffer) {
 
 	if (dataOffset !== reader.offset) {
 		// Fast-forwarding to the pixel data to skip the optional Gap1 portion of the file header
-		console.log("Data offset " + dataOffset + " doesn't match reader offset " + reader.offset);
+		console.log(
+			"Data offset " +
+				dataOffset +
+				" doesn't match reader offset " +
+				reader.offset
+		);
 		reader.offset = dataOffset; // there are two zero bytes at the end??
 		// reader.offset = dataOffset.offset + 2; // there are two zero bytes at the end??
 	}
@@ -166,7 +189,11 @@ function Bitmap_createFromFileContents(buffer) {
 
 			if (paletteIndex > colorTable.length) {
 				throw new Error(
-					"Palette index is " + paletteIndex + "but there are only" + colorTable.length + " palette entries"
+					"Palette index is " +
+						paletteIndex +
+						"but there are only" +
+						colorTable.length +
+						" palette entries"
 				);
 				// if numColors is <255 ???
 			}

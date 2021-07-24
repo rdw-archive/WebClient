@@ -1,2 +1,3 @@
-const DEFAULT_MACRO_ICON_PATH = WEBCLIENT_INTERFACE_DIR + "/Icons/QuestionMarkBlack3D.png";
+const DEFAULT_MACRO_ICON_PATH =
+	WEBCLIENT_INTERFACE_DIR + "/Icons/QuestionMarkBlack3D.png";
 const MACRO_CACHE_FILE_PATH = WEBCLIENT_INTERFACE_DIR + "/macro-cache.json";

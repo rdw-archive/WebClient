@@ -66,7 +66,11 @@ class Renderer {
 	// This is only needed if the game world (or some other 3D stuff) should be rendered.
 	createRenderScene(sceneOptions) {
 		this.activeScene = C_WebGL.createScene(this._obj, sceneOptions);
-		this.activeCamera = C_WebGL.createOrbitalCamera("OrbitalCamera", this.activeScene, this.canvas);
+		this.activeCamera = C_WebGL.createOrbitalCamera(
+			"OrbitalCamera",
+			this.activeScene,
+			this.canvas
+		);
 
 		C_WebGL.registerPointerEvents(this.activeScene);
 

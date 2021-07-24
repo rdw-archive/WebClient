@@ -1,72 +1,57 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 12
-    },
-    "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
-        "no-redeclare": [
-            "error",
-            { "builtinGlobals": false }
-        ],
-        "no-unused-vars": "off"
-    },
-    "globals": {
-        "C_Addons": "writable",
-        "C_Bitmap": "writable",
-        "C_Decoding": "writable",
-        "C_EventSystem": "writable",
-        "C_FileSystem": "writable",
-        "C_Keybindings": "writable",
-        "C_Locales": "writable",
-        "C_Logging": "writable",
-        "C_Macro": "writable",
-        "C_Navigation": "writable",
-        "C_Networking": "writable",
-        "C_Profiling": "writable",
-        "C_Rendering": "writable",
-        "C_Resources": "writable",
-        "C_System": "writable",
-        "C_Testing": "writable",
-        "C_Validation": "writable",
-        "C_WebGL": "writable",
-        "WebClient": "writable",
-        "BABYLON": "readable",
-        "BITMAP": "writable",
-        "CONSTANTS": "writable",
-        "DEBUG": "writable",
-        "FORMAT": "writable",
-        "INFO": "writable",
-        "L": "writable",
-        "MESSAGEPACK": "writable",
-        "NOTICE": "writable",
-        "WARNING": "writable",
-        "__dirname": "readable",
-        "after": "readable",
-        "afterEach": "readable",
-        "before": "readable",
-        "beforeEach": "readable",
-        "it": "readable",
-        "describe": "readable",
-        "require": "readable"
-    }
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": "eslint:recommended",
+	"parserOptions": {
+		"ecmaVersion": 12
+	},
+	"rules": {
+		"indent": ["error", "tab"],
+		"linebreak-style": ["error", "window"],
+		"quotes": ["error", "double"],
+		"semi": ["error", "always"],
+		"no-redeclare": ["error", { "builtinGlobals": false }],
+		"no-unused-vars": "off"
+	},
+	"globals": {
+		"C_Addons": "writable",
+		"C_Bitmap": "writable",
+		"C_Decoding": "writable",
+		"C_EventSystem": "writable",
+		"C_FileSystem": "writable",
+		"C_Keybindings": "writable",
+		"C_Locales": "writable",
+		"C_Logging": "writable",
+		"C_Macro": "writable",
+		"C_Navigation": "writable",
+		"C_Networking": "writable",
+		"C_Profiling": "writable",
+		"C_Rendering": "writable",
+		"C_Resources": "writable",
+		"C_System": "writable",
+		"C_Testing": "writable",
+		"C_Validation": "writable",
+		"C_WebGL": "writable",
+		"WebClient": "writable",
+		"BABYLON": "readable",
+		"BITMAP": "writable",
+		"CONSTANTS": "writable",
+		"DEBUG": "writable",
+		"FORMAT": "writable",
+		"INFO": "writable",
+		"L": "writable",
+		"MESSAGEPACK": "writable",
+		"NOTICE": "writable",
+		"WARNING": "writable",
+		"__dirname": "readable",
+		"after": "readable",
+		"afterEach": "readable",
+		"before": "readable",
+		"beforeEach": "readable",
+		"it": "readable",
+		"describe": "readable",
+		"require": "readable"
+	}
 }

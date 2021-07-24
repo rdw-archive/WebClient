@@ -1,67 +1,70 @@
-.Button, .HighlightButton {
-    font-family: GameFont;
-    /* Sync with GameFont (via vars)? */
-    font-size: 10pt;
-    font-weight: 700;
-    /* Sync with frame border radius */
-    border-radius: 0.37rem;
-    /* Sync with text color */
-    border: 2px solid white;
-    color: white;
-    color: black;
-    border-radius: 5px;
-    background: rgba(0, 0, 0, 0.75);
-    background: white;
-    margin: 0.25rem;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: white;
-    min-width: 4rem;
-    min-height: 1.5rem;
-    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+.Button,
+.HighlightButton {
+	font-family: GameFont;
+	/* Sync with GameFont (via vars)? */
+	font-size: 10pt;
+	font-weight: 700;
+	/* Sync with frame border radius */
+	border-radius: 0.37rem;
+	/* Sync with text color */
+	border: 2px solid white;
+	color: white;
+	color: black;
+	border-radius: 5px;
+	background: rgba(0, 0, 0, 0.75);
+	background: white;
+	margin: 0.25rem;
+	background-color: rgba(0, 0, 0, 0.75);
+	color: white;
+	min-width: 4rem;
+	min-height: 1.5rem;
+	transition: background-color 0.15s, border-color 0.15s, color 0.15s;
 }
 
-.Button:hover, .HighlightButton:hover {
-    /* "Hide" the border via synchronizing both colors */
-    border: 2px solid #0b5ed7;
-    color: #333333;
-    /* sync with default color theme */
-    background-color: #0b5ed7;
-    border-color: white;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: #0b5ed7;
-    background: white;
-    color: rgba(0, 0, 0, 0.75);
+.Button:hover,
+.HighlightButton:hover {
+	/* "Hide" the border via synchronizing both colors */
+	border: 2px solid #0b5ed7;
+	color: #333333;
+	/* sync with default color theme */
+	background-color: #0b5ed7;
+	border-color: white;
+	background-color: rgba(0, 0, 0, 0.75);
+	color: #0b5ed7;
+	background: white;
+	color: rgba(0, 0, 0, 0.75);
 }
 
 .Button:disabled {
-    border: 1px solid #ADADAD;
-    color: #adadad;
-    border: 2px solid #bdbdbd;
-    color: #bdbdbd;
-    background: rgba(0, 0, 0, 0);
-    border-color: #666;
-    color: #666;
+	border: 1px solid #adadad;
+	color: #adadad;
+	border: 2px solid #bdbdbd;
+	color: #bdbdbd;
+	background: rgba(0, 0, 0, 0);
+	border-color: #666;
+	color: #666;
 }
 
-.Button:active, .HighlightButton:active {
-    border: 2px solid #0b5ed7;
-    background-color: #0b5ed7;
-    color: white;
+.Button:active,
+.HighlightButton:active {
+	border: 2px solid #0b5ed7;
+	background-color: #0b5ed7;
+	color: white;
 }
 
 @keyframes glowing {
-    0% {
-        box-shadow: 0 0 5px #FCF24E;
-    }
-    50% {
-        box-shadow: 0 0 10px #FCF24E;
-    }
-    100% {
-        box-shadow: 0 0 5px #FCF24E;
-    }
+	0% {
+		box-shadow: 0 0 5px #fcf24e;
+	}
+	50% {
+		box-shadow: 0 0 10px #fcf24e;
+	}
+	100% {
+		box-shadow: 0 0 5px #fcf24e;
+	}
 }
 
 .HighlightButton {
-    animation: glowing 2500ms infinite;
-    border-color: #FCF24E;
+	animation: glowing 2500ms infinite;
+	border-color: #fcf24e;
 }

@@ -62,7 +62,14 @@
 		#c5def3,
 		#d2eafc
 	);
-	background-image: repeating-linear-gradient(#8294c8, #b3c1dd, #b8caf1, #afc4f0, #c5def3, #d2eafc);
+	background-image: repeating-linear-gradient(
+		#8294c8,
+		#b3c1dd,
+		#b8caf1,
+		#afc4f0,
+		#c5def3,
+		#d2eafc
+	);
 	text-align: center;
 }
 

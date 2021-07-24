@@ -25,12 +25,22 @@ const C_Decoding = {
 		const fileType = decoder.getSupportedFileType();
 
 		if (this.registeredDecoders[fileType]) {
-			NOTICE(format("Failed to register decoder for file type %s (already registered)", fileType));
+			NOTICE(
+				format(
+					"Failed to register decoder for file type %s (already registered)",
+					fileType
+				)
+			);
 			return;
 		}
 
 		this.registeredDecoders[fileType] = decoder;
-		DEBUG(format("Registered new decoder for file type *.%s", fileType.toUpperCase()));
+		DEBUG(
+			format(
+				"Registered new decoder for file type *.%s",
+				fileType.toUpperCase()
+			)
+		);
 	},
 	decodeFile(filePath) {
 		const resource = C_Resources.load(filePath);
@@ -53,7 +63,13 @@ const C_Decoding = {
 		const decodedResource = decoder.decode(resource);
 		decodedResource.state = RESOURCE_STATE_READY;
 
-		DEBUG(format("Resource %s is now in state %s", decodedResource.resourceID, decodedResource.state));
+		DEBUG(
+			format(
+				"Resource %s is now in state %s",
+				decodedResource.resourceID,
+				decodedResource.state
+			)
+		);
 		return decodedResource;
 	},
 };
