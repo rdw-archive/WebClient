@@ -23,9 +23,9 @@
 		"prettier": "2.3.2"
 	},
 	"scripts": {
-		"test": "electron-mocha --renderer --url index.html Tests",
+		"test": "electron-mocha --config Config/electron-mocha.json",
 		"test-main": "electron-mocha Tests/Electron",
-		"all-tests": "electron-mocha Tests/Electron && electron-mocha --renderer --url index.html Tests",
+		"all-tests": "electron-mocha Tests/Electron && electron-mocha --config Config/electron-mocha.json",
 		"checks": "npx eslint --config Config/eslint.json .",
 		"format": "npx prettier --check --config Config/prettier.json --ignore-path Config/.prettierignore .",
 		"autoformat": "npx prettier --write --config Config/prettier.json --ignore-path Config/.prettierignore .",

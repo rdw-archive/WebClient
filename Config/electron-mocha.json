@@ -1,0 +1,5 @@
+{
+	"renderer": true,
+	"url": "index.html",
+	"spec": ["Tests/API/**", "Tests/IncludeAddonTests.js"]
+}
