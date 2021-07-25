@@ -13,6 +13,7 @@ Exports/
 addon-cache.json
 macro-cache.json
 bindings-cache.json
+settings-cache.json
 layout-cache.json
 
 # Temporary files that may or may not exist
