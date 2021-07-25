@@ -50,5 +50,5 @@ const KEY_CODE_LATL = KEY_CODE_ALT_LEFT;
 const KEY_CODE_RALT = KEY_CODE_ALT_RIGHT;
 
 // Keybind activation modes (not really worth placing in a separate file?)
-const KEYBINDS_ACTIVATE_ON_KEY_UP = "Up";
-const KEYBINDS_ACTIVATE_ON_KEY_DOWN = "Down";
+const KEYBINDS_ACTIVATE_ON_KEY_UP = "OnKeyUp";
+const KEYBINDS_ACTIVATE_ON_KEY_DOWN = "OnDeyDown";
