@@ -1,0 +1,7 @@
+[
+	{
+		"name": "Hello world!",
+		"icon": "./Interface/Icons/QuestionMarkBlack3D.png",
+		"text": "// You can enter arbitrary code here\n// It will be executed in the global JavaScript environment\nwith full permissions and access to the scripting API\nwhen the macro is run\n\nDon't run untrusted code!\n\nconsole.log(\"Hello world!\");"
+	}
+]
