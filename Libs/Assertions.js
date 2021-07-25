@@ -21,3 +21,13 @@ function assertNotEquals(value1, value2) {
 
 	CRITICAL(format("Failed to assert that %s is not %s", value1, value2));
 }
+
+function assertDeepEquals(...rest) {
+	return NODE.Assert.deepEqual(...rest);
+}
+
+function assertUndefined(value) {
+	if (value === undefined) return true;
+
+	CRITICAL(format("Failed to assert that %s is undefined", value));
+}
