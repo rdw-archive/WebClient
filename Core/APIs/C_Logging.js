@@ -63,6 +63,7 @@ const C_Logging = {
 		window.CRITICAL = function (message) {
 			if (!WEBCLIENT_ACTIVE_LOGGERS[LOG_LEVEL_CRITICAL]) return;
 			self.loggers[LOG_LEVEL_CRITICAL].log(message, LOG_LEVEL_CRITICAL);
+			throw new Error(message);
 		};
 
 		window.SERVER = function (message) {
