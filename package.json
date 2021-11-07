@@ -12,7 +12,8 @@
 		"babylonjs-materials": "4.2.0",
 		"babylonjs-serializers": "4.2.0",
 		"bmp-js": "^0.1.0",
-		"joi": "17.4.1"
+		"joi": "17.4.1",
+		"maxrects-packer": "2.7.2"
 	},
 	"devDependencies": {
 		"electron": "13.3.0",
