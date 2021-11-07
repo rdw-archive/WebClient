@@ -1,6 +1,8 @@
 {
 	"env": {
 		"browser": true,
+		"node": true,
+		"mocha": true,
 		"es2021": true
 	},
 	"extends": "eslint:recommended",
@@ -44,14 +46,6 @@
 		"L": "writable",
 		"MESSAGEPACK": "writable",
 		"NOTICE": "writable",
-		"WARNING": "writable",
-		"__dirname": "readable",
-		"after": "readable",
-		"afterEach": "readable",
-		"before": "readable",
-		"beforeEach": "readable",
-		"it": "readable",
-		"describe": "readable",
-		"require": "readable"
+		"WARNING": "writable"
 	}
 }
