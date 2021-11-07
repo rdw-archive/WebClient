@@ -17,3 +17,9 @@ Also, assume the git history can change (`rebase`) as I don't expect anyone to a
 For more information, please see the online [documentation](https://revivalengine.github.io).
 
 Note: This documentation website is an initial proof of concept and as such, it's not very useful at this time.
+
+## Licensing Information
+
+All original code is published under the [Mozilla Public License, version 2 (no anti-GPL "Exhibit B")](https://www.mozilla.org/en-US/MPL/2.0/). Third party code may have its own license (usually MIT) but there should generally be no interoperability issues even for commercial use cases.
+
+Please find the full license  here: [.github/LICENSE](.github/LICENSE)
