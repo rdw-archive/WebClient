@@ -4,18 +4,18 @@
 
 Right now it's just an experiment, but it's basically bundling third-party libraries and frameworks with some glue:
 
-* [Electron](https://www.electronjs.org/) for the runtime and native APIs
-* [BabylonJS](https://www.babylonjs.com/) for WebGL rendering, WebAudio and (optionally) physics support
-* Builtin browser APIs for stuff like networking (via [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) API)
-* Custom abstractions, tools and utilities specific to the domain of game development
-* An addon system and high-level scripting API to make all this stuff easier to use
-* There's probably something else that I forgot... how do I delete this point?
+- [Electron](https://www.electronjs.org/) for the runtime and native APIs
+- [BabylonJS](https://www.babylonjs.com/) for WebGL rendering, WebAudio and (optionally) physics support
+- Builtin browser APIs for stuff like networking (via [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket) API)
+- Custom abstractions, tools and utilities specific to the domain of game development
+- An addon system and high-level scripting API to make all this stuff easier to use
+- There's probably something else that I forgot... how do I delete this point?
 
 All of this is intended to be used mainly in my own projects (for now), and relies on several other components to actually be useful:
 
-* [LoginServer](https://github.com/RevivalEngine/LoginServer): Handles user authentication, realm management and identities
-* [WorldServer](https://github.com/RevivalEngine/WorldServer): Runs the simulation of the game world and all gameplay logic
-* [Watcher](https://github.com/RevivalEngine/Watcher): Monitoring toolset to analyse server health and other metrics
+- [LoginServer](https://github.com/RevivalEngine/LoginServer): Handles user authentication, realm management and identities
+- [WorldServer](https://github.com/RevivalEngine/WorldServer): Runs the simulation of the game world and all gameplay logic
+- [Watcher](https://github.com/RevivalEngine/Watcher): Monitoring toolset to analyse server health and other metrics
 
 ## Status
 
