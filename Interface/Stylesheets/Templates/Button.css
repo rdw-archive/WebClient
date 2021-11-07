@@ -18,7 +18,7 @@
 	color: white;
 	min-width: 4rem;
 	min-height: 1.5rem;
-	transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+	transition: background-color 0.5s, border-color 0.5s, color 0.5s;
 }
 
 .Button:hover,
@@ -33,6 +33,7 @@
 	color: #0b5ed7;
 	background: white;
 	color: rgba(0, 0, 0, 0.75);
+	transition: background-color 0.5s, border-color 0.5s, color 0.5s;
 }
 
 .Button:disabled {
@@ -50,6 +51,8 @@
 	border: 2px solid #0b5ed7;
 	background-color: #0b5ed7;
 	color: white;
+	/* Transition needs to be faster here since the button is usually clicked only briefly */
+	transition: none;
 }
 
 @keyframes glowing {
