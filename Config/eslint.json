@@ -18,6 +18,9 @@
 		"no-unused-vars": "off"
 	},
 	"globals": {
+		"assertTrue": "writable",
+		"assertDeepEquals": "writable",
+		"assertFalse": "writable",
 		"C_Addons": "writable",
 		"C_Bitmap": "writable",
 		"C_Decoding": "writable",
@@ -32,6 +35,7 @@
 		"C_Profiling": "writable",
 		"C_Rendering": "writable",
 		"C_Resources": "writable",
+		"C_Settings": "writable",
 		"C_System": "writable",
 		"C_Testing": "writable",
 		"C_Validation": "writable",
@@ -63,6 +67,7 @@
 		"DEBUG": "writable",
 		"FORMAT": "writable",
 		"INFO": "writable",
+		"JOI": "writable",
 		"L": "writable",
 		"MESSAGEPACK": "writable",
 		"NOTICE": "writable",
