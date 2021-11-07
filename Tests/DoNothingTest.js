@@ -3,6 +3,5 @@
 
 describe("Placeholder Test", function () {
 	it("should be displayed when running the tests", function () {
-		assertTrue(true);
 	});
 });
