@@ -35,4 +35,4 @@ jobs:
         run: ${{ matrix.ubuntu-workaround-prefix-string }} npm run test-main
 
       - name: Run automated tests (render thread)
-        run: ${{ matrix.ubuntu-workaround-prefix-string }} npm test
+        run: ${{ matrix.ubuntu-workaround-prefix-string }} npm test-render
