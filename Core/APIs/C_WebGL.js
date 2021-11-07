@@ -353,27 +353,27 @@ C_WebGL.registerPointerEvents = function (scene) {
 	scene.onPointerObservable.add((pointerInfo) => {
 		// wip
 		switch (pointerInfo.type) {
-			case BABYLON.PointerEventTypes.POINTERDOWN:
-				C_EventSystem.triggerEvent("POINTER_DOWN");
-				break;
-			case BABYLON.PointerEventTypes.POINTERUP:
-				C_EventSystem.triggerEvent("POINTER_UP");
-				break;
-			case BABYLON.PointerEventTypes.POINTERMOVE:
-				C_EventSystem.triggerEvent("POINTER_MOVE");
-				break;
-			case BABYLON.PointerEventTypes.POINTERWHEEL:
-				C_EventSystem.triggerEvent("POINTER_WHEEL");
-				break;
-			case BABYLON.PointerEventTypes.POINTERPICK:
-				C_EventSystem.triggerEvent("POINTER_PICK");
-				break;
-			case BABYLON.PointerEventTypes.POINTERTAP:
-				C_EventSystem.triggerEvent("POINTER_TAP");
-				break;
-			case BABYLON.PointerEventTypes.POINTERDOUBLETAP:
-				C_EventSystem.triggerEvent("POINTER_DOUBLETAP");
-				break;
+		case BABYLON.PointerEventTypes.POINTERDOWN:
+			C_EventSystem.triggerEvent("POINTER_DOWN");
+			break;
+		case BABYLON.PointerEventTypes.POINTERUP:
+			C_EventSystem.triggerEvent("POINTER_UP");
+			break;
+		case BABYLON.PointerEventTypes.POINTERMOVE:
+			C_EventSystem.triggerEvent("POINTER_MOVE");
+			break;
+		case BABYLON.PointerEventTypes.POINTERWHEEL:
+			C_EventSystem.triggerEvent("POINTER_WHEEL");
+			break;
+		case BABYLON.PointerEventTypes.POINTERPICK:
+			C_EventSystem.triggerEvent("POINTER_PICK");
+			break;
+		case BABYLON.PointerEventTypes.POINTERTAP:
+			C_EventSystem.triggerEvent("POINTER_TAP");
+			break;
+		case BABYLON.PointerEventTypes.POINTERDOUBLETAP:
+			C_EventSystem.triggerEvent("POINTER_DOUBLETAP");
+			break;
 		}
 	});
 
@@ -408,18 +408,18 @@ C_WebGL.registerPointerEvents = function (scene) {
 			// return;
 		}
 		switch (keyboardEvent.type) {
-			case "keydown":
-				// console.log("KEY DOWN: ", keyboardEvent.key);
-				C_EventSystem.triggerEvent("KEY_DOWN", keyboardEvent.key, keyStringValue);
-				// DEBUG(isShiftKeyPressed);
-				if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_DOWN) C_Keybindings.executeBinding(keyCode);
-				break;
-			case "keyup":
-				// C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.key);
-				C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.key, keyboardEvent.code, keyCode);
-				// C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.keyCode);
-				if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_UP) C_Keybindings.executeBinding(keyCode);
-				break;
+		case "keydown":
+			// console.log("KEY DOWN: ", keyboardEvent.key);
+			C_EventSystem.triggerEvent("KEY_DOWN", keyboardEvent.key, keyStringValue);
+			// DEBUG(isShiftKeyPressed);
+			if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_DOWN) C_Keybindings.executeBinding(keyCode);
+			break;
+		case "keyup":
+			// C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.key);
+			C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.key, keyboardEvent.code, keyCode);
+			// C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.keyCode);
+			if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_UP) C_Keybindings.executeBinding(keyCode);
+			break;
 		}
 	};
 

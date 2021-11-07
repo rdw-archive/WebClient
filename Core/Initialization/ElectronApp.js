@@ -58,7 +58,7 @@ class ElectronApp {
 				backgroundThrottling: false, // It's really annoying
 				spellcheck: false, // It will automatically mark ALL input fields, which is jucky
 				enableRemoteModule: true, // needed only to access dev tools from code (disable for production?)
-				additionalArguments: '--js-flags="--max-old-space-size=8192"', // for the renderer process (main uses setting in package.json?)
+				additionalArguments: "--js-flags=\"--max-old-space-size=8192\"", // for the renderer process (main uses setting in package.json?)
 				// tbd I think the latter doesn't work in built apps, though? see https://github.com/electron/electron/issues/22705
 			},
 		});
