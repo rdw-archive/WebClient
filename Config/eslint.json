@@ -40,14 +40,18 @@
 		"Bitmap": "writable",
 		"Button": "writable",
 		"Canvas": "writable",
+		"CheckButton": "writable",
+		"EditBox": "writable",
 		"Enum": "writable",
 		"FieldSet": "writable",
 		"FontString": "writable",
 		"Frame": "writable",
 		"Label": "writable",
 		"Legend": "writable",
+		"OptionsGroup": "writable",
 		"Paragraph": "writable",
 		"ScriptObject": "writable",
+		"ScrollFrame": "writable",
 		"Table": "writable",
 		"UIParent": "writable",
 		"ViewportContainer": "writable",
@@ -62,6 +66,7 @@
 		"L": "writable",
 		"MESSAGEPACK": "writable",
 		"NOTICE": "writable",
-		"WARNING": "writable"
+		"WARNING": "writable",
+		"dump": "writable"
 	}
 }
