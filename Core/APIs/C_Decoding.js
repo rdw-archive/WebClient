@@ -51,9 +51,9 @@ const C_Decoding = {
 		return decodedResource;
 	},
 	decodeResource(resource, decoder) {
-		resource.state = RESOURCE_STATE_DECODING;
+		resource.state = Enum.RESOURCE_STATE_DECODING;
 		const decodedResource = decoder.decode(resource);
-		decodedResource.state = RESOURCE_STATE_READY;
+		decodedResource.state = Enum.RESOURCE_STATE_READY;
 
 		DEBUG(format("Resource %s is now in state %s", decodedResource.resourceID, decodedResource.state));
 		return decodedResource;

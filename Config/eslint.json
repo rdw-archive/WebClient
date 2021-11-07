@@ -40,6 +40,7 @@
 		"Bitmap": "writable",
 		"Button": "writable",
 		"Canvas": "writable",
+		"Enum": "writable",
 		"FieldSet": "writable",
 		"FontString": "writable",
 		"Frame": "writable",

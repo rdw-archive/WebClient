@@ -37,7 +37,7 @@ C_Resources.load = function (resourceID, isCritical = false) {
 	const fileContents = C_FileSystem.readFileBinary(resourceID);
 
 	resource.data = fileContents;
-	resource.state = RESOURCE_STATE_PENDING;
+	resource.state = Enum.RESOURCE_STATE_PENDING;
 
 	DEBUG(format("Resource %s is now in state %s", resourceID, resource.state));
 

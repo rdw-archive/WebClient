@@ -8,24 +8,24 @@ class Logger {
 		message = "[" + logLevel + "] " + message;
 
 		switch (logLevel) {
-		case LOG_LEVEL_DEBUG:
+		case Enum.LOG_LEVEL_DEBUG:
 			console.debug(message);
 			return;
-		case LOG_LEVEL_INFO:
+		case Enum.LOG_LEVEL_INFO:
 			console.info(message);
 			return;
-		case LOG_LEVEL_NOTICE:
+		case Enum.LOG_LEVEL_NOTICE:
 			console.warn(message);
 			return;
-		case LOG_LEVEL_WARNING:
+		case Enum.LOG_LEVEL_WARNING:
 			console.warn(message);
 			console.trace(message);
 			return;
-		case LOG_LEVEL_CRITICAL:
+		case Enum.LOG_LEVEL_CRITICAL:
 			console.error(message);
 			console.trace(message);
 			return;
-		case LOG_LEVEL_SERVER:
+		case Enum.LOG_LEVEL_SERVER:
 			console.warn(message);
 			return;
 		default:

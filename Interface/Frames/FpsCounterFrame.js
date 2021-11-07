@@ -16,7 +16,7 @@ FpsCounterFrame.onLoad = function () {
 		FpsCounterFrame.toggle();
 		RENDERER_SHOW_FPS = !RENDERER_SHOW_FPS; // to make sure it stays hidden/shown
 	}
-	C_Keybindings.setBinding(KEY_CODE_F, toggleFpsFrame);
+	C_Keybindings.setBinding(Enum.KEY_CODE_F, toggleFpsFrame);
 };
 
 FpsCounterFrame.onLoad();

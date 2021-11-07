@@ -13,7 +13,7 @@ KeyboardInputFrame.onLoad = function () {
 	function toggleFrame() {
 		KeyboardInputFrame.toggle();
 	}
-	C_Keybindings.setBinding(KEY_CODE_K, toggleFrame);
+	C_Keybindings.setBinding(Enum.KEY_CODE_K, toggleFrame);
 };
 
 KeyboardInputFrame.onLoad();

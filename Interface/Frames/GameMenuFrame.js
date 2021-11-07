@@ -119,7 +119,7 @@ GameMenuFrame.createExitButton();
 
 GameMenuFrame.createReturnButton();
 
-C_Keybindings.setBinding(KEY_CODE_ESC, function () {
+C_Keybindings.setBinding(Enum.KEY_CODE_ESC, function () {
 	GameMenuFrame.toggle();
 });
 

@@ -3,10 +3,10 @@ var format = require("util").format;
 // Wrapper for the BabylonJS WebGL engine (because we want streamlined APIs)
 const C_WebGL = {
 	fogModes: {
-		[FOG_MODE_NONE]: BABYLON.Scene.FOGMODE_NONE,
-		[FOG_MODE_LINEAR]: BABYLON.Scene.FOGMODE_LINEAR,
-		[FOG_MODE_EXPONENTIAL]: BABYLON.Scene.FOGMODE_EXP,
-		[FOG_MODE_EXPONENTIAL_DENSE]: BABYLON.Scene.FOGMODE_EXP2,
+		[Enum.FOG_MODE_NONE]: BABYLON.Scene.FOGMODE_NONE,
+		[Enum.FOG_MODE_LINEAR]: BABYLON.Scene.FOGMODE_LINEAR,
+		[Enum.FOG_MODE_EXPONENTIAL]: BABYLON.Scene.FOGMODE_EXP,
+		[Enum.FOG_MODE_EXPONENTIAL_DENSE]: BABYLON.Scene.FOGMODE_EXP2,
 	},
 };
 
@@ -48,7 +48,7 @@ C_WebGL.updateFog = function () {
 	const fogColor = RENDERER_FOG_COLOR; // tbd apply alpha manually since WebGL doesn't like it?
 
 	if (!RENDERER_ENABLE_FOG) {
-		scene.fogMode = this.fogModes[FOG_MODE_NONE];
+		scene.fogMode = this.fogModes[Enum.FOG_MODE_NONE];
 		return;
 	}
 
@@ -403,7 +403,7 @@ C_WebGL.registerPointerEvents = function (scene) {
 		// These two aren't deprecated?
 		const keyStringValue = keyboardEvent.key;
 		const keyCode = keyboardEvent.code;
-		if (keyCode === KEY_CODE_TAB) {
+		if (keyCode === Enum.KEY_CODE_TAB) {
 			keyboardEvent.preventDefault();
 			// return;
 		}

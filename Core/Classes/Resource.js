@@ -6,7 +6,7 @@ class Resource {
 		this.isCritical = isCritical;
 		this.data = resourceData;
 
-		this.state = RESOURCE_STATE_INITIALIZED;
+		this.state = Enum.RESOURCE_STATE_INITIALIZED;
 		this.lastAccessedTimestamp = 0;
 	}
 	touch() {
@@ -22,6 +22,6 @@ class Resource {
 		this.lastAccessedTimestamp = now;
 	}
 	isReady() {
-		return this.state === RESOURCE_STATE_READY;
+		return this.state === Enum.RESOURCE_STATE_READY;
 	}
 }
