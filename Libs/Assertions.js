@@ -1,3 +1,5 @@
+var format = require("util").format;
+
 function assertTrue(expression) {
 	if (expression) return true;
 

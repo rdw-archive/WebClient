@@ -1,3 +1,5 @@
+var format = require("util").format;
+
 const C_Bitmap = {};
 
 C_Bitmap.export = function (

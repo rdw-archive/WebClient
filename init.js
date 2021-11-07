@@ -1,3 +1,5 @@
+var format = require("util").format;
+
 // Shorthand because I'm lazy (must be set after the localization tables have been read)
 let L = {};
 function StartWebClient() {

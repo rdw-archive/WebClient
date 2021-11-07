@@ -1,3 +1,5 @@
+var format = require("util").format;
+
 // Basic interface for interacting with the client's event system.
 const C_EventSystem = {
 	eventListeners: {},

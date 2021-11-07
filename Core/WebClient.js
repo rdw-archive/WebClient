@@ -1,3 +1,5 @@
+var format = require("util").format;
+
 // Global shorthand for the render thread (visible window)
 class WebClient {
 	static nextAvailableGUID = 1;

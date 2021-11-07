@@ -1,3 +1,5 @@
+var format = require("util").format;
+
 const C_WebView = {};
 
 C_WebView.openWindow = function (URL) {

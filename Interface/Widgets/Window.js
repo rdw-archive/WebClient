@@ -1,3 +1,5 @@
+var format = require("util").format;
+
 class Window extends Widget {
 	constructor(widgetName, parentFrame, template = WIDGET_TEMPLATE_WINDOW) {
 		super(widgetName, parentFrame, template);

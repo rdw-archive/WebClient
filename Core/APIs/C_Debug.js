@@ -1,3 +1,5 @@
+var format = require("util").format;
+
 // Danger: Here be dragons (In need of refactoring)
 const C_Debug = {};
 

@@ -1,3 +1,5 @@
+var format = require("util").format;
+
 let C_Locales = {
 	localizationTables: {},
 	lookupMetatable: {
