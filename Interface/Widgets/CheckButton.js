@@ -1,11 +1,7 @@
 class CheckButton extends Widget {
 	constructor(widgetName, parentFrame, template) {
 		super(widgetName, parentFrame, template);
-		const widgetContainer = new Frame(
-			widgetName + "Container",
-			parentFrame,
-			"CheckButtonContainer"
-		);
+		const widgetContainer = new Frame(widgetName + "Container", parentFrame, "CheckButtonContainer");
 
 		this.container = widgetContainer;
 		// 	widgetContainer:EnableMouse(true)

@@ -12,10 +12,7 @@ let C_FileSystem = {
 	readFileBinary(filePath) {
 		const buffer = NODE.FileSystem.readFileSync(filePath);
 		// This is awkward (like anything JS...), but needed in some cases - see https://nodejs.org/dist/latest-v12.x/docs/api/buffer.html#buffer_buf_byteoffset
-		const arrayBuffer = buffer.buffer.slice(
-			buffer.byteOffset,
-			buffer.byteOffset + buffer.byteLength
-		);
+		const arrayBuffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
 		return arrayBuffer;
 	},
 	writeFileBinary(filePath, buffer) {
@@ -52,14 +49,7 @@ let C_FileSystem = {
 		const buffer = this.readFileBinary(filePath);
 
 		const checksum = CRC32.fromArrayBuffer(buffer);
-		DEBUG(
-			format(
-				"Computed CRC32 for file %s: %d (%x)",
-				filePath,
-				checksum,
-				checksum
-			)
-		);
+		DEBUG(format("Computed CRC32 for file %s: %d (%x)", filePath, checksum, checksum));
 		return checksum;
 	},
 	removeFile(filePath) {

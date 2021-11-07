@@ -66,8 +66,7 @@ class ElectronApp {
 
 		mainWindow.once("ready-to-show", () => {
 			mainWindow.show();
-			if (configLoader.settings.enableDevTools)
-				this.createDevToolsWindow(mainWindow);
+			if (configLoader.settings.enableDevTools) this.createDevToolsWindow(mainWindow);
 		});
 
 		this.mainWindow = mainWindow;
@@ -76,15 +75,9 @@ class ElectronApp {
 		const mainWindow = this.mainWindow;
 
 		const devToolsOptions = {
-			mode:
-				configLoader.settings.devToolsDockingMode ||
-				DEFAULT_DEV_TOOLS_DOCKING_MODE,
-			position:
-				configLoader.settings.devToolsWindowStartPosition ||
-				DEFAULT_DEV_TOOLS_WINDOW_START_POSITION,
-			dimensions:
-				configLoader.settings.devToolsWindowStartDimensions ||
-				DEFAULT_DEV_TOOLS_WINDOW_START_DIMENSIONS,
+			mode: configLoader.settings.devToolsDockingMode || DEFAULT_DEV_TOOLS_DOCKING_MODE,
+			position: configLoader.settings.devToolsWindowStartPosition || DEFAULT_DEV_TOOLS_WINDOW_START_POSITION,
+			dimensions: configLoader.settings.devToolsWindowStartDimensions || DEFAULT_DEV_TOOLS_WINDOW_START_DIMENSIONS,
 		};
 
 		devToolsWindow = new BrowserWindow({
@@ -104,14 +97,8 @@ class ElectronApp {
 		if (configLoader.settings.maximizeDevToolsWindow) devToolsWindow.maximize();
 
 		mainWindow.webContents.once("did-finish-load", function () {
-			devToolsWindow.setPosition(
-				devToolsOptions.position.x,
-				devToolsOptions.position.y
-			);
-			devToolsWindow.setSize(
-				devToolsOptions.dimensions.width,
-				devToolsOptions.dimensions.height
-			);
+			devToolsWindow.setPosition(devToolsOptions.position.x, devToolsOptions.position.y);
+			devToolsWindow.setSize(devToolsOptions.dimensions.width, devToolsOptions.dimensions.height);
 		});
 
 		mainWindow.on("close", this.persistDevToolsWindowSettings);

@@ -20,9 +20,5 @@ function StartWebClient() {
 	const windowTitle = format("%s (%s)", WebClient.titleString, WebClient.versionString);
 	WebClient.setWindowTitle(windowTitle);
 
-	C_EventSystem.registerEvent(
-		"SCRIPT_EXECUTION_FINISHED",
-		"WebClient",
-		WebClient.onScriptExecutionFinished
-	);
+	C_EventSystem.registerEvent("SCRIPT_EXECUTION_FINISHED", "WebClient", WebClient.onScriptExecutionFinished);
 }

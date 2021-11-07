@@ -13,18 +13,10 @@ class OptionsFrame extends Widget {
 	createWindow(parentFrame, template) {
 		this._obj = new Window(this.name + "Window", parentFrame, template);
 
-		const leftPane = new Frame(
-			this.name + "ContentLeft",
-			this._obj.content,
-			"OptionsFrameLeftPanel"
-		);
+		const leftPane = new Frame(this.name + "ContentLeft", this._obj.content, "OptionsFrameLeftPanel");
 		this._obj.content.leftPane = leftPane;
 
-		const rightPane = new Frame(
-			this.name + "ContentRight",
-			this._obj.content,
-			"OptionsFrameRightPanel"
-		);
+		const rightPane = new Frame(this.name + "ContentRight", this._obj.content, "OptionsFrameRightPanel");
 		this._obj.content.rightPane = rightPane;
 	}
 	setWindowTitle(text) {
@@ -45,11 +37,7 @@ class OptionsFrame extends Widget {
 			optionsFrame.updateVisibleCategories();
 		});
 
-		const categoryText = categorySelectorFrame.createFontString(
-			"TODO",
-			"MEDIUM",
-			"CaptionFontNormal"
-		);
+		const categoryText = categorySelectorFrame.createFontString("TODO", "MEDIUM", "CaptionFontNormal");
 		categoryText.setText(categoryName);
 
 		const panel = new Frame(
@@ -57,16 +45,8 @@ class OptionsFrame extends Widget {
 			this._obj.content.rightPane,
 			"OptionsFrameCategoryPanel"
 		);
-		panel.header = new Frame(
-			this.name + "_" + categoryName + "_PanelHeader",
-			panel,
-			"OptionsFrameCategoryHeader"
-		);
-		const headerText = panel.header.createFontString(
-			"TODO",
-			"MEDIUM",
-			"CaptionFontLarge"
-		);
+		panel.header = new Frame(this.name + "_" + categoryName + "_PanelHeader", panel, "OptionsFrameCategoryHeader");
+		const headerText = panel.header.createFontString("TODO", "MEDIUM", "CaptionFontLarge");
 		headerText.setText(categoryName);
 
 		this.categorySelectors[categoryName] = categorySelectorFrame;

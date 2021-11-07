@@ -70,11 +70,7 @@ C_WebGL.updateFog = function () {
 	scene.fogEnd = RENDERER_FOG_FAR_LIMIT;
 	scene.fogDensity = RENDERER_FOG_DENSITY;
 
-	scene.fogColor = new BABYLON.Color3(
-		fogColor.red / 255,
-		fogColor.green / 255,
-		fogColor.blue / 255
-	); // alpha?
+	scene.fogColor = new BABYLON.Color3(fogColor.red / 255, fogColor.green / 255, fogColor.blue / 255); // alpha?
 };
 
 C_WebGL.getRgbColorFromHex = function (hexString) {
@@ -103,9 +99,7 @@ C_WebGL.createMesh = function (name, properties) {
 	if (properties.textureFilePath) {
 		material.diffuseTexture = new BABYLON.Texture(properties.textureFilePath);
 		material.diffuseTexture.noMipmap = true;
-		material.diffuseTexture.updateSamplingMode(
-			BABYLON.Texture.TRILINEAR_SAMPLINGMODE
-		);
+		material.diffuseTexture.updateSamplingMode(BABYLON.Texture.TRILINEAR_SAMPLINGMODE);
 		material.diffuseTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
 		material.diffuseTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
 	}
@@ -113,16 +107,12 @@ C_WebGL.createMesh = function (name, properties) {
 	const vertexData = new BABYLON.VertexData();
 
 	if (properties.lightmapTextureFilePath) {
-		material.lightmapTexture = new BABYLON.Texture(
-			properties.lightmapTextureFilePath
-		);
+		material.lightmapTexture = new BABYLON.Texture(properties.lightmapTextureFilePath);
 		material.lightmapTexture.coordinatesIndex = 1; // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
 		vertexData.uvs2 = properties.lightmapUVs;
 	}
 	if (properties.ambientTextureFilePath) {
-		material.ambientTexture = new BABYLON.Texture(
-			properties.ambientTextureFilePath
-		);
+		material.ambientTexture = new BABYLON.Texture(properties.ambientTextureFilePath);
 		material.ambientTexture.coordinatesIndex = 1; // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
 		vertexData.uvs2 = properties.lightmapUVs; // dry
 		// shadowmapTexture.coordinatesIndex = 1 // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
@@ -131,9 +121,7 @@ C_WebGL.createMesh = function (name, properties) {
 	material.wireframe = properties.wireframe || false;
 	mesh.showBoundingBox = properties.showBoundingBox || false;
 	mesh.checkCollisions = properties.checkCollisions || false;
-	mesh.billboardMode =
-		(properties.billboardMode && BABYLON.Mesh.BILLBOARDMODE_ALL) ||
-		BABYLON.Mesh.BILLBOARDMODE_NONE;
+	mesh.billboardMode = (properties.billboardMode && BABYLON.Mesh.BILLBOARDMODE_ALL) || BABYLON.Mesh.BILLBOARDMODE_NONE;
 
 	mesh.material = material;
 
@@ -159,11 +147,7 @@ C_WebGL.createDirectionalLight = function (name, properties) {
 		properties.diffuseColor.blue
 	);
 
-	const direction = new BABYLON.Vector3(
-		properties.direction.x,
-		properties.direction.y,
-		properties.direction.z
-	);
+	const direction = new BABYLON.Vector3(properties.direction.x, properties.direction.y, properties.direction.z);
 
 	const directionalLight = new BABYLON.DirectionalLight(name, direction);
 	directionalLight.specular = specularColor;
@@ -212,11 +196,7 @@ C_WebGL.createAmbientLight = function (name, properties) {
 		properties.diffuseColor.blue
 	);
 
-	const direction = new BABYLON.Vector3(
-		properties.direction.x,
-		properties.direction.y,
-		properties.direction.z
-	);
+	const direction = new BABYLON.Vector3(properties.direction.x, properties.direction.y, properties.direction.z);
 
 	const ambientLight = new BABYLON.HemisphericLight(name, direction);
 	ambientLight.specular = specularColor;
@@ -244,13 +224,7 @@ C_WebGL.createWaterPlane = function (mapU, mapV, waterLevel) {
 	// waterMaterial.waveLength = 0.1; //The lenght of waves. With smaller values, more waves are generated
 	// waterMaterial.addToRenderList(ground); //not initialized yet
 
-	var waterPlane = BABYLON.Mesh.CreateGround(
-		"waterPlane",
-		mapU,
-		mapV,
-		32,
-		scene
-	);
+	var waterPlane = BABYLON.Mesh.CreateGround("waterPlane", mapU, mapV, 32, scene);
 	waterPlane.position.x = mapU / 2;
 	waterPlane.position.z = mapV / 2;
 	waterPlane.visibility = 0.5;
@@ -290,10 +264,7 @@ C_WebGL.createWaterPlane = function (mapU, mapV, waterLevel) {
 	var waterMaterial = new BABYLON.WaterMaterial("waterMaterial", scene);
 	// waterMaterial.bumpTexture = new BABYLON.Texture("textures/waterbump.png", scene);
 	// waterMaterial.bumpTexture = new BABYLON.Texture(WEBCLIENT_ADDONS_DIR + "/RagnarokFileFormats/waterbump.png", scene); // Set the bump texture
-	waterMaterial.bumpTexture = new BABYLON.Texture(
-		WEBCLIENT_ASSETS_DIR + "/texture/effect/¿öÅÍ/water000.jpg",
-		scene
-	); // Set the bump texture
+	waterMaterial.bumpTexture = new BABYLON.Texture(WEBCLIENT_ASSETS_DIR + "/texture/effect/¿öÅÍ/water000.jpg", scene); // Set the bump texture
 
 	// Water properties
 	waterMaterial.windForce = -5;
@@ -321,8 +292,7 @@ C_WebGL.createWaterPlane = function (mapU, mapV, waterLevel) {
 		WEBCLIENT_ADDONS_DIR + "/RagnarokFileFormats/TropicalSunnyDay",
 		scene
 	);
-	skyboxMaterial.reflectionTexture.coordinatesMode =
-		BABYLON.Texture.SKYBOX_MODE;
+	skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
 	skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
 	skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
 	skyboxMaterial.disableLighting = true;
@@ -375,11 +345,7 @@ C_WebGL.createWaterPlane = function (mapU, mapV, waterLevel) {
 C_WebGL.takeScreenshot = function () {
 	const size = { height: 1080, width: 1900 };
 	// todo async to avoid blocking
-	BABYLON.Tools.CreateScreenshot(
-		C_Rendering.renderer,
-		C_Rendering.renderer.activeCamera,
-		size
-	);
+	BABYLON.Tools.CreateScreenshot(C_Rendering.renderer, C_Rendering.renderer.activeCamera, size);
 };
 
 // wip
@@ -444,26 +410,15 @@ C_WebGL.registerPointerEvents = function (scene) {
 		switch (keyboardEvent.type) {
 			case "keydown":
 				// console.log("KEY DOWN: ", keyboardEvent.key);
-				C_EventSystem.triggerEvent(
-					"KEY_DOWN",
-					keyboardEvent.key,
-					keyStringValue
-				);
+				C_EventSystem.triggerEvent("KEY_DOWN", keyboardEvent.key, keyStringValue);
 				// DEBUG(isShiftKeyPressed);
-				if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_DOWN)
-					C_Keybindings.executeBinding(keyCode);
+				if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_DOWN) C_Keybindings.executeBinding(keyCode);
 				break;
 			case "keyup":
 				// C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.key);
-				C_EventSystem.triggerEvent(
-					"KEY_UP",
-					keyboardEvent.key,
-					keyboardEvent.code,
-					keyCode
-				);
+				C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.key, keyboardEvent.code, keyCode);
 				// C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.keyCode);
-				if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_UP)
-					C_Keybindings.executeBinding(keyCode);
+				if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_UP) C_Keybindings.executeBinding(keyCode);
 				break;
 		}
 	};
@@ -477,22 +432,14 @@ C_WebGL.enablePostProcessing = function () {
 
 	const scene = C_Rendering.getActiveScene();
 	const camera = C_Rendering.getActiveCamera();
-	const pipeline = new BABYLON.DefaultRenderingPipeline(
-		"pipeline",
-		true,
-		scene,
-		[camera]
-	);
+	const pipeline = new BABYLON.DefaultRenderingPipeline("pipeline", true, scene, [camera]);
 	this.pipeline = pipeline;
 };
 
 // Bloom
 C_WebGL.setBloomEffectState = function (isEnabled, properties) {
 	const pipeline = this.pipeline;
-	if (!pipeline)
-		WARNING(
-			"Failed to set bloom effect state (default pipeline does not exist)"
-		);
+	if (!pipeline) WARNING("Failed to set bloom effect state (default pipeline does not exist)");
 
 	pipeline.bloomEnabled = isEnabled; // false by default
 	if (!properties) {
@@ -528,12 +475,7 @@ C_WebGL.toggleBloomEffect = function () {
 };
 
 // obsolete?
-C_WebGL.createBloomEffect = function (
-	kernelSize = 64,
-	scale = 0.5,
-	threshold = 0.9,
-	weight = 0.15
-) {
+C_WebGL.createBloomEffect = function (kernelSize = 64, scale = 0.5, threshold = 0.9, weight = 0.15) {
 	const pipeline = this.pipeline;
 	pipeline.bloomKernel = kernelSize;
 	pipeline.bloomScale = scale;
@@ -611,11 +553,7 @@ C_WebGL.createGreyscaleEffect = function (ratio = 1.0) {
 	if (this.greyscalePostProcess) return;
 
 	const camera = C_Rendering.getActiveCamera();
-	this.greyscalePostProcess = new BABYLON.BlackAndWhitePostProcess(
-		"BlackAndWhitePostProcess",
-		ratio,
-		camera
-	);
+	this.greyscalePostProcess = new BABYLON.BlackAndWhitePostProcess("BlackAndWhitePostProcess", ratio, camera);
 };
 
 C_WebGL.disableGreyscaleEffect = function () {
@@ -633,11 +571,7 @@ C_WebGL.createHighlightsEffect = function (ratio = 1.0) {
 	if (this.highlightsPostProcess) return;
 
 	const camera = C_Rendering.getActiveCamera();
-	this.highlightsPostProcess = new BABYLON.HighlightsPostProcess(
-		"HighlightsPostProcess",
-		ratio,
-		camera
-	);
+	this.highlightsPostProcess = new BABYLON.HighlightsPostProcess("HighlightsPostProcess", ratio, camera);
 };
 
 C_WebGL.disableHighlightsEffect = function () {
@@ -669,27 +603,11 @@ C_WebGL.makeTextPlane = function (text, color = "red", size = 10) {
 		true
 	);
 	dynamicTexture.hasAlpha = true;
-	dynamicTexture.drawText(
-		text,
-		5,
-		40,
-		"bold 36px Arial",
-		color,
-		"transparent",
-		true
-	);
+	dynamicTexture.drawText(text, 5, 40, "bold 36px Arial", color, "transparent", true);
 
-	const textPlane = BABYLON.Mesh.CreatePlane(
-		"TextPlane" + WebClient.getNextAvailableGUID(),
-		size,
-		scene,
-		true
-	);
+	const textPlane = BABYLON.Mesh.CreatePlane("TextPlane" + WebClient.getNextAvailableGUID(), size, scene, true);
 
-	textPlane.material = new BABYLON.StandardMaterial(
-		"TextPlaneMaterial" + WebClient.getNextAvailableGUID(),
-		scene
-	);
+	textPlane.material = new BABYLON.StandardMaterial("TextPlaneMaterial" + WebClient.getNextAvailableGUID(), scene);
 	textPlane.material.backFaceCulling = false;
 	textPlane.material.specularColor = new BABYLON.Color3(0, 0, 0);
 	textPlane.material.diffuseTexture = dynamicTexture;

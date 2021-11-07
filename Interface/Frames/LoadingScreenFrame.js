@@ -6,9 +6,7 @@ LoadingScreenFrame.setLoadingScreenText = function (loadingScreenText = "") {
 
 LoadingScreenFrame.onSceneLoadingStarted = function (event, mapID) {
 	const mapInfo = C_ContentInfo.getMapInfo(mapID); // C_ContentInfo is deprecated
-	this.loadingScreenText.setText(
-		L["Loading"] + ": " + mapID + " (" + mapInfo.displayName + ")"
-	);
+	this.loadingScreenText.setText(L["Loading"] + ": " + mapID + " (" + mapInfo.displayName + ")");
 	this.show();
 	// -- UIParent:SetShown(false) -- Hide UI when loading things to only display the loading screen
 	// -- Also hide the world frame? (so rendering appears to be finished when the loading screen is gone)

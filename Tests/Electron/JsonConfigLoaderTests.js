@@ -10,10 +10,7 @@ const VALID_SETTINGS_EXAMPLE = {
 };
 
 function createTemporarySettingsFiles() {
-	fs.writeFileSync(
-		VALID_SETTINGS_EXAMPLE_FILE_PATH,
-		JSON.stringify(VALID_SETTINGS_EXAMPLE)
-	);
+	fs.writeFileSync(VALID_SETTINGS_EXAMPLE_FILE_PATH, JSON.stringify(VALID_SETTINGS_EXAMPLE));
 }
 
 function removeTemporarySettingsFiles() {
@@ -35,30 +32,19 @@ describe("Electron App Loader", function () {
 
 			assert.throws(function () {
 				loader.loadSettingsFromDisk();
-			}, Error(
-				"Failed to load settings from file " +
-					settingsFilePath +
-					" (File not found)"
-			));
+			}, Error("Failed to load settings from file " + settingsFilePath + " (File not found)"));
 
 			assert.deepStrictEqual(loader.settings, {}); // Settings are not loaded since it failed
 		});
 
 		it("should fail with an error if the configured settings file isn't valid JSON", function () {
 			const settingsFilePath = "invalid.json";
-			fs.writeFileSync(
-				settingsFilePath,
-				"something that's clearly not valid JSON"
-			);
+			fs.writeFileSync(settingsFilePath, "something that's clearly not valid JSON");
 
 			loader.setSettingsPath(settingsFilePath);
 			assert.throws(function () {
 				loader.loadSettingsFromDisk();
-			}, Error(
-				"Failed to load settings from file " +
-					settingsFilePath +
-					" (Invalid JSON)"
-			));
+			}, Error("Failed to load settings from file " + settingsFilePath + " (Invalid JSON)"));
 
 			fs.unlinkSync(settingsFilePath);
 		});
@@ -73,11 +59,7 @@ describe("Electron App Loader", function () {
 			loader.setSettingsPath(settingsFilePath);
 			assert.throws(function () {
 				loader.loadSettingsFromDisk();
-			}, Error(
-				"Failed to load settings from file " +
-					settingsFilePath +
-					" (Settings are invalid)"
-			));
+			}, Error("Failed to load settings from file " + settingsFilePath + " (Settings are invalid)"));
 
 			fs.unlinkSync(settingsFilePath);
 		});
@@ -93,11 +75,7 @@ describe("Electron App Loader", function () {
 			loader.setSettingsPath(settingsFilePath);
 			assert.throws(function () {
 				loader.loadSettingsFromDisk();
-			}, Error(
-				"Failed to load settings from file " +
-					settingsFilePath +
-					" (Settings are invalid)"
-			));
+			}, Error("Failed to load settings from file " + settingsFilePath + " (Settings are invalid)"));
 
 			fs.unlinkSync(settingsFilePath);
 		});
@@ -154,8 +132,7 @@ describe("Electron App Loader", function () {
 			fs.unlinkSync(settingsFilePath);
 		});
 		it("should only persist fields that are valid and ignore the others", function () {
-			const settingsWithUnsupportedEntriesFilePath =
-				"settingsWithUnsupportedEntries.json";
+			const settingsWithUnsupportedEntriesFilePath = "settingsWithUnsupportedEntries.json";
 			const settingsWithUnsupportedEntries = {
 				enableDevTools: true,
 				devToolsDockingMode: "detach",
@@ -175,14 +152,9 @@ describe("Electron App Loader", function () {
 			loader.saveSettingsToDisk();
 			fs.existsSync(settingsWithUnsupportedEntriesFilePath, true);
 
-			const fileContents = fs.readFileSync(
-				settingsWithUnsupportedEntriesFilePath
-			);
+			const fileContents = fs.readFileSync(settingsWithUnsupportedEntriesFilePath);
 			const serializedSettings = JSON.parse(fileContents);
-			assert.deepStrictEqual(
-				serializedSettings,
-				settingsWithOnlySupportedFields
-			);
+			assert.deepStrictEqual(serializedSettings, settingsWithOnlySupportedFields);
 
 			fs.unlinkSync(settingsWithUnsupportedEntriesFilePath);
 		});

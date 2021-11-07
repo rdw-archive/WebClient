@@ -8,13 +8,9 @@ class AddOn {
 		if (isLoadOnDemand) return; // Deferred loading means we don't need to do anything else here
 
 		const self = this;
-		C_EventSystem.registerEvent(
-			"ADDON_LOADED",
-			addonName,
-			function (event, name) {
-				self.onAddonLoaded(event, name);
-			}
-		);
+		C_EventSystem.registerEvent("ADDON_LOADED", addonName, function (event, name) {
+			self.onAddonLoaded(event, name);
+		});
 	}
 	onAddonLoaded(event, addonName) {
 		if (addonName !== this.name) return;

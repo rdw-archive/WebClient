@@ -6,19 +6,11 @@ FpsCounterFrame.onFpsUpdate = function (event, fps) {
 };
 
 FpsCounterFrame.onLoad = function () {
-	const fpsCounterText = FpsCounterFrame.createFontString(
-		"FpsCounterText",
-		"HIGH",
-		"GameFontSmallest"
-	);
+	const fpsCounterText = FpsCounterFrame.createFontString("FpsCounterText", "HIGH", "GameFontSmallest");
 	fpsCounterText.setText(L["FPS"] + ": " + 0); // This default value will be updated automatically by the renderer
 	this.fontString = fpsCounterText;
 	this.setShown(RENDERER_SHOW_FPS);
-	C_EventSystem.registerEvent(
-		"FPS_COUNTER_UPDATE",
-		"FpsCounterFrame",
-		this.onFpsUpdate
-	);
+	C_EventSystem.registerEvent("FPS_COUNTER_UPDATE", "FpsCounterFrame", this.onFpsUpdate);
 
 	function toggleFpsFrame() {
 		FpsCounterFrame.toggle();

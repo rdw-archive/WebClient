@@ -8,10 +8,7 @@ GameMenuFrame.createButtonGroups = function () {
 };
 
 GameMenuFrame.createSupportButton = function () {
-	this.addonOptionsButton = new Button(
-		"GameMenu_SupportButton",
-		this.metaGroup
-	);
+	this.addonOptionsButton = new Button("GameMenu_SupportButton", this.metaGroup);
 	this.addonOptionsButton.setText(L["Support"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
@@ -20,10 +17,7 @@ GameMenuFrame.createSupportButton = function () {
 };
 
 GameMenuFrame.createWhatsNewButton = function () {
-	this.addonOptionsButton = new Button(
-		"GameMenu_WhatsNewButton",
-		this.metaGroup
-	);
+	this.addonOptionsButton = new Button("GameMenu_WhatsNewButton", this.metaGroup);
 	this.addonOptionsButton.setText(L["What's New"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
@@ -41,10 +35,7 @@ GameMenuFrame.createCreditsButton = function () {
 };
 
 GameMenuFrame.createSystemOptionsButton = function () {
-	this.addonOptionsButton = new Button(
-		"GameMenu_SystemOptionsButton",
-		this.optionsGroup
-	);
+	this.addonOptionsButton = new Button("GameMenu_SystemOptionsButton", this.optionsGroup);
 	this.addonOptionsButton.setText(L["System"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
@@ -53,10 +44,7 @@ GameMenuFrame.createSystemOptionsButton = function () {
 };
 
 GameMenuFrame.createInterfaceOptionsButton = function () {
-	this.addonOptionsButton = new Button(
-		"GameMenu_InterfaceOptionsButton",
-		this.optionsGroup
-	);
+	this.addonOptionsButton = new Button("GameMenu_InterfaceOptionsButton", this.optionsGroup);
 	this.addonOptionsButton.setText(L["Interface"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
@@ -65,10 +53,7 @@ GameMenuFrame.createInterfaceOptionsButton = function () {
 };
 
 GameMenuFrame.createKeybindingOptionsButton = function () {
-	this.addonOptionsButton = new Button(
-		"GameMenu_KeybindingsOptionsButton",
-		this.optionsGroup
-	);
+	this.addonOptionsButton = new Button("GameMenu_KeybindingsOptionsButton", this.optionsGroup);
 	this.addonOptionsButton.setText(L["Keybindings"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
@@ -77,10 +62,7 @@ GameMenuFrame.createKeybindingOptionsButton = function () {
 };
 
 GameMenuFrame.createMacroOptionsButton = function () {
-	this.addonOptionsButton = new Button(
-		"GameMenu_MacroOptionsButton",
-		this.optionsGroup
-	);
+	this.addonOptionsButton = new Button("GameMenu_MacroOptionsButton", this.optionsGroup);
 	this.addonOptionsButton.setText(L["Macros"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
@@ -89,10 +71,7 @@ GameMenuFrame.createMacroOptionsButton = function () {
 };
 
 GameMenuFrame.createAddonOptionsButton = function () {
-	this.addonOptionsButton = new Button(
-		"GameMenu_AddOnsButton",
-		this.optionsGroup
-	);
+	this.addonOptionsButton = new Button("GameMenu_AddOnsButton", this.optionsGroup);
 	this.addonOptionsButton.setText(L["AddOns"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();

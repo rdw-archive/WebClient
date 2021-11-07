@@ -8,12 +8,7 @@ const ATLAS_PADDING = 128;
 const ATLAS_BORDER = 128;
 
 class BinPacker {
-	constructor(
-		atlasWidth,
-		atlasHeight,
-		padding = ATLAS_PADDING,
-		border = ATLAS_BORDER
-	) {
+	constructor(atlasWidth, atlasHeight, padding = ATLAS_PADDING, border = ATLAS_BORDER) {
 		const options = {
 			smart: true,
 			pot: true,

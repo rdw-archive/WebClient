@@ -20,11 +20,7 @@
 		"allowToChangeInstallationDirectory": true,
 		"createDesktopShortcut": false
 	},
-	"files": [
-		"!**/Assets/${/*}",
-		"!**/Interface/Addons/${/*}",
-		"!**/Exports/${/*}"
-	],
+	"files": ["!**/Assets/${/*}", "!**/Interface/Addons/${/*}", "!**/Exports/${/*}"],
 	"directories": {
 		"buildResources": "."
 	},

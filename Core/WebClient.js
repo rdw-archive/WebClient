@@ -3,9 +3,9 @@ var format = require("util").format;
 // Global shorthand for the render thread (visible window)
 class WebClient {
 	// TBD: Where should this be moved? Here isn't great, but for now it'll do...
-	static titleString = "Revival WebClient"
-	static versionString = "0.21.11-prototype"
-	static 	defaultFrames = [
+	static titleString = "Revival WebClient";
+	static versionString = "0.21.11-prototype";
+	static defaultFrames = [
 		"ViewportContainer",
 		"WorldFrame",
 		"UIParent",
@@ -13,9 +13,9 @@ class WebClient {
 		"KeyboardInputFrame",
 		"LoadingScreenFrame",
 		"GameMenuFrame",
-		"AddonOptionsFrame"
-	]
-	static settings = {}
+		"AddonOptionsFrame",
+	];
+	static settings = {};
 	static nextAvailableGUID = 1;
 	// Sets the window title of the application window
 	// @param title The new title to be displayed
@@ -81,9 +81,7 @@ class WebClient {
 	static createUserInterface() {
 		for (const fileName of this.defaultFrames) {
 			DEBUG(format("Creating default interface component %s", fileName));
-			this.loadScript(
-				format(WEBCLIENT_INTERFACE_DIR + "/Frames/" + fileName + ".js")
-			);
+			this.loadScript(format(WEBCLIENT_INTERFACE_DIR + "/Frames/" + fileName + ".js"));
 		}
 	}
 	// Defer render loop until the WorldFrame (canvas) exists
@@ -97,15 +95,11 @@ class WebClient {
 			C_EventSystem.triggerEvent("APPLICATION_SHUTDOWN");
 		};
 
-		C_EventSystem.registerEvent(
-			"APPLICATION_SHUTDOWN",
-			"WebClient",
-			function () {
-				DEBUG("Application shutting down; performing cleanup tasks");
-				C_Addons.saveAddonCache();
-				C_Macro.saveMacroCache();
-			}
-		);
+		C_EventSystem.registerEvent("APPLICATION_SHUTDOWN", "WebClient", function () {
+			DEBUG("Application shutting down; performing cleanup tasks");
+			C_Addons.saveAddonCache();
+			C_Macro.saveMacroCache();
+		});
 
 		WebClient.run();
 	}
@@ -116,32 +110,19 @@ class WebClient {
 		function processMessageQueue() {
 			let numProcessedMessages = 0;
 			let nextMessage = null;
-			while (
-				(nextMessage = C_Message.getNextUnprocessedMessage()) !== undefined
-			) {
+			while ((nextMessage = C_Message.getNextUnprocessedMessage()) !== undefined) {
 				DEBUG(format("Processing new message %s", nextMessage));
 				C_Message.processResponse(nextMessage);
 				numProcessedMessages++;
 			}
-			if (numProcessedMessages > 0)
-				DEBUG(
-					format("Finished processing %d new message(s)", numProcessedMessages)
-				);
+			if (numProcessedMessages > 0) DEBUG(format("Finished processing %d new message(s)", numProcessedMessages));
 		}
 
 		function processIncomingMessage(event, messageString) {
 			C_Message.storeUnprocessedMessage(messageString);
 		}
-		C_EventSystem.registerEvent(
-			"WEBSOCKET_INCOMING_MESSAGE",
-			"WebClient",
-			processIncomingMessage
-		);
-		C_EventSystem.registerEvent(
-			"RENDER_LOOP_UPDATE",
-			"WebClient",
-			processMessageQueue
-		);
+		C_EventSystem.registerEvent("WEBSOCKET_INCOMING_MESSAGE", "WebClient", processIncomingMessage);
+		C_EventSystem.registerEvent("RENDER_LOOP_UPDATE", "WebClient", processMessageQueue);
 
 		DEBUG("Starting the render loop");
 		C_Rendering.startRenderLoop();

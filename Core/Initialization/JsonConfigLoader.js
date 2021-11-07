@@ -30,11 +30,7 @@ class JsonConfigLoader {
 	}
 	loadSettingsFromDisk() {
 		if (!existsSync(this.settingsPath))
-			throw new Error(
-				"Failed to load settings from file " +
-					this.settingsPath +
-					" (File not found)"
-			);
+			throw new Error("Failed to load settings from file " + this.settingsPath + " (File not found)");
 
 		let settings = readFileSync(this.settingsPath);
 
@@ -42,19 +38,11 @@ class JsonConfigLoader {
 			settings = JSON.parse(settings);
 			this.settings = settings;
 		} catch (SyntaxError) {
-			throw new Error(
-				"Failed to load settings from file " +
-					this.settingsPath +
-					" (Invalid JSON)"
-			);
+			throw new Error("Failed to load settings from file " + this.settingsPath + " (Invalid JSON)");
 		}
 		const validationResult = schema.validate(settings);
 		if (validationResult.error)
-			throw new Error(
-				"Failed to load settings from file " +
-					this.settingsPath +
-					" (Settings are invalid)"
-			);
+			throw new Error("Failed to load settings from file " + this.settingsPath + " (Settings are invalid)");
 	}
 	saveSettingsToDisk() {
 		const validatedSettings = {};
@@ -65,11 +53,7 @@ class JsonConfigLoader {
 			if (!validationResult.error) validatedSettings[fieldName] = value;
 		}
 
-		const serializedSettingsString = JSON.stringify(
-			validatedSettings,
-			null,
-			"\t"
-		);
+		const serializedSettingsString = JSON.stringify(validatedSettings, null, "\t");
 		writeFileSync(this.settingsPath, serializedSettingsString);
 	}
 }

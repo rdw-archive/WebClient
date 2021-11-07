@@ -15,12 +15,7 @@ let C_Locales = {
 	},
 	setLocale(localeString) {
 		if (!this.isRegisteredLocale(localeString)) {
-			WARNING(
-				format(
-					"Failed to set locale %s (not a valid localeString)",
-					localeString
-				)
-			);
+			WARNING(format("Failed to set locale %s (not a valid localeString)", localeString));
 			return;
 		}
 
@@ -49,12 +44,7 @@ let C_Locales = {
 	},
 	registerNewLocale(localeString) {
 		if (this.isLocaleRegistered(localeString)) {
-			WARNING(
-				format(
-					"Failed to register new locale %s (this locale already exists)",
-					localeString
-				)
-			);
+			WARNING(format("Failed to register new locale %s (this locale already exists)", localeString));
 			return;
 		}
 

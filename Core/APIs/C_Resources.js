@@ -51,12 +51,7 @@ C_Resources.loadAsync = function (resourceID, isCritical = false) {
 	DEBUG(format("Starting async loading of resource %s", resourceID));
 
 	if (this.isResourceCached(resourceID)) {
-		DEBUG(
-			format(
-				"Requested resource %s will not be loaded (already cached)",
-				resourceID
-			)
-		);
+		DEBUG(format("Requested resource %s will not be loaded (already cached)", resourceID));
 		return;
 	}
 
@@ -66,9 +61,7 @@ C_Resources.loadAsync = function (resourceID, isCritical = false) {
 
 C_Resources.addResource = function (resourceID, resource) {
 	if (this.isResourceCached(resourceID)) {
-		WARNING(
-			format("Failed to add resource %s (resourceID already taken)", resourceID)
-		);
+		WARNING(format("Failed to add resource %s (resourceID already taken)", resourceID));
 		return;
 	}
 

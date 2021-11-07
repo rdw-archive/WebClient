@@ -137,8 +137,7 @@ class AnimatedSprite {
 				thisSprite.animateNextFrame();
 			}
 
-			if (thisSprite.anchor !== undefined)
-				thisSprite.currentFrameIndex = thisSprite.anchor.currentFrameIndex; // TODO: No need to actually animate this separately, then? (and remove the other fixes?)
+			if (thisSprite.anchor !== undefined) thisSprite.currentFrameIndex = thisSprite.anchor.currentFrameIndex; // TODO: No need to actually animate this separately, then? (and remove the other fixes?)
 			// TODO Does not take into account look direction?
 			if (thisSprite.useCorrectionOffsets) {
 				thisSprite.applyCorrectionOffsets();
@@ -150,8 +149,7 @@ class AnimatedSprite {
 				// );
 			}
 
-			if (thisSprite.hasVisualizationPlanes)
-				thisSprite.updateVisualizationPlanes();
+			if (thisSprite.hasVisualizationPlanes) thisSprite.updateVisualizationPlanes();
 
 			thisSprite.updatePositionForAllLayers(); // TODO Not needed, done before every frame  anyway
 			// thisSprite.UpdateSpritePositions(); -- Serious slowdown. Is it actually needed? It should sync head/body etc. but calling it for monsters seems wasteful (and doing this in JS would be 30% faster?) // TODO Move to JS, we don't want the overhead but we do need syncing
@@ -190,8 +188,7 @@ class AnimatedSprite {
 
 		// if (!this.useCorrectionOffsets || this.isStatic) return; // duplicate checks?
 		let attachmentFrameId = this.currentFrameIndex;
-		if (this.correctionFrameOverride !== undefined)
-			attachmentFrameId = this.correctionFrameOverride; // only 0 can be the value?
+		if (this.correctionFrameOverride !== undefined) attachmentFrameId = this.correctionFrameOverride; // only 0 can be the value?
 
 		let activeFrame = this.getActiveFrame();
 		let currentAttachmentOffsets = this.getCorrectionOffsets();
@@ -200,35 +197,23 @@ class AnimatedSprite {
 		let relativeFaceDirection = this.getRelativeFaceDirection();
 		// let currentAttachmentOffset = activeFrame.anchorPoints[0]; // significance of 0 == BODY?
 
-		if (
-			!this.animationData[this.animationIndex][relativeFaceDirection].frames[
-				attachmentFrameId
-			]
-		)
-			return;
+		if (!this.animationData[this.animationIndex][relativeFaceDirection].frames[attachmentFrameId]) return;
 
-		let currentAttachmentOffset = this.animationData[this.animationIndex][
-			relativeFaceDirection
-		].frames[attachmentFrameId].anchorPoints[0] || {
+		let currentAttachmentOffset = this.animationData[this.animationIndex][relativeFaceDirection].frames[
+			attachmentFrameId
+		].anchorPoints[0] || {
 			correctionU: 0,
 			correctionV: 0,
 		}; // use 0 by default IF there are no anchor points only (TODO: Shift responsibility to converter?)
 
-		let anchorCorrectionOffsets =
-			this.getAnchorCorrectionOffsets(attachmentFrameId);
+		let anchorCorrectionOffsets = this.getAnchorCorrectionOffsets(attachmentFrameId);
 		this.anchorPointOffsetU = anchorCorrectionOffsets.correctionU;
 		this.anchorPointOffsetV = anchorCorrectionOffsets.correctionV;
 
-		let finalCorrectionU =
-			this.anchorPointOffsetU - currentAttachmentOffset.correctionU;
-		let finalCorrectionV =
-			this.anchorPointOffsetV - currentAttachmentOffset.correctionV;
+		let finalCorrectionU = this.anchorPointOffsetU - currentAttachmentOffset.correctionU;
+		let finalCorrectionV = this.anchorPointOffsetV - currentAttachmentOffset.correctionV;
 
-		if (
-			!this.animationData[this.animationIndex][relativeFaceDirection].frames[
-				attachmentFrameId
-			].anchorPoints[0]
-		) {
+		if (!this.animationData[this.animationIndex][relativeFaceDirection].frames[attachmentFrameId].anchorPoints[0]) {
 			// Ignore anchoring?
 			// console.log("IGNORING ANCHORS");
 			finalCorrectionU = 0;
@@ -269,11 +254,7 @@ class AnimatedSprite {
 	}
 	startAnimating(animationIndex, isLooping) {
 		if (animationIndex > this.getAnimationCount()) {
-			throw new Error(
-				"Failed to start animation for index " +
-					animationIndex +
-					"(no animation data exists)"
-			);
+			throw new Error("Failed to start animation for index " + animationIndex + "(no animation data exists)");
 		}
 
 		this.stopAnimating();
@@ -327,12 +308,7 @@ class AnimatedSprite {
 		this.layers = [];
 
 		for (let layerIndex = 0; layerIndex < numRequiredLayers; layerIndex++) {
-			let newLayer = new BABYLON.SpriteLayer(
-				this.spriteManager,
-				this.name,
-				layerIndex,
-				this
-			);
+			let newLayer = new BABYLON.SpriteLayer(this.spriteManager, this.name, layerIndex, this);
 			this.layers[layerIndex] = newLayer;
 		}
 	}
@@ -353,8 +329,7 @@ class AnimatedSprite {
 		// if (this.animationSpeedPercent == 0) {
 		// 	this.animationSpeedPercent = 1;
 		// }
-		this.animationDelay =
-			currentAnimation.animationDelay / (this.animationSpeedPercent / 100);
+		this.animationDelay = currentAnimation.animationDelay / (this.animationSpeedPercent / 100);
 
 		for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 			let layerData = activeFrame.layers[layerIndex];
@@ -394,8 +369,7 @@ class AnimatedSprite {
 		// }
 		// Not all sprites have different animations for all the possible directions
 
-		let currentAnimation =
-			this.animationData[this.animationIndex][relativeFaceDirection];
+		let currentAnimation = this.animationData[this.animationIndex][relativeFaceDirection];
 		return currentAnimation;
 	}
 	getViewDirectionDegrees() {
@@ -411,8 +385,7 @@ class AnimatedSprite {
 		// let viewAngleBeta = activeCamera.beta / math.pi * 180
 		sourceAlpha = (Math.floor(sourceAlpha / 45) * 45) % 360;
 		// cameraDirection = this.getViewDirectionDegrees(); // avoid lookup in scope? perf matters here
-		let relativeFaceDirection =
-			relativeFaceDirections[this.faceDirection][sourceAlpha];
+		let relativeFaceDirection = relativeFaceDirections[this.faceDirection][sourceAlpha];
 		// relativeFaceDirections[this.faceDirection][this.getViewDirectionDegrees()];
 		if (this.isFaceDirectionLocked) {
 			relativeFaceDirection = this.faceDirection;
@@ -494,11 +467,7 @@ class AnimatedSprite {
 				// );
 				// TODO: Is this needed?
 				this.isAnimating = false;
-				for (
-					let layerIndex = 0;
-					layerIndex < this.layers.length;
-					layerIndex++
-				) {
+				for (let layerIndex = 0; layerIndex < this.layers.length; layerIndex++) {
 					let layer = this.layers[layerIndex];
 					layer.isAnimating = false;
 				}
@@ -538,21 +507,13 @@ class AnimatedSprite {
 		// TODO Do on creation only
 		this.soundFolderPath = "Assets/Sounds/"; // todo yikes
 		// TODO: Reuse, only one should play at once
-		var music = new BABYLON.Sound(
-			"music",
-			this.soundFolderPath + soundEffectFileName,
-			this.scene,
-			null,
-			{
-				loop: false,
-				autoplay: true,
-				spatialSound: true,
-			}
-		);
+		var music = new BABYLON.Sound("music", this.soundFolderPath + soundEffectFileName, this.scene, null, {
+			loop: false,
+			autoplay: true,
+			spatialSound: true,
+		});
 		// I guess updating it on creation is enough? Not like the unit will move very far while the sound is playing
-		music.setPosition(
-			new BABYLON.Vector3(this.worldX, this.worldY, this.worldZ)
-		);
+		music.setPosition(new BABYLON.Vector3(this.worldX, this.worldY, this.worldZ));
 	}
 
 	getSourceDimensions(layerIndex) {
@@ -586,9 +547,7 @@ class AnimatedSprite {
 		// 	end
 		// end
 		// return maxLayerCount
-		for (const [animationIndex, animation] of Object.entries(
-			this.animationData
-		)) {
+		for (const [animationIndex, animation] of Object.entries(this.animationData)) {
 			for (const [faceDirection, subAnimation] of Object.entries(animation)) {
 				// for (const [faceDirection, subAnimation] of Object.entries(animation)) {
 
@@ -706,10 +665,7 @@ class AnimatedSprite {
 		// relativeDirectionU.scaleInPlace(correctionOffsetU);
 		// relativeDirectionV.scaleInPlace(correctionOffsetV);
 
-		let correction = this.getWorldVectorFromPixelOffsets(
-			correctionOffsetU,
-			correctionOffsetV
-		);
+		let correction = this.getWorldVectorFromPixelOffsets(correctionOffsetU, correctionOffsetV);
 
 		sprite.position.x = this.worldX + correction.worldX;
 		sprite.position.y = this.worldY + correction.worldY;
@@ -812,16 +768,10 @@ class AnimatedSprite {
 			};
 			if (layerDimensions.width === 0 || layerDimensions.height === 0) {
 				let sourceDimensions = this.getSourceDimensions(layerIndex);
-				if (
-					sourceDimensions.width !== layerDimensions.width ||
-					sourceDimensions.height !== layerDimensions.height
-				) {
+				if (sourceDimensions.width !== layerDimensions.width || sourceDimensions.height !== layerDimensions.height) {
 					// If I ever encounter this error, I know to investigate.
 					// Until then, I'll just ignore it since I don't know what files (if any) use this property
-					throw new Error(
-						"Detected mismatching source and layer dimensions for layer " +
-							layerIndex
-					);
+					throw new Error("Detected mismatching source and layer dimensions for layer " + layerIndex);
 				}
 			}
 		}
@@ -875,16 +825,8 @@ class AnimatedSprite {
 		let relativeDirectionU = Vector3.Zero();
 		let relativeDirectionV = Vector3.Zero();
 		// TransformNormalFromFloatsToRef ?
-		Vector3.TransformNormalToRef(
-			VECTOR3_AXIS_U,
-			worldMatrix,
-			relativeDirectionU
-		);
-		Vector3.TransformNormalToRef(
-			VECTOR3_AXIS_V,
-			worldMatrix,
-			relativeDirectionV
-		);
+		Vector3.TransformNormalToRef(VECTOR3_AXIS_U, worldMatrix, relativeDirectionU);
+		Vector3.TransformNormalToRef(VECTOR3_AXIS_V, worldMatrix, relativeDirectionV);
 
 		offsetU = offsetU / RENDERER_PIXELS_PER_WORLDUNIT;
 		offsetV = offsetV / RENDERER_PIXELS_PER_WORLDUNIT;
@@ -912,10 +854,7 @@ BABYLON.AnimatedSprite = AnimatedSprite;
 
 class SpriteLayer {
 	constructor(spriteManager, name, layerIndex, animatedSprite) {
-		this.sprite = new BABYLON.Sprite(
-			name + "LayerSprite" + layerIndex,
-			spriteManager
-		);
+		this.sprite = new BABYLON.Sprite(name + "LayerSprite" + layerIndex, spriteManager);
 		this.name = name + "Layer" + layerIndex;
 		this.layerIndex = layerIndex;
 		this.isActive = false; // Start invisible to avoid glitches
@@ -972,11 +911,7 @@ class SpriteLayer {
 	// Update origin and return it
 	getOrigin() {
 		let animatedSprite = this.animatedSprite;
-		let origin = new BABYLON.Vector3(
-			animatedSprite.worldX,
-			animatedSprite.worldY,
-			animatedSprite.worldZ
-		);
+		let origin = new BABYLON.Vector3(animatedSprite.worldX, animatedSprite.worldY, animatedSprite.worldZ);
 		this.origin = origin;
 		return origin;
 	}
@@ -988,10 +923,7 @@ class SpriteLayer {
 			size: 1,
 			scene: animatedSprite.scene,
 		};
-		let anchorVisualizationPlane = BABYLON.MeshBuilder.CreatePlane(
-			name,
-			options
-		);
+		let anchorVisualizationPlane = BABYLON.MeshBuilder.CreatePlane(name, options);
 		anchorVisualizationPlane.billboardMode = BABYLON.Mesh.BILLBOARDMODE_ALL;
 		anchorVisualizationPlane.visibility = 0.5;
 		anchorVisualizationPlane.outlineColor = color || BABYLON.Color3.Blue();
@@ -1006,10 +938,7 @@ class SpriteLayer {
 			size: 1,
 			scene: animatedSprite.scene,
 		};
-		let originVisualizationPlane = BABYLON.MeshBuilder.CreatePlane(
-			name,
-			options
-		);
+		let originVisualizationPlane = BABYLON.MeshBuilder.CreatePlane(name, options);
 		originVisualizationPlane.billboardMode = BABYLON.Mesh.BILLBOARDMODE_ALL;
 		originVisualizationPlane.visibility = 0.5;
 		originVisualizationPlane.outlineColor = color || BABYLON.Color3.White();

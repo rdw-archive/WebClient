@@ -48,15 +48,9 @@ function Bitmap_CreateTextureAtlas(
 	if (!ENABLE_BORDER_FILL) BORDER_SIZE_PIXELS = 0; // Overriding the regular setting is easiest here
 	let backgroundFillColor = clearColor || BACKGROUND_FILL_COLOR;
 
-	let spritesheetPixels = new Uint8ClampedArray(
-		atlasWidth * atlasHeight * RGBA_COLOR_LENGTH
-	);
+	let spritesheetPixels = new Uint8ClampedArray(atlasWidth * atlasHeight * RGBA_COLOR_LENGTH);
 	// Make sure the background is always clear/transparent (as it will be initialised with zeroes = white otherwise)
-	for (
-		let pixelIndex = 0;
-		pixelIndex < spritesheetPixels.length;
-		pixelIndex = pixelIndex + RGBA_COLOR_LENGTH
-	) {
+	for (let pixelIndex = 0; pixelIndex < spritesheetPixels.length; pixelIndex = pixelIndex + RGBA_COLOR_LENGTH) {
 		spritesheetPixels[pixelIndex + 0] = backgroundFillColor.red;
 		spritesheetPixels[pixelIndex + 1] = backgroundFillColor.green;
 		spritesheetPixels[pixelIndex + 2] = backgroundFillColor.blue;
@@ -70,13 +64,7 @@ function Bitmap_CreateTextureAtlas(
 	// TODO We must preserve the original frame indices, as they're referenced in ACT files?? Just add a field to the Frame struct then?
 
 	// Draw contents of the bin at the given coords in the spritesheet (generate pixel/bitmap data)
-	function Bitmap_DrawSprite(
-		frameWidth,
-		frameHeight,
-		pixelData,
-		offsetX,
-		offsetY
-	) {
+	function Bitmap_DrawSprite(frameWidth, frameHeight, pixelData, offsetX, offsetY) {
 		// 2D -> 2D (translate frame to spritesheet coordinates)
 		function transformCoordinateSpaceX(x) {
 			return x + offsetX;
@@ -98,21 +86,9 @@ function Bitmap_CreateTextureAtlas(
 		}
 
 		function drawRectangle(startX, startY, width, height, color) {
-			for (
-				let borderPixelY = startY + 1;
-				borderPixelY < startY + height + 1;
-				borderPixelY++
-			) {
-				for (
-					let borderPixelX = startX;
-					borderPixelX < startX + width;
-					borderPixelX++
-				) {
-					let pixelIndex = lineariseCoordinates(
-						borderPixelX,
-						borderPixelY,
-						atlasWidth
-					);
+			for (let borderPixelY = startY + 1; borderPixelY < startY + height + 1; borderPixelY++) {
+				for (let borderPixelX = startX; borderPixelX < startX + width; borderPixelX++) {
+					let pixelIndex = lineariseCoordinates(borderPixelX, borderPixelY, atlasWidth);
 					pixelIndex = transformToRgbaSpace(pixelIndex);
 
 					spritesheetPixels[pixelIndex + 0] = color.red;
@@ -131,8 +107,7 @@ function Bitmap_CreateTextureAtlas(
 				for (let x = 0; x < width; x++) {
 					let sourceX = offsetX + x;
 					let sourceY = offsetY + y;
-					let sourceIndex =
-						(sourceX + sourceY * frameWidth) * RGBA_COLOR_LENGTH;
+					let sourceIndex = (sourceX + sourceY * frameWidth) * RGBA_COLOR_LENGTH;
 
 					let destX = x;
 					let destY = y;
@@ -206,16 +181,8 @@ function Bitmap_CreateTextureAtlas(
 				let destinationPixelY = transformCoordinateSpaceY(sourcePixelY);
 
 				// Since bitmap data is given as 4 bytes (RGBA), we transfer 4 bytes at each offset
-				let destinationPixelIndex = lineariseCoordinates(
-					destinationPixelX,
-					destinationPixelY,
-					atlasWidth
-				);
-				let sourcePixelIndex = lineariseCoordinates(
-					sourcePixelX,
-					sourcePixelY,
-					frameWidth
-				);
+				let destinationPixelIndex = lineariseCoordinates(destinationPixelX, destinationPixelY, atlasWidth);
+				let sourcePixelIndex = lineariseCoordinates(sourcePixelX, sourcePixelY, frameWidth);
 
 				destinationPixelIndex = transformToRgbaSpace(destinationPixelIndex);
 				sourcePixelIndex = transformToRgbaSpace(sourcePixelIndex);
@@ -240,13 +207,7 @@ function Bitmap_CreateTextureAtlas(
 
 		// Finally, pad the borders with the content of the nearby texture data (to minimize bleeding when downscaled for mipmaps)
 		// We only use half the border to avoid overlapping, i.e., 2px border will be filled with 1 px anti-bleeding pixels
-		let topLeftPadding = getImageSlice(
-			pixelData,
-			0,
-			0,
-			BORDER_SIZE_PIXELS / 2,
-			BORDER_SIZE_PIXELS / 2
-		);
+		let topLeftPadding = getImageSlice(pixelData, 0, 0, BORDER_SIZE_PIXELS / 2, BORDER_SIZE_PIXELS / 2);
 		let topRightPadding = getImageSlice(
 			pixelData,
 			frameWidth - BORDER_SIZE_PIXELS / 2,
@@ -269,13 +230,7 @@ function Bitmap_CreateTextureAtlas(
 			BORDER_SIZE_PIXELS / 2
 		);
 
-		let leftPadding = getImageSlice(
-			pixelData,
-			0,
-			0,
-			NUM_SAMPLED_BORDER_PIXELS,
-			frameHeight
-		);
+		let leftPadding = getImageSlice(pixelData, 0, 0, NUM_SAMPLED_BORDER_PIXELS, frameHeight);
 		let rightPadding = getImageSlice(
 			pixelData,
 			frameWidth - BORDER_SIZE_PIXELS / 2,
@@ -283,13 +238,7 @@ function Bitmap_CreateTextureAtlas(
 			NUM_SAMPLED_BORDER_PIXELS,
 			frameHeight
 		);
-		let topPadding = getImageSlice(
-			pixelData,
-			0,
-			0,
-			frameWidth,
-			NUM_SAMPLED_BORDER_PIXELS
-		);
+		let topPadding = getImageSlice(pixelData, 0, 0, frameWidth, NUM_SAMPLED_BORDER_PIXELS);
 		let bottomPadding = getImageSlice(
 			pixelData,
 			0,
@@ -393,13 +342,7 @@ function Bitmap_CreateTextureAtlas(
 	for (let frameIndex = 0; frameIndex < bin.rects.length; frameIndex++) {
 		let rectangles = packer.getRectangles();
 		let frame = rectangles[frameIndex];
-		Bitmap_DrawSprite(
-			frame.width,
-			frame.height,
-			frame.pixelData,
-			frame.x,
-			frame.y
-		);
+		Bitmap_DrawSprite(frame.width, frame.height, frame.pixelData, frame.x, frame.y);
 	}
 
 	let spritesheetImage = {

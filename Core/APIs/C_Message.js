@@ -5,9 +5,7 @@ const C_Message = {
 	postMessage: function (event, ...payload) {
 		const messageConstructor = GLOBAL_MESSAGE_DB[event];
 		if (!messageConstructor) {
-			WARNING(
-				format("Failed to post message %s (no packet definition found)", event)
-			);
+			WARNING(format("Failed to post message %s (no packet definition found)", event));
 			return;
 		}
 		const version = 1.0; // hardcoded for now, see below
@@ -16,8 +14,7 @@ const C_Message = {
 		let messageString = message.toString();
 		DEBUG(format("Posting message %s", messageString));
 
-		if (NETWORKING_PACK_MESSAGES)
-			messageString = MESSAGEPACK.encode(messageString);
+		if (NETWORKING_PACK_MESSAGES) messageString = MESSAGEPACK.encode(messageString);
 		C_Networking.sendRequest(NETWORKING_WORLDSERVER_URL, "nyi", messageString);
 	},
 	getNextUnprocessedMessage: function () {
@@ -38,12 +35,7 @@ const C_Message = {
 		const payload = tokens;
 		const messageConstructor = GLOBAL_MESSAGE_DB[messageType]; // I don't like this, but for now it'll do...
 		if (!messageConstructor) {
-			WARNING(
-				format(
-					"Failed to parse message string %s (no packet definition found)",
-					messageString
-				)
-			);
+			WARNING(format("Failed to parse message string %s (no packet definition found)", messageString));
 			return;
 		}
 		return new messageConstructor(messageType, version, payload);

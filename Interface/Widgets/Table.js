@@ -43,7 +43,7 @@ class Table extends Widget {
 		this.cells = [];
 	}
 	updateHeader() {
-		for(let content of this.headers) {
+		for (let content of this.headers) {
 			content = content || ""; // Just to skip over any holes there may be
 
 			const th = document.createElement("th");
@@ -55,10 +55,10 @@ class Table extends Widget {
 		}
 	}
 	updateCells() {
-		for(const row in this.cells) {
+		for (const row in this.cells) {
 			const tr = document.createElement("tr");
 
-			if(row === this.selectedRowID) tr.classList.add("SelectedTableRow");
+			if (row === this.selectedRowID) tr.classList.add("SelectedTableRow");
 
 			tr.onclick = () => {
 				DEBUG(format("Row %s was clicked", row));
@@ -68,12 +68,11 @@ class Table extends Widget {
 				this.onRowClicked();
 			};
 
-			for(const content of this.cells[row]) {
+			for (const content of this.cells[row]) {
 				const td = document.createElement("td");
 
 				td.innerText = content;
 				td.className = "GameFontNormal";
-
 
 				tr.appendChild(td);
 			}
@@ -86,5 +85,4 @@ class Table extends Widget {
 	onRowClicked() {
 		// Overwrite with custom handler if needed
 	}
-
 }

@@ -24,15 +24,9 @@ class HeightMap {
 
 		for (let tileID = 0; tileID < this.tiles.length; tileID++) {
 			const height = this.tiles[tileID];
-			const relativeHeightPercentage =
-				(height + (maxHeight - minHeight) / 2) / (maxHeight - minHeight);
+			const relativeHeightPercentage = (height + (maxHeight - minHeight) / 2) / (maxHeight - minHeight);
 			const relativePixelAlpha = Math.trunc(relativeHeightPercentage * 255);
-			pixelData.push(
-				relativePixelAlpha,
-				relativePixelAlpha,
-				relativePixelAlpha,
-				relativePixelAlpha
-			);
+			pixelData.push(relativePixelAlpha, relativePixelAlpha, relativePixelAlpha, relativePixelAlpha);
 		}
 
 		const bitmap = new Bitmap(pixelData, this.width, this.height);

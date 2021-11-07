@@ -34,12 +34,7 @@ function Math3D_CalculateFaceNormal(vectorA, vectorB, vectorC) {
 	// Copy/paste START
 	// faceNormal = Math3D_NormalizeVector(faceNormal)
 	let normalizationFactor =
-		1 /
-		Math.sqrt(
-			faceNormal[0] * faceNormal[0] +
-				faceNormal[1] * faceNormal[1] +
-				faceNormal[2] * faceNormal[2]
-		);
+		1 / Math.sqrt(faceNormal[0] * faceNormal[0] + faceNormal[1] * faceNormal[1] + faceNormal[2] * faceNormal[2]);
 	faceNormal[0] = faceNormal[0] * normalizationFactor;
 	faceNormal[1] = faceNormal[1] * normalizationFactor;
 	faceNormal[2] = faceNormal[2] * normalizationFactor;
@@ -88,11 +83,7 @@ function Math3D_AverageNormals(vectorA, vectorB) {
 // See https://en.wikipedia.org/wiki/Pythagorean_theorem for details!
 function Math3D_NormalizeVector(vector) {
 	// normalizationFactor = unitLength / vectorLength = 1 / sqrt(x^2 + y^2 + z^2)
-	let normalizationFactor =
-		1 /
-		Math.sqrt(
-			vector[0] * vector[0] + vector[1] * vector[1] + vector[2] * vector[2]
-		);
+	let normalizationFactor = 1 / Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1] + vector[2] * vector[2]);
 	vector[0] = vector[0] * normalizationFactor;
 	vector[1] = vector[1] * normalizationFactor;
 	vector[2] = vector[2] * normalizationFactor;
@@ -121,13 +112,7 @@ const NUM_INDICES_PER_VERTEX = 3; // x, y, z coordinates, indices as in "indices
 
 // Transforms all coordinates for a given texture so that they refer to the frame's new position in the texture atlas
 // TODO in place vs new array? (memory usage...)
-function Math2D_TransformTexCoords(
-	textureCoordinates,
-	bitmaps,
-	submeshesMetadata,
-	atlasWidth,
-	atlasHeight
-) {
+function Math2D_TransformTexCoords(textureCoordinates, bitmaps, submeshesMetadata, atlasWidth, atlasHeight) {
 	console.log(textureCoordinates);
 	console.log(bitmaps);
 	console.log(submeshesMetadata);
@@ -183,18 +168,13 @@ function Math2D_TransformTexCoords(
 	let insetStatsY = [];
 
 	// for (let submeshIndex = 0; submeshIndex < 1; submeshIndex++) {
-	for (
-		let submeshIndex = 0;
-		submeshIndex < submeshesMetadata.length;
-		submeshIndex++
-	) {
+	for (let submeshIndex = 0; submeshIndex < submeshesMetadata.length; submeshIndex++) {
 		// Transform UV shell (frame/image)
 
 		// Transform first texture image coordinates
 		let submeshData = submeshesMetadata[submeshIndex];
 		let firstSubmeshVertexIndex = submeshData.verticesStartIndex;
-		let lastSubmeshVertexIndex =
-			firstSubmeshVertexIndex + submeshData.numVertexIndices;
+		let lastSubmeshVertexIndex = firstSubmeshVertexIndex + submeshData.numVertexIndices;
 		// let submeshVertexCount = submeshNumVertexIndices / NUM_INDICES_PER_VERTEX;
 		let firstVectorIndex = firstSubmeshVertexIndex / NUM_INDICES_PER_VERTEX;
 		let lastVectorIndex = lastSubmeshVertexIndex / NUM_INDICES_PER_VERTEX;
@@ -215,11 +195,7 @@ function Math2D_TransformTexCoords(
 
 		// TODO let vs nothing in loop variable declaration?
 		// The vector at lastIndex is still part of the submesh! (so we must use <= and not < to also transform it)
-		for (
-			let uvIndex = firstUvIndex;
-			uvIndex < lastUvIndex;
-			uvIndex = uvIndex + NUM_UVS_PER_FRAME
-		) {
+		for (let uvIndex = firstUvIndex; uvIndex < lastUvIndex; uvIndex = uvIndex + NUM_UVS_PER_FRAME) {
 			let textureID = submeshIndex;
 			let bitmap = getBitmapForFrame(textureID);
 			let offsetX = bitmap.x;
@@ -238,65 +214,23 @@ function Math2D_TransformTexCoords(
 			if (stats.u[southwestUVx] === undefined) stats.u[southwestUVx] = 0;
 			stats.u[southwestUVx]++;
 			if (isNaN(southwestUVx))
-				console.log(
-					"UV coords are NaN (this can't be right)! Textures WILL be glitched if you don't fix this."
-				);
+				console.log("UV coords are NaN (this can't be right)! Textures WILL be glitched if you don't fix this.");
 
-			southwestUVx = transformU(
-				textureCoordinates[uvIndex + 0],
-				offsetX,
-				frameWidth,
-				atlasWidth
-			);
+			southwestUVx = transformU(textureCoordinates[uvIndex + 0], offsetX, frameWidth, atlasWidth);
 			let southwestUVy = textureCoordinates[uvIndex + 1];
-			southwestUVy = transformV(
-				textureCoordinates[uvIndex + 1],
-				offsetY,
-				frameHeight,
-				atlasHeight
-			);
+			southwestUVy = transformV(textureCoordinates[uvIndex + 1], offsetY, frameHeight, atlasHeight);
 			let southeastUVx = textureCoordinates[uvIndex + 2];
-			southeastUVx = transformU(
-				textureCoordinates[uvIndex + 2],
-				offsetX,
-				frameWidth,
-				atlasWidth
-			);
+			southeastUVx = transformU(textureCoordinates[uvIndex + 2], offsetX, frameWidth, atlasWidth);
 			let southeastUVy = textureCoordinates[uvIndex + 3];
-			southeastUVy = transformV(
-				textureCoordinates[uvIndex + 3],
-				offsetY,
-				frameHeight,
-				atlasHeight
-			);
+			southeastUVy = transformV(textureCoordinates[uvIndex + 3], offsetY, frameHeight, atlasHeight);
 			let northwestUVx = textureCoordinates[uvIndex + 4];
-			northwestUVx = transformU(
-				textureCoordinates[uvIndex + 4],
-				offsetX,
-				frameWidth,
-				atlasWidth
-			);
+			northwestUVx = transformU(textureCoordinates[uvIndex + 4], offsetX, frameWidth, atlasWidth);
 			let northwestUVy = textureCoordinates[uvIndex + 5];
-			northwestUVy = transformV(
-				textureCoordinates[uvIndex + 5],
-				offsetY,
-				frameHeight,
-				atlasHeight
-			);
+			northwestUVy = transformV(textureCoordinates[uvIndex + 5], offsetY, frameHeight, atlasHeight);
 			let northeastUVx = textureCoordinates[uvIndex + 6];
-			northeastUVx = transformU(
-				textureCoordinates[uvIndex + 6],
-				offsetX,
-				frameWidth,
-				atlasWidth
-			);
+			northeastUVx = transformU(textureCoordinates[uvIndex + 6], offsetX, frameWidth, atlasWidth);
 			let northeastUVy = textureCoordinates[uvIndex + 7];
-			northeastUVy = transformV(
-				textureCoordinates[uvIndex + 7],
-				offsetY,
-				frameHeight,
-				atlasHeight
-			);
+			northeastUVy = transformV(textureCoordinates[uvIndex + 7], offsetY, frameHeight, atlasHeight);
 
 			//     function get_texel_coords(x, y, tex_width, tex_height)
 			//     {
@@ -361,25 +295,13 @@ function Math2D_TransformTexCoords(
 			}
 
 			textureCoordinates[uvIndex + 0] = applyInsetTransformX(southwestUVx);
-			textureCoordinates[uvIndex + 1] = applyInsetTransformY(
-				southwestUVy,
-				southwestUVx
-			);
+			textureCoordinates[uvIndex + 1] = applyInsetTransformY(southwestUVy, southwestUVx);
 			textureCoordinates[uvIndex + 2] = applyInsetTransformX(southeastUVx);
-			textureCoordinates[uvIndex + 3] = applyInsetTransformY(
-				southeastUVy,
-				southeastUVx
-			);
+			textureCoordinates[uvIndex + 3] = applyInsetTransformY(southeastUVy, southeastUVx);
 			textureCoordinates[uvIndex + 4] = applyInsetTransformX(northwestUVx);
-			textureCoordinates[uvIndex + 5] = applyInsetTransformY(
-				northwestUVy,
-				northwestUVx
-			);
+			textureCoordinates[uvIndex + 5] = applyInsetTransformY(northwestUVy, northwestUVx);
 			textureCoordinates[uvIndex + 6] = applyInsetTransformX(northeastUVx);
-			textureCoordinates[uvIndex + 7] = applyInsetTransformY(
-				northeastUVy,
-				northeastUVx
-			);
+			textureCoordinates[uvIndex + 7] = applyInsetTransformY(northeastUVy, northeastUVx);
 
 			// textureCoordinates[uvIndex + 0] = (10 + 128 + 0) / 2048;
 			// textureCoordinates[uvIndex + 1] =  (atlasHeight - 10 - 0) / 2048;
@@ -416,9 +338,7 @@ function Math2D_TransformTexCoords(
 }
 
 function Math3D_NormalizeVectorInPlace(vector) {
-	const normalizationFactor =
-		1 /
-		Math.sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
+	const normalizationFactor = 1 / Math.sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
 	vector.x = vector.x * normalizationFactor;
 	vector.y = vector.y * normalizationFactor;
 	vector.z = vector.z * normalizationFactor;

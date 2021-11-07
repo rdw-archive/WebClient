@@ -29,9 +29,7 @@ C_Rendering.isSwitchingScenes = function () {};
 // Note: Only one renderer/scene/canvas is currently supported.
 C_Rendering.startRenderLoop = function () {
 	if (this.renderer) {
-		NOTICE(
-			"Failed to start render loop (renderer already exists and only one scene is currently supported)"
-		);
+		NOTICE("Failed to start render loop (renderer already exists and only one scene is currently supported)");
 		return;
 	}
 	const renderCanvas = window["WorldFrame"];
@@ -75,15 +73,9 @@ C_Rendering.createDefaultLightSource = function () {
 		intensity: 1, // tbd
 	};
 
-	const defaultLightSource = C_WebGL.createAmbientLight(
-		"RevivalEngine_DefaultLightSource",
-		properties
-	);
+	const defaultLightSource = C_WebGL.createAmbientLight("RevivalEngine_DefaultLightSource", properties);
 	// Add to renderer so it's removed if the scene changes
-	C_Rendering.addLightSource(
-		"RevivalEngine_DefaultLightSource",
-		defaultLightSource
-	);
+	C_Rendering.addLightSource("RevivalEngine_DefaultLightSource", defaultLightSource);
 };
 
 C_Rendering.showLoadingScreen = function (loadingScreenText = L["Loading..."]) {
@@ -120,9 +112,7 @@ C_Rendering.setFogState = function (isFogEnabled) {
 
 C_Rendering.setClearColor = function (color) {
 	RENDERER_SCENE_BACKGROUND_COLOR = color;
-	this.renderer.activeScene.clearColor = C_WebGL.getRgbColorFromHex(
-		RENDERER_SCENE_BACKGROUND_COLOR
-	);
+	this.renderer.activeScene.clearColor = C_WebGL.getRgbColorFromHex(RENDERER_SCENE_BACKGROUND_COLOR);
 };
 
 C_Rendering.getActiveScene = function () {

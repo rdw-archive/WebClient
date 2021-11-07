@@ -21,13 +21,7 @@ function LibInclude_LoadBatch(files, onLoadCallback) {
 	let numLoadedFiles = 0;
 	let onFileLoaded = function () {
 		numLoadedFiles++;
-		console.log(
-			"[LibInclude] Loaded " +
-				numLoadedFiles +
-				" out of " +
-				batchSize +
-				" files"
-		);
+		console.log("[LibInclude] Loaded " + numLoadedFiles + " out of " + batchSize + " files");
 		if (numLoadedFiles === batchSize) {
 			onLoadCallback();
 		}
