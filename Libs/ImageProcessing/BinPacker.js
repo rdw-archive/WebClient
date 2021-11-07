@@ -1,5 +1,7 @@
 //TODO: Make sure that we never add so much padding that a texture is completely invisible on the atlas, or so much padding that the padded areas overlap
 
+const MaxRectsPacker = require("maxrects-packer").MaxRectsPacker;
+
 // Settings
 const PACKING_MODE = ""; // TODO NYI
 const ATLAS_PADDING = 128;
