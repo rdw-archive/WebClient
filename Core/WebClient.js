@@ -2,9 +2,9 @@ var format = require("util").format;
 
 // Global shorthand for the render thread (visible window)
 class WebClient {
-	// TBD: Where should this be moved? Here isn't great, but for now it'll do...
 	static titleString = "Revival WebClient";
-	static versionString = "0.21.11-prototype";
+	static versionString = "v" + require("./package.json").version;
+
 	static defaultFrames = [
 		"ViewportContainer",
 		"WorldFrame",
