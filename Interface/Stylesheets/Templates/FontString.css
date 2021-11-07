@@ -8,199 +8,239 @@
 .GameFontSmallest {
 	font-family: GameFont;
 	font-size: var(--font-size-smallest);
+	color: var(--default-font-color);
 }
 
 .GameFontSmaller {
 	font-family: GameFont;
 	font-size: var(--font-size-smaller);
+	color: var(--default-font-color);
 }
 
 .GameFontSmall {
 	font-family: GameFont;
 	font-size: var(--font-size-small);
+	color: var(--default-font-color);
 }
 
 .GameFontNormal {
 	font-family: GameFont;
 	font-size: var(--font-size-normal);
+	color: var(--default-font-color);
 }
 
 .GameFontLarge {
 	font-family: GameFont;
 	font-size: var(--font-size-large);
+	color: var(--default-font-color);
 }
 
 .GameFontLarger {
 	font-family: GameFont;
 	font-size: var(--font-size-larger);
+	color: var(--default-font-color);
 }
 
 .GameFontLargest {
 	font-family: GameFont;
 	font-size: var(--font-size-largest);
+	color: var(--default-font-color);
 }
 
 .GameFontHuge {
 	font-family: GameFont;
 	font-size: var(--font-size-huge);
+	color: var(--default-font-color);
 }
 
 .BoldFontSmallest {
 	font-family: BoldFont;
 	font-size: var(--font-size-smallest);
+	color: var(--default-font-color);
 }
 
 .BoldFontSmaller {
 	font-family: BoldFont;
 	font-size: var(--font-size-smaller);
+	color: var(--default-font-color);
 }
 
 .BoldFontSmall {
 	font-family: BoldFont;
 	font-size: var(--font-size-small);
+	color: var(--default-font-color);
 }
 
 .BoldFontNormal {
 	font-family: BoldFont;
 	font-size: var(--font-size-normal);
+	color: var(--default-font-color);
 }
 
 .BoldFontLarge {
 	font-family: BoldFont;
 	font-size: var(--font-size-large);
+	color: var(--default-font-color);
 }
 
 .BoldFontLarger {
 	font-family: BoldFont;
 	font-size: var(--font-size-larger);
+	color: var(--default-font-color);
 }
 
 .BoldFontLargest {
 	font-family: BoldFont;
 	font-size: var(--font-size-largest);
+	color: var(--default-font-color);
 }
 
 .BoldFontHuge {
 	font-family: BoldFont;
 	font-size: var(--font-size-huge);
+	color: var(--default-font-color);
 }
 
 .TitleFontSmallest {
 	font-family: TitleFont;
 	font-size: var(--font-size-smallest);
+	color: var(--default-font-color);
 }
 
 .TitleFontSmaller {
 	font-family: TitleFont;
 	font-size: var(--font-size-smaller);
+	color: var(--default-font-color);
 }
 
 .TitleFontSmall {
 	font-family: TitleFont;
 	font-size: var(--font-size-small);
+	color: var(--default-font-color);
 }
 
 .TitleFontNormal {
 	font-family: TitleFont;
 	font-size: var(--font-size-normal);
+	color: var(--default-font-color);
 }
 
 .TitleFontLarge {
 	font-family: TitleFont;
 	font-size: var(--font-size-large);
+	color: var(--default-font-color);
 }
 
 .TitleFontLarger {
 	font-family: TitleFont;
 	font-size: var(--font-size-larger);
+	color: var(--default-font-color);
 }
 
 .TitleFontLargest {
 	font-family: TitleFont;
 	font-size: var(--font-size-largest);
+	color: var(--default-font-color);
 }
 
 .TitleFontHuge {
 	font-family: TitleFont;
 	font-size: var(--font-size-huge);
+	color: var(--default-font-color);
 }
 
 .CaptionFontSmallest {
 	font-family: CaptionFont;
 	font-size: var(--font-size-smallest);
+	color: var(--default-font-color);
 }
 
 .CaptionFontSmaller {
 	font-family: CaptionFont;
 	font-size: var(--font-size-smaller);
+	color: var(--default-font-color);
 }
 
 .CaptionFontSmall {
 	font-family: CaptionFont;
 	font-size: var(--font-size-small);
+	color: var(--default-font-color);
 }
 
 .CaptionFontNormal {
 	font-family: CaptionFont;
 	font-size: var(--font-size-normal);
+	color: var(--default-font-color);
 }
 
 .CaptionFontLarge {
 	font-family: CaptionFont;
 	font-size: var(--font-size-large);
+	color: var(--default-font-color);
 }
 
 .CaptionFontLarger {
 	font-family: CaptionFont;
 	font-size: var(--font-size-larger);
+	color: var(--default-font-color);
 }
 
 .CaptionFontLargest {
 	font-family: CaptionFont;
 	font-size: var(--font-size-largest);
+	color: var(--default-font-color);
 }
 
 .CaptionFontHuge {
 	font-family: CaptionFont;
 	font-size: var(--font-size-huge);
+	color: var(--default-font-color);
 }
 
 .ScriptFontSmallest {
 	font-family: ScriptFont;
 	font-size: var(--font-size-smallest);
+	color: var(--default-font-color);
 }
 
 .ScriptFontSmaller {
 	font-family: ScriptFont;
 	font-size: var(--font-size-smaller);
+	color: var(--default-font-color);
 }
 
 .ScriptFontSmall {
 	font-family: ScriptFont;
 	font-size: var(--font-size-small);
+	color: var(--default-font-color);
 }
 
 .ScriptFontNormal {
 	font-family: ScriptFont;
 	font-size: var(--font-size-normal);
+	color: var(--default-font-color);
 }
 
 .ScriptFontLarge {
 	font-family: ScriptFont;
 	font-size: var(--font-size-large);
+	color: var(--default-font-color);
 }
 
 .ScriptFontLarger {
 	font-family: ScriptFont;
 	font-size: var(--font-size-larger);
+	color: var(--default-font-color);
 }
 
 .ScriptFontLargest {
 	font-family: ScriptFont;
 	font-size: var(--font-size-largest);
+	color: var(--default-font-color);
 }
 
 .ScriptFontHuge {
 	font-family: ScriptFont;
 	font-size: var(--font-size-huge);
+	color: var(--default-font-color);
 }

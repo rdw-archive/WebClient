@@ -13,6 +13,7 @@
 	--font-size-larger: 24pt;
 	--font-size-largest: 36pt;
 	--font-size-huge: 72pt;
+	--default-font-color: white;
 }
 
 @font-face {
