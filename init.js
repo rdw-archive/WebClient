@@ -13,13 +13,11 @@ function StartWebClient() {
 
 	C_Macro.restoreMacroCache(); // Needs to be done before addons are loaded, as they may want to interact with the cache?
 
-	WebClient.loadManifest();
 	WebClient.createUserInterface();
 	C_Addons.loadAddonCache();
 	C_Addons.loadEnabledAddons();
 
-	const TOC = WebClient.metadata;
-	const windowTitle = format("%s (%s)", TOC.titleString, TOC.versionString);
+	const windowTitle = format("%s (%s)", WebClient.titleString, WebClient.versionString);
 	WebClient.setWindowTitle(windowTitle);
 
 	C_EventSystem.registerEvent(

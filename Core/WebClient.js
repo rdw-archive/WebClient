@@ -2,6 +2,20 @@ var format = require("util").format;
 
 // Global shorthand for the render thread (visible window)
 class WebClient {
+	// TBD: Where should this be moved? Here isn't great, but for now it'll do...
+	static titleString = "Revival WebClient"
+	static versionString = "0.21.11-prototype"
+	static 	defaultFrames = [
+		"ViewportContainer",
+		"WorldFrame",
+		"UIParent",
+		"FpsCounterFrame",
+		"KeyboardInputFrame",
+		"LoadingScreenFrame",
+		"GameMenuFrame",
+		"AddonOptionsFrame"
+	]
+	static settings = {}
 	static nextAvailableGUID = 1;
 	// Sets the window title of the application window
 	// @param title The new title to be displayed
@@ -65,7 +79,7 @@ class WebClient {
 	}
 	// Load basic interface
 	static createUserInterface() {
-		for (const fileName of this.metadata.defaultFrames) {
+		for (const fileName of this.defaultFrames) {
 			DEBUG(format("Creating default interface component %s", fileName));
 			this.loadScript(
 				format(WEBCLIENT_INTERFACE_DIR + "/Frames/" + fileName + ".js")
