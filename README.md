@@ -13,9 +13,9 @@ Right now it's just an experiment, but it's basically bundling third-party libra
 
 All of this is intended to be used mainly in my own projects (for now), and relies on several other components to actually be useful:
 
-* [LoginServer](https://github.com/RevivalEngine/WorldServer): Handles user authentication, realm management and identities
+* [LoginServer](https://github.com/RevivalEngine/LoginServer): Handles user authentication, realm management and identities
 * [WorldServer](https://github.com/RevivalEngine/WorldServer): Runs the simulation of the game world and all gameplay logic
-* [Watcher](https://github.com/RevivalEngine/WorldServer): Monitoring toolset to analyse server health and other metrics
+* [Watcher](https://github.com/RevivalEngine/Watcher): Monitoring toolset to analyse server health and other metrics
 
 ## Status
 
