@@ -2,7 +2,7 @@ class Window extends Widget {
 	constructor(widgetName, parentFrame, template = WIDGET_TEMPLATE_WINDOW) {
 		super(widgetName, parentFrame, template);
 
-		const window = new Frame(widgetName + "Window", parentFrame, template);
+		const window = new Frame(widgetName, parentFrame, template);
 		this._obj = window;
 		this.titleBar = new Frame(
 			widgetName + "TitleBar",
