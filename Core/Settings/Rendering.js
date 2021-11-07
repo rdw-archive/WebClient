@@ -1,4 +1,3 @@
-var RENDERER_SHOW_FPS = true;
 var RENDERER_FPS_UPDATE_INTERVAL_IN_FRAMES = 60; // One update per second isn't responsive, but accurate enough for now
 
 // Used when the Renderer is first created
