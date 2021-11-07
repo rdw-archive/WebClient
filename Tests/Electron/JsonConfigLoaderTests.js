@@ -1,7 +1,7 @@
 const assert = require("assert");
 const fs = require("fs");
 
-const JsonConfigLoader = require("./../../Core/JsonConfigLoader");
+const JsonConfigLoader = require("./../../Core/Initialization/JsonConfigLoader");
 
 const VALID_SETTINGS_EXAMPLE_FILE_PATH = "tempValidSettings.json";
 const VALID_SETTINGS_EXAMPLE = {
