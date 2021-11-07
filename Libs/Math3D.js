@@ -207,7 +207,7 @@ function Math2D_TransformTexCoords(
 
 		// The bin packer reorders them, so we must use the frameID attribute we stored for this purpose
 		function getBitmapForFrame(frameID) {
-			for (index = 0; index < bitmaps.length; index++) {
+			for (let index = 0; index < bitmaps.length; index++) {
 				let bitmap = bitmaps[index];
 				if (bitmap.textureID == frameID) return bitmap; // There can only be one
 			}
@@ -315,49 +315,49 @@ function Math2D_TransformTexCoords(
 			// As a workaround we can correct this by adding an inset to each point's coordinate, i.e., 1 px towards the center
 			function applyInsetTransformX(pointX) {
 				return pointX;
+				// TODO: WTF happened here? Can this be removed?
+				// let translationScale = 1 / atlasWidth; // 1px translated to atlas space, which is where we are after transformX()
 
-				let translationScale = 1 / atlasWidth; // 1px translated to atlas space, which is where we are after transformX()
+				// // If interpreted as a vector, we can compute the center point by averaging the four corners
+				// let centerPointX =
+				// 	(1 / 4) * (southwestUVx + southeastUVx + northwestUVx + northeastUVx);
 
-				// If interpreted as a vector, we can compute the center point by averaging the four corners
-				let centerPointX =
-					(1 / 4) * (southwestUVx + southeastUVx + northwestUVx + northeastUVx);
+				// // This gives a vector from the point to the center, which is "too long"
+				// // since we only want to go sqrt(2) in this direction (sqrt( 1^2 + 1^2) is the length of the vector (1,1) etc)
+				// let insetDirectionX = centerPointX - pointX;
+				// // So by making sure its coordinates are always 1 but the direction is kept, we get the inset vector
+				// let scaledInsetDirectionX = insetDirectionX / Math.abs(insetDirectionX); // This leaves only the sign
+				// scaledInsetDirectionX = (1 / 2) * scaledInsetDirectionX; // we want to aim at the center and not the edge to avoid bleeding
+				// // Adding it to each point gets us a vector pointing from the point to the center
+				// // (i.e., in direction of the inset), which lies exactly where the point lay but 1 pixel further on the inside
+				// let insetVectorX = pointX + scaledInsetDirectionX * translationScale; // 1px translated to atlas space
 
-				// This gives a vector from the point to the center, which is "too long"
-				// since we only want to go sqrt(2) in this direction (sqrt( 1^2 + 1^2) is the length of the vector (1,1) etc)
-				let insetDirectionX = centerPointX - pointX;
-				// So by making sure its coordinates are always 1 but the direction is kept, we get the inset vector
-				let scaledInsetDirectionX = insetDirectionX / Math.abs(insetDirectionX); // This leaves only the sign
-				scaledInsetDirectionX = (1 / 2) * scaledInsetDirectionX; // we want to aim at the center and not the edge to avoid bleeding
-				// Adding it to each point gets us a vector pointing from the point to the center
-				// (i.e., in direction of the inset), which lies exactly where the point lay but 1 pixel further on the inside
-				let insetVectorX = pointX + scaledInsetDirectionX * translationScale; // 1px translated to atlas space
+				// // Debugging stats (uncomment and then use the Chrome debugger for example)
+				// // if (insetStatsX[insetVectorX] === undefined)
+				// //     insetStatsX[insetVectorX] = 0;
+				// // insetStatsX[insetVectorX]++;
 
-				// Debugging stats (uncomment and then use the Chrome debugger for example)
-				// if (insetStatsX[insetVectorX] === undefined)
-				//     insetStatsX[insetVectorX] = 0;
-				// insetStatsX[insetVectorX]++;
-
-				return insetVectorX;
+				// return insetVectorX;
 			}
 
 			// Same thing, different axis. We could use an array and calculate both coords at once, but meh
 			function applyInsetTransformY(pointY, pointX) {
 				return pointY;
+				// TODO: WTF happened here? Can this be removed?
+				// let translationScale = 1 / atlasHeight;
+				// let centerPointY =
+				// 	(1 / 4) * (southwestUVy + southeastUVy + northwestUVy + northeastUVy);
+				// let insetDirectionY = centerPointY - pointY;
+				// let scaledInsetDirectionY = insetDirectionY / Math.abs(insetDirectionY);
+				// scaledInsetDirectionY = (1 / 2) * scaledInsetDirectionY;
+				// let insetVectorY = pointY + scaledInsetDirectionY * translationScale;
 
-				let translationScale = 1 / atlasHeight;
-				let centerPointY =
-					(1 / 4) * (southwestUVy + southeastUVy + northwestUVy + northeastUVy);
-				let insetDirectionY = centerPointY - pointY;
-				let scaledInsetDirectionY = insetDirectionY / Math.abs(insetDirectionY);
-				scaledInsetDirectionY = (1 / 2) * scaledInsetDirectionY;
-				let insetVectorY = pointY + scaledInsetDirectionY * translationScale;
+				// // Debugging stats (uncomment and then use the Chrome debugger for example)
+				// // if (insetStatsY[insetVectorY] === undefined)
+				// //     insetStatsY[insetVectorY] = 0;
+				// // insetStatsY[insetVectorY]++;
 
-				// Debugging stats (uncomment and then use the Chrome debugger for example)
-				// if (insetStatsY[insetVectorY] === undefined)
-				//     insetStatsY[insetVectorY] = 0;
-				// insetStatsY[insetVectorY]++;
-
-				return insetVectorY;
+				// return insetVectorY;
 			}
 
 			textureCoordinates[uvIndex + 0] = applyInsetTransformX(southwestUVx);

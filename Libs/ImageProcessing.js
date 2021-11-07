@@ -53,7 +53,7 @@ function Bitmap_CreateTextureAtlas(
 	);
 	// Make sure the background is always clear/transparent (as it will be initialised with zeroes = white otherwise)
 	for (
-		pixelIndex = 0;
+		let pixelIndex = 0;
 		pixelIndex < spritesheetPixels.length;
 		pixelIndex = pixelIndex + RGBA_COLOR_LENGTH
 	) {
@@ -390,7 +390,7 @@ function Bitmap_CreateTextureAtlas(
 		// It shouldn't be necessary if the spritesheet size is large enough to fit all sprites, so this is most likely accidental
 	}
 	let bin = packer.getBin(0); // always 0
-	for (frameIndex = 0; frameIndex < bin.rects.length; frameIndex++) {
+	for (let frameIndex = 0; frameIndex < bin.rects.length; frameIndex++) {
 		let rectangles = packer.getRectangles();
 		let frame = rectangles[frameIndex];
 		Bitmap_DrawSprite(

@@ -33,7 +33,7 @@ function LibInclude_LoadBatch(files, onLoadCallback) {
 		}
 	};
 
-	for (index = 0; index < batchSize; index++) {
+	for (let index = 0; index < batchSize; index++) {
 		let filePath = files[index];
 		LibInclude_LoadFile(filePath, onFileLoaded);
 	}

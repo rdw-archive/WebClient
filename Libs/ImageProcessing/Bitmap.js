@@ -122,7 +122,7 @@ function Bitmap_createFromFileContents(buffer) {
 	let colorTable = [];
 	if (bitsPerPixel <= 8) {
 		// reader.offset = reader.offset + 4
-		for (tableIndex = 0; tableIndex < numColorsUsed; tableIndex++) {
+		for (let tableIndex = 0; tableIndex < numColorsUsed; tableIndex++) {
 			// } else {
 			let blue = reader.getUint8();
 			let green = reader.getUint8();
@@ -181,7 +181,7 @@ function Bitmap_createFromFileContents(buffer) {
 
 	let pixelData = new Uint8ClampedArray(width * height * 4);
 	let paletteIndices = []; // mostly useful for debugging purposes, or to swap out the color palette (later on)
-	for (pixelIndex = 0; pixelIndex < numPixels; pixelIndex++) {
+	for (let pixelIndex = 0; pixelIndex < numPixels; pixelIndex++) {
 		if (bitsPerPixel === 8) {
 			// 256-color bitmap: Each byte represents a single pixel, described as palette index
 			let paletteIndex = reader.getUint8();
