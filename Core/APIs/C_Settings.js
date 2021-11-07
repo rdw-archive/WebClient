@@ -22,6 +22,9 @@ const C_Settings = {
 		// Caching is NYI, so we just load them from disk (bad)
 		return C_FileSystem.readJSON(this.DEFAULT_SETTINGS_FILE_PATH);
 	},
+	loadDefaultSettings() {
+		WebClient.settings = this.getDefaultSettings();
+	},
 	getUserSettings() {
 		// Caching is NYI, so we just load them from disk (bad)
 
@@ -40,10 +43,17 @@ const C_Settings = {
 	hasUserSettings() {
 		return C_FileSystem.fileExists(this.USER_SETTINGS_FILE_PATH);
 	},
+	loadSettingsCache() {
+		if(! this.hasUserSettings()) this.loadDefaultSettings();
+		else WebClient.settings = C_FileSystem.readJSON(this.USER_SETTINGS_FILE_PATH, WebClient.settings);
+	},
+	saveSettingsCache() {
+		C_FileSystem.writeJSON(this.USER_SETTINGS_FILE_PATH, WebClient.settings);
+	}
 };
 
 C_Settings.getValue = function (key) {
-	return WebClient.settings[key] || "";
+	return WebClient.settings[key];
 };
 
 C_Settings.setValue = function (key, value) {

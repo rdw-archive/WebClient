@@ -23,9 +23,9 @@ let C_FileSystem = {
 		const fileContents = this.readFile(filePath);
 		return JSON.parse(fileContents);
 	},
-	writeJSON(filePath, object) {
+	writeJSON(filePath, object, humanReadable = true) {
 		DEBUG(format("Writing JSON to file %s", filePath));
-		NODE.FileSystem.writeFileSync(filePath, JSON.stringify(object));
+		NODE.FileSystem.writeFileSync(filePath, JSON.stringify(object, null, humanReadable ? "\t" : null));
 	},
 	getFilesInFolder(folderPath) {
 		if (!this.fileExists(folderPath)) return [];

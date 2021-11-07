@@ -14,6 +14,7 @@ function StartWebClient() {
 	C_Macro.restoreMacroCache(); // Needs to be done before addons are loaded, as they may want to interact with the cache?
 
 	WebClient.createUserInterface();
+	C_Settings.loadSettingsCache();
 	C_Addons.loadAddonCache();
 	C_Addons.loadEnabledAddons();
 

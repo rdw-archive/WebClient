@@ -98,6 +98,7 @@ class WebClient {
 			DEBUG("Application shutting down; performing cleanup tasks");
 			C_Addons.saveAddonCache();
 			C_Macro.saveMacroCache();
+			C_Settings.saveSettingsCache();
 		});
 
 		WebClient.run();
