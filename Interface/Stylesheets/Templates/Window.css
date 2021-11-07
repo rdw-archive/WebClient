@@ -5,6 +5,10 @@
 	They have a fixed minimum size and expect the contained elements to remain the same size, while displaying as many of them as possible.
 */
 
+:root {
+	--window-background-color: rgba(0, 0, 0, 0.75);
+}
+
 .WindowTitle {
 	margin-bottom: 20px;
 	/* Font settings: TODO Move elsewhere? */
@@ -45,7 +49,7 @@
 	transform: translate(-50%, -50%);
 	/* Visual enhancements */
 	/* filter: drop-shadow(0 0 5px #0000007); */
-	background: rgba(0, 0, 0, 0.75);
+	background: var(--window-background-color);
 	color: white;
 	/* Allow the content to decide the window's size, as long as it's between min/max dimensions */
 	width: fit-content;
