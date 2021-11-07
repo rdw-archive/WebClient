@@ -2,6 +2,5 @@
 // This can safely be removed once there are actual tests.
 
 describe("Placeholder Test", function () {
-	it("should be displayed when running the tests", function () {
-	});
+	it("should be displayed when running the tests", function () {});
 });

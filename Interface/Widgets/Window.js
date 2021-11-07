@@ -9,8 +9,16 @@ class Window extends Widget {
 		this.titleBar = new Frame(widgetName + "TitleBar", window, Enum.WIDGET_TEMPLATE_WINDOW_TITLEBAR);
 		this.titleText = this.titleBar.createFontString(widgetName + "TitleText", "HIGH", "BoldFontNormal");
 
-		this.minButton = new Frame(widgetName + "MinimizeButton", this.titleBar, Enum.WIDGET_TEMPLATE_WINDOW_MINIMIZEBUTTON);
-		this.maxButton = new Frame(widgetName + "MaximizeButton", this.titleBar, Enum.WIDGET_TEMPLATE_WINDOW_MAXIMIZEBUTTON);
+		this.minButton = new Frame(
+			widgetName + "MinimizeButton",
+			this.titleBar,
+			Enum.WIDGET_TEMPLATE_WINDOW_MINIMIZEBUTTON
+		);
+		this.maxButton = new Frame(
+			widgetName + "MaximizeButton",
+			this.titleBar,
+			Enum.WIDGET_TEMPLATE_WINDOW_MAXIMIZEBUTTON
+		);
 		this.closeButton = new Frame(widgetName + "CloseButton", this.titleBar, Enum.WIDGET_TEMPLATE_WINDOW_CLOSEBUTTON);
 		const closeIcon = this.closeButton.createFontString(widgetName + "CloseButtonIcon", "HIGH", "BoldFontHuge");
 		closeIcon.setClass("WindowCloseIcon");

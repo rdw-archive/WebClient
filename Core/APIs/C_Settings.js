@@ -26,22 +26,12 @@ const C_Settings = {
 		// Caching is NYI, so we just load them from disk (bad)
 
 		if (!this.hasUserSettings()) {
-			INFO(
-				format(
-					"Failed to get user settings from %s",
-					this.USER_SETTINGS_FILE_PATH
-				)
-			);
+			INFO(format("Failed to get user settings from %s", this.USER_SETTINGS_FILE_PATH));
 			return this.getDefaultSettings();
 		}
 
 		if (!this.validateUserSettings()) {
-			INFO(
-				format(
-					"Ignoring invalid user settings from %s",
-					this.USER_SETTINGS_FILE_PATH
-				)
-			);
+			INFO(format("Ignoring invalid user settings from %s", this.USER_SETTINGS_FILE_PATH));
 			return this.getDefaultSettings();
 			// TODO Don't discard them all, only the invalid properties?
 		}

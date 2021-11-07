@@ -35,8 +35,7 @@ const C_Validation = {
 
 		const validationResult = schemaToValidateAgainst.validate(objectToValidate);
 		const wasValidationSuccessful = !validationResult.error;
-		if (!wasValidationSuccessful)
-			WARNING(format("Validation failed: %s", validationResult.error.message));
+		if (!wasValidationSuccessful) WARNING(format("Validation failed: %s", validationResult.error.message));
 
 		return wasValidationSuccessful;
 	},
