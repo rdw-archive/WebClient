@@ -78,15 +78,6 @@ C_Rendering.createDefaultLightSource = function () {
 	C_Rendering.addLightSource("RevivalEngine_DefaultLightSource", defaultLightSource);
 };
 
-C_Rendering.showLoadingScreen = function (loadingScreenText = L["Loading..."]) {
-	LoadingScreenFrame.setLoadingScreenText(loadingScreenText);
-	LoadingScreenFrame.show();
-};
-
-C_Rendering.hideLoadingScreen = function () {
-	LoadingScreenFrame.hide();
-};
-
 C_Rendering.setFogParameters = function (fogParameters) {
 	RENDERER_FOG_NEAR_LIMIT = fogParameters.start * RENDERER_FOG_MIN_DISTANCE;
 	RENDERER_FOG_FAR_LIMIT = fogParameters.end * RENDERER_FOG_MAX_DISTANCE;

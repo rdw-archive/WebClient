@@ -11,7 +11,6 @@ class WebClient {
 		"UIParent",
 		"FpsCounterFrame",
 		"KeyboardInputFrame",
-		"LoadingScreenFrame",
 		"GameMenuFrame",
 		"AddonOptionsFrame",
 	];
