@@ -21,4 +21,4 @@ jobs:
         run: npm install --also=dev
 
       - name: Check for inconsistent formatting
-        run: npm run format
+        run: npm run check-format
