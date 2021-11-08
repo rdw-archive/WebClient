@@ -155,7 +155,7 @@ C_Debug.drawNavigationMap = function () {
 		width: 1,
 		height: 1,
 	});
-	ground.renderingGroupID = RENDERER_DEBUG_MESH_RENDERING_GROUP_ID;
+	ground.renderingGroupID = 5; // Should be higher than the scene geometry to avoid glitches;
 
 	const matrices = [];
 	const colors = [];

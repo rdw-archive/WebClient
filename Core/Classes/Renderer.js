@@ -3,15 +3,15 @@ class Renderer {
 		this.deltaTime = 0;
 
 		const renderingOptions = {
-			antialias: RENDERER_USE_ANTIALIASING,
-			alpha: RENDERER_USE_ALPHA,
+			antialias: C_Settings.getValue("useAntialiasing"),
+			alpha: C_Settings.getValue("enableAlphaChannel"),
 			doNotHandleContextLost: false, // required to handle "WebGL context lost", which can happen if the app is minimized
 		};
 
 		const sceneOptions = {
-			useClonedMeshMap: RENDERER_OPTIMIZE_SCENE_LOOKUP_OPERATIONS,
-			useGeometryUniqueIdsMap: RENDERER_OPTIMIZE_SCENE_LOOKUP_OPERATIONS,
-			useMaterialMeshMap: RENDERER_OPTIMIZE_SCENE_LOOKUP_OPERATIONS,
+			useClonedMeshMap: C_Settings.getValue("optimizeSceneLookupOperations"),
+			useGeometryUniqueIdsMap: C_Settings.getValue("optimizeSceneLookupOperations"),
+			useMaterialMeshMap: C_Settings.getValue("optimizeSceneLookupOperations"),
 			virtual: false, // Not an overlay, just a regular scene. Multiple (virtual scenes aren't supported yet, but will be later)
 		};
 
@@ -26,10 +26,10 @@ class Renderer {
 		};
 
 		// WebGL settings
-		C_WebGL.setMaxDrawLayers(RENDERER_NUM_SPRITE_DRAW_LAYERS);
+		C_WebGL.setMaxDrawLayers(C_Settings.getValue("numSpriteDrawLayers"));
 
 		// Engine settings
-		this.nextFpsUpdateCountdown = RENDERER_FPS_UPDATE_INTERVAL_IN_FRAMES;
+		this.nextFpsUpdateCountdown = C_Settings.getValue("fpsUpdateIntervalInFrames");
 
 		this.createRenderScene(sceneOptions);
 	}
@@ -40,7 +40,7 @@ class Renderer {
 			if (!C_Settings.getValue("showFPS")) return; // Skipping all calculations to improve performance
 			this.fps = this._obj.getFps();
 			C_EventSystem.triggerEvent("FPS_COUNTER_UPDATE", this.fps);
-			this.nextFpsUpdateCountdown = RENDERER_FPS_UPDATE_INTERVAL_IN_FRAMES;
+			this.nextFpsUpdateCountdown = C_Settings.getValue("fpsUpdateIntervalInFrames");
 		}
 
 		this.nextFpsUpdateCountdown = this.nextFpsUpdateCountdown - 1;
