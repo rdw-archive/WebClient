@@ -12,7 +12,9 @@ const SettingsCacheSchema = JOI.object({
 	permittedEventTriggers: JOI.object().required().pattern(/\w+/, JOI.boolean()),
 
 	// Keybindings API
-	keybindingActivationMode: JOI.string().required().valid(Enum.KEYBINDS_ACTIVATE_ON_KEY_UP, Enum.KEYBINDS_ACTIVATE_ON_KEY_DOWN),
+	keybindingActivationMode: JOI.string()
+		.required()
+		.valid(Enum.KEYBINDS_ACTIVATE_ON_KEY_UP, Enum.KEYBINDS_ACTIVATE_ON_KEY_DOWN),
 
 	// Localization API
 	activeLocale: JOI.string()

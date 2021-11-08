@@ -6,7 +6,11 @@ class Message {
 	}
 	toString() {
 		const messageString =
-			this.event + C_Settings.getValue("messageTokenSeparatorString") + this.version + C_Settings.getValue("messageTokenSeparatorString") + JSON.stringify(this.payload);
+			this.event +
+			C_Settings.getValue("messageTokenSeparatorString") +
+			this.version +
+			C_Settings.getValue("messageTokenSeparatorString") +
+			JSON.stringify(this.payload);
 		return messageString;
 	}
 }
