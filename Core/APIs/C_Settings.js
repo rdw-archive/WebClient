@@ -2,14 +2,15 @@ const C_Settings = {
 	SCHEMA_DEFINITION: SettingsCacheSchema,
 	DEFAULT_SETTINGS_FILE_PATH: WEBCLIENT_SETTINGS_DIR + "/default-settings.json",
 	USER_SETTINGS_FILE_PATH: WEBCLIENT_INTERFACE_DIR + "/settings-cache.json",
+	settingsCache: new LocalCache(WEBCLIENT_SETTINGS_DIR + "/settings-cache.json"), // will update from cache
+	defaultSettings: new LocalCache(WEBCLIENT_SETTINGS_DIR + "/default-settings.json"), // will be stored as-is
 	validateDefaultSettings() {
-		const settings = C_FileSystem.readJSON(this.DEFAULT_SETTINGS_FILE_PATH);
-		return this.validate(settings);
+		return this.validate(this.defaultSettings);
 	},
 	validateUserSettings() {
 		if (!this.hasUserSettings()) return true; // We'll just use the defaults
-		const settings = C_FileSystem.readJSON(this.USER_SETTINGS_FILE_PATH);
-		return this.validate(settings);
+
+		return this.validate(this.settingsCache);
 	},
 	validate(settings) {
 		const schema = this.SCHEMA_DEFINITION;
@@ -19,15 +20,12 @@ const C_Settings = {
 		return true;
 	},
 	getDefaultSettings() {
-		// Caching is NYI, so we just load them from disk (bad)
-		return C_FileSystem.readJSON(this.DEFAULT_SETTINGS_FILE_PATH);
+		return this.defaultSettings;
 	},
 	loadDefaultSettings() {
-		WebClient.settings = this.getDefaultSettings();
+		this.defaultSettings.load();
 	},
 	getUserSettings() {
-		// Caching is NYI, so we just load them from disk (bad)
-
 		if (!this.hasUserSettings()) {
 			INFO(format("Failed to get user settings from %s", this.USER_SETTINGS_FILE_PATH));
 			return this.getDefaultSettings();
@@ -38,24 +36,32 @@ const C_Settings = {
 			return this.getDefaultSettings();
 			// TODO Don't discard them all, only the invalid properties?
 		}
-		return C_FileSystem.readJSON(this.USER_SETTINGS_FILE_PATH);
+		return this.settingsCache;
 	},
 	hasUserSettings() {
 		return C_FileSystem.fileExists(this.USER_SETTINGS_FILE_PATH);
 	},
 	loadSettingsCache() {
-		if (!this.hasUserSettings()) this.loadDefaultSettings();
-		else WebClient.settings = C_FileSystem.readJSON(this.USER_SETTINGS_FILE_PATH, WebClient.settings);
+		if (!this.hasUserSettings()) {
+			this.loadDefaultSettings();
+			return;
+		}
+
+		this.settingsCache.setFilePath(this.USER_SETTINGS_FILE_PATH);
+		this.settingsCache.load();
 	},
 	saveSettingsCache() {
-		C_FileSystem.writeJSON(this.USER_SETTINGS_FILE_PATH, WebClient.settings);
+		this.settingsCache.save();
 	},
 };
 
 C_Settings.getValue = function (key) {
-	return WebClient.settings[key];
+	return this.settingsCache.getValue(key);
 };
 
 C_Settings.setValue = function (key, value) {
-	WebClient.settings[key] = value;
+	this.settingsCache.setValue(key, value);
 };
+
+C_Settings.loadDefaultSettings();
+C_Settings.loadSettingsCache();
