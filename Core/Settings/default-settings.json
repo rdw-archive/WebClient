@@ -3,17 +3,6 @@
 	"defaultAddonLoadedState": true,
 	"enableLogging": true,
 	"enableProfiling": true,
-	"activeLogLevels": {
-		"NONE": true,
-		"TEST": true,
-		"PROFILE": true,
-		"DEBUG": true,
-		"INFO": true,
-		"NOTICE": true,
-		"WARNING": true,
-		"SERVER": true,
-		"CRITICAL": true
-	},
 	"defaultMacroIconPath": "Core/Interface/Icons/QuestionMarkBlack3D.png",
 	"macroCachePath": "Core/Interface/macro-cache.json",
 	"activeLocale": "enUS",

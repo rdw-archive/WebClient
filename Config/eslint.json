@@ -44,6 +44,7 @@
 		"Bitmap": "writable",
 		"Button": "writable",
 		"Canvas": "writable",
+		"Channels": "writable",
 		"CheckButton": "writable",
 		"EditBox": "writable",
 		"Enum": "writable",

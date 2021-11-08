@@ -21,7 +21,19 @@ class Logger {
 				console.warn(message);
 				console.trace(message);
 				return;
+			case Enum.LOG_LEVEL_ERROR:
+				console.error(message);
+				console.trace(message);
+				return;
 			case Enum.LOG_LEVEL_CRITICAL:
+				console.error(message);
+				console.trace(message);
+				return;
+			case Enum.LOG_LEVEL_ALERT:
+				console.error(message);
+				console.trace(message);
+				return;
+			case Enum.LOG_LEVEL_EMERGENCY:
 				console.error(message);
 				console.trace(message);
 				return;
