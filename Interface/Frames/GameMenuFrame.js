@@ -91,7 +91,7 @@ GameMenuFrame.createExitButton = function () {
 	this.exitButton = new Button("GameMenu_ExitButton", this.exitGroup);
 	this.exitButton.setText(L["Exit Game"]);
 	this.exitButton.setScript("OnClick", function () {
-		C_AppControl.exitMainThread();
+		C_System.quit();
 	});
 };
 
