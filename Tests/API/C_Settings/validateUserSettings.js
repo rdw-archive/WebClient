@@ -24,10 +24,12 @@ describe("The C_Settings API", () => {
 
 		// Write invalidated settings to disk so we can use it as a fake user settings file
 		const invalidatedUserSettingsFilePath = "invalidatedDefaultSettings.json";
+		assertFalse(C_FileSystem.fileExists(invalidatedUserSettingsFilePath));
 		C_FileSystem.writeJSON(invalidatedUserSettingsFilePath, settings);
 		assertTrue(C_FileSystem.fileExists(invalidatedUserSettingsFilePath));
 
 		// The API should now load user settings from there any time they're requested (and not cached)
+		const backup = C_Settings.USER_SETTINGS_FILE_PATH;
 		C_Settings.USER_SETTINGS_FILE_PATH = invalidatedUserSettingsFilePath;
 
 		// Since they are invalid, we expect the API to fall back to the defaults (which are valid)
@@ -38,5 +40,7 @@ describe("The C_Settings API", () => {
 		// Should probably be moved to after()/teardown?
 		C_FileSystem.removeFile(invalidatedUserSettingsFilePath);
 		assertFalse(C_FileSystem.fileExists(invalidatedUserSettingsFilePath));
+		// If we don't reset the path, the current settings will be written to the fixtures file (awkward)
+		C_Settings.USER_SETTINGS_FILE_PATH = backup;
 	});
 });
