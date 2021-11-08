@@ -1,5 +1,5 @@
 class Macro {
-	constructor(name = "", icon = DEFAULT_MACRO_ICON_PATH, text = "") {
+	constructor(name = "", icon = C_Settings.getValue("defaultMacroIconPath"), text = "") {
 		this.name = name;
 		this.icon = icon;
 		this.text = text;
