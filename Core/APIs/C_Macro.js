@@ -56,7 +56,7 @@ C_Macro.restoreMacroCache = function () {
 	DEBUG("Reloading macro cache from disk");
 
 	const macroCache = C_FileSystem.readJSON(C_Settings.getValue("macroCachePath"));
-	for (macroID in macroCache) {
+	for (let macroID in macroCache) {
 		const macroInfo = macroCache[macroID];
 		DEBUG(format("Deserializing macro %s", macroID));
 

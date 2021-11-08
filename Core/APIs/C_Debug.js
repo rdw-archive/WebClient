@@ -31,7 +31,7 @@ C_Debug.drawSphere = function (positionVector3D = Vector3D.ORIGIN, radiusInWorld
 };
 
 C_Debug.createTextPlane = function (text, parentNode) {
-	textPlane = C_WebGL.makeTextPlane(text);
+	let textPlane = C_WebGL.makeTextPlane(text);
 	textPlane.parent = parentNode;
 	return textPlane;
 };
