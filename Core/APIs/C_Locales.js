@@ -32,16 +32,16 @@ let C_Locales = {
 			return;
 		}
 
-		WEBCLIENT_ACTIVE_LOCALE = localeString;
+		C_Settings.setValue("activeLocale", localeString);
 		INFO(format("Set active locale to %s", localeString));
 	},
 	isRegisteredLocale(localeString) {
 		return this.localizationTables[localeString] !== undefined;
 	},
 	getLocale() {
-		return WEBCLIENT_ACTIVE_LOCALE;
+		return C_Settings.getValue("activeLocale");
 	},
-	getLocalizationTable(localeString = WEBCLIENT_ACTIVE_LOCALE) {
+	getLocalizationTable(localeString = C_Settings.getValue("activeLocale")) {
 		return this.localizationTables[localeString];
 	},
 	// TBD can this be removed? Looks like it's not used anywhere...
