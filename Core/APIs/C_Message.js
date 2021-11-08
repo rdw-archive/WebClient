@@ -28,7 +28,7 @@ const C_Message = {
 		C_EventSystem.triggerEvent(eventInfo.event, eventInfo.payload);
 	},
 	parseMessageString: function (messageString) {
-		const tokens = messageString.split(MESSAGE_TOKEN_SEPARATOR);
+		const tokens = messageString.split(C_Settings.getValue("messageTokenSeparatorString"));
 		const messageType = tokens.shift();
 		// const version = tokens.shift(); // nyi
 		const version = 1.0; // no need to deal with this before alpha or even beta, so it'll be hardcoded to 1.0
