@@ -2,7 +2,7 @@ var format = require("util").format;
 
 const C_Addons = {
 	ADDON_CACHE_FILE_PATH: WEBCLIENT_INTERFACE_DIR + "/addon-cache.json",
-	addonCache: {}, // Loaded state for each addon - seems awkard?
+	addonCache: new LocalCache(WEBCLIENT_INTERFACE_DIR + "/addon-cache.json"), // Loaded state for each addon - seems awkard?
 	loadedAddons: {}, // metadata (loaded only)
 	installedAddons: {}, // metadata (all addons)
 	loadEnabledAddons() {
@@ -90,27 +90,25 @@ const C_Addons = {
 	},
 	isAddonEnabled(addonName) {
 		const addonCache = this.addonCache;
-		const isLoadedStateCached = addonCache[addonName] !== undefined;
+		let enabledState = addonCache.getValue(addonName);
 
-		let isEnabled = addonCache[addonName];
-		if (!isLoadedStateCached && WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) isEnabled = true;
+		const isLoadedStateCached = enabledState !== undefined;
 
-		return isEnabled;
+		if (!isLoadedStateCached && WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) enabledState = true;
+
+		return enabledState;
 	},
 	loadAddonCache() {
 		DEBUG("Loading addon cache");
 		if (!C_FileSystem.fileExists(this.ADDON_CACHE_FILE_PATH)) {
-			this.addonCache = {};
-			DEBUG("Re-created addon cache since it couldn't be read from disk");
+			DEBUG("Addon cache couldn't be read from disk; using default loadout");
 			return;
 		}
-		const addonCache = C_FileSystem.readJSON(this.ADDON_CACHE_FILE_PATH);
-		this.addonCache = addonCache;
-		return addonCache;
+		this.addonCache.load();
 	},
 	saveAddonCache() {
 		DEBUG(format("Saving addon cache to file %s", this.ADDON_CACHE_FILE_PATH));
-		C_FileSystem.writeJSON(this.ADDON_CACHE_FILE_PATH, this.addonCache);
+		this.addonCache.save();
 	},
 	enableAddon(addonName) {
 		this.setAddonEnabledState(addonName, true);
@@ -132,7 +130,7 @@ const C_Addons = {
 		C_EventSystem.triggerEvent("ADDON_DISABLED", addonName);
 	},
 	setAddonEnabledState(addonName, enabledState) {
-		this.addonCache[addonName] = enabledState;
+		this.addonCache.setValue(addonName, enabledState);
 	},
 	getAddonInfo(addonName) {
 		return this.loadedAddons[addonName];
