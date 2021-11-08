@@ -110,7 +110,7 @@ describe("Builtins", () => {
 			const cache = new LocalCache(originalFilePath);
 			assertEquals(cache.getFilePath(), originalFilePath);
 
-			const updatedFilePath = "localTestCache_2.json"
+			const updatedFilePath = "localTestCache_2.json";
 			cache.setFilePath(updatedFilePath);
 			assertEquals(cache.getFilePath(), updatedFilePath);
 		});

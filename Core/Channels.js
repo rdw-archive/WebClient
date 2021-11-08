@@ -32,65 +32,65 @@ const Channels = {
 	[Enum.LOG_LEVEL_SERVER]: new Logger({
 		[Enum.LOG_LEVEL_SERVER]: true,
 	}),
+};
+
+function TEST(message) {
+	let outputChannel = Channels[Enum.LOG_LEVEL_TEST];
+	if (!outputChannel) return;
+	outputChannel.log(message, Enum.LOG_LEVEL_TEST);
 }
 
-function TEST (message) {
-	let outputChannel = Channels[Enum.LOG_LEVEL_TEST];
-	if (! outputChannel) return;
-	outputChannel.log(message, Enum.LOG_LEVEL_TEST);
-};
-
-function DEBUG (message) {
+function DEBUG(message) {
 	let outputChannel = Channels[Enum.LOG_LEVEL_DEBUG];
 	// console.log(outputChannel, message);
-	if (! outputChannel) return;
+	if (!outputChannel) return;
 	outputChannel.log(message, Enum.LOG_LEVEL_DEBUG);
-};
+}
 
-function INFO (message) {
+function INFO(message) {
 	let outputChannel = Channels[Enum.LOG_LEVEL_INFO];
-	if (! outputChannel) return;
+	if (!outputChannel) return;
 	outputChannel.log(message, Enum.LOG_LEVEL_INFO);
-};
+}
 
-function NOTICE (message) {
+function NOTICE(message) {
 	let outputChannel = Channels[Enum.LOG_LEVEL_NOTICE];
-	if (! outputChannel) return;
+	if (!outputChannel) return;
 	outputChannel.log(message, Enum.LOG_LEVEL_NOTICE);
-};
+}
 
-function WARNING (message) {
+function WARNING(message) {
 	let outputChannel = Channels[Enum.LOG_LEVEL_WARNING];
-	if (! outputChannel) return;
+	if (!outputChannel) return;
 	outputChannel.log(message, Enum.LOG_LEVEL_WARNING);
-};
+}
 
-function ERROR (message) {
+function ERROR(message) {
 	let outputChannel = Channels[Enum.LOG_LEVEL_ERROR];
-	if (! outputChannel) return;
+	if (!outputChannel) return;
 	outputChannel.log(message, Enum.LOG_LEVEL_ERROR);
-};
+}
 
-function CRITICAL (message) {
+function CRITICAL(message) {
 	let outputChannel = Channels[Enum.LOG_LEVEL_CRITICAL];
-	if (! outputChannel) return;
+	if (!outputChannel) return;
 	outputChannel.log(message, Enum.LOG_LEVEL_CRITICAL);
-};
+}
 
-function ALERT (message) {
+function ALERT(message) {
 	let outputChannel = Channels[Enum.LOG_LEVEL_ALERT];
-	if (! outputChannel) return;
+	if (!outputChannel) return;
 	outputChannel.log(message, Enum.LOG_LEVEL_ALERT);
-};
+}
 
-function EMERGENCY (message) {
+function EMERGENCY(message) {
 	let outputChannel = Channels[Enum.LOG_LEVEL_EMERGENCY];
-	if (! outputChannel) return;
+	if (!outputChannel) return;
 	outputChannel.log(message, Enum.LOG_LEVEL_EMERGENCY);
-};
+}
 
-function SERVER (message) {
+function SERVER(message) {
 	let outputChannel = Channels[Enum.LOG_LEVEL_SERVER];
-	if (! outputChannel) return;
+	if (!outputChannel) return;
 	outputChannel.log(message, Enum.LOG_LEVEL_SERVER);
-};
+}
