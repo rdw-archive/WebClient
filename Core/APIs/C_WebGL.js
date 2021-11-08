@@ -412,13 +412,13 @@ C_WebGL.registerPointerEvents = function (scene) {
 				// console.log("KEY DOWN: ", keyboardEvent.key);
 				C_EventSystem.triggerEvent("KEY_DOWN", keyboardEvent.key, keyStringValue);
 				// DEBUG(isShiftKeyPressed);
-				if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_DOWN) C_Keybindings.executeBinding(keyCode);
+				if (C_Settings.getValue("keybindingActivationMode") === Enum.KEYBINDS_ACTIVATE_ON_KEY_DOWN) C_Keybindings.executeBinding(keyCode);
 				break;
 			case "keyup":
 				// C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.key);
 				C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.key, keyboardEvent.code, keyCode);
 				// C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.keyCode);
-				if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_UP) C_Keybindings.executeBinding(keyCode);
+				if (C_Settings.getValue("keybindingActivationMode") === Enum.KEYBINDS_ACTIVATE_ON_KEY_UP) C_Keybindings.executeBinding(keyCode);
 				break;
 		}
 	};
