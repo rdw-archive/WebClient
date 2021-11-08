@@ -1,5 +1,6 @@
 {
 	"renderer": true,
 	"url": "index.html",
-	"spec": ["Tests/API/**", "Tests/IncludeAddonTests.js"]
+	"warnings": true,
+	"spec": ["Tests/run-renderer-tests.js"]
 }
