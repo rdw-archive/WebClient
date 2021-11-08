@@ -43,10 +43,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Make executables
+      - name: Make executable
         run: npm run make
 
-      - name: Create zip archives
+      - name: Create zip archive
         uses: papeloto/action-zip@v1
         with:
           files: dist/${{ matrix.build-dir }}
