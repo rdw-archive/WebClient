@@ -14,7 +14,7 @@ describe("The C_Settings API", () => {
 		assertDeepEquals(userSettings, defaultSettings);
 	});
 	it("should use the default settings if user settings are invalid", () => {
-		// The defaults are obviously valid, so we invalidate them by adding random gargabe
+		// The defaults are obviously valid, so we invalidate them by adding random garbage
 		const settings = C_Settings.getDefaultSettings();
 		assertTrue(C_Settings.validate(settings)); // Just to be EXTRA sure
 
