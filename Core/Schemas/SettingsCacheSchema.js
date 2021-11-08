@@ -32,7 +32,7 @@ const SettingsCacheSchema = JOI.object({
 
 	// Logging API
 	enableLogging: JOI.boolean().required(),
-	activeLogLevels: JOI.object().pattern(/\w+/, JOI.boolean()),
+
 	// TBD Move to Profiling API?
 	enableProfiling: JOI.boolean().required(),
 
