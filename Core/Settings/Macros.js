@@ -1,1 +1,0 @@
-const MACRO_CACHE_FILE_PATH = WEBCLIENT_INTERFACE_DIR + "/macro-cache.json";
