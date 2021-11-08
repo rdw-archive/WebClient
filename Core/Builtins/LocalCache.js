@@ -23,6 +23,10 @@ class LocalCache {
 	save() {
 		C_FileSystem.writeJSON(this.filePath, this.keyValueStore);
 	}
-	getFilePath() {}
-	setFilePath() {}
+	getFilePath() {
+		return this.filePath;
+	}
+	setFilePath(path) {
+		this.filePath = path;
+	}
 }
