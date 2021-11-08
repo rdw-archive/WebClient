@@ -36,7 +36,6 @@ class Renderer {
 	// Update FPS counter (doing this too often might reduce performance?).
 	// This is called on every frame, so beware of making it too slow.
 	updateFpsCounter() {
-
 		if (this.nextFpsUpdateCountdown === 0) {
 			if (!C_Settings.getValue("showFPS")) return; // Skipping all calculations to improve performance
 			this.fps = this._obj.getFps();

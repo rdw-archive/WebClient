@@ -44,12 +44,12 @@ const C_Settings = {
 		return C_FileSystem.fileExists(this.USER_SETTINGS_FILE_PATH);
 	},
 	loadSettingsCache() {
-		if(! this.hasUserSettings()) this.loadDefaultSettings();
+		if (!this.hasUserSettings()) this.loadDefaultSettings();
 		else WebClient.settings = C_FileSystem.readJSON(this.USER_SETTINGS_FILE_PATH, WebClient.settings);
 	},
 	saveSettingsCache() {
 		C_FileSystem.writeJSON(this.USER_SETTINGS_FILE_PATH, WebClient.settings);
-	}
+	},
 };
 
 C_Settings.getValue = function (key) {

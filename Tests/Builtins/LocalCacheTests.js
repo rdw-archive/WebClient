@@ -1,21 +1,12 @@
 describe("Builtins", () => {
 	describe("LocalCache", () => {
-
 		it("should be exported into the global environment", () => {
 			assertEquals(LocalCache.name, "LocalCache");
 		});
 
-		let exportedApiSurface = [
-			"getValue",
-			"setValue",
-			"clear",
-			"evict",
-			"load",
-			"save",
-			"setFilePath",
-		];
+		let exportedApiSurface = ["getValue", "setValue", "clear", "evict", "load", "save", "setFilePath"];
 
-		exportedApiSurface.forEach(namedExport => {
+		exportedApiSurface.forEach((namedExport) => {
 			it("should export function " + namedExport, () => {
 				const cache = new LocalCache("");
 				assertEquals(typeof cache[namedExport], "function");
@@ -68,7 +59,7 @@ describe("Builtins", () => {
 		});
 
 		it("should be able to save the key value store's contents to disk", () => {
-			const filePath = "localTestCache_save.json"
+			const filePath = "localTestCache_save.json";
 			const cache = new LocalCache(filePath);
 
 			cache.setValue("key1", 42);
@@ -88,13 +79,13 @@ describe("Builtins", () => {
 		});
 
 		it("should be able to load the key value store's contents from disk", () => {
-			const filePath = "localTestCache_load.json"
+			const filePath = "localTestCache_load.json";
 			const cache = new LocalCache(filePath);
 
 			const expectedCacheContents = {
-				"keyThatDidNotExistBeforeLoading": 12345,
-				"shouldHaveDifferentValue": "This is the value that should be present"
-			}
+				keyThatDidNotExistBeforeLoading: 12345,
+				shouldHaveDifferentValue: "This is the value that should be present",
+			};
 
 			// These value should be overwritten with a different one after loading
 			cache.setValue("shouldHaveDifferentValue", 42);

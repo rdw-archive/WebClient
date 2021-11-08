@@ -12,7 +12,7 @@ class LocalCache {
 	evict(key) {
 		delete this.keyValueStore[key];
 
-		if(key === undefined) this.clear();
+		if (key === undefined) this.clear();
 	}
 	clear() {
 		this.keyValueStore = {};
