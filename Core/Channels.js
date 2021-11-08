@@ -42,7 +42,6 @@ function TEST(message) {
 
 function DEBUG(message) {
 	let outputChannel = Channels[Enum.LOG_LEVEL_DEBUG];
-	// console.log(outputChannel, message);
 	if (!outputChannel) return;
 	outputChannel.log(message, Enum.LOG_LEVEL_DEBUG);
 }
