@@ -40,5 +40,3 @@ const TERRAIN_VISUALIZATION_COLORS = [
 		blue: 255,
 	},
 ];
-
-var DISPLAY_WINDOW_DEBUG_INFO = true;
