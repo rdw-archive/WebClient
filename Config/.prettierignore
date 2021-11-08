@@ -4,3 +4,5 @@ dist/
 # Ignore userdata
 Assets/
 Exports/
+addon-cache.json
+macro-cache.json
