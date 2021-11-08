@@ -13,7 +13,7 @@
 	"rules": {
 		"indent": ["error", "tab", { "SwitchCase": 1 }],
 		"linebreak-style": ["error", "unix"],
-		"quotes": ["error", "double"],
+		"quotes": ["error", "double", { "avoidEscape": true }],
 		"semi": ["error", "always"],
 		"no-redeclare": ["error", { "builtinGlobals": false }],
 		"no-unused-vars": "off"
