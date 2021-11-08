@@ -4,7 +4,7 @@ describe("Builtins", () => {
 			assertEquals(LocalCache.name, "LocalCache");
 		});
 
-		let exportedApiSurface = ["getValue", "setValue", "clear", "evict", "load", "save", "setFilePath"];
+		let exportedApiSurface = ["getValue", "setValue", "clear", "evict", "load", "save", "getFilePath", "setFilePath"];
 
 		exportedApiSurface.forEach((namedExport) => {
 			it("should export function " + namedExport, () => {
@@ -103,6 +103,16 @@ describe("Builtins", () => {
 			// Cleanup
 			C_FileSystem.removeFile(filePath);
 			assertFalse(C_FileSystem.fileExists(filePath));
+		});
+
+		it("should allow adjusting the file path after initialization", () => {
+			const originalFilePath = "localTestCache_1.json";
+			const cache = new LocalCache(originalFilePath);
+			assertEquals(cache.getFilePath(), originalFilePath);
+
+			const updatedFilePath = "localTestCache_2.json"
+			cache.setFilePath(updatedFilePath);
+			assertEquals(cache.getFilePath(), updatedFilePath);
 		});
 	});
 });
