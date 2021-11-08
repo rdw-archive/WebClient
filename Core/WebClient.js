@@ -25,7 +25,7 @@ class WebClient {
 	// Create localization tables for all supported locales
 	static initializeLocalizationTables() {
 		DEBUG("Initializing localization systems");
-		for (const localeString in WEBCLIENT_SUPPORTED_LOCALES) {
+		for (const localeString in C_Locales.supportedLocales) {
 			// DEBUG(format("Setting up lookup tables for locale %s", localeString));
 			C_Locales.registerNewLocale(localeString);
 			this.loadTranslatedPhrases(localeString);

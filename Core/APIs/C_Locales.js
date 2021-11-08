@@ -1,6 +1,19 @@
 var format = require("util").format;
 
 let C_Locales = {
+	// TBD: Should this really be here? It also seems pointless to disable locales at runtime...
+	supportedLocales: {
+			[Enum.WEBCLIENT_LOCALE_STRING_ENGLISH]: true,
+			[Enum.WEBCLIENT_LOCALE_STRING_GERMAN]: true,
+			[Enum.WEBCLIENT_LOCALE_STRING_FRENCH]: true,
+			[Enum.WEBCLIENT_LOCALE_STRING_SPANISH]: true,
+			[Enum.WEBCLIENT_LOCALE_STRING_RUSSIAN]: true,
+			[Enum.WEBCLIENT_LOCALE_STRING_CHINESE_SIMPLIFIED]: true,
+			[Enum.WEBCLIENT_LOCALE_STRING_CHINESE_TRADITIONAL]: true,
+			[Enum.WEBCLIENT_LOCALE_STRING_ITALIAN]: true,
+			[Enum.WEBCLIENT_LOCALE_STRING_KOREAN]: true,
+			[Enum.WEBCLIENT_LOCALE_STRING_PORTUGUESE]: true,
+	},
 	localizationTables: {},
 	lookupMetatable: {
 		get: function (target, propertyName) {
