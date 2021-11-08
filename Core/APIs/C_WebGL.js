@@ -47,7 +47,7 @@ C_WebGL.updateFog = function () {
 	const fogEnd = RENDERER_FOG_FAR_LIMIT;
 	const fogColor = RENDERER_FOG_COLOR; // tbd apply alpha manually since WebGL doesn't like it?
 
-	if (!RENDERER_ENABLE_FOG) {
+	if (!C_Settings.getValue("enableFogEffect")) {
 		scene.fogMode = this.fogModes[Enum.FOG_MODE_NONE];
 		return;
 	}

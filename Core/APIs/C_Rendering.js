@@ -93,7 +93,7 @@ C_Rendering.setFogMode = function (fogMode) {
 };
 
 C_Rendering.setFogState = function (isFogEnabled) {
-	RENDERER_ENABLE_FOG = isFogEnabled;
+	C_Settings.setValue(isFogEnabled);
 
 	C_EventSystem.triggerEvent("FOG_MODE_UPDATE");
 	DEBUG("Fog is now " + (isFogEnabled ? "ON" : "OFF"));

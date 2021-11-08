@@ -6,7 +6,6 @@ var RENDERER_USE_ALPHA = true;
 var RENDERER_OPTIMIZE_SCENE_LOOKUP_OPERATIONS = true; // Memoize references to trade RAM usage for performance
 
 // Fog properties
-var RENDERER_ENABLE_FOG = false;
 var RENDERER_FOG_MODE = Enum.FOG_MODE_LINEAR;
 var RENDERER_FOG_MIN_DISTANCE = 150 / 10;
 var RENDERER_FOG_NEAR_LIMIT = 1;
