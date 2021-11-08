@@ -2,5 +2,6 @@
 	"renderer": true,
 	"url": "index.html",
 	"warnings": true,
+	"colors": true,
 	"spec": ["Tests/run-renderer-tests.js"]
 }
