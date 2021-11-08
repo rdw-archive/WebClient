@@ -17,8 +17,17 @@ const Channels = {
 	[Enum.LOG_LEVEL_WARNING]: new Logger({
 		[Enum.LOG_LEVEL_WARNING]: true,
 	}),
+	[Enum.LOG_LEVEL_ERROR]: new Logger({
+		[Enum.LOG_LEVEL_ERROR]: true,
+	}),
 	[Enum.LOG_LEVEL_CRITICAL]: new Logger({
 		[Enum.LOG_LEVEL_CRITICAL]: true,
+	}),
+	[Enum.LOG_LEVEL_ALERT]: new Logger({
+		[Enum.LOG_LEVEL_ALERT]: true,
+	}),
+	[Enum.LOG_LEVEL_EMERGENCY]: new Logger({
+		[Enum.LOG_LEVEL_EMERGENCY]: true,
 	}),
 	[Enum.LOG_LEVEL_SERVER]: new Logger({
 		[Enum.LOG_LEVEL_SERVER]: true,
@@ -56,10 +65,28 @@ function WARNING (message) {
 	outputChannel.log(message, Enum.LOG_LEVEL_WARNING);
 };
 
+function ERROR (message) {
+	let outputChannel = Channels[Enum.LOG_LEVEL_ERROR];
+	if (! outputChannel) return;
+	outputChannel.log(message, Enum.LOG_LEVEL_ERROR);
+};
+
 function CRITICAL (message) {
 	let outputChannel = Channels[Enum.LOG_LEVEL_CRITICAL];
 	if (! outputChannel) return;
 	outputChannel.log(message, Enum.LOG_LEVEL_CRITICAL);
+};
+
+function ALERT (message) {
+	let outputChannel = Channels[Enum.LOG_LEVEL_ALERT];
+	if (! outputChannel) return;
+	outputChannel.log(message, Enum.LOG_LEVEL_ALERT);
+};
+
+function EMERGENCY (message) {
+	let outputChannel = Channels[Enum.LOG_LEVEL_EMERGENCY];
+	if (! outputChannel) return;
+	outputChannel.log(message, Enum.LOG_LEVEL_EMERGENCY);
 };
 
 function SERVER (message) {
