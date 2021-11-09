@@ -1,3 +1,6 @@
+/* Import these first so they're available everywhere */
+@import "CascadingVariables.css";
+
 /* Externals. You probably don't need to touch them. */
 @import "BabylonJS.css";
 

@@ -1,0 +1,18 @@
+/* This is the single source of truth for the template's color scheme and layout settings.
+Values should be defined here, and only here, and not hardcoded anywhere else */
+
+:root {
+	/* FontString Properties */
+	--font-size-smallest: 8pt;
+	--font-size-smaller: 10pt;
+	--font-size-small: 11pt;
+	--font-size-normal: 12pt;
+	--font-size-large: 16pt;
+	--font-size-larger: 24pt;
+	--font-size-largest: 36pt;
+	--font-size-huge: 72pt;
+	--default-font-color: white;
+
+	/* Frame Colors */
+	--window-background-color: rgba(0, 0, 0, 0.75);
+

@@ -5,10 +5,6 @@
 	They have a fixed minimum size and expect the contained elements to remain the same size, while displaying as many of them as possible.
 */
 
-:root {
-	--window-background-color: rgba(0, 0, 0, 0.75);
-}
-
 .WindowTitle {
 	margin-bottom: 20px;
 	/* Font settings: TODO Move elsewhere? */
