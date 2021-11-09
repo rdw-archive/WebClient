@@ -37,5 +37,5 @@ C_Bitmap.export = function (fileName, bitmap, pixelFormat = Enum.PIXEL_FORMAT_AB
 
 C_Bitmap.import = function (fileName) {
 	const fileContents = C_FileSystem.readFileBinary(fileName);
-	return Bitmap_createFromFileContents(fileContents); // This needs refactoring
+	return Bitmap.createFromFileContents(fileContents); // This needs refactoring
 };
