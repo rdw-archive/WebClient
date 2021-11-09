@@ -15,7 +15,7 @@ class TerrainMap {
 
 		for (let tileID = 0; tileID < this.tiles.length; tileID++) {
 			const terrainTypeID = this.tiles[tileID] || 0;
-			const color = TERRAIN_VISUALIZATION_COLORS[terrainTypeID];
+			const color = Color.TERRAIN_VISUALIZATION_COLORS[terrainTypeID];
 			pixelData.push(255, color.red, color.green, color.blue);
 		}
 
