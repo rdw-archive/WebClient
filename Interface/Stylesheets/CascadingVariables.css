@@ -16,3 +16,8 @@ Values should be defined here, and only here, and not hardcoded anywhere else */
 	/* Frame Colors */
 	--window-background-color: rgba(0, 0, 0, 0.75);
 
+	/* Margins and Paddings */
+	--layout-padding-narrow: 0.5em;
+	--layout-padding-regular: 1em;
+	--layout-padding-wide: 2em;
+}
