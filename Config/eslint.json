@@ -76,6 +76,7 @@
 		"Renderer": "writable",
 		"Resource": "writable",
 		"ScriptObject": "writable",
+		"Slider": "writable",
 		"ScrollFrame": "writable",
 		"SettingsCacheSchema": "writable",
 		"SystemOptions": "writable",
