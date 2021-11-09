@@ -55,8 +55,8 @@ C_Macro.saveToDisk = function (macroID) {};
 C_Macro.restoreMacroCache = function () {
 	DEBUG("Reloading macro cache from disk");
 
-	const macroCache = C_FileSystem.readJSON(MACRO_CACHE_FILE_PATH);
-	for (macroID in macroCache) {
+	const macroCache = C_FileSystem.readJSON(C_Settings.getValue("macroCachePath"));
+	for (let macroID in macroCache) {
 		const macroInfo = macroCache[macroID];
 		DEBUG(format("Deserializing macro %s", macroID));
 
@@ -84,8 +84,8 @@ C_Macro.saveMacroCache = function () {
 		// macroCache[macroID] = serializedMacro;
 		macroCache.push(serializedMacro);
 	}
-	DEBUG(format("Writing macro cache to file %s", MACRO_CACHE_FILE_PATH));
-	C_FileSystem.writeJSON(MACRO_CACHE_FILE_PATH, macroCache);
+	DEBUG(format("Writing macro cache to file %s", C_Settings.getValue("macroCachePath")));
+	C_FileSystem.writeJSON(C_Settings.getValue("macroCachePath"), macroCache);
 };
 
 C_Macro.getNextMacroID = function () {

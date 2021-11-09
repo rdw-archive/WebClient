@@ -5,14 +5,15 @@ let L = {};
 function StartWebClient() {
 	C_Profiling.startTimer("StartWebClient");
 
+	C_Settings.loadSettingsCache();
+
 	WebClient.initializeLocalizationTables();
-	L = C_Locales.getLocalizationTable(WEBCLIENT_ACTIVE_LOCALE);
+	L = C_Locales.getLocalizationTable(C_Settings.getValue("activeLocale"));
 	WebClient.setWindowTitle(L["Loading..."]);
 
 	C_Macro.restoreMacroCache(); // Needs to be done before addons are loaded, as they may want to interact with the cache?
 
 	WebClient.createUserInterface();
-	C_Settings.loadSettingsCache();
 	C_Addons.loadAddonCache();
 	C_Addons.loadEnabledAddons();
 

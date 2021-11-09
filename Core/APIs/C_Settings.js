@@ -1,3 +1,5 @@
+var format = require("util").format;
+
 const C_Settings = {
 	SCHEMA_DEFINITION: SettingsCacheSchema,
 	DEFAULT_SETTINGS_FILE_PATH: WEBCLIENT_SETTINGS_DIR + "/default-settings.json",

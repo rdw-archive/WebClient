@@ -11,7 +11,7 @@ C_Bitmap.export = function (fileName, bitmap, pixelFormat = Enum.PIXEL_FORMAT_AB
 
 	// The BITMAP encoder expects ABGR and won't use anything else... so we will convert them
 	// Note: It's slow doing this without TypedArrays, but this is only used for debugging anyway
-	if (pixelFormat === PIXEL_FORMAT_ARGB) {
+	if (pixelFormat === Enum.PIXEL_FORMAT_ARGB) {
 		for (let pixelID = 0; pixelID < bitmap.pixelData.length / 4; pixelID++) {
 			const alpha = bitmap.pixelData[pixelID * 4 + 0];
 			const red = bitmap.pixelData[pixelID * 4 + 1];
@@ -37,5 +37,5 @@ C_Bitmap.export = function (fileName, bitmap, pixelFormat = Enum.PIXEL_FORMAT_AB
 
 C_Bitmap.import = function (fileName) {
 	const fileContents = C_FileSystem.readFileBinary(fileName);
-	return Bitmap_createFromFileContents(fileContents); // This needs refactoring
+	return Bitmap.createFromFileContents(fileContents); // This needs refactoring
 };

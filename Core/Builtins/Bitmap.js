@@ -49,7 +49,7 @@ class Bitmap {
 }
 
 // TODO integrate with Bitmap class
-function Bitmap_createFromFileContents(buffer) {
+Bitmap.createFromFileContents = function (buffer) {
 	let isTopdownBitmap = false;
 
 	let reader = new BinaryReader(buffer);
@@ -220,7 +220,7 @@ function Bitmap_createFromFileContents(buffer) {
 	// }
 
 	return bmpData;
-}
+};
 
 // I hate JavaScript
 window.Bitmap = Bitmap;

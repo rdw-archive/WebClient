@@ -42,12 +42,12 @@ C_WebGL.createOrbitalCamera = function (name, scene, canvas) {
 
 C_WebGL.updateFog = function () {
 	const scene = C_Rendering.getActiveScene();
-	const fogDensity = RENDERER_FOG_DENSITY;
-	const fogStart = RENDERER_FOG_NEAR_LIMIT;
-	const fogEnd = RENDERER_FOG_FAR_LIMIT;
-	const fogColor = RENDERER_FOG_COLOR; // tbd apply alpha manually since WebGL doesn't like it?
+	const fogDensity = C_Rendering.exponentialFogDensity;
+	const fogStart = C_Rendering.fogNearLimit;
+	const fogEnd = C_Rendering.fogFarLimit;
+	const fogColor = C_Rendering.fogColor; // tbd apply alpha manually since WebGL doesn't like it?
 
-	if (!RENDERER_ENABLE_FOG) {
+	if (!C_Settings.getValue("enableFogEffect")) {
 		scene.fogMode = this.fogModes[Enum.FOG_MODE_NONE];
 		return;
 	}
@@ -55,7 +55,7 @@ C_WebGL.updateFog = function () {
 	DEBUG(
 		format(
 			"Updated fog parameters to mode = %s, density = %.2f, near = %.2f, far = %.2f, rgb = (%d, %d, %d)",
-			RENDERER_FOG_MODE,
+			C_Rendering.fogMode,
 			fogDensity,
 			fogStart,
 			fogEnd,
@@ -65,10 +65,10 @@ C_WebGL.updateFog = function () {
 		)
 	);
 
-	scene.fogMode = this.fogModes[RENDERER_FOG_MODE];
-	scene.fogStart = RENDERER_FOG_NEAR_LIMIT;
-	scene.fogEnd = RENDERER_FOG_FAR_LIMIT;
-	scene.fogDensity = RENDERER_FOG_DENSITY;
+	scene.fogMode = this.fogModes[C_Rendering.fogMode];
+	scene.fogStart = C_Rendering.fogNearLimit;
+	scene.fogEnd = C_Rendering.forFarLimit;
+	scene.fogDensity = C_Rendering.exponentialFogDensity;
 
 	scene.fogColor = new BABYLON.Color3(fogColor.red / 255, fogColor.green / 255, fogColor.blue / 255); // alpha?
 };
@@ -412,13 +412,15 @@ C_WebGL.registerPointerEvents = function (scene) {
 				// console.log("KEY DOWN: ", keyboardEvent.key);
 				C_EventSystem.triggerEvent("KEY_DOWN", keyboardEvent.key, keyStringValue);
 				// DEBUG(isShiftKeyPressed);
-				if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_DOWN) C_Keybindings.executeBinding(keyCode);
+				if (C_Settings.getValue("keybindingActivationMode") === Enum.KEYBINDS_ACTIVATE_ON_KEY_DOWN)
+					C_Keybindings.executeBinding(keyCode);
 				break;
 			case "keyup":
 				// C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.key);
 				C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.key, keyboardEvent.code, keyCode);
 				// C_EventSystem.triggerEvent("KEY_UP", keyboardEvent.keyCode);
-				if (KEYBIND_ACTIVATION_MODE === KEYBINDS_ACTIVATE_ON_KEY_UP) C_Keybindings.executeBinding(keyCode);
+				if (C_Settings.getValue("keybindingActivationMode") === Enum.KEYBINDS_ACTIVATE_ON_KEY_UP)
+					C_Keybindings.executeBinding(keyCode);
 				break;
 		}
 	};

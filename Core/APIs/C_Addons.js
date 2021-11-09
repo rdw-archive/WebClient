@@ -94,7 +94,7 @@ const C_Addons = {
 
 		const isLoadedStateCached = enabledState !== undefined;
 
-		if (!isLoadedStateCached && WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) enabledState = true;
+		if (!isLoadedStateCached) enabledState = true;
 
 		return enabledState;
 	},
@@ -114,8 +114,6 @@ const C_Addons = {
 		this.setAddonEnabledState(addonName, true);
 		DEBUG(format("Enabled addon %s (will attempt to load immediately)", addonName));
 		C_EventSystem.triggerEvent("ADDON_ENABLED", addonName);
-
-		if (!WEBCLIENT_LOAD_ADDONS_AUTOMATICALLY) return;
 
 		if (!this.isAddonLoadable(addonName)) return;
 

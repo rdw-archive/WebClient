@@ -3,15 +3,15 @@ const C_Profiling = {
 	// TBD: Should this be moved to the logging API and function as a separate channel? For now it seems better to disable it globally if needed
 	profilingLogPrefixString: "[" + Enum.LOG_LEVEL_PROFILE + "] ",
 	startTimer(label) {
-		if (!WEBCLIENT_ENABLE_PROFILING) return;
+		if (!C_Settings.getValue("enableProfiling")) return;
 		console.time(this.profilingLogPrefixString + label);
 	},
 	endTimer(label) {
-		if (!WEBCLIENT_ENABLE_PROFILING) return;
+		if (!C_Settings.getValue("enableProfiling")) return;
 		console.timeEnd(this.profilingLogPrefixString + label);
 	},
 	getTimer(label) {
-		if (!WEBCLIENT_ENABLE_PROFILING) return;
+		if (!C_Settings.getValue("enableProfiling")) return;
 		console.timeLog(this.profilingLogPrefixString + label);
 	},
 };

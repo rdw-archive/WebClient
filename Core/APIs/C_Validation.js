@@ -1,3 +1,5 @@
+var format = require("util").format;
+
 const C_Validation = {
 	// TODO: Move to a proper schema file
 	addonMetadata: {

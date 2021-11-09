@@ -18,7 +18,7 @@ class AddOn {
 		C_EventSystem.unregisterEvent("ADDON_LOADED", this.name);
 		INFO(format("%s: Addon was successfully loaded", this.name));
 
-		if (!this.onLoad instanceof Function) return;
+		if (!(this.onLoad instanceof Function)) return;
 		this.onLoad();
 	}
 }

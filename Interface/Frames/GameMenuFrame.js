@@ -12,7 +12,7 @@ GameMenuFrame.createSupportButton = function () {
 	this.addonOptionsButton.setText(L["Support"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
-		SupportFrame.show();
+		// SupportFrame.show(); // NYI
 	});
 };
 
@@ -21,7 +21,7 @@ GameMenuFrame.createWhatsNewButton = function () {
 	this.addonOptionsButton.setText(L["What's New"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
-		ChangeLogSummaryFrame.show();
+		// ChangeLogSummaryFrame.show(); // NYI
 	});
 };
 
@@ -30,7 +30,7 @@ GameMenuFrame.createCreditsButton = function () {
 	this.creditsButton.setText(L["Credits"]);
 	this.creditsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
-		CreditsFrame.show();
+		// CreditsFrame.show(); // NYI
 	});
 };
 
@@ -39,7 +39,7 @@ GameMenuFrame.createSystemOptionsButton = function () {
 	this.addonOptionsButton.setText(L["System"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
-		SystemOptionsFrame.show();
+		// SystemOptionsFrame.show(); // NYI
 	});
 };
 
@@ -48,7 +48,7 @@ GameMenuFrame.createInterfaceOptionsButton = function () {
 	this.addonOptionsButton.setText(L["Interface"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
-		InterfaceOptionsFrame.show();
+		// InterfaceOptionsFrame.show(); // NYI
 	});
 };
 
@@ -57,7 +57,7 @@ GameMenuFrame.createKeybindingOptionsButton = function () {
 	this.addonOptionsButton.setText(L["Keybindings"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
-		KeybindingsOptionsFrame.show();
+		// KeybindingsOptionsFrame.show(); // NYI
 	});
 };
 
@@ -91,7 +91,7 @@ GameMenuFrame.createExitButton = function () {
 	this.exitButton = new Button("GameMenu_ExitButton", this.exitGroup);
 	this.exitButton.setText(L["Exit Game"]);
 	this.exitButton.setScript("OnClick", function () {
-		C_AppControl.exitMainThread();
+		C_System.quit();
 	});
 };
 

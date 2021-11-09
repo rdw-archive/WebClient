@@ -1,6 +1,16 @@
 var format = require("util").format;
 
 const C_Rendering = {
+	fogNearLimitPercent: 100,
+	fogMinDistanceInWorldUnits: 15,
+	fogMaxDistanceInWorldUnits: 15,
+	fogNearLimit: 1,
+	fogFarLimit: 1,
+	exponentialFogDensity: 15,
+	fogMode: Enum.FOG_MODE_LINEAR,
+	clearColor: "#7B7BA5",
+	defaultClearColor: "#0077FF",
+	fogColor: Color.GREY,
 	meshes: [],
 	lightSources: [],
 };
@@ -21,7 +31,7 @@ C_Rendering.switchScene = function () {
 	this.meshes = [];
 	this.lightSources = [];
 
-	this.setClearColor(RENDERER_SCENE_BACKGROUND_COLOR); // Reset in case it was changed
+	this.setClearColor(this.defaultClearColor); // Reset in case it was changed
 };
 C_Rendering.isSwitchingScenes = function () {};
 
@@ -79,21 +89,21 @@ C_Rendering.createDefaultLightSource = function () {
 };
 
 C_Rendering.setFogParameters = function (fogParameters) {
-	RENDERER_FOG_NEAR_LIMIT = fogParameters.start * RENDERER_FOG_MIN_DISTANCE;
-	RENDERER_FOG_FAR_LIMIT = fogParameters.end * RENDERER_FOG_MAX_DISTANCE;
-	RENDERER_FOG_DENSITY = fogParameters.density;
-	RENDERER_FOG_COLOR = fogParameters.color;
+	this.fogNearLimitPercent = fogParameters.start * C_Rendering.fogMinDistanceInWorldUnits * 100;
+	this.fogFarLimit = fogParameters.end * C_Rendering.fogMaxDistanceInWorldUnits;
+	this.exponentialFogDensity = fogParameters.density;
+	this.fogColor = fogParameters.color;
 
 	C_WebGL.updateFog();
 };
 
 C_Rendering.setFogMode = function (fogMode) {
-	RENDERER_FOG_MODE = fogMode;
+	this.fogMode = fogMode;
 	C_WebGL.updateFog();
 };
 
 C_Rendering.setFogState = function (isFogEnabled) {
-	RENDERER_ENABLE_FOG = isFogEnabled;
+	C_Settings.setValue(isFogEnabled);
 
 	C_EventSystem.triggerEvent("FOG_MODE_UPDATE");
 	DEBUG("Fog is now " + (isFogEnabled ? "ON" : "OFF"));
@@ -102,8 +112,8 @@ C_Rendering.setFogState = function (isFogEnabled) {
 };
 
 C_Rendering.setClearColor = function (color) {
-	RENDERER_SCENE_BACKGROUND_COLOR = color;
-	this.renderer.activeScene.clearColor = C_WebGL.getRgbColorFromHex(RENDERER_SCENE_BACKGROUND_COLOR);
+	this.clearColor = color;
+	this.renderer.activeScene.clearColor = C_WebGL.getRgbColorFromHex(this.clearColor);
 };
 
 C_Rendering.getActiveScene = function () {

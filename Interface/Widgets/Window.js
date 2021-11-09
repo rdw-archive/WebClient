@@ -44,7 +44,7 @@ class Window extends Widget {
 		window.enableMouse(true); // clicks shouldn't pass through as it makes it feel like an overlay and not an actual window
 		this.content.enableMouse(true);
 
-		if (!DISPLAY_WINDOW_DEBUG_INFO) return;
+		if (!C_Settings.getValue("displayWidgetMetadata")) return;
 		this.statusBar = new Frame(widgetName + "StatusBar", window, Enum.WIDGET_TEMPLATE_WINDOW_STATUSBAR);
 		this.statusText = this.statusBar.createFontString(widgetName + "StatusText", "HIGH", "GameFontSmallest");
 		this.statusText.setText(format("%s: %s (%s)", L["Debug Info"], this.name, template));

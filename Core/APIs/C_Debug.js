@@ -31,7 +31,7 @@ C_Debug.drawSphere = function (positionVector3D = Vector3D.ORIGIN, radiusInWorld
 };
 
 C_Debug.createTextPlane = function (text, parentNode) {
-	textPlane = C_WebGL.makeTextPlane(text);
+	let textPlane = C_WebGL.makeTextPlane(text);
 	textPlane.parent = parentNode;
 	return textPlane;
 };
@@ -155,7 +155,7 @@ C_Debug.drawNavigationMap = function () {
 		width: 1,
 		height: 1,
 	});
-	ground.renderingGroupID = RENDERER_DEBUG_MESH_RENDERING_GROUP_ID;
+	ground.renderingGroupID = 5; // Should be higher than the scene geometry to avoid glitches;
 
 	const matrices = [];
 	const colors = [];
