@@ -12,6 +12,7 @@ class OptionsFrame extends Widget {
 	}
 	createWindow(parentFrame, template) {
 		this._obj = new Window(this.name + "Window", parentFrame, template);
+		this._obj.content.setFlexRowLayout();
 
 		const leftPane = new Frame(this.name + "ContentLeft", this._obj.content, "OptionsFrameLeftPanel");
 		this._obj.content.leftPane = leftPane;
@@ -23,7 +24,7 @@ class OptionsFrame extends Widget {
 		this._obj.setTitle(text);
 	}
 	// Add a new category to the list so that it may be accessed in the menu.
-	addCategory(categoryName) {
+	addCategoryPanel(categoryName, panel) {
 		const categorySelectorFrame = new Frame(
 			this.name + "_" + "CategorySelector" + "_" + categoryName,
 			this._obj.content.leftPane,
@@ -40,6 +41,14 @@ class OptionsFrame extends Widget {
 		const categoryText = categorySelectorFrame.createFontString("TODO", "MEDIUM", "CaptionFontNormal");
 		categoryText.setText(categoryName);
 
+		this.categorySelectors[categoryName] = categorySelectorFrame;
+		this.panels[categoryName] = panel;
+
+		// Auto-selecting the first added category seems like a sensible default
+		if (!this.selectedCategory) this.setActiveCategory(categoryName);
+		this.updateVisibleCategories();
+	}
+	addCategory(categoryName) {
 		const panel = new Frame(
 			this.name + "_" + categoryName + "_Panel",
 			this._obj.content.rightPane,
@@ -49,12 +58,7 @@ class OptionsFrame extends Widget {
 		const headerText = panel.header.createFontString("TODO", "MEDIUM", "CaptionFontLarge");
 		headerText.setText(categoryName);
 
-		this.categorySelectors[categoryName] = categorySelectorFrame;
-		this.panels[categoryName] = panel;
-
-		// Auto-selecting the first added category seems like a sensible default
-		if (!this.selectedCategory) this.setActiveCategory(categoryName);
-		this.updateVisibleCategories();
+		this.addCategoryPanel(categoryName, panel);
 	}
 	removeCategory(categoryName) {}
 	setActiveCategory(categoryName) {

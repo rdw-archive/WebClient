@@ -78,6 +78,7 @@
 		"ScriptObject": "writable",
 		"ScrollFrame": "writable",
 		"SettingsCacheSchema": "writable",
+		"SystemOptions": "writable",
 		"Table": "writable",
 		"TerrainMap": "writable",
 		"UIParent": "writable",

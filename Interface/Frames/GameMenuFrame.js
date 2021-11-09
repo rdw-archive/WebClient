@@ -39,7 +39,7 @@ GameMenuFrame.createSystemOptionsButton = function () {
 	this.addonOptionsButton.setText(L["System"]);
 	this.addonOptionsButton.setScript("OnClick", function () {
 		GameMenuFrame.hide();
-		// SystemOptionsFrame.show(); // NYI
+		SystemOptions.show();
 	});
 };
 

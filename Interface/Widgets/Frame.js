@@ -21,6 +21,10 @@ class Frame extends Widget {
 		this._obj.style.gridTemplateColumns = "repeat(" + numColumns + ", 50px)";
 		this._obj.style.gridTemplateRows = "repeat(" + numRows + ", 50px)";
 	}
+	setFlexRowLayout() {
+		this._obj.style.display = "flex";
+		this._obj.style.flexDirection = "row";
+	}
 	showScrollbarY() {
 		this._obj.style.overflowY = "scroll";
 	}

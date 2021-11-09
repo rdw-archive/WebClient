@@ -13,6 +13,7 @@ class WebClient {
 		"KeyboardInputFrame",
 		"GameMenuFrame",
 		"AddonOptionsFrame",
+		"SystemOptionsFrame",
 	];
 	static settings = {};
 	static nextAvailableGUID = 1;

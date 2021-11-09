@@ -16,4 +16,7 @@ class OptionsGroup extends Widget {
 	setCaptionStyle(template) {
 		this.legend.setClass(template);
 	}
+	addContent(widget) {
+		this.fieldSet.addContent(widget);
+	}
 }
