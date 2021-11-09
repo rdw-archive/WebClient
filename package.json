@@ -34,6 +34,7 @@
 		"check-format": "npx prettier --check --config Config/prettier.json --ignore-path Config/.prettierignore .",
 		"test": "electron-mocha Tests/Electron --colors && electron-mocha --config Config/electron-mocha.json",
 		"autoformat": "npx prettier --write --config Config/prettier.json --ignore-path Config/.prettierignore .",
+		"all": "npm run autoformat && npm run checks && npm test",
 		"start": "electron .",
 		"oom": "electron --js-flags='--max-old-space-size=10192' .",
 		"dev": "electron --js-flags=--max-old-space-size=500 . ",
