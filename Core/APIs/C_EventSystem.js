@@ -31,7 +31,7 @@ const C_EventSystem = {
 		this.eventListeners[event][listenerID] = onEventCallback;
 	},
 	isEventEnabled(event) {
-		return WEBCLIENT_ENABLED_EVENT_TRIGGERS[event] === true;
+		return C_Settings.getValue("permittedEventTriggers")[event] === true;
 	},
 	isEventMonitoredByListener(event, listenerID) {
 		if (!this.eventListeners[event]) return false;
