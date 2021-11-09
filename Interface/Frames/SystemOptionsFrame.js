@@ -103,6 +103,42 @@ const SystemOptions = {
 		);
 		volumeSettingsGroup.setCaption(L["Volume Settings"]);
 		volumeSettingsGroup.setCaptionStyle("CaptionFontSmall");
+		// Create sliders
+		let masterVolumeSlider = new Slider(
+			"SystemOptionsFrame_SoundOptions_VolumeSettingsGroup_MasterVolumeSlider",
+			volumeSettingsGroup.fieldSet
+		);
+		masterVolumeSlider.setLabelText(L["Master Volume"]);
+		masterVolumeSlider.setScript("OnInput", () => {
+			DEBUG("Functionality NYI");
+		});
+
+		let effectsVolumeSlider = new Slider(
+			"SystemOptionsFrame_SoundOptions_VolumeSettingsGroup_EffectsVolumeSlider",
+			volumeSettingsGroup.fieldSet
+		);
+		effectsVolumeSlider.setLabelText(L["Sound Effects"]);
+		effectsVolumeSlider.setScript("OnInput", () => {
+			DEBUG("Functionality NYI");
+		});
+
+		let musicVolumeSlider = new Slider(
+			"SystemOptionsFrame_SoundOptions_VolumeSettingsGroup_MusicVolumeSlider",
+			volumeSettingsGroup.fieldSet
+		);
+		musicVolumeSlider.setLabelText(L["Music"]);
+		musicVolumeSlider.setScript("OnInput", () => {
+			DEBUG("Functionality NYI");
+		});
+
+		let ambienceVolumeSlider = new Slider(
+			"SystemOptionsFrame_SoundOptions_VolumeSettingsGroup_AmbienceVolumeSlider",
+			volumeSettingsGroup.fieldSet
+		);
+		ambienceVolumeSlider.setLabelText(L["Ambience"]);
+		ambienceVolumeSlider.setScript("OnInput", () => {
+			DEBUG("Functionality NYI");
+		});
 
 		this.frame.addCategoryPanel("Sound", soundOptionsPanel);
 
