@@ -60,7 +60,7 @@ const SystemOptions = {
 		// Create checkboxes
 
 		let backgroundMusicToggle = new CheckButton(
-			"SystemOptionsFrame_SoundOptions_GeneralSettingsGroup_BackgroundbackgroundMusicToggle",
+			"SystemOptionsFrame_SoundOptions_ChannelSettingsGroup_BackgroundbackgroundMusicToggle",
 			channelSettingsGroup.fieldSet
 		);
 		backgroundMusicToggle.setScript("OnClick", () => {
@@ -69,7 +69,7 @@ const SystemOptions = {
 		backgroundMusicToggle.setText(L["Music"]);
 
 		let soundEffectToggle = new CheckButton(
-			"SystemOptionsFrame_SoundOptions_GeneralSettingsGroup_SoundEffectsToggle",
+			"SystemOptionsFrame_SoundOptions_ChannelSettingsGroup_SoundEffectsToggle",
 			channelSettingsGroup.fieldSet
 		);
 		soundEffectToggle.setScript("OnClick", () => {
@@ -78,7 +78,7 @@ const SystemOptions = {
 		soundEffectToggle.setText(L["Sound Effects"]);
 
 		let ambientSoundToggle = new CheckButton(
-			"SystemOptionsFrame_SoundOptions_GeneralSettingsGroup_AmbientSoundsToggle",
+			"SystemOptionsFrame_SoundOptions_ChannelSettingsGroup_AmbientSoundsToggle",
 			channelSettingsGroup.fieldSet
 		);
 		ambientSoundToggle.setScript("OnClick", () => {
@@ -87,7 +87,7 @@ const SystemOptions = {
 		ambientSoundToggle.setText(L["Ambient Sounds"]);
 
 		let soundInBackgroundToggle = new CheckButton(
-			"SystemOptionsFrame_SoundOptions_GeneralSettingsGroup_SoundInBackgroundToggle",
+			"SystemOptionsFrame_SoundOptions_ChannelSettingsGroup_SoundInBackgroundToggle",
 			channelSettingsGroup.fieldSet
 		);
 		soundInBackgroundToggle.setScript("OnClick", () => {
