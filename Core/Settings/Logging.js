@@ -1,1 +1,0 @@
-var WEBCLIENT_ENABLE_PROFILING = true;
