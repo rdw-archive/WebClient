@@ -15,7 +15,7 @@ const C_Message = {
 		DEBUG(format("Posting message %s", messageString));
 
 		if (C_Settings.getValue("packMessages")) messageString = MESSAGEPACK.encode(messageString);
-		C_Networking.sendRequest(NETWORKING_WORLDSERVER_URL, "nyi", messageString);
+		C_Networking.sendRequest(C_Settings.getValue("worldServerURL"), "nyi", messageString);
 	},
 	getNextUnprocessedMessage: function () {
 		return C_Message.unprocessedMessages.shift();
