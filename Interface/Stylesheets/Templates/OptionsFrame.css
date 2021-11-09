@@ -1,0 +1,12 @@
+.OptionsFrameLeftPanel {
+	padding: var(--layout-padding-narrow);
+}
+
+.OptionsFrameRightPanel {
+	padding: var(--layout-padding-wide);
+}
+
+.OptionsFrameCategoryPanel {
+	min-height: 60vh;
+	min-width: 40vw;
+}
