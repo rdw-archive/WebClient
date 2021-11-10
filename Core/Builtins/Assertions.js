@@ -21,3 +21,23 @@ function assertDeepEquals(value1, value2) {
 function assertUndefined(value) {
 	return NODE.Assert.equal(value, undefined);
 }
+
+function assertTypeOf(value, expectedType) {
+	return assertEquals(value.constructor.name, expectedType);
+}
+
+function assertThrows(functionToCall, errorPropertiesMap) {
+	return NODE.Assert.throws(functionToCall, errorPropertiesMap);
+}
+
+function assertApproximatelyEquals(actual, expected) {
+	// Number.EPSILON is too small to work here; this should work in most cases, to the same effect
+	const tolerantEpsilon = 1e-8;
+	return assertTrue(Math.abs(actual - expected) < tolerantEpsilon);
+}
+
+function assertNotApproximatelyEquals(actual, expected) {
+	// Number.EPSILON is too small to work here; this should work in most cases, to the same effect
+	const tolerantEpsilon = 1e-8;
+	return assertFalse(Math.abs(actual - expected) < tolerantEpsilon);
+}
