@@ -88,6 +88,8 @@
 		"Table": "writable",
 		"TerrainMap": "writable",
 		"UIParent": "writable",
+		"validateString": "writable",
+		"validateNumber": "writable",
 		"Vector3D": "writable",
 		"ViewportContainer": "writable",
 		"WebClient": "writable",
