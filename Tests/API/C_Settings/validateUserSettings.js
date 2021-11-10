@@ -1,4 +1,4 @@
-describe("The C_Settings API", () => {
+describe("validateUserSettings", () => {
 	it("should always succeed in validating the user settings", () => {
 		assertTrue(C_Settings.validateUserSettings());
 	});

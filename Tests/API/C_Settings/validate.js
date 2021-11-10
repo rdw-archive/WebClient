@@ -1,4 +1,4 @@
-describe("The C_Settings API", function () {
+describe("validate", function () {
 	it("should succeed validating arbitrary settings when the default settings are passed", function () {
 		const defaultSettings = C_FileSystem.readJSON(C_Settings.DEFAULT_SETTINGS_FILE_PATH);
 		assertTrue(C_Settings.validate(defaultSettings));
