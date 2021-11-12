@@ -1,0 +1,16 @@
+name: No TODOs
+
+on:
+  push:
+
+jobs:
+  lint:
+    name: bash
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repo sitory
+        uses: actions/checkout@v1
+
+      - name: Check for "temporary" comments
+        run: .github/check-for-todos.sh
