@@ -1,5 +1,6 @@
 var format = require("util").format;
 
+// @deprecated Validators should be global builtins, since APIs are intended to provide high-level engine functionality
 const C_Validation = {
 	// TODO: Move to a proper schema file
 	addonMetadata: {
