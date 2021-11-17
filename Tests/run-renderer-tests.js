@@ -12,6 +12,7 @@ const testSuites = {
 		"API/C_Settings/validateDefaultSettings.js",
 		"API/C_Settings/validateUserSettings.js",
 	],
+	C_WebAudio: ["API/C_WebAudio/BuiltinAudioDecoder.js"],
 };
 
 for (const namespace in testSuites) {
