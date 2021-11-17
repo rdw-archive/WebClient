@@ -1,4 +1,5 @@
 const testSuites = {
+	SharedConstants: ["SharedConstants/Paths.js"],
 	Builtins: ["Builtins/LocalCacheTests.js"],
 	C_Settings: [
 		"API/C_Settings/validate.js",
