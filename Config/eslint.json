@@ -103,9 +103,11 @@
 		"WEBCLIENT_ADDONS_DIR": "writable",
 		"WEBCLIENT_ASSETS_DIR": "writable",
 		"WEBCLIENT_EXPORTS_DIR": "writable",
+		"WEBCLIENT_FIXTURES_DIR": "writable",
 		"WEBCLIENT_INTERFACE_DIR": "writable",
 		"WEBCLIENT_LOCALES_DIR": "writable",
 		"WEBCLIENT_ROOT_DIR": "writable",
-		"WEBCLIENT_SETTINGS_DIR": "writable"
+		"WEBCLIENT_SETTINGS_DIR": "writable",
+		"WEBCLIENT_TESTS_DIR": "writable"
 	}
 }
