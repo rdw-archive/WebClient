@@ -9,6 +9,7 @@ const BABYLON = require("babylonjs/babylon.max"); // C_WebGL & C_Sound
 const BITMAP = require("bmp-js"); // C_Bitmap
 const MESSAGEPACK = require("@msgpack/msgpack"); // C_Message
 const JOI = require("joi"); // C_Validation
+const UUID = require("uuid"); // UniqueID builtin
 
 function dump(...data) {
 	console.log(data);

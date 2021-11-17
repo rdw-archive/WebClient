@@ -88,6 +88,7 @@
 		"Table": "writable",
 		"TerrainMap": "writable",
 		"UIParent": "writable",
+		"UUID": "writable",
 		"UniqueID": "writable",
 		"validateString": "writable",
 		"validateNumber": "writable",
