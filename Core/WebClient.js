@@ -129,6 +129,7 @@ class WebClient {
 		C_Rendering.startRenderLoop();
 	}
 	// When a unique ID is required, but the exact ID that is assigned doesn't matter, this convenience method can be used
+	// @deprecated Use UUID package (new UniqueID()) instead
 	static getNextAvailableGUID() {
 		this.nextAvailableGUID++;
 		return this.nextAvailableGUID - 1;
