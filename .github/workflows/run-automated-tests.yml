@@ -26,7 +26,7 @@ jobs:
           - os: macos-latest
             ubuntu-workaround-prefix-string: ""
           - os: ubuntu-latest
-            ubuntu-workaround-prefix-string: export DISPLAY=:45 && xvfb-run --server-num 45
+            ubuntu-workaround-prefix-string: export DISPLAY=:45 && xvfb-run --auto-servernum --server-num 45
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v1
