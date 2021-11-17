@@ -14,7 +14,8 @@
 		"bmp-js": "^0.1.0",
 		"joi": "17.4.1",
 		"maxrects-packer": "2.7.2",
-		"tippy.js": "6.3.6"
+		"tippy.js": "6.3.6",
+		"uuid": "8.3.2"
 	},
 	"devDependencies": {
 		"electron": "13.3.0",
