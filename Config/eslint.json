@@ -60,6 +60,7 @@
 		"CheckButton": "writable",
 		"Color": "writable",
 		"CRC32": "writable",
+		"Decoder": "writable",
 		"EditBox": "writable",
 		"Enum": "writable",
 		"FieldSet": "writable",
