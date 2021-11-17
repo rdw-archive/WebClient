@@ -28,7 +28,7 @@ if [ $NUMBER_OF_COMMITTED_TODOS -ne 0 ]; then
 
 	echo "Processed git diff:"
 	echo ""
-	git diff origin/main HEAD | grep ^+ | grep --color=always 'TODO'
+	git diff origin/main HEAD | grep ^+ | grep --color=always 'TODO' -C3
 
 	exit 1
 fi
@@ -43,7 +43,7 @@ if [ $NUMBER_OF_COMMITTED_TBDS -ne 0 ]; then
 
 	echo "Processed git diff:"
 	echo ""
-	git diff origin/main HEAD | grep ^+ | grep --color=always 'TBD'
+	git diff origin/main HEAD | grep ^+ | grep --color=always 'TBD' -C3
 
 	exit 2
 fi
@@ -58,7 +58,7 @@ if [ $NUMBER_OF_COMMITTED_WIPS -ne 0 ]; then
 
 	echo "Processed git diff:"
 	echo ""
-	git diff origin/main HEAD | grep ^+ | grep --color=always 'WIP'
+	git diff origin/main HEAD | grep ^+ | grep --color=always 'WIP' -C3
 
 	exit 3
 fi
@@ -73,7 +73,7 @@ if [ $NUMBER_OF_COMMITTED_FIXMES -ne 0 ]; then
 
 	echo "Processed git diff:"
 	echo ""
-	git diff origin/main HEAD | grep ^+ | grep --color=always 'FIXME'
+	git diff origin/main HEAD | grep ^+ | grep --color=always 'FIXME' -C3
 
 	exit 4
 fi
@@ -88,7 +88,7 @@ if [ $NUMBER_OF_COMMITTED_HACKS -ne 0 ]; then
 
 	echo "Processed git diff:"
 	echo ""
-	git diff origin/main HEAD | grep ^+ | grep --color=always 'HACK'
+	git diff origin/main HEAD | grep ^+ | grep --color=always 'HACK' -C3
 
 	exit 5
 fi
