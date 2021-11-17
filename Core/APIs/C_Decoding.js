@@ -24,15 +24,17 @@ const C_Decoding = {
 		return true;
 	},
 	addDecoder(decoder) {
-		const fileType = decoder.getSupportedFileType();
+		const fileTypes = decoder.getSupportedFileTypes();
 
-		if (this.registeredDecoders[fileType]) {
-			NOTICE(format("Failed to register decoder for file type %s (already registered)", fileType));
-			return;
+		for (const fileType of Object.keys(fileTypes)) {
+			if (this.registeredDecoders[fileType]) {
+				NOTICE(format("Failed to register decoder for file type %s (already registered)", fileType));
+				return;
+			}
+
+			this.registeredDecoders[fileType] = decoder;
+			DEBUG(format("Registered new decoder for file type *.%s", fileType.toUpperCase()));
 		}
-
-		this.registeredDecoders[fileType] = decoder;
-		DEBUG(format("Registered new decoder for file type *.%s", fileType.toUpperCase()));
 	},
 	decodeFile(filePath) {
 		const resource = C_Resources.load(filePath);

@@ -1,12 +1,12 @@
 class Decoder {
-	constructor(fileType, decodingFunction) {
-		this.fileType = fileType;
-		this.decodingFunction = decodingFunction;
+	fileTypes = {};
+	constructor(decodingFunction) {
+		this.decode = decodingFunction || this.decode; // NO-OP as a safe default
 	}
-	getSupportedFileType() {
-		return this.fileType;
+	getSupportedFileTypes() {
+		return this.fileTypes;
 	}
 	decode(resource) {
-		return this.decodingFunction(resource);
+		return resource;
 	}
 }
