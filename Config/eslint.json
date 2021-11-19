@@ -51,6 +51,7 @@
 		"C_Testing": "writable",
 		"C_Validation": "writable",
 		"C_WebGL": "writable",
+		"C_WebAudio": "writable",
 		"C_WebView": "writable",
 		"BinaryReader": "writable",
 		"Bitmap": "writable",
