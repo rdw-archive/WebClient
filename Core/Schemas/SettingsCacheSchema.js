@@ -79,4 +79,17 @@ const SettingsCacheSchema = JOI.object({
 		blue: JOI.number().integer().min(0).max(255),
 		alpha: JOI.number().integer().min(0).max(255),
 	}).required(),
+
+	// WebAudio API
+	enableSound: JOI.boolean().required(),
+	useHighQualityStereo: JOI.boolean().required(),
+	fadeSoundInBackground: JOI.boolean().required(),
+	enableMusic: JOI.boolean().required(),
+	enableSFX: JOI.boolean().required(),
+	enableAmbientSounds: JOI.boolean().required(),
+	backgroundAudioVolume: JOI.number().min(0).max(1).required(),
+	globalVolume: JOI.number().min(0).max(1).required(),
+	sfxVolume: JOI.number().min(0).max(1).required(),
+	musicVolume: JOI.number().min(0).max(1).required(),
+	ambienceVolume: JOI.number().min(0).max(1).required(),
 });
