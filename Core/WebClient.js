@@ -5,16 +5,6 @@ class WebClient {
 	static titleString = "Revival WebClient";
 	static versionString = "v" + require("./package.json").version;
 
-	static defaultFrames = [
-		"ViewportContainer",
-		"WorldFrame",
-		"UIParent",
-		"FpsCounterFrame",
-		"KeyboardInputFrame",
-		"GameMenuFrame",
-		"AddonOptionsFrame",
-		"SystemOptionsFrame",
-	];
 	static settings = {};
 	static nextAvailableGUID = 1;
 	// Sets the window title of the application window
@@ -77,13 +67,6 @@ class WebClient {
 		DEBUG("Loading application manifest from " + filePath);
 		this.metadata = C_FileSystem.readJSON(filePath);
 	}
-	// Load basic interface
-	static createUserInterface() {
-		for (const fileName of this.defaultFrames) {
-			DEBUG(format("Creating default interface component %s", fileName));
-			this.loadScript(format(WEBCLIENT_INTERFACE_DIR + "/Frames/" + fileName + ".js"));
-		}
-	}
 	// Defer render loop until the WorldFrame (canvas) exists
 	static onScriptExecutionFinished(event, URL) {
 		// Kinda ugly, but alas. It's better than entering callback hell and sync loading doesn't work at all for this
@@ -91,23 +74,9 @@ class WebClient {
 		if (URL !== WEBCLIENT_INTERFACE_DIR + "/Frames/WorldFrame.js") return;
 
 		// process.on("exit", function () {
-		window.onbeforeunload = function () {
-			C_EventSystem.triggerEvent("APPLICATION_SHUTDOWN");
-		};
-
-		C_EventSystem.registerEvent("APPLICATION_SHUTDOWN", "WebClient", function () {
-			DEBUG("Application shutting down; performing cleanup tasks");
-			C_Addons.saveAddonCache();
-			C_Macro.saveMacroCache();
-			C_Settings.saveSettingsCache();
-		});
-
-		WebClient.run();
 	}
 	// Starts the client application
 	static run() {
-		C_Profiling.endTimer("StartWebClient");
-
 		function processMessageQueue() {
 			let numProcessedMessages = 0;
 			let nextMessage = null;

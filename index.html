@@ -9,137 +9,152 @@
 
 		<link rel="icon" type="image/x-icon" sizes="300x300" href="Interface/Icons/favicon_v2.ico" />
 
-		<!-- Shared constants are used everywhere and must be made available ASAP -->
-		<script>
-			const path = require("path");
-			// These folders must be provided as a path relative to the application root (wherever index.html is located)
-			const WEBCLIENT_ROOT_DIR = __dirname; // This is NOT always cwd (.), if electron is run from elsewhere :(
-			const WEBCLIENT_ASSETS_DIR = path.join(WEBCLIENT_ROOT_DIR, "Assets");
-			const WEBCLIENT_INTERFACE_DIR = path.join(WEBCLIENT_ROOT_DIR, "Interface");
-			const WEBCLIENT_ADDONS_DIR = path.join(WEBCLIENT_INTERFACE_DIR, "Addons");
-			const WEBCLIENT_LOCALES_DIR = path.join(WEBCLIENT_INTERFACE_DIR, "Locales");
-			const WEBCLIENT_EXPORTS_DIR = path.join(WEBCLIENT_ROOT_DIR, "Exports");
-			const WEBCLIENT_SETTINGS_DIR = path.join(WEBCLIENT_ROOT_DIR, "Core", "Settings");
-			const WEBCLIENT_TESTS_DIR = path.join(WEBCLIENT_ROOT_DIR, "Tests");
-			const WEBCLIENT_FIXTURES_DIR = path.join(WEBCLIENT_TESTS_DIR, "Fixtures");
-			// This isn't really worth a separate file, since the values are initialized later
-			const Enum = {};
-		</script>
-		<script src="Core/Enums/FogModes.js"></script>
-		<script src="Core/Enums/KeyCodes.js"></script>
-		<script src="Core/Enums/Locales.js"></script>
-		<script src="Core/Enums/LogLevels.js"></script>
-		<script src="Core/Enums/PixelFormats.js"></script>
-		<script src="Core/Enums/ResourceStates.js"></script>
-		<script src="Core/Enums/UnitIDs.js"></script>
-		<script src="Core/Enums/WidgetTemplates.js"></script>
-
-		<!-- Primitives are always self-contained and can safely be loaded first -->
-		<script src="Core/Primitives/Logger.js"></script>
-
-		<!-- The are just global shortcuts to third-party modules and libraries, exported for ease of use -->
-		<script src="Core/Aliases.js" type="text/javascript"></script>
-		<script src="Core/Channels.js"></script>
-
-		<!-- Builtin libraries should be loaded first of all to make sure they're available globally -->
-		<script src="Core/Builtins/Assertions.js"></script>
-		<script src="Core/Builtins/BinaryReader.js"></script>
-		<script src="Core/Builtins/BinPacker.js" type="text/javascript"></script>
-		<script src="Core/Builtins/Bitmap.js" type="text/javascript"></script>
-		<script src="Core/Builtins/CRC32.js"></script>
-		<script src="Core/Builtins/LocalCache.js"></script>
-
-		<!-- Extensions to third party libraries should be loaded before they are used -->
-		<script src="Core/Extensions/BabylonJS/Arrow2D.js" type="text/javascript"></script>
-
-		<!-- These provide constants that may be used as default settings -->
-		<script src="Core/Classes/Color.js"></script>
-
-		<!-- Load before the Core APIs as they may be used in initialization -->
-		<script src="Core/Schemas/AddonCacheSchema.js"></script>
-		<script src="Core/Schemas/BindingsCacheSchema.js"></script>
-		<script src="Core/Schemas/LayoutCacheSchema.js"></script>
-		<script src="Core/Schemas/MacroCacheSchema.js"></script>
-		<script src="Core/Schemas/SettingsCacheSchema.js"></script>
-
-		<!-- The core/engine must be loaded before the WebClient can be started -->
-		<script src="Core/Classes/AddOn.js"></script>
-
-		<script src="Core/Classes/HeightMap.js"></script>
-		<script src="Core/Classes/NavigationMap.js"></script>
-		<script src="Core/Classes/TerrainMap.js"></script>
-
-		<script src="Core/Classes/Macro.js"></script>
-
-		<script src="Core/Classes/Renderer.js"></script>
-		<script src="Core/Classes/Resource.js"></script>
-		<script src="Core/Classes/TextureAtlas.js"></script>
-		<script src="Core/Classes/Vector3D.js"></script>
-		<script src="Core/WebClient.js"></script>
-
-		<!-- Network packet definitions, to be loaded before the packet DB can be used -->
-		<script src="Core/Packets/MessageDB.js"></script>
-
-		<!-- APIs aren't needed before the client is actually started -->
-		<script src="Core/APIs/C_Addons.js"></script>
-		<script src="Core/APIs/C_Bitmap.js"></script>
-		<script src="Core/APIs/C_Debug.js"></script>
-		<script src="Core/APIs/C_ContentInfo.js"></script>
-		<script src="Core/APIs/C_Decoding.js"></script>
-		<script src="Core/APIs/C_EventSystem.js"></script>
-		<script src="Core/APIs/C_FileSystem.js"></script>
-		<script src="Core/APIs/C_Keybindings.js"></script>
-		<script src="Core/APIs/C_Locales.js"></script>
-		<script src="Core/APIs/C_Macro.js"></script>
-		<script src="Core/APIs/C_Navigation.js"></script>
-		<script src="Core/APIs/C_Message.js"></script>
-		<script src="Core/APIs/C_Networking.js"></script>
-		<script src="Core/APIs/C_Profiling.js"></script>
-		<script src="Core/APIs/C_Rendering.js"></script>
-		<script src="Core/APIs/C_Resources.js"></script>
-		<script src="Core/APIs/C_Settings.js"></script>
-		<script src="Core/APIs/C_System.js"></script>
-		<script src="Core/APIs/C_Validation.js"></script>
-		<script src="Core/APIs/C_Testing.js"></script>
-		<script src="Core/APIs/C_WebView.js"></script>
-		<script src="Core/APIs/C_WebGL.js"></script>
-
-		<!-- UI-related things can also wait, though widgets should be loaded before frames and the UIParent/ViewportContainer must come first -->
-		<script src="Interface/Widgets/ScriptObject.js"></script>
-		<script src="Interface/Widgets/Widget.js"></script>
-
-		<script src="Interface/Widgets/Button.js"></script>
-		<script src="Interface/Widgets/Canvas.js"></script>
-		<script src="Interface/Widgets/CheckButton.js"></script>
-		<script src="Interface/Widgets/EditBox.js"></script>
-		<script src="Interface/Widgets/FieldSet.js"></script>
-		<script src="Interface/Widgets/FontString.js"></script>
-		<script src="Interface/Widgets/Frame.js"></script>
-		<script src="Interface/Widgets/Label.js"></script>
-		<script src="Interface/Widgets/MultiLineEditBox.js"></script>
-		<script src="Interface/Widgets/Paragraph.js"></script>
-		<script src="Interface/Widgets/Image2D.js"></script>
-		<script src="Interface/Widgets/OptionsFrame.js"></script>
-		<script src="Interface/Widgets/OptionsGroup.js"></script>
-		<script src="Interface/Widgets/ProgressBar.js"></script>
-		<script src="Interface/Widgets/Legend.js"></script>
-		<script src="Interface/Widgets/ScrollFrame.js"></script>
-		<script src="Interface/Widgets/Slider.js"></script>
-		<script src="Interface/Widgets/Table.js"></script>
-		<script src="Interface/Widgets/Window.js"></script>
-
 		<meta content="text/html" charset="utf-8" http-equiv="Content-Type" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	</head>
 
-	<body oncontextmenu="return false">
-		<script src="Core/Initialization/start-render-thread.js"></script>
-		<script>
-			StartWebClient();
-		</script>
-	</body>
+	<body oncontextmenu="return false"></body>
+	<!-- Shared constants are used everywhere and must be made available ASAP -->
+	<script>
+		const path = require("path");
+		// These folders must be provided as a path relative to the application root (wherever index.html is located)
+		const WEBCLIENT_ROOT_DIR = __dirname; // This is NOT always cwd (.), if electron is run from elsewhere :(
+		const WEBCLIENT_ASSETS_DIR = path.join(WEBCLIENT_ROOT_DIR, "Assets");
+		const WEBCLIENT_INTERFACE_DIR = path.join(WEBCLIENT_ROOT_DIR, "Interface");
+		const WEBCLIENT_ADDONS_DIR = path.join(WEBCLIENT_INTERFACE_DIR, "Addons");
+		const WEBCLIENT_LOCALES_DIR = path.join(WEBCLIENT_INTERFACE_DIR, "Locales");
+		const WEBCLIENT_EXPORTS_DIR = path.join(WEBCLIENT_ROOT_DIR, "Exports");
+		const WEBCLIENT_SETTINGS_DIR = path.join(WEBCLIENT_ROOT_DIR, "Core", "Settings");
+		const WEBCLIENT_TESTS_DIR = path.join(WEBCLIENT_ROOT_DIR, "Tests");
+		const WEBCLIENT_FIXTURES_DIR = path.join(WEBCLIENT_TESTS_DIR, "Fixtures");
+		// This isn't really worth a separate file, since the values are initialized later
+		const Enum = {};
+		// Shorthand because I'm lazy (must be set after the localization tables have been read)
+		let L = {}; // Localization table (populated on load for the current client locale only)
+	</script>
+	<script src="Core/Enums/FogModes.js"></script>
+	<script src="Core/Enums/KeyCodes.js"></script>
+	<script src="Core/Enums/Locales.js"></script>
+	<script src="Core/Enums/LogLevels.js"></script>
+	<script src="Core/Enums/PixelFormats.js"></script>
+	<script src="Core/Enums/ResourceStates.js"></script>
+	<script src="Core/Enums/UnitIDs.js"></script>
+	<script src="Core/Enums/WidgetTemplates.js"></script>
+
+	<!-- Primitives are always self-contained and can safely be loaded first -->
+	<script src="Core/Primitives/Logger.js"></script>
+
+	<!-- The are just global shortcuts to third-party modules and libraries, exported for ease of use -->
+	<script src="Core/Aliases.js" type="text/javascript"></script>
+	<script src="Core/Channels.js"></script>
+
+	<!-- Builtin libraries should be loaded first of all to make sure they're available globally -->
+	<script src="Core/Builtins/Assertions.js"></script>
+	<script src="Core/Builtins/BinaryReader.js"></script>
+	<script src="Core/Builtins/BinPacker.js"></script>
+	<script src="Core/Builtins/Bitmap.js"></script>
+	<script src="Core/Builtins/CRC32.js"></script>
 	<script src="Core/Builtins/Decoder.js"></script>
+	<script src="Core/Builtins/LocalCache.js"></script>
 	<script src="Core/Builtins/Validation.js"></script>
 	<script src="Core/Builtins/UniqueID.js"></script>
+
+	<!-- Extensions to third party libraries should be loaded before they are used -->
+	<script src="Core/Extensions/BabylonJS/Arrow2D.js" type="text/javascript"></script>
+
+	<!-- These provide constants that may be used as default settings -->
+	<script src="Core/Classes/Color.js"></script>
+
+	<!-- Load before the Core APIs as they may be used in initialization -->
+	<script src="Core/Schemas/AddonCacheSchema.js"></script>
+	<script src="Core/Schemas/BindingsCacheSchema.js"></script>
+	<script src="Core/Schemas/LayoutCacheSchema.js"></script>
+	<script src="Core/Schemas/MacroCacheSchema.js"></script>
+	<script src="Core/Schemas/SettingsCacheSchema.js"></script>
+
+	<!-- The core/engine must be loaded before the WebClient can be started -->
+	<script src="Core/Classes/AddOn.js"></script>
+
+	<script src="Core/Classes/HeightMap.js"></script>
+	<script src="Core/Classes/NavigationMap.js"></script>
+	<script src="Core/Classes/TerrainMap.js"></script>
+
+	<script src="Core/Classes/Macro.js"></script>
+
+	<script src="Core/Classes/Renderer.js"></script>
+	<script src="Core/Classes/Resource.js"></script>
+	<script src="Core/Classes/TextureAtlas.js"></script>
+	<script src="Core/Classes/Vector3D.js"></script>
+	<script src="Core/WebClient.js"></script>
+
+	<!-- Network packet definitions, to be loaded before the packet DB can be used -->
+	<script src="Core/Packets/MessageDB.js"></script>
+
+	<!-- UI-related things can also wait, though widgets should be loaded before frames and the UIParent/ViewportContainer must come first -->
+	<script src="Interface/Widgets/ScriptObject.js"></script>
+	<script src="Interface/Widgets/Widget.js"></script>
+
+	<script src="Interface/Widgets/Button.js"></script>
+	<script src="Interface/Widgets/Canvas.js"></script>
+	<script src="Interface/Widgets/CheckButton.js"></script>
+	<script src="Interface/Widgets/EditBox.js"></script>
+	<script src="Interface/Widgets/FieldSet.js"></script>
+	<script src="Interface/Widgets/FontString.js"></script>
+	<script src="Interface/Widgets/Frame.js"></script>
+	<script src="Interface/Widgets/Label.js"></script>
+	<script src="Interface/Widgets/MultiLineEditBox.js"></script>
+	<script src="Interface/Widgets/Paragraph.js"></script>
+	<script src="Interface/Widgets/Image2D.js"></script>
+	<script src="Interface/Widgets/OptionsFrame.js"></script>
+	<script src="Interface/Widgets/OptionsGroup.js"></script>
+	<script src="Interface/Widgets/ProgressBar.js"></script>
+	<script src="Interface/Widgets/Legend.js"></script>
+	<script src="Interface/Widgets/ScrollFrame.js"></script>
+	<script src="Interface/Widgets/Slider.js"></script>
+	<script src="Interface/Widgets/Table.js"></script>
+	<script src="Interface/Widgets/Window.js"></script>
+
+	<!-- Critical UI elements must be loaded ASAP (may NOT use APIs, as they aren't yet loaded)-->
+	<script src="Interface/Frames/ViewportContainer.js"></script>
+	<script src="Interface/Frames/WorldFrame.js"></script>
+	<script src="Interface/Frames/UIParent.js"></script>
+
+	<!-- Must be available before loading the others (this needs a better architecture) -->
+	<script src="Core/APIs/C_FileSystem.js"></script>
+	<script src="Core/APIs/C_Settings.js"></script>
+	<script src="Core/APIs/C_WebGL.js"></script>
+
+	<!-- Most APIs aren't needed before the client is actually started -->
+	<script src="Core/APIs/C_Addons.js"></script>
+	<script src="Core/APIs/C_Bitmap.js"></script>
+	<script src="Core/APIs/C_Debug.js"></script>
+	<script src="Core/APIs/C_ContentInfo.js"></script>
+	<script src="Core/APIs/C_Decoding.js"></script>
+	<script src="Core/APIs/C_EventSystem.js"></script>
+	<script src="Core/APIs/C_Keybindings.js"></script>
+	<script src="Core/APIs/C_Locales.js"></script>
+	<script src="Core/APIs/C_Macro.js"></script>
+	<script src="Core/APIs/C_Navigation.js"></script>
+	<script src="Core/APIs/C_Message.js"></script>
+	<script src="Core/APIs/C_Networking.js"></script>
+	<script src="Core/APIs/C_Profiling.js"></script>
+	<script src="Core/APIs/C_Rendering.js"></script>
+	<script src="Core/APIs/C_Resources.js"></script>
+	<script src="Core/APIs/C_System.js"></script>
+	<script src="Core/APIs/C_Validation.js"></script>
+	<script src="Core/APIs/C_Testing.js"></script>
 	<script src="Core/API/WebAudio/BuiltinAudioDecoder.js"></script>
+	<script src="Core/APIs/C_WebView.js"></script>
+
+	<script src="Core/Initialization/start-render-thread.js"></script>
+	<script>
+		StartWebClient();
+	</script>
+
+	<!-- Non-critical UI elements can be deferred (may use APIs) -->
+	<script src="Interface/Frames/FpsCounterFrame.js"></script>
+	<script src="Interface/Frames/KeyboardInputFrame.js"></script>
+	<script src="Interface/Frames/GameMenuFrame.js"></script>
+	<script src="Interface/Frames/AddonOptionsFrame.js"></script>
+	<script src="Interface/Frames/SystemOptionsFrame.js"></script>
 </html>

@@ -13,6 +13,8 @@ const C_Rendering = {
 	fogColor: Color.GREY,
 	meshes: [],
 	lightSources: [],
+	renderCanvas: window["WorldFrame"],
+	renderer: new Renderer(window["WorldFrame"]),
 };
 
 C_Rendering.loadScene = function () {};
@@ -38,18 +40,10 @@ C_Rendering.isSwitchingScenes = function () {};
 // Creates a new renderer for the WorldFrame canvas and immediately renders the active scene.
 // Note: Only one renderer/scene/canvas is currently supported.
 C_Rendering.startRenderLoop = function () {
-	if (this.renderer) {
-		NOTICE("Failed to start render loop (renderer already exists and only one scene is currently supported)");
-		return;
-	}
-	const renderCanvas = window["WorldFrame"];
-	const renderer = new Renderer(renderCanvas);
-	this.renderer = renderer;
-
 	function onCurrentFrameFinishedRendering() {
-		const deltaTime = renderer.deltaTime;
+		const deltaTime = C_Rendering.renderer.deltaTime;
 		C_EventSystem.triggerEvent("RENDER_LOOP_UPDATE", deltaTime);
-		renderer.renderNextFrame();
+		C_Rendering.renderer.renderNextFrame();
 	}
 	this.switchScene();
 	this.createDefaultLightSource(); // for easier debugging

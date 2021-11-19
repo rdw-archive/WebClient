@@ -1,7 +1,5 @@
 var format = require("util").format;
 
-// Shorthand because I'm lazy (must be set after the localization tables have been read)
-let L = {};
 function StartWebClient() {
 	C_Profiling.startTimer("StartWebClient");
 
@@ -11,7 +9,6 @@ function StartWebClient() {
 
 	C_Macro.restoreMacroCache(); // Needs to be done before addons are loaded, as they may want to interact with the cache?
 
-	WebClient.createUserInterface();
 	C_Addons.loadAddonCache();
 	C_Addons.loadEnabledAddons();
 
@@ -19,4 +16,19 @@ function StartWebClient() {
 	WebClient.setWindowTitle(windowTitle);
 
 	C_EventSystem.registerEvent("SCRIPT_EXECUTION_FINISHED", "WebClient", WebClient.onScriptExecutionFinished);
+
+	window.onbeforeunload = function () {
+		C_EventSystem.triggerEvent("APPLICATION_SHUTDOWN");
+	};
+
+	C_EventSystem.registerEvent("APPLICATION_SHUTDOWN", "WebClient", function () {
+		DEBUG("Application shutting down; performing cleanup tasks");
+		C_Addons.saveAddonCache();
+		C_Macro.saveMacroCache();
+		C_Settings.saveSettingsCache();
+	});
+
+	WebClient.run();
+
+	C_Profiling.endTimer("StartWebClient");
 }
