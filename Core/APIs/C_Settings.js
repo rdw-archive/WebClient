@@ -55,9 +55,14 @@ const C_Settings = {
 };
 
 C_Settings.getValue = function (key) {
+	if (WebClient.settings[key] === undefined) throw new RangeError("Invalid settings key " + key);
 	return WebClient.settings[key];
 };
 
 C_Settings.setValue = function (key, value) {
+	if (WebClient.settings[key] === undefined) throw new RangeError("Invalid settings key " + key);
+	if (value === undefined) throw new RangeError("Invalid value " + value + " for settings key " + key);
 	WebClient.settings[key] = value;
 };
+
+C_Settings.loadSettingsCache();

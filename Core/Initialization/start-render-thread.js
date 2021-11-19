@@ -5,8 +5,6 @@ let L = {};
 function StartWebClient() {
 	C_Profiling.startTimer("StartWebClient");
 
-	C_Settings.loadSettingsCache();
-
 	WebClient.initializeLocalizationTables();
 	L = C_Locales.getLocalizationTable(C_Settings.getValue("activeLocale"));
 	WebClient.setWindowTitle(L["Loading..."]);
