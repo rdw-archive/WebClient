@@ -64,3 +64,5 @@ C_Settings.setValue = function (key, value) {
 	if (value === undefined) throw new RangeError("Invalid value " + value + " for settings key " + key);
 	WebClient.settings[key] = value;
 };
+
+C_Settings.loadSettingsCache();
