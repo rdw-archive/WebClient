@@ -4,7 +4,7 @@ describe("BuiltinAudioDecoder", () => {
 		assertEquals(decoder.constructor.name, "BuiltinAudioDecoder");
 	});
 
-	let exportedApiSurface = ["getSupportedFileTypes", "decode"];
+	const exportedApiSurface = ["getSupportedFileTypes", "decode"];
 
 	exportedApiSurface.forEach((namedExport) => {
 		it("should export function " + namedExport, () => {
