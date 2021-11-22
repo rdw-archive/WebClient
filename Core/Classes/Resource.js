@@ -24,4 +24,9 @@ class Resource {
 	isReady() {
 		return this.state === Enum.RESOURCE_STATE_READY;
 	}
+	toArrayBuffer() {
+		const newBuffer = new ArrayBuffer(this.data.byteLength);
+		new Uint8Array(newBuffer).set(new Uint8Array(this.data));
+		return newBuffer;
+	}
 }
