@@ -1,0 +1,3 @@
+Enum.AUDIO_CHANNEL_SFX = "SFX";
+Enum.AUDIO_CHANNEL_MUSIC = "Music";
+Enum.AUDIO_CHANNEL_AMBIENCE = "Ambience";

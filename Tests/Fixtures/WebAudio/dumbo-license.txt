@@ -1,0 +1,3 @@
+Source: https://archive.org/details/badpanda082
+License: https://creativecommons.org/licenses/by-nc-sa/3.0/
+Modifications: Selected the first 30 seconds, reduced quality (minimum setting in Audacity)

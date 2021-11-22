@@ -20,6 +20,8 @@
 	},
 	"globals": {
 		"AddonOptionsFrame": "writable",
+		"AudioSource": "writable",
+		"AudioTrack": "writable",
 		"assertApproximatelyEquals": "writable",
 		"assertNotApproximatelyEquals": "writable",
 		"assertTrue": "writable",

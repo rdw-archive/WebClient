@@ -3,6 +3,15 @@ var format = require("util").format;
 function StartWebClient() {
 	C_Profiling.startTimer("StartWebClient");
 
+	// WebAudio Setup: Requires settings to be loaded
+	// We can do this here as long as the C_Decoding API was loaded first
+	C_Decoding.addDecoder(new BuiltinAudioDecoder());
+	// Ensure stored settings are applied to any new audio source right away
+	C_WebAudio.setMusicVolume(C_Settings.getValue("musicVolume"));
+	C_WebAudio.setEffectsVolume(C_Settings.getValue("sfxVolume"));
+	C_WebAudio.setAmbienceVolume(C_Settings.getValue("ambienceVolume"));
+	C_WebAudio.setGlobalVolume(C_Settings.getValue("globalVolume"));
+
 	WebClient.initializeLocalizationTables();
 	L = C_Locales.getLocalizationTable(C_Settings.getValue("activeLocale"));
 	WebClient.setWindowTitle(L["Loading..."]);
