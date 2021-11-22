@@ -74,8 +74,8 @@ const SystemOptions = {
 			this.generalSettingsGroup.fieldSet
 		);
 		useHighQualityStereoCheckbox.setScript("OnClick", () => {
-			if (!useHighQualityStereoCheckbox.isChecked()) C_WebAudio.disableHighQualityStereo();
-			else C_WebAudio.enableHighQualityStereo();
+			if (!useHighQualityStereoCheckbox.isChecked()) C_WebAudio.useHighQualityStereo(false);
+			else C_WebAudio.useHighQualityStereo(true);
 		});
 		useHighQualityStereoCheckbox.setText(L["Use High-Quality Stereo"]);
 		useHighQualityStereoCheckbox.setChecked(C_Settings.getValue("useHighQualityStereo"));
@@ -86,8 +86,8 @@ const SystemOptions = {
 			this.generalSettingsGroup.fieldSet
 		);
 		soundInBackgroundCheckbox.setScript("OnClick", () => {
-			if (!soundInBackgroundCheckbox.isChecked()) C_WebAudio.disableBackgroundFade();
-			else C_WebAudio.enableBackgroundFade();
+			if (!soundInBackgroundCheckbox.isChecked()) C_WebAudio.setBackgroundFade(false);
+			else C_WebAudio.setBackgroundFade(true);
 		});
 		soundInBackgroundCheckbox.setText(L["Lower Volume in Background"]);
 		soundInBackgroundCheckbox.setChecked(C_Settings.getValue("fadeSoundInBackground"));

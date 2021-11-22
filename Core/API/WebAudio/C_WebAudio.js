@@ -1,11 +1,9 @@
 // supported formats: mp3, ogg? (query chrome/electron)
 
 const C_WebAudio = {
-	tracks: {
-		[Enum.AUDIO_CHANNEL_SFX]: new AudioTrack(),
-		[Enum.AUDIO_CHANNEL_MUSIC]: new AudioTrack(),
-		[Enum.AUDIO_CHANNEL_AMBIENCE]: new AudioTrack(),
-	},
+	musicTrack: new AudioTrack(),
+	sfxTrack: new AudioTrack(),
+	ambienceTrack: new AudioTrack(),
 	// This is needed to initialize the engine (before playback can start)
 	// Otherwise the first playback is delayed as it also initializes the engine, and global volume is unavailable
 	audioContext: BABYLON.Engine.audioEngine.audioContext,
@@ -16,31 +14,48 @@ const C_WebAudio = {
 		mp3: true,
 		wav: true,
 	},
+	isSoundEnabled: true,
 	musicFadeoutTimeInMilliseconds: 500,
 	// Internally, BabylonJS appears to convert negative master gain values to positive ones
 	// Since that seems counter-intuitive and weird, we simply disallow it
 	ERROR_NEGATIVE_VOLUME_GAIN: "Cannot set negative volume gain; the lowest possible value is zero",
 	ERROR_INVALID_TRACK_ID: "No such audio track exists",
-	isSoundEnabled: true,
 	playMusic(filePath) {
 		validateString(filePath, "Usage: C_WebAudio.playMusic(String filePath)");
 
 		if (!this.isSoundEnabled) return;
 
-		const musicTrack = this.tracks[Enum.AUDIO_CHANNEL_MUSIC];
+		// const musicTrack = this.tracks[Enum.AUDIO_CHANNEL_MUSIC];
 		this.stopMusic(); // Only one music track can play concurrently (effectively two voices that transition)
 
-		const audioSource = new AudioSource(filePath);
-		audioSource.playWhenReady(true);
+		const resource = C_Decoding.decodeFile(filePath);
+		const soundID = new UniqueID().toString();
 
-		const soundHandleID = musicTrack.addAudioSource(audioSource);
+		// BJS uses WebAudio's context.decodeAudio, which consumes the buffer, so we must copy it or the original will be empty (TODO: Test for this)
+		const buffer = resource.copyBuffer();
+		const currentScene = C_Rendering.getActiveScene();
+		const sound = new BABYLON.Sound(soundID, buffer, currentScene);
 
-		audioSource.setLooping(true);
-		audioSource.setVolume(0);
-		audioSource.startPlaying();
-		audioSource.fadeIn(C_Settings.getValue("musicVolume"), this.musicTransitionTimeInMilliseconds);
+		sound.autoplay = true;
+		sound.loop = true;
+		// sound.setVolume(C_Settings.getValue("musicVolume"));
 
-		return soundHandleID;
+		this.musicTrack.addSound(sound);
+
+		// We have to apply this again since the setting isn't applied to each source automatically by BJS
+		if (this.musicTrack.isUsingHighQualityStereo()) this.musicTrack.useHighQualityStereo(true);
+
+		// const audioSource = new AudioSource(filePath);
+		// audioSource.playWhenReady(true);
+
+		// const soundHandleID = musicTrack.addAudioSource(audioSource);
+
+		// audioSource.setLooping(true);
+		// audioSource.setVolume(0);
+		// audioSource.startPlaying();
+		// sound.setVolume(C_Settings.getValue("musicVolume"), this.musicTransitionTimeInMilliseconds / 1000); // ms to s
+
+		return sound;
 	},
 	playSound(filePath, trackID = Enum.AUDIO_CHANNEL_SFX, isLooping = false, volume = 1) {
 		validateString(filePath, "Usage: playSound(String filePath [, String trackID, Boolean allowDuplicate])");
@@ -56,8 +71,9 @@ const C_WebAudio = {
 		return soundHandleID;
 	},
 	stopMusic() {
-		const musicTrack = this.tracks[Enum.AUDIO_CHANNEL_MUSIC];
-		musicTrack.fadeOutStop(this.musicTransitionTimeInMilliseconds);
+		// const musicTrack = this.tracks[Enum.AUDIO_CHANNEL_MUSIC];
+		// musicTrack.fadeOutStop(this.musicTransitionTimeInMilliseconds);
+		this.musicTrack.fadeOutStop(this.musicTransitionTimeInMilliseconds);
 	},
 	playEffectSound(filePath) {
 		return this.playSound(filePath, Enum.AUDIO_CHANNEL_SFX, false, C_Settings.getValue("sfxVolume")); // SFX should never loop
@@ -95,10 +111,12 @@ const C_WebAudio = {
 	},
 	setGlobalVolume(volumeGain, persist = true) {
 		if (volumeGain < 0) throw new RangeError(this.ERROR_NEGATIVE_VOLUME_GAIN);
-		BABYLON.Engine.audioEngine.setGlobalVolume(volumeGain);
 
-		if (!persist) return; // No need to save it since it's temporary
-		C_Settings.setValue("globalVolume", volumeGain);
+		// if (!persist) return; // No need to save it since it's temporary
+		if (persist === true) C_Settings.setValue("globalVolume", volumeGain);
+		if (!this.isSoundEnabled) return;
+		// Defer volume adjustment until sound is unmuted
+		BABYLON.Engine.audioEngine.setGlobalVolume(volumeGain);
 	},
 	setTrackVolume(trackID, volumeGain, timeToTransitionInMilliseconds = 0) {
 		if (volumeGain < 0) throw new RangeError(this.ERROR_NEGATIVE_VOLUME_GAIN);
@@ -116,7 +134,8 @@ const C_WebAudio = {
 	},
 	setMusicVolume(volumeGain, timeToTransitionInMilliseconds = 0) {
 		// TODO Ensure 0 - 1 scale
-		this.setTrackVolume(Enum.AUDIO_CHANNEL_MUSIC, volumeGain, timeToTransitionInMilliseconds); // fade
+		// this.setTrackVolume(Enum.AUDIO_CHANNEL_MUSIC, volumeGain, timeToTransitionInMilliseconds); // fade
+		this.musicTrack.setVolume(volumeGain);
 		C_Settings.setValue("musicVolume", volumeGain);
 	},
 	getMusicVolume() {
@@ -124,7 +143,8 @@ const C_WebAudio = {
 	},
 	setEffectsVolume(volumeGain, timeToTransitionInMilliseconds = 0) {
 		// TODO Ensure 0 - 1 scale
-		this.setTrackVolume(Enum.AUDIO_CHANNEL_SFX, volumeGain, timeToTransitionInMilliseconds);
+		this.sfxTrack.setVolume(volumeGain);
+		// this.setTrackVolume(Enum.AUDIO_CHANNEL_SFX, volumeGain, timeToTransitionInMilliseconds);
 		C_Settings.setValue("sfxVolume", volumeGain);
 	},
 	getEffectsVolume() {
@@ -132,7 +152,8 @@ const C_WebAudio = {
 	},
 	setAmbienceVolume(volumeGain, timeToTransitionInMilliseconds = 0) {
 		// TODO Ensure 0 - 1 scale
-		this.setTrackVolume(Enum.AUDIO_CHANNEL_AMBIENCE, volumeGain, timeToTransitionInMilliseconds);
+		this.ambienceTrack.setVolume(volumeGain);
+		// this.setTrackVolume(Enum.AUDIO_CHANNEL_AMBIENCE, volumeGain, timeToTransitionInMilliseconds);
 		C_Settings.setValue("ambienceVolume", volumeGain);
 	},
 	getAmbienceVolume() {
@@ -164,67 +185,81 @@ const C_WebAudio = {
 	disableSound() {
 		C_Settings.setValue("enableSound", false);
 
-		this.setGlobalVolume(0);
+		this.setGlobalVolume(0, false);
 		this.isSoundEnabled = false;
 	},
 	enableSound() {
 		C_Settings.setValue("enableSound", true);
-		this.setGlobalVolume(C_Settings.getValue("globalVolume"));
 		this.isSoundEnabled = true;
+		this.setGlobalVolume(C_Settings.getValue("globalVolume"));
+
+		// TODO store global volume
 	},
-	// We can't apply these after the fact, since it's set at creation time for each audio source
-	enableHighQualityStereo() {
-		C_Settings.setValue("useHighQualityStereo", true);
+	// We can't apply these after the fact, since it's set at creation time for each audio source // TODO: Not true
+	useHighQualityStereo(enabledFlag) {
+		// todo assert boolean
+		C_Settings.setValue("useHighQualityStereo", enabledFlag);
+		this.musicTrack.useHighQualityStereo(enabledFlag);
+		this.sfxTrack.useHighQualityStereo(enabledFlag);
+		this.ambienceTrack.useHighQualityStereo(enabledFlag);
 		// TODO enable in each track
 	},
-	disableHighQualityStereo() {
-		C_Settings.setValue("useHighQualityStereo", false);
-		// TODO disable for each track
-	},
-	disableBackgroundFade() {
-		C_Settings.setValue("fadeSoundInBackground", false);
+	// disableHighQualityStereo() {
+	// C_Settings.setValue("useHighQualityStereo", false);
+	// TODO disable for each track
+	// },
+	setBackgroundFade(enabledFlag) {
+		C_Settings.setValue("fadeSoundInBackground", enabledFlag);
 		// TODO ViewportContainer stuff here?
 	},
-	enableBackgroundFade() {
-		C_Settings.setValue("fadeSoundInBackground", true);
-		// TODO ViewportContainer stuff here?
-	},
+	// enableBackgroundFade() {
+	// C_Settings.setValue("fadeSoundInBackground", true);
+	// TODO ViewportContainer stuff here?
+	// },
 	setBackgroundVolume(newVolumeGain) {
 		// TODO ensure it's between 0 and 1
+		// TODO: Move event handler to SystemOptionsFrame / AudioOptionsFrame?
 		C_Settings.setValue("backgroundAudioVolume", newVolumeGain);
 	},
 	enableMusicTrack() {
 		C_Settings.setValue("enableMusic", true);
 		// this.tracks[Enum.AUDIO_CHANNEL_MUSIC].fadeInStart();
-		this.tracks[Enum.AUDIO_CHANNEL_MUSIC].setVolume(C_Settings.getValue("musicVolume"));
+		this.musicTrack.unmute();
+		// this.tracks[Enum.AUDIO_CHANNEL_MUSIC].setVolume(C_Settings.getValue("musicVolume"));
 	},
 	disableMusicTrack() {
 		C_Settings.setValue("enableMusic", false);
-		const musicTrack = this.tracks[Enum.AUDIO_CHANNEL_MUSIC];
-		musicTrack.setVolume(0);
+		// const musicTrack = this.tracks[Enum.AUDIO_CHANNEL_MUSIC];
+		// musicTrack.setVolume(0);
+		this.musicTrack.mute();
 		// musicTrack.fadeOutStop();
 		// musicTrack.purgeAllVoices();
 	},
 	disableEffectsTrack() {
 		C_Settings.setValue("enableSFX", false);
-		this.tracks[Enum.AUDIO_CHANNEL_SFX].setVolume(0);
+		this.sfxTrack.mute();
+		// this.tracks[Enum.AUDIO_CHANNEL_SFX].setVolume(0);
 	},
 	enableEffectsTrack() {
 		C_Settings.setValue("enableSFX", true);
-		this.tracks[Enum.AUDIO_CHANNEL_SFX].setVolume(C_Settings.getValue("sfxVolume"));
+		this.sfxTrack.unmute();
+		// this.tracks[Enum.AUDIO_CHANNEL_SFX].setVolume(C_Settings.getValue("sfxVolume"));
 	},
 	disableAmbienceTrack() {
 		C_Settings.setValue("enableAmbientSounds", false);
-		this.tracks[Enum.AUDIO_CHANNEL_AMBIENCE].setVolume(0);
+		this.ambienceTrack.mute();
+		// this.tracks[Enum.AUDIO_CHANNEL_AMBIENCE].setVolume(0);
 	},
 	enableAmbienceTrack() {
 		C_Settings.setValue("enableAmbientSounds", true);
-		this.tracks[Enum.AUDIO_CHANNEL_AMBIENCE].setVolume(C_Settings.getValue("ambienceVolume"));
+		this.ambienceTrack.unmute();
+		// this.tracks[Enum.AUDIO_CHANNEL_AMBIENCE].setVolume(C_Settings.getValue("ambienceVolume"));
 	},
+	// TODO Move to SystemOptionsFrame
 	updateAudioChannels() {
-		this.tracks[Enum.AUDIO_CHANNEL_MUSIC].setVolume(C_Settings.getValue("musicVolume"));
-		this.tracks[Enum.AUDIO_CHANNEL_SFX].setVolume(C_Settings.getValue("sfxVolume"));
-		this.tracks[Enum.AUDIO_CHANNEL_AMBIENCE].setVolume(C_Settings.getValue("ambienceVolume"));
+		this.musicTrack.setVolume(C_Settings.getValue("musicVolume"));
+		this.sfxTrack.setVolume(C_Settings.getValue("sfxVolume"));
+		this.ambienceTrack.setVolume(C_Settings.getValue("ambienceVolume"));
 
 		if (!C_Settings.getValue("enableSound")) this.disableSound();
 		if (!C_Settings.getValue("enableMusic")) this.disableMusicTrack();
