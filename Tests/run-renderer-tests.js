@@ -5,6 +5,7 @@ const testSuites = {
 		"Builtins/LocalCacheTests.js",
 		"Builtins/Decoder.js",
 		"Builtins/UniqueID.js",
+		"Builtins/Resource.js",
 		"Builtins/Validators.js",
 	],
 	C_Settings: [
