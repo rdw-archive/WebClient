@@ -9,6 +9,18 @@ function StartWebClient() {
 
 	C_Macro.restoreMacroCache(); // Needs to be done before addons are loaded, as they may want to interact with the cache?
 
+	C_Decoding.addDecoder(new BuiltinAudioDecoder());
+
+	C_WebAudio.musicTrack.setVolume(C_Settings.getValue("musicVolume"));
+	C_WebAudio.sfxTrack.setVolume(C_Settings.getValue("sfxVolume"));
+	C_WebAudio.ambienceTrack.setVolume(C_Settings.getValue("ambienceVolume"));
+	C_WebAudio.setGlobalVolume(C_Settings.getValue("globalVolume"));
+
+	if (!C_Settings.getValue("enableSound")) C_WebAudio.disableSound();
+	if (!C_Settings.getValue("enableMusic")) C_WebAudio.disableMusicTrack();
+	if (!C_Settings.getValue("enableSFX")) C_WebAudio.disableEffectsTrack();
+	if (!C_Settings.getValue("enableAmbientSounds")) C_WebAudio.disableAmbienceTrack();
+
 	C_Addons.loadAddonCache();
 	C_Addons.loadEnabledAddons();
 
