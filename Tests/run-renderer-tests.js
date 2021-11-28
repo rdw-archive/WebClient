@@ -3,6 +3,7 @@ const testSuites = {
 	Builtins: [
 		"Builtins/Assertions.js",
 		"Builtins/LocalCacheTests.js",
+		"Builtins/AudioTrack.js",
 		"Builtins/Decoder.js",
 		"Builtins/UniqueID.js",
 		"Builtins/Resource.js",
@@ -15,7 +16,25 @@ const testSuites = {
 		"API/C_Settings/validateDefaultSettings.js",
 		"API/C_Settings/validateUserSettings.js",
 	],
-	C_WebAudio: ["API/C_WebAudio/BuiltinAudioDecoder.js"],
+	C_WebAudio: [
+		"API/C_WebAudio/BuiltinAudioDecoder.js",
+		"API/C_WebAudio/playMusic.js",
+		"API/C_WebAudio/stopMusic.js",
+		"API/C_WebAudio/setGlobalVolume.js",
+		"API/C_WebAudio/getGlobalVolume.js",
+		"API/C_WebAudio/getMusicVolume.js",
+		"API/C_WebAudio/setMusicVolume.js",
+		"API/C_WebAudio/getEffectsVolume.js",
+		"API/C_WebAudio/setEffectsVolume.js",
+		"API/C_WebAudio/getAmbienceVolume.js",
+		"API/C_WebAudio/setAmbienceVolume.js",
+		"API/C_WebAudio/getSupportedFileFormats.js",
+		"API/C_WebAudio/canPlayMP3.js",
+		"API/C_WebAudio/canPlayOGG.js",
+		"API/C_WebAudio/canPlayWAV.js",
+		"API/C_WebAudio/isAudioAvailable.js",
+		"API/C_WebAudio/isAudioContextInitialized.js",
+	],
 };
 
 for (const namespace in testSuites) {

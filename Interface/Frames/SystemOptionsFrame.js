@@ -3,6 +3,7 @@ const SystemOptions = {
 	categories: ["Advanced", "Graphics", "Languages", "Network", "Sound"],
 	onLoad() {
 		this.createWidgets();
+		this.registerEventListeners();
 		this.frame.hide();
 	},
 	show() {
@@ -74,8 +75,8 @@ const SystemOptions = {
 			this.generalSettingsGroup.fieldSet
 		);
 		useHighQualityStereoCheckbox.setScript("OnClick", () => {
-			if (!useHighQualityStereoCheckbox.isChecked()) C_WebAudio.disableHighQualityStereo();
-			else C_WebAudio.enableHighQualityStereo();
+			if (!useHighQualityStereoCheckbox.isChecked()) C_WebAudio.useHighQualityStereo(false);
+			else C_WebAudio.useHighQualityStereo(true);
 		});
 		useHighQualityStereoCheckbox.setText(L["Use High-Quality Stereo"]);
 		useHighQualityStereoCheckbox.setChecked(C_Settings.getValue("useHighQualityStereo"));
@@ -86,8 +87,8 @@ const SystemOptions = {
 			this.generalSettingsGroup.fieldSet
 		);
 		soundInBackgroundCheckbox.setScript("OnClick", () => {
-			if (!soundInBackgroundCheckbox.isChecked()) C_WebAudio.disableBackgroundFade();
-			else C_WebAudio.enableBackgroundFade();
+			if (!soundInBackgroundCheckbox.isChecked()) C_WebAudio.setBackgroundFade(false);
+			else C_WebAudio.setBackgroundFade(true);
 		});
 		soundInBackgroundCheckbox.setText(L["Lower Volume in Background"]);
 		soundInBackgroundCheckbox.setChecked(C_Settings.getValue("fadeSoundInBackground"));
@@ -217,6 +218,24 @@ const SystemOptions = {
 			C_WebAudio.setAmbienceVolume(ambienceVolumeSlider.getValue() / 100);
 		});
 		ambienceVolumeSlider.setValue(C_Settings.getValue("ambienceVolume") * 100);
+	},
+	registerEventListeners() {
+		document.addEventListener("visibilitychange", () => this.onWindowVisibilityChanged(document.hidden));
+	},
+	onWindowVisibilityChanged(isApplicationWindowHidden) {
+		if (!C_Settings.getValue("fadeSoundInBackground")) return;
+
+		if (isApplicationWindowHidden) this.applyBackgroundVolumeReduction();
+		else this.restoreGlobalVolume();
+	},
+	applyBackgroundVolumeReduction() {
+		C_EventSystem.triggerEvent("APPLICATION_WINDOW_HIDDEN");
+		const backgroundVolume = C_Settings.getValue("backgroundAudioVolume") * C_Settings.getValue("globalVolume");
+		C_WebAudio.setGlobalVolume(backgroundVolume, false);
+	},
+	restoreGlobalVolume() {
+		C_EventSystem.triggerEvent("APPLICATION_WINDOW_VISIBLE");
+		C_WebAudio.setGlobalVolume(C_Settings.getValue("globalVolume"), false);
 	},
 };
 
