@@ -30,6 +30,7 @@
 		"assertUndefined": "writable",
 		"assertThrows": "writable",
 		"assertTypeOf": "writable",
+		"AudioTrack": "writable",
 		"C_Addons": "writable",
 		"C_Bitmap": "writable",
 		"C_Decoding": "writable",
