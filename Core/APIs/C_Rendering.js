@@ -77,9 +77,9 @@ C_Rendering.createDefaultLightSource = function () {
 		intensity: 1, // tbd
 	};
 
-	const defaultLightSource = C_WebGL.createAmbientLight("RevivalEngine_DefaultLightSource", properties);
+	const defaultLightSource = C_WebGL.createAmbientLight("DefaultLightSource", properties);
 	// Add to renderer so it's removed if the scene changes
-	C_Rendering.addLightSource("RevivalEngine_DefaultLightSource", defaultLightSource);
+	C_Rendering.addLightSource("DefaultLightSource", defaultLightSource);
 };
 
 C_Rendering.setFogParameters = function (fogParameters) {
