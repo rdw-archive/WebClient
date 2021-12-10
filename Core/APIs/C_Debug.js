@@ -139,6 +139,8 @@ C_Debug.hideWorldAxes = function () {
 
 C_Debug.exportJSON = function (fileName, object) {
 	DEBUG(format("Exporting JSON to file " + fileName));
+
+	if (!C_FileSystem.fileExists(WEBCLIENT_EXPORTS_DIR)) C_FileSystem.makeDirectory(WEBCLIENT_EXPORTS_DIR);
 	C_FileSystem.writeJSON(WEBCLIENT_EXPORTS_DIR + "/" + fileName, object);
 };
 
