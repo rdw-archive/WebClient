@@ -26,6 +26,7 @@
 		"prettier": "2.3.2"
 	},
 	"scripts": {
+		"test-addons": "electron-mocha --renderer --url=index.html --file Tests/run-addon-tests.js --colors",
 		"test-debug": "electron-mocha --inspect --interactive --config Config/electron-mocha.json",
 		"test-render": "electron-mocha --config Config/electron-mocha.json",
 		"test-summary": "electron-mocha --renderer --url=index.html --file Tests/run-renderer-tests-quietly.js --colors",
