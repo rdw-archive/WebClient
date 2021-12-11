@@ -57,6 +57,7 @@
 		"BinaryReader": "writable",
 		"Bitmap": "writable",
 		"BuiltinAudioDecoder": "writable",
+		"BuiltinJsonDecoder": "writable",
 		"Button": "writable",
 		"Canvas": "writable",
 		"Channels": "writable",

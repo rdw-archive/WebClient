@@ -61,3 +61,5 @@ const C_Decoding = {
 		return decodedResource;
 	},
 };
+
+C_Decoding.addDecoder(new BuiltinJsonDecoder());
