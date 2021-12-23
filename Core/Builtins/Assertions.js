@@ -32,7 +32,7 @@ function assertThrows(functionToCall, errorPropertiesMap) {
 
 function assertApproximatelyEquals(actual, expected) {
 	// Number.EPSILON is too small to work here; this should work in most cases, to the same effect
-	const tolerantEpsilon = 1e-8;
+	const tolerantEpsilon = 1e-5;
 	return assertTrue(Math.abs(actual - expected) < tolerantEpsilon);
 }
 

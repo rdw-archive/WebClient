@@ -23,5 +23,7 @@ class TerrainMap {
 		bitmap.flipHorizontally(); // Tiles start at the bottom, but bitmap pixels start at the top
 
 		C_Bitmap.export(fileName, bitmap);
+
+		return bitmap;
 	}
 }

@@ -99,6 +99,7 @@ C_WebGL.createMesh = function (name, properties) {
 	if (properties.textureFilePath) {
 		material.diffuseTexture = new BABYLON.Texture(properties.textureFilePath);
 		material.diffuseTexture.noMipmap = true;
+		material.diffuseTexture.hasAlpha = true;
 		material.diffuseTexture.updateSamplingMode(BABYLON.Texture.TRILINEAR_SAMPLINGMODE);
 		material.diffuseTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
 		material.diffuseTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
@@ -110,11 +111,15 @@ C_WebGL.createMesh = function (name, properties) {
 		material.lightmapTexture = new BABYLON.Texture(properties.lightmapTextureFilePath);
 		material.lightmapTexture.coordinatesIndex = 1; // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
 		vertexData.uvs2 = properties.lightmapUVs;
+		material.lightmapTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
+		material.lightmapTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
 	}
 	if (properties.ambientTextureFilePath) {
 		material.ambientTexture = new BABYLON.Texture(properties.ambientTextureFilePath);
 		material.ambientTexture.coordinatesIndex = 1; // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
 		vertexData.uvs2 = properties.lightmapUVs; // dry
+		material.ambientTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
+		material.ambientTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
 		// shadowmapTexture.coordinatesIndex = 1 // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
 	}
 

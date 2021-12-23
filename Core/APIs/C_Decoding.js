@@ -44,6 +44,12 @@ const C_Decoding = {
 
 		DEBUG(format("Decoding resource %s", filePath));
 		const decoder = this.getDecoderForFile(filePath);
+
+		if (!decoder)
+			throw new Error(
+				format("Cannot decode %s (file type %s is not supported)", filePath, this.getFileType(filePath).toUpperCase())
+			);
+
 		const decodedResource = this.decodeResource(resource, decoder);
 
 		C_Profiling.endTimer("Decode " + filePath);

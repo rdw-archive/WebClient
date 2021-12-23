@@ -11,6 +11,14 @@ const MESSAGEPACK = require("@msgpack/msgpack"); // C_Message
 const JOI = require("joi"); // C_Validation
 const UUID = require("uuid"); // UniqueID builtin
 
+// Yes, I really am that lazy.
+const keys = Object.keys;
+const values = Object.entries;
+
+function count(object) {
+	return Object.keys(object).length;
+}
+
 function dump(...data) {
 	console.log(data);
 }

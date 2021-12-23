@@ -33,5 +33,7 @@ class HeightMap {
 		bitmap.flipHorizontally();
 
 		C_Bitmap.export(fileName, bitmap);
+
+		return bitmap;
 	}
 }
