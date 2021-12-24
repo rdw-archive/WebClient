@@ -2,6 +2,7 @@
 const NODE = {
 	FileSystem: require("fs"),
 	Assert: require("assert"),
+	path: require("path"),
 };
 
 // Dependencies imported via their NPM package
