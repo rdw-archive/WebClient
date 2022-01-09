@@ -3,7 +3,9 @@
 const NUM_BITS_PER_BYTE = 8; // Err, really? What was I thinking?
 
 class Bitmap {
-	constructor(pixelData = [], width = 0, height = 0) {
+	constructor(pixelData, width = 0, height = 0) {
+		if(!pixelData) pixelData = new Uint8ClampedArray(width * height * 4)
+
 		this.pixelData = pixelData;
 		this.width = width;
 		this.height = height;
