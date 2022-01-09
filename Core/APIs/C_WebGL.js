@@ -107,25 +107,20 @@ C_WebGL.createMesh = function (name, properties) {
 
 	const vertexData = new BABYLON.VertexData();
 
-	if (properties.lightmapTextureImage) {
-		material.lightmapTexture = new BABYLON.RawTexture.CreateRGBATexture(properties.lightmapTextureImage.pixelData,properties.lightmapTextureImage.width,properties.lightmapTextureImage.height);
+	if (properties.lightmapTextureFilePath) {
+		material.lightmapTexture = new BABYLON.Texture(properties.lightmapTextureFilePath);
 		material.lightmapTexture.coordinatesIndex = 1; // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
 		vertexData.uvs2 = properties.lightmapUVs;
 		material.lightmapTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
 		material.lightmapTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
-		// material.lightmapTexture.hasAlpha = true;
-		// material.lightmapTexture.invertY = true
-
 	}
-	if (properties.ambientOcclusionTextureImage) {
-		material.ambientTexture = new BABYLON.RawTexture.CreateRGBATexture(properties.ambientOcclusionTextureImage.pixelData,properties.ambientOcclusionTextureImage.width,properties.ambientOcclusionTextureImage.height);
+	if (properties.ambientTextureFilePath) {
+		material.ambientTexture = new BABYLON.Texture(properties.ambientTextureFilePath);
 		material.ambientTexture.coordinatesIndex = 1; // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
 		vertexData.uvs2 = properties.lightmapUVs; // dry
 		material.ambientTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
 		material.ambientTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
 		// shadowmapTexture.coordinatesIndex = 1 // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
-		// material.ambientTexture.hasAlpha = true;
-		// material.ambientTexture.invertY = true
 	}
 
 	material.wireframe = properties.wireframe || false;
