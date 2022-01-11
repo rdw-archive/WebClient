@@ -33,7 +33,7 @@ class Bitmap {
 			}
 		}
 
-		this.pixelData = flippedPixelData;
+		this.pixelData = new Uint8ClampedArray(flippedPixelData);
 	}
 	finalizePixelData() {
 		this.pixelData = Uint8ClampedArray.from(this.pixelData); // TODO: Is this actually needed?
