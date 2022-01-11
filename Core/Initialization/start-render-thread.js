@@ -10,6 +10,7 @@ function StartWebClient() {
 	C_Macro.restoreMacroCache(); // Needs to be done before addons are loaded, as they may want to interact with the cache?
 
 	C_Decoding.addDecoder(new BuiltinAudioDecoder());
+	C_Decoding.addDecoder(new BuiltinBitmapDecoder());
 
 	C_WebAudio.musicTrack.setVolume(C_Settings.getValue("musicVolume"));
 	C_WebAudio.sfxTrack.setVolume(C_Settings.getValue("sfxVolume"));
