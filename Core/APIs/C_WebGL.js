@@ -96,8 +96,8 @@ C_WebGL.createMesh = function (name, properties) {
 	// material.diffuseTexture = new BABYLON.Texture(WEBCLIENT_ADDONS_DIR + "/DebugMenu/DebugTexture256_old.png");
 
 	// tbd setting to apply debug textures to everything
-	if (properties.textureFilePath) {
-		material.diffuseTexture = new BABYLON.Texture(properties.textureFilePath);
+	if (properties.diffuseTextureImage) {
+		material.diffuseTexture = new BABYLON.RawTexture.CreateRGBATexture(properties.diffuseTextureImage.pixelData,properties.diffuseTextureImage.width,properties.diffuseTextureImage.height, undefined, false, properties.flipTextureImages)
 		material.diffuseTexture.noMipmap = true;
 		material.diffuseTexture.hasAlpha = true;
 		material.diffuseTexture.updateSamplingMode(BABYLON.Texture.TRILINEAR_SAMPLINGMODE);
