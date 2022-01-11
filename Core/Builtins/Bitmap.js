@@ -9,6 +9,8 @@ class Bitmap {
 		this.pixelData = pixelData;
 		this.width = width;
 		this.height = height;
+
+		this.hasAlpha = false;
 	}
 	flipHorizontally(pixelData = this.pixelData, imageWidth = this.width, imageHeight = this.height) {
 		let flippedPixelData = [];
@@ -47,6 +49,23 @@ class Bitmap {
 		this.pixelData.push(green);
 		this.pixelData.push(blue);
 		this.pixelData.push(alpha);
+	}
+	setTransparencyColor(transparencyColor) {
+
+		const pixelData = this.pixelData;
+		for(let pixelIndex = 0; pixelIndex < this.pixelData.length; pixelIndex+= 1) {
+			let pixelOffset = pixelIndex * 4;
+
+			let red = pixelData[pixelOffset + 0];
+			let green = pixelData[pixelOffset + 1];
+			let blue = pixelData[pixelOffset + 2];
+
+			if(transparencyColor.red === red && transparencyColor.green === green && transparencyColor.blue === blue) {
+				pixelData[pixelOffset + 3] = 0; // alpha
+			}
+		}
+
+		this.hasAlpha = true;
 	}
 }
 
