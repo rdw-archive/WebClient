@@ -50,22 +50,61 @@ class Bitmap {
 		this.pixelData.push(blue);
 		this.pixelData.push(alpha);
 	}
-	setTransparencyColor(transparencyColor) {
+	setTransparencyColor(transparencyColor, sourcePixelFormat = Enum.PIXEL_FORMAT_RGBA) {
 
 		const pixelData = this.pixelData;
-		for(let pixelIndex = 0; pixelIndex < this.pixelData.length; pixelIndex+= 1) {
-			let pixelOffset = pixelIndex * 4;
+		if(sourcePixelFormat === Enum.PIXEL_FORMAT_ABGR) {
+			for(let pixelIndex = 0; pixelIndex < this.pixelData.length; pixelIndex+= 1) {
+				let pixelOffset = pixelIndex * 4;
 
-			let red = pixelData[pixelOffset + 0];
-			let green = pixelData[pixelOffset + 1];
-			let blue = pixelData[pixelOffset + 2];
+				let red = pixelData[pixelOffset + 3];
+				let green = pixelData[pixelOffset + 2];
+				let blue = pixelData[pixelOffset + 1];
 
-			if(transparencyColor.red === red && transparencyColor.green === green && transparencyColor.blue === blue) {
-				pixelData[pixelOffset + 3] = 0; // alpha
+				if(transparencyColor.red === red && transparencyColor.green === green && transparencyColor.blue === blue) {
+					pixelData[pixelOffset + 0] = 0; // alpha
+				}
 			}
+
+		}
+
+		if(sourcePixelFormat === Enum.PIXEL_FORMAT_RGBA) {
+			for(let pixelIndex = 0; pixelIndex < this.pixelData.length; pixelIndex+= 1) {
+				let pixelOffset = pixelIndex * 4;
+
+				let red = pixelData[pixelOffset + 0];
+				let green = pixelData[pixelOffset + 1];
+				let blue = pixelData[pixelOffset + 2];
+
+				if(transparencyColor.red === red && transparencyColor.green === green && transparencyColor.blue === blue) {
+					pixelData[pixelOffset + 3] = 0; // alpha
+				}
+			}
+
 		}
 
 		this.hasAlpha = true;
+	}
+	toRGBA(sourcePixelFormat = Enum.PIXEL_FORMAT_ABGR) {
+		const pixelData = this.pixelData;
+		const pixelBuffer = new Uint8ClampedArray(pixelData.length)
+
+		if(sourcePixelFormat === Enum.PIXEL_FORMAT_ABGR) {
+			for (let pixelID = 0; pixelID < pixelData.length / 4; pixelID++) {
+				const alpha = pixelData[pixelID * 4 + 0];
+				const blue = pixelData[pixelID * 4 + 1];
+				const green = pixelData[pixelID * 4 + 2];
+				const red = pixelData[pixelID * 4 + 3];
+
+				// Swap them to generate RGBA
+				pixelBuffer[pixelID * 4 + 0] = red;
+				pixelBuffer[pixelID * 4 + 1] = green;
+				pixelBuffer[pixelID * 4 + 2] = blue;
+				pixelBuffer[pixelID * 4 + 3] = 255; // HACK, bmp-js messes up the alpha for some textures?
+			}
+		}
+
+		this.pixelData = pixelBuffer;
 	}
 }
 
@@ -88,8 +127,7 @@ Bitmap.createFromFileContents = function (buffer) {
 	let width = reader.getInt32();
 	let height = reader.getInt32();
 	if (width % 4 !== 0) throw new Error("Bitmap width is not divisible by 4 (padding is not currently supported)");
-	if (width != 256) console.log("moep");
-	if (height != 256) console.log("moip");
+	// TBD: What is this? Why is it here? Seems odd, but I have no recollection of this...
 	if (height < 0) {
 		isTopdownBitmap = true;
 		height = -height;
@@ -97,18 +135,20 @@ Bitmap.createFromFileContents = function (buffer) {
 
 	let numPlanes = reader.getUint16(); // color planes, must be 1 (in version 40, anyway?)
 	if (numPlanes !== 1)
-		throw new Error("Number of planes is " + bitsPerPixel + " (must always be 1 as per the specification)");
+		throw new Error("Number of planes is " + bitsPerPixel + " (must always be 1 as per the BMP specification)");
 	let bitsPerPixel = reader.getUint16();
 	// if (bitsPerPixel !== 8)
 	// throw new Error('Color depths is ' + bitsPerPixel + ' (only 256 color bitmaps are currently supported');
-	let compression = reader.getUint32();
-	let compressedImageSizeInBytes = reader.getUint32();
+	let compression = reader.getUint32(); // TBD compressionMode + Enum.COMPRESSION_MODE_... constants?
+	let compressedImageSizeInBytes = reader.getUint32(); // DEcompressed image size...? ("raw size")
 	let pixelsPerMeterX = reader.getUint32(); // horizontal resolution, SIGNED?
 	let pixelsPerMeterY = reader.getUint32(); // vertical resolution, SIGNED?
 	let numColorsUsed = reader.getUint32(); // 255 or 256?
-	const MAX_NUM_COLORS = Math.pow(2, bitsPerPixel);
-	if (numColorsUsed === 0) numColorsUsed = MAX_NUM_COLORS; // default to "all colors"? Haven't found a good explanation
-	numColorsUsed = MAX_NUM_COLORS; // Assume 256 colors; if we read the wrong colors later it won't matter since if the color isn't referenced in the pixel data it won't be displayed anyway and we reset the pointer to wherever dataOffset claims we should go either way. BUT if it IS actually used and the numColorsUsed field is wrong because BMP is hard, it will look right... win/win?
+	// const MAX_NUM_COLORS = Math.pow(2, bitsPerPixel);
+
+	// TBD is this useful? Seems to be unused
+	// if (numColorsUsed === 0) numColorsUsed = MAX_NUM_COLORS; // default to "all colors"? Haven't found a good explanation
+	// numColorsUsed = MAX_NUM_COLORS; // Assume 256 colors; if we read the wrong colors later it won't matter since if the color isn't referenced in the pixel data it won't be displayed anyway and we reset the pointer to wherever dataOffset claims we should go either way. BUT if it IS actually used and the numColorsUsed field is wrong because BMP is hard, it will look right... win/win?
 
 	// If the palette doesn't have 256 colors, the rest is filled up with black apparently?
 	// At least that holds true for the bitmaps I tested, I saw existing palette entries being ignored in Windows/graphics program
@@ -117,7 +157,7 @@ Bitmap.createFromFileContents = function (buffer) {
 	// may crash if reading a BMP that actualy does things differently...
 	let numImportantColors = reader.getUint32(); // 0 = all (what is an "important" color?)
 
-	let bytesPerPixel = bitsPerPixel / NUM_BITS_PER_BYTE;
+	let bytesPerPixel = bitsPerPixel / NUM_BITS_PER_BYTE; // TBD if it has alpha and 16, it's 15 instead (1 for the pixel's alpha value)?
 	let requiredPaddingBytes = (width * bytesPerPixel) % 4; // (width * channels) % 4 ?
 	if (requiredPaddingBytes !== 0) throw new Error("Padding is not currently supported");
 
@@ -165,8 +205,8 @@ Bitmap.createFromFileContents = function (buffer) {
 
 	if (dataOffset !== reader.offset) {
 		// Fast-forwarding to the pixel data to skip the optional Gap1 portion of the file header
-		console.log("Data offset " + dataOffset + " doesn't match reader offset " + reader.offset);
-		reader.offset = dataOffset; // there are two zero bytes at the end??
+		WARNING("Data offset " + dataOffset + " doesn't match reader offset " + reader.offset);
+		// reader.offset = dataOffset; // there are two zero bytes at the end??
 		// reader.offset = dataOffset.offset + 2; // there are two zero bytes at the end??
 	}
 

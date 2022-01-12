@@ -2,6 +2,7 @@ const C_System = {
 	reloadRenderProcess() {
 		C_EventSystem.triggerEvent("APPLICATION_SHUTDOWN");
 
+		//  TODO ELECTRON alias (for IPC)
 		require("electron").remote.getCurrentWindow().reload(); // Hack; should use proper IPC and do it in main.js (later)
 	},
 	reload() {
