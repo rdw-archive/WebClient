@@ -119,6 +119,18 @@ C_Rendering.getActiveScene = function () {
 	return this.renderer.activeScene;
 };
 
+C_Rendering.getNumActiveTextures = function () {
+	return this.renderer.activeScene.textures.length;
+};
+
+C_Rendering.getNumActiveMaterials = function () {
+	return this.renderer.activeScene.materials.length;
+};
+
+C_Rendering.getNumActiveMeshes = function () {
+	return this.renderer.activeScene.meshes.length;
+};
+
 C_Rendering.getActiveCamera = function () {
 	return this.renderer.activeCamera;
 };
