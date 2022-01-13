@@ -6,6 +6,10 @@ const C_Decoding = {
 		const fileType = this.getFileType(filePath);
 		return this.registeredDecoders[fileType];
 	},
+	canDecodeFileType(fileType) {
+		const standardizedExtension = fileType.toLowerCase();
+		return this.registeredDecoders[standardizedExtension] !== undefined;
+	},
 	getFileType(filePath) {
 		const standardizedFilePath = filePath.toLowerCase();
 
