@@ -4,7 +4,7 @@ class BuiltinBitmapDecoder extends Decoder {
 	fileTypes = { bmp: true };
 	decode(resource) {
 		const bitmap = Bitmap.createFromFileContents(resource.rawGet()); // This needs refactoring
-		resource.rawSet(bitmap)
+		resource.rawSet(bitmap);
 		return resource;
 	}
 	getSupportedFileTypes() {

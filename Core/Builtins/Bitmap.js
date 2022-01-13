@@ -4,7 +4,7 @@ const NUM_BITS_PER_BYTE = 8; // Err, really? What was I thinking?
 
 class Bitmap {
 	constructor(pixelData, width = 0, height = 0) {
-		if(!pixelData) pixelData = new Uint8ClampedArray(width * height * 4)
+		if (!pixelData) pixelData = new Uint8ClampedArray(width * height * 4);
 
 		this.pixelData = pixelData;
 		this.width = width;
@@ -51,45 +51,42 @@ class Bitmap {
 		this.pixelData.push(alpha);
 	}
 	setTransparencyColor(transparencyColor, sourcePixelFormat = Enum.PIXEL_FORMAT_RGBA) {
-
 		const pixelData = this.pixelData;
-		if(sourcePixelFormat === Enum.PIXEL_FORMAT_ABGR) {
-			for(let pixelIndex = 0; pixelIndex < this.pixelData.length; pixelIndex+= 1) {
+		if (sourcePixelFormat === Enum.PIXEL_FORMAT_ABGR) {
+			for (let pixelIndex = 0; pixelIndex < this.pixelData.length; pixelIndex += 1) {
 				let pixelOffset = pixelIndex * 4;
 
 				let red = pixelData[pixelOffset + 3];
 				let green = pixelData[pixelOffset + 2];
 				let blue = pixelData[pixelOffset + 1];
 
-				if(transparencyColor.red === red && transparencyColor.green === green && transparencyColor.blue === blue) {
+				if (transparencyColor.red === red && transparencyColor.green === green && transparencyColor.blue === blue) {
 					pixelData[pixelOffset + 0] = 0; // alpha
 				}
 			}
-
 		}
 
-		if(sourcePixelFormat === Enum.PIXEL_FORMAT_RGBA) {
-			for(let pixelIndex = 0; pixelIndex < this.pixelData.length; pixelIndex+= 1) {
+		if (sourcePixelFormat === Enum.PIXEL_FORMAT_RGBA) {
+			for (let pixelIndex = 0; pixelIndex < this.pixelData.length; pixelIndex += 1) {
 				let pixelOffset = pixelIndex * 4;
 
 				let red = pixelData[pixelOffset + 0];
 				let green = pixelData[pixelOffset + 1];
 				let blue = pixelData[pixelOffset + 2];
 
-				if(transparencyColor.red === red && transparencyColor.green === green && transparencyColor.blue === blue) {
+				if (transparencyColor.red === red && transparencyColor.green === green && transparencyColor.blue === blue) {
 					pixelData[pixelOffset + 3] = 0; // alpha
 				}
 			}
-
 		}
 
 		this.hasAlpha = true;
 	}
 	toRGBA(sourcePixelFormat = Enum.PIXEL_FORMAT_ABGR) {
 		const pixelData = this.pixelData;
-		const pixelBuffer = new Uint8ClampedArray(pixelData.length)
+		const pixelBuffer = new Uint8ClampedArray(pixelData.length);
 
-		if(sourcePixelFormat === Enum.PIXEL_FORMAT_ABGR) {
+		if (sourcePixelFormat === Enum.PIXEL_FORMAT_ABGR) {
 			for (let pixelID = 0; pixelID < pixelData.length / 4; pixelID++) {
 				const alpha = pixelData[pixelID * 4 + 0];
 				const blue = pixelData[pixelID * 4 + 1];

@@ -97,7 +97,14 @@ C_WebGL.createMesh = function (name, properties) {
 
 	// tbd setting to apply debug textures to everything
 	if (properties.diffuseTextureImage) {
-		material.diffuseTexture = new BABYLON.RawTexture.CreateRGBATexture(properties.diffuseTextureImage.pixelData,properties.diffuseTextureImage.width,properties.diffuseTextureImage.height, undefined, false, properties.flipTextureImages)
+		material.diffuseTexture = new BABYLON.RawTexture.CreateRGBATexture(
+			properties.diffuseTextureImage.pixelData,
+			properties.diffuseTextureImage.width,
+			properties.diffuseTextureImage.height,
+			undefined,
+			false,
+			properties.flipTextureImages
+		);
 		material.diffuseTexture.noMipmap = true;
 		material.diffuseTexture.hasAlpha = true;
 		material.diffuseTexture.updateSamplingMode(BABYLON.Texture.TRILINEAR_SAMPLINGMODE);
@@ -108,17 +115,30 @@ C_WebGL.createMesh = function (name, properties) {
 	const vertexData = new BABYLON.VertexData();
 
 	if (properties.lightmapTextureImage) {
-		material.lightmapTexture = new BABYLON.RawTexture.CreateRGBATexture(properties.lightmapTextureImage.pixelData,properties.lightmapTextureImage.width,properties.lightmapTextureImage.height, undefined, false, properties.flipTextureImages);
+		material.lightmapTexture = new BABYLON.RawTexture.CreateRGBATexture(
+			properties.lightmapTextureImage.pixelData,
+			properties.lightmapTextureImage.width,
+			properties.lightmapTextureImage.height,
+			undefined,
+			false,
+			properties.flipTextureImages
+		);
 		material.lightmapTexture.coordinatesIndex = 1; // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
 		vertexData.uvs2 = properties.lightmapUVs;
 		material.lightmapTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
 		material.lightmapTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
 		// material.lightmapTexture.hasAlpha = true;
 		// material.lightmapTexture.invertY = true
-
 	}
 	if (properties.ambientOcclusionTextureImage) {
-		material.ambientTexture = new BABYLON.RawTexture.CreateRGBATexture(properties.ambientOcclusionTextureImage.pixelData,properties.ambientOcclusionTextureImage.width,properties.ambientOcclusionTextureImage.height, undefined, false, properties.flipTextureImages);
+		material.ambientTexture = new BABYLON.RawTexture.CreateRGBATexture(
+			properties.ambientOcclusionTextureImage.pixelData,
+			properties.ambientOcclusionTextureImage.width,
+			properties.ambientOcclusionTextureImage.height,
+			undefined,
+			false,
+			properties.flipTextureImages
+		);
 		material.ambientTexture.coordinatesIndex = 1; // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
 		vertexData.uvs2 = properties.lightmapUVs; // dry
 		material.ambientTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;

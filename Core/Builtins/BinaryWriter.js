@@ -14,9 +14,8 @@ class BinaryWriter {
 
 	// Retrieves a string of the given length (in bytes), starting at the current offset of the buffer.
 	setString(text) {
-
-		for(let index=0; index < text.length; index += 1) {
-			this.view.setUint8(this.offset, text.charCodeAt(index))
+		for (let index = 0; index < text.length; index += 1) {
+			this.view.setUint8(this.offset, text.charCodeAt(index));
 			this.offset = this.offset + 1;
 		}
 	}

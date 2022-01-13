@@ -59,50 +59,49 @@ let C_FileSystem = {
 	},
 	// TBD Move to C_Compression API?
 	readCompressedFile(filePath, compressionMode) {
-		C_Profiling.startTimer("Reading file " + filePath)
+		C_Profiling.startTimer("Reading file " + filePath);
 		const buffer = this.readFileBinary(filePath);
-		C_Profiling.endTimer("Reading file " + filePath)
+		C_Profiling.endTimer("Reading file " + filePath);
 
 		// TODO Refactor, tests, different compression modes
 		const zlib = require("zlib");
-		C_Profiling.startTimer("Decompressing buffer (INFLATE)")
+		C_Profiling.startTimer("Decompressing buffer (INFLATE)");
 		const uncompressedBuffer = zlib.inflateSync(buffer);
-		C_Profiling.endTimer("Decompressing buffer (INFLATE)")
+		C_Profiling.endTimer("Decompressing buffer (INFLATE)");
 
 		// TODO Remove
-		console.log(uncompressedBuffer)
+		console.log(uncompressedBuffer);
 
-		return uncompressedBuffer
+		return uncompressedBuffer;
 	},
 	writeCompressedFile(filePath, buffer) {
-		C_Profiling.startTimer("Compressing buffer (INFLATE)")
+		C_Profiling.startTimer("Compressing buffer (INFLATE)");
 		const zlib = require("zlib");
 		const compressedBuffer = zlib.deflateSync(buffer);
-		C_Profiling.endTimer("Compressing buffer (INFLATE)")
+		C_Profiling.endTimer("Compressing buffer (INFLATE)");
 		this.writeFileBinary(filePath, compressedBuffer);
 	},
 	// Test: C_FileSystem.writeCompressedJSON("E:\\Test.zip", {"Hello": "World"})
 	writeCompressedJSON(filePath, json) {
-		C_Profiling.startTimer("Compressing buffer (INFLATE)")
+		C_Profiling.startTimer("Compressing buffer (INFLATE)");
 		const zlib = require("zlib");
-		console.log(json)
+		console.log(json);
 		// const compressedBuffer = zlib.deflateSync(new TextEncoder().encode(JSON.stringify(json)));
-		C_Profiling.endTimer("Compressing buffer (INFLATE)")
+		C_Profiling.endTimer("Compressing buffer (INFLATE)");
 		this.writeFileBinary(filePath, compressedBuffer);
 	},
 	readCompressedJSON(filePath, compressionMode) {
-
-		C_Profiling.startTimer("Reading file " + filePath)
-		const compressedBuffer = this.readFileBinary(filePath)
-		C_Profiling.endTimer("Reading file " + filePath)
+		C_Profiling.startTimer("Reading file " + filePath);
+		const compressedBuffer = this.readFileBinary(filePath);
+		C_Profiling.endTimer("Reading file " + filePath);
 		const zlib = require("zlib");
 
-		C_Profiling.startTimer("Decompressing buffer (INFLATE)")
+		C_Profiling.startTimer("Decompressing buffer (INFLATE)");
 		const uncompressedBuffer = zlib.inflateSync(compressedBuffer);
-		C_Profiling.endTimer("Decompressing buffer (INFLATE)")
+		C_Profiling.endTimer("Decompressing buffer (INFLATE)");
 
-		const json = new TextDecoder().decode(uncompressedBuffer)
+		const json = new TextDecoder().decode(uncompressedBuffer);
 
-		return json
-	}
+		return json;
+	},
 };

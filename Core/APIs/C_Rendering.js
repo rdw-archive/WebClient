@@ -25,9 +25,9 @@ C_Rendering.switchScene = function () {
 	for (const mesh of this.meshes) {
 		DEBUG(format("Disposing mesh %s", mesh.name));
 		// TODO Streamline this
-		mesh.material.diffuseTexture.dispose()
-		mesh.material.lightmapTexture.dispose()
-		mesh.material.ambientTexture.dispose()
+		mesh.material.diffuseTexture.dispose();
+		mesh.material.lightmapTexture.dispose();
+		mesh.material.ambientTexture.dispose();
 		mesh.material.dispose();
 		mesh.dispose();
 	}
@@ -131,9 +131,9 @@ C_Rendering.addMesh = function (name, mesh) {
 C_Rendering.removeMesh = function (mesh) {
 	DEBUG(format("Removing mesh %s", mesh.name));
 	// TODO Streamline this
-	mesh.material.diffuseTexture.dispose()
-	mesh.material.lightmapTexture.dispose()
-	mesh.material.ambientTexture.dispose()
+	mesh.material.diffuseTexture.dispose();
+	mesh.material.lightmapTexture.dispose();
+	mesh.material.ambientTexture.dispose();
 	mesh.material.dispose();
 	mesh.dispose();
 	// textures, materials? also dispose them...
