@@ -89,4 +89,9 @@ class BinaryReader {
 		this.offset = this.offset + 1;
 		return data;
 	}
+
+	hasReachedEOF() {
+		// This will help detect unexpected failure states (or missed data that wasn't accounted for somehow)
+		return this.offset === this.buffer.byteLength;
+	}
 }
