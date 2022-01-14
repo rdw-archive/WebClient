@@ -3,12 +3,14 @@
 const NUM_BITS_PER_BYTE = 8; // Err, really? What was I thinking?
 
 class Bitmap {
-	constructor(pixelData, width = 0, height = 0) {
+	constructor(pixelData, width = 0, height = 0, pixelFormat = Enum.PIXEL_FORMAT_RGBA) {
 		if (!pixelData) pixelData = new Uint8ClampedArray(width * height * 4);
 
 		this.pixelData = pixelData;
 		this.width = width;
 		this.height = height;
+
+		this.pixelFormat = pixelFormat
 
 		this.hasAlpha = false;
 	}
@@ -42,8 +44,6 @@ class Bitmap {
 		// Keeping this around after the atlas image is created (below) wastes some space, but allows accessing the individual sprites more easily. I guess it's useful for debugging only?)
 		// TODO Remove after atlas is created?
 	}
-	// TODO: What about the frame ID? Do we need it still?
-	// frameID: frameIndex, // NOT redundant; we need a way to identify frames in the bitmap later (the frame index is refered in the sprite's ACT data, but the bin packer sorts them and reassigns the index while creating the atlas...)
 	addPixel(red, green, blue, alpha = 1) {
 		this.pixelData.push(red);
 		this.pixelData.push(green);
@@ -100,8 +100,11 @@ class Bitmap {
 				pixelBuffer[pixelID * 4 + 3] = 255; // HACK, bmp-js messes up the alpha for some textures?
 			}
 		}
-
+		this.pixelFormat = Enum.PIXEL_FORMAT_RGBA
 		this.pixelData = pixelBuffer;
+	}
+	getPixelFormat() {
+		return this.pixelFormat;
 	}
 }
 
