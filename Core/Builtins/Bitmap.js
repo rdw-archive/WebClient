@@ -10,7 +10,7 @@ class Bitmap {
 		this.width = width;
 		this.height = height;
 
-		this.pixelFormat = pixelFormat
+		this.pixelFormat = pixelFormat;
 
 		this.hasAlpha = false;
 	}
@@ -100,7 +100,7 @@ class Bitmap {
 				pixelBuffer[pixelID * 4 + 3] = 255; // HACK, bmp-js messes up the alpha for some textures?
 			}
 		}
-		this.pixelFormat = Enum.PIXEL_FORMAT_RGBA
+		this.pixelFormat = Enum.PIXEL_FORMAT_RGBA;
 		this.pixelData = pixelBuffer;
 	}
 	getPixelFormat() {
@@ -108,6 +108,9 @@ class Bitmap {
 	}
 	getBufferSize() {
 		return this.pixelData.length;
+	}
+	computeChecksum() {
+		return CRC32.fromArrayBuffer(this.pixelData);
 	}
 }
 
