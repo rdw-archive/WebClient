@@ -106,6 +106,9 @@ class Bitmap {
 	getPixelFormat() {
 		return this.pixelFormat;
 	}
+	getBufferSize() {
+		return this.pixelData.length;
+	}
 }
 
 // TODO integrate with Bitmap class
