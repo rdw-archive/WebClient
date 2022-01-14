@@ -21,6 +21,6 @@ class PolygonMesh {
 	setDiffuseTexturePath(textureFilePath) {
 		this.textureFilePath = textureFilePath;
 	}
-	render() {	}
+	render() {}
 	destroy() {}
 }
