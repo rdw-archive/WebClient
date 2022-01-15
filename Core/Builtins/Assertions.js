@@ -22,6 +22,10 @@ function assertUndefined(value) {
 	return NODE.Assert.equal(value, undefined);
 }
 
+function assertNull(value) {
+	return NODE.Assert.equal(value, null);
+}
+
 function assertTypeOf(value, expectedType) {
 	return assertEquals(value.constructor.name, expectedType);
 }
