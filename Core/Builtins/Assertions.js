@@ -22,6 +22,10 @@ function assertUndefined(value) {
 	return NODE.Assert.equal(value, undefined);
 }
 
+function assertNotUndefined(value) {
+	return NODE.Assert.notEqual(value, undefined);
+}
+
 function assertNull(value) {
 	return NODE.Assert.equal(value, null);
 }

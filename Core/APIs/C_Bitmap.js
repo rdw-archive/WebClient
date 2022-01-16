@@ -55,3 +55,12 @@ C_Bitmap.import = function (fileName) {
 	const fileContents = C_FileSystem.readFileBinary(fileName);
 	return Bitmap.createFromFileContents(fileContents); // This needs refactoring
 };
+
+const C_ImageProcessing = {
+	loadBMP(filePath) {
+		const bmpResource = C_Decoding.decodeFile(filePath);
+		const bmpData = bmpResource.rawGet();
+		const bitmap = new Bitmap(bmpData.pixelData, bmpData.width, bmpData.height);
+		return bitmap;
+	},
+};

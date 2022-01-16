@@ -113,6 +113,12 @@ class Bitmap {
 	computeChecksum() {
 		return CRC32.fromArrayBuffer(this.pixelData);
 	}
+	getWidth() {
+		return this.width;
+	}
+	getHeight() {
+		return this.height;
+	}
 }
 
 // TODO integrate with Bitmap class

@@ -1,26 +1,41 @@
 class PolygonMesh {
-	constructor(meshBlueprint) {
-		this.textureFilePath = null;
-		this.lightmapTextureFilePath = null;
-		this.ambientTextureFilePath = null;
+	constructor(name = new UniqueID().toString(), geometryBlueprint) {
+		this.displayName = name;
+		this.diffuseTexture = null;
+		this.lightmapTexture = null;
+		this.ambientOcclusionTexture = null;
 
-		this.vertices = [];
-		this.connections = [];
-		this.vertexColors = [];
-		this.textureCoordinates = [];
-		this.flatNormals = [];
-		this.smoothNormals = [];
-		this.lightmapUVs = []; // Also used for the ambient occlusion map (for now)
+		this.sceneObject = null;
+
+		// TODO load from geometryBlueprint
+		this.geometryBlueprint = geometryBlueprint;
 	}
-	setLightmapTexturePath(textureFilePath) {
-		this.lightmapTextureFilePath = textureFilePath;
+	setDiffuseTexture(diffuseTextureImage) {
+		this.diffuseTexture = diffuseTextureImage;
 	}
-	setAmbientOcclusionTexturePath(textureFilePath) {
-		this.ambientTextureFilePath = textureFilePath;
+	setLightmapTexture(lightmapTextureImage) {
+		this.lightmapTexture = lightmapTextureImage;
 	}
-	setDiffuseTexturePath(textureFilePath) {
-		this.textureFilePath = textureFilePath;
+	setAmbientOcclusionTexture(ambientOcclusionTextureImage) {
+		this.ambientOcclusionTexture = ambientOcclusionTextureImage;
 	}
-	render() {}
-	destroy() {}
+	getBlueprint() {
+		return this.geometryBlueprint;
+	}
+	setDisplayName(name) {
+		this.name = name;
+	}
+	getDisplayName() {
+		return this.displayName;
+	}
+	render() {
+		const sceneObject = C_WebGL.createMesh(this.displayName, this.geometryBlueprint);
+		C_Rendering.addMesh(this.displayName, sceneObject);
+
+		this.sceneObject = sceneObject;
+	}
+	destroy() {
+		C_Rendering.removeSceneObject(this.displayName);
+		this.sceneObject = null;
+	}
 }

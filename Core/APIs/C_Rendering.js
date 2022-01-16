@@ -140,6 +140,24 @@ C_Rendering.addMesh = function (name, mesh) {
 	this.meshes.push(mesh);
 };
 
+C_Rendering.getSceneObjectByName = function (name) {
+	const scene = this.renderer.activeScene;
+
+	const mesh = scene.getMeshByName(name);
+	if (mesh) return mesh;
+	const node = scene.getNodeByName(name);
+
+	if (node) return node;
+
+	const material = scene.getMaterialByName(name);
+	if (material) return material;
+
+	const texture = scene.getTextureByName(name);
+	if (texture) return texture;
+
+	return mesh;
+};
+
 C_Rendering.removeMesh = function (mesh) {
 	DEBUG(format("Removing mesh %s", mesh.name));
 	// TODO Streamline this
