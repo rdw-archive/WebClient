@@ -11,6 +11,7 @@ class Bitmap {
 		this.height = height;
 
 		this.pixelFormat = pixelFormat;
+		this.bytesPerPixel = 4; // RGBA; we don't support anything else
 
 		this.hasAlpha = false;
 	}
