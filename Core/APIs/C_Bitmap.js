@@ -73,9 +73,8 @@ const C_ImageProcessing = {
 			// setTransparencyThreshold(minRed, minGreen, maxBlue?)
 			C_Profiling.endTimer("Replacing transparent diffuse texture pixels");
 			diffuseTextureBitmap.transparencyColor = transparencyColor;
-
-			return diffuseTextureBitmap;
 		}
+		return diffuseTextureBitmap;
 	},
 	// 	loadBMP(filePath) {
 	// 	const bmpResource = C_Decoding.decodeFile(filePath);
