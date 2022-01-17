@@ -57,10 +57,38 @@ C_Bitmap.import = function (fileName) {
 };
 
 const C_ImageProcessing = {
-	loadBMP(filePath) {
-		const bmpResource = C_Decoding.decodeFile(filePath);
-		const bmpData = bmpResource.rawGet();
-		const bitmap = new Bitmap(bmpData.pixelData, bmpData.width, bmpData.height);
-		return bitmap;
+	loadBMP(filePath, transparencyColor = Color.MAGENTA) {
+		// TODO use resource cache to avoid having to do this multiple times
+		const bmpData = BITMAP.decode(NODE.FileSystem.readFileSync(filePath));
+		const diffuseTextureBitmap = new Bitmap(bmpData.data, bmpData.width, bmpData.height);
+		diffuseTextureBitmap.toRGBA(Enum.PIXEL_FORMAT_ABGR); // bmp-js seems to use ABGR internally, but we assume RGBA
+
+		if (!diffuseTextureBitmap.transparencyColor) {
+			// Bit of a hack, since the Bitmap class doesn't handle this yet?
+			// It's not a problem to do this multiple times, since it only takes ~1ms, but still we can skip it...
+			C_Profiling.startTimer("Replacing transparent diffuse texture pixels");
+			// This may not work if they use similar but not identical colors (are there textures that do this?)
+			// const transparencyColor = new Color(255, 0, 255);
+			diffuseTextureBitmap.setTransparencyColor(transparencyColor, Enum.PIXEL_FORMAT_RGBA);
+			// setTransparencyThreshold(minRed, minGreen, maxBlue?)
+			C_Profiling.endTimer("Replacing transparent diffuse texture pixels");
+			diffuseTextureBitmap.transparencyColor = transparencyColor;
+
+			return diffuseTextureBitmap;
+		}
+	},
+	// 	loadBMP(filePath) {
+	// 	const bmpResource = C_Decoding.decodeFile(filePath);
+	// 	const bmpData = bmpResource.rawGet();
+	// 	const bitmap = new Bitmap(bmpData.pixelData, bmpData.width, bmpData.height);
+	// 	return bitmap;
+	// },
+	//JPEG.decode(C_FileSystem.readFileBinary(path.join(WEBCLIENT_ASSETS_DIR, "texture", "¿öÅÍ", "water010.jpg")), {useTArray: true}).data
+	loadJPEG(filePath) {
+		// TODO use resource cache to avoid having to do this multiple times
+		const jpgData = JPEG.decode(C_FileSystem.readFileBinary(filePath), { useTArray: true }).data;
+		const diffuseTextureBitmap = new Bitmap(jpgData.data, jpgData.width, jpgData.height);
+		// diffuseTextureBitmap.toRGBA(Enum.PIXEL_FORMAT_ABGR); // bmp-js seems to use ABGR internally, but we assume RGBA
+		return diffuseTextureBitmap;
 	},
 };
