@@ -57,13 +57,13 @@ C_Bitmap.import = function (fileName) {
 };
 
 const C_ImageProcessing = {
-	loadBMP(filePath, transparencyColor = Color.MAGENTA) {
+	loadBMP(filePath, transparencyColor) {
 		// TODO use resource cache to avoid having to do this multiple times
 		const bmpData = BITMAP.decode(NODE.FileSystem.readFileSync(filePath));
 		const diffuseTextureBitmap = new Bitmap(bmpData.data, bmpData.width, bmpData.height);
 		diffuseTextureBitmap.toRGBA(Enum.PIXEL_FORMAT_ABGR); // bmp-js seems to use ABGR internally, but we assume RGBA
 
-		if (!diffuseTextureBitmap.transparencyColor) {
+		if (!diffuseTextureBitmap.transparencyColor && transparencyColor !== undefined) {
 			// Bit of a hack, since the Bitmap class doesn't handle this yet?
 			// It's not a problem to do this multiple times, since it only takes ~1ms, but still we can skip it...
 			C_Profiling.startTimer("Replacing transparent diffuse texture pixels");

@@ -56,4 +56,7 @@ class Color {
 		this.blue = blue;
 		this.alpha = alpha;
 	}
+	copy() {
+		return new Color(this.red, this.green, this.blue, this.alpha);
+	}
 }

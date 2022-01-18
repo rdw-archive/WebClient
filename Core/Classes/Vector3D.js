@@ -14,4 +14,7 @@ class Vector3D {
 		// vector3D.y = vector.y
 		// vector3D.z = vector.z
 	}
+	copy() {
+		return new Vector3D(this.x, this.y, this.z);
+	}
 }

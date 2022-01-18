@@ -5,4 +5,7 @@ class Vector2D {
 		this.u = u;
 		this.v = v;
 	}
+	copy() {
+		return new Vector2D(this.u, this.v);
+	}
 }
