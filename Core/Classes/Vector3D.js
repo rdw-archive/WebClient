@@ -17,4 +17,13 @@ class Vector3D {
 	copy() {
 		return new Vector3D(this.x, this.y, this.z);
 	}
+	static add(...vectors) {
+		const result = new Vector3D(0, 0, 0);
+		vectors.reduce((previous = result, current) => {
+			result.x = previous.x + current.x;
+			result.y = previous.y + current.y;
+			result.z = previous.z + current.z;
+		});
+		return result;
+	}
 }
