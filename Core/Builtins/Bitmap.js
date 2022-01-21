@@ -13,7 +13,7 @@ class Bitmap {
 		this.pixelFormat = pixelFormat;
 		this.bytesPerPixel = 4; // RGBA; we don't support anything else
 
-		this.hasAlpha = false;
+		this.transparencyColor = null;
 	}
 	flipHorizontally(pixelData = this.pixelData, imageWidth = this.width, imageHeight = this.height) {
 		let flippedPixelData = [];
@@ -81,7 +81,7 @@ class Bitmap {
 			}
 		}
 
-		this.hasAlpha = true;
+		this.transparencyColor = transparencyColor;
 	}
 	toRGBA(sourcePixelFormat = Enum.PIXEL_FORMAT_ABGR) {
 		const pixelData = this.pixelData;
@@ -118,6 +118,12 @@ class Bitmap {
 	}
 	getHeight() {
 		return this.height;
+	}
+	hasAlpha() {
+		return this.transparencyColor instanceof Color;
+	}
+	getTransparencyColor() {
+		return this.transparencyColor;
 	}
 }
 

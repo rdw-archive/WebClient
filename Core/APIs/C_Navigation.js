@@ -1,9 +1,19 @@
 var format = require("util").format;
 
 const C_Navigation = {
-	navigationMap: new NavigationMap(),
-	heightMap: new HeightMap(),
-	terrainMap: new TerrainMap(),
+	navigationMap: null,
+	heightMap: null,
+	terrainMap: null,
+};
+
+C_Navigation.unsetNavigationMap = function () {
+	this.navigationMap = null;
+};
+C_Navigation.unsetHeightMap = function () {
+	this.heightMap = null;
+};
+C_Navigation.unsetTerrainMap = function () {
+	this.terrainMap = null;
 };
 
 C_Navigation.setNavigationMap = function (navMap) {

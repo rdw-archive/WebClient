@@ -59,6 +59,8 @@ C_Bitmap.import = function (fileName) {
 const C_ImageProcessing = {
 	loadBMP(filePath, transparencyColor) {
 		// TODO use resource cache to avoid having to do this multiple times
+		DEBUG(format("Attempting to load BMP image from URL %s", filePath));
+
 		const bmpData = BITMAP.decode(NODE.FileSystem.readFileSync(filePath));
 		const diffuseTextureBitmap = new Bitmap(bmpData.data, bmpData.width, bmpData.height);
 		diffuseTextureBitmap.toRGBA(Enum.PIXEL_FORMAT_ABGR); // bmp-js seems to use ABGR internally, but we assume RGBA
@@ -85,7 +87,8 @@ const C_ImageProcessing = {
 	//JPEG.decode(C_FileSystem.readFileBinary(path.join(WEBCLIENT_ASSETS_DIR, "texture", "¿öÅÍ", "water010.jpg")), {useTArray: true}).data
 	loadJPEG(filePath) {
 		// TODO use resource cache to avoid having to do this multiple times
-		const jpgData = JPEG.decode(C_FileSystem.readFileBinary(filePath), { useTArray: true }).data;
+		DEBUG(format("Attempting to load JPEG image from URL %s", filePath));
+		const jpgData = JPEG.decode(C_FileSystem.readFileBinary(filePath), { useTArray: true });
 		const diffuseTextureBitmap = new Bitmap(jpgData.data, jpgData.width, jpgData.height);
 		// diffuseTextureBitmap.toRGBA(Enum.PIXEL_FORMAT_ABGR); // bmp-js seems to use ABGR internally, but we assume RGBA
 		return diffuseTextureBitmap;
