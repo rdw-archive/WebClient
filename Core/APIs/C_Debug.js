@@ -12,6 +12,13 @@ C_Debug.dump = function (element, showTableOverview = false) {
 	console.table(element);
 };
 
+C_Debug.drawPlane = function (worldX = 0, worldY = 0, worldZ = 0, width = 1, height = 1) {
+	const ground = BABYLON.CreateGround("DebugGround", {width: width, height: height}) // TODO WebGL or PolygonMesh/GeometryBlueprint
+	ground.position.x = worldX
+	ground.position.y = worldY
+	ground.position.z = worldZ
+}
+
 C_Debug.drawLine = function (sourceVector3D, destinationVector3D, color = Color.RED) {
 	const points = [sourceVector3D, destinationVector3D];
 	const properties = {
