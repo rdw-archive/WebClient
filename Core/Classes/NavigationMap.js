@@ -16,6 +16,25 @@ class NavigationMap {
 	isObstructed(tileID) {
 		return !this.tiles[tileID];
 	}
+	getNumObstructedTiles() {
+		let count = 0;
+		for (let tileID = 0; tileID < this.tiles.length; tileID += 1) {
+			if (this.isObstructed(tileID)) count += 1;
+		}
+
+		return count;
+	}
+	getNumTiles() {
+		return this.tiles.length;
+	}
+	getNumWalkableTiles() {
+		let count = 0;
+		for (let tileID = 0; tileID < this.tiles.length; tileID += 1) {
+			if (this.isWalkable(tileID)) count += 1;
+		}
+
+		return count;
+	}
 	toBitmap(fileName = "NavigationMap.bmp") {
 		const pixelData = [];
 		for (let tileID = 0; tileID < this.tiles.length; tileID++) {
@@ -29,7 +48,7 @@ class NavigationMap {
 		const bitmap = new Bitmap(pixelData, this.width, this.height);
 		bitmap.flipHorizontally(); // Tiles start at the bottom, but bitmap pixels start at the top
 
-		C_Bitmap.export(fileName, bitmap);
+		if (fileName !== null) C_Bitmap.export(fileName, bitmap);
 
 		return bitmap;
 	}

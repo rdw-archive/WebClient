@@ -10,6 +10,40 @@ class HeightMap {
 	getAltitude(tileID) {
 		return this.tiles[tileID];
 	}
+	getMinimumAltitude() {
+		let min = Number.MAX_SAFE_INTEGER;
+
+		for (let tileID = 0; tileID < this.tiles.length; tileID += 1) {
+			const altitude = this.getAltitude(tileID);
+			if (altitude < min) min = altitude;
+		}
+
+		return min;
+	}
+	getMaximumAltitude() {
+		let max = Number.MIN_SAFE_INTEGER;
+
+		for (let tileID = 0; tileID < this.tiles.length; tileID += 1) {
+			const altitude = this.getAltitude(tileID);
+			if (altitude > max) max = altitude;
+		}
+
+		return max;
+	}
+	getAverageAltitude() {
+		let avg = 0;
+
+		for (let tileID = 0; tileID < this.tiles.length; tileID += 1) {
+			const altitude = this.getAltitude(tileID);
+			// Simple moving average, to avoid potential overflow issues while summarizing
+			avg += (1 / this.tiles.length) * altitude;
+		}
+
+		return avg;
+	}
+	getNumTiles() {
+		return this.tiles.length;
+	}
 	toBitmap(fileName = "HeightMap.bmp") {
 		const pixelData = [];
 
@@ -32,7 +66,7 @@ class HeightMap {
 		const bitmap = new Bitmap(pixelData, this.width, this.height);
 		bitmap.flipHorizontally();
 
-		C_Bitmap.export(fileName, bitmap);
+		if (fileName !== null) C_Bitmap.export(fileName, bitmap);
 
 		return bitmap;
 	}
