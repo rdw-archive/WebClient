@@ -12,12 +12,23 @@ C_Debug.dump = function (element, showTableOverview = false) {
 	console.table(element);
 };
 
+C_Debug.drawBox = function (worldX = 0, worldY = 0, worldZ = 0, width = 1, height = 1, depth = 1, wireframe = false) {
+	const box = BABYLON.CreateBox("DebugBox", { width: width, height: height, depth: depth });
+	box.position.x = worldX;
+	box.position.y = worldY;
+	box.position.z = worldZ;
+
+	box.material = new BABYLON.StandardMaterial("DebugBoxMaterial", C_Rendering.getActiveScene());
+	box.material.wireframe = wireframe;
+};
+
 C_Debug.drawPlane = function (worldX = 0, worldY = 0, worldZ = 0, width = 1, height = 1) {
-	const ground = BABYLON.CreateGround("DebugGround", {width: width, height: height}) // TODO WebGL or PolygonMesh/GeometryBlueprint
-	ground.position.x = worldX
-	ground.position.y = worldY
-	ground.position.z = worldZ
-}
+	const ground = BABYLON.CreateGround("DebugGround", { width: width, height: height }); // TODO WebGL or PolygonMesh/GeometryBlueprint
+	ground.position.x = worldX;
+	ground.position.y = worldY;
+	ground.position.z = worldZ;
+	// ground.renderingGroupId = 6
+};
 
 C_Debug.drawLine = function (sourceVector3D, destinationVector3D, color = Color.RED) {
 	const points = [sourceVector3D, destinationVector3D];
