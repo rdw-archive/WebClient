@@ -30,6 +30,7 @@
 	"scripts": {
 		"test-addons": "electron-mocha --renderer --url=index.html \"./Interface/Addons/**/**/test-everything.js\" --colors",
 		"addon-tests-debug": "electron-mocha --renderer --url=index.html \"./Interface/Addons/**/**/test-everything.js\" --colors --inspect --interactive",
+		"test-addon-performance": "electron-mocha --renderer --url=index.html \"./Interface/Addons/**/**/test-performance.js\" --colors",
 		"test-debug": "electron-mocha --inspect --interactive --config Config/electron-mocha.json",
 		"test-render": "electron-mocha --config Config/electron-mocha.json",
 		"test-summary": "electron-mocha --renderer --url=index.html --file Tests/run-renderer-tests-quietly.js --colors",
