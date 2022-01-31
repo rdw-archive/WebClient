@@ -93,4 +93,11 @@ const C_ImageProcessing = {
 		// diffuseTextureBitmap.toRGBA(Enum.PIXEL_FORMAT_ABGR); // bmp-js seems to use ABGR internally, but we assume RGBA
 		return diffuseTextureBitmap;
 	},
+	loadPNG(filePath) {
+		DEBUG(format("Attempting to load PNG image from URL %s", filePath));
+		// It can't handle typed arrays, so we have to use node buffers... :/
+		const pngData = PNG.sync.read(C_FileSystem.readFile(filePath));
+		const bitmap = new Bitmap(pngData.data, pngData.width, pngData.height);
+		return bitmap;
+	},
 };

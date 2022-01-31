@@ -18,4 +18,26 @@ class GeometryBlueprint {
 		// this.billboardMode
 		// this.showBoundingBox
 	}
+	getPackedSize() {
+		const BYTES_PER_INTEGER = 4;
+		const BYTES_PER_FLOAT = 4;
+
+		const positionsSize = this.vertices.length * BYTES_PER_FLOAT;
+		const indicesSize = this.connections.length * BYTES_PER_INTEGER;
+		const vertexColorsSize = this.vertexColors.length * BYTES_PER_FLOAT;
+		const flatNormalsSize = this.normalVectors.length * BYTES_PER_FLOAT;
+		const lightmapTexCoordsSize = this.lightmapTextureCoordinates.length * BYTES_PER_FLOAT;
+		const diffuseTexCoordsSize = this.diffuseTextureCoordinates.length * BYTES_PER_FLOAT;
+
+		const fieldCountsSize = BYTES_PER_INTEGER * 6; // The relevant arrays (all of the above)
+		return (
+			fieldCountsSize +
+			positionsSize +
+			indicesSize +
+			vertexColorsSize +
+			flatNormalsSize +
+			lightmapTexCoordsSize +
+			diffuseTexCoordsSize
+		);
+	}
 }
