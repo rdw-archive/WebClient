@@ -174,8 +174,48 @@ C_Rendering.addLightSource = function (name, lightSource) {
 	this.lightSources.push(lightSource);
 };
 
-C_Rendering.scheduleMultiFrameTask = function (taskGeneratorFunction) {
-	const coroutine = taskGeneratorFunction();
+class Coroutine {
+	constructor(taskID, taskGeneratorFunction) {
+		this.task = taskGeneratorFunction();
+
+		// Very useful for debugging - we don't care about the memory overhead since there won't be many coroutines running
+		this.taskID = taskID;
+		this.scheduledTime = Date.now();
+
+		// Bookkeeping to help make it all testable without having to delve into the god-awful JS syntax every time
+		this.status = "Initialized"; // TODO static const, move to Enum table?
+		this.lastReturnValue = null;
+	}
+	getTaskFunction() {
+		return this.task;
+	}
+	isDone() {
+		// This has the ugly side effect of advancing the task if it wasn't done...
+		return this.status === "Done"; // TODO static const
+	}
+	// Mimick the interface provided by the iterator that is created by the original GeneratorFunction
+	// This is effectively a fake Iterator interface so that the engine can step through the task as it would with other iterators
+	// Note: Ugly, but BJS will simply call next() on whatever we pass to it so it "just works"
+	next() {
+		return this.resume();
+	}
+	// This is the API we actually want
+	resume() {
+		const result = this.task.next();
+
+		// Do we even need this? No idea...
+		this.lastReturnValue = result.value;
+
+		if (result.done === true) this.status = "Done"; // TODO static const
+
+		return result;
+	}
+}
+
+C_Rendering.scheduleMultiFrameTask = function (taskID = new UniqueID().toString(), taskGeneratorFunction) {
+	// Assigning an ID to the task doesn't really do much, but it will make debugging easier when things inevitably go wrong
+	const coroutine = new Coroutine(taskID, taskGeneratorFunction);
+
 	// Event: MULTI_FRAME_TASK_SCHEDULED
 	const scene = this.getActiveScene();
 	scene.onBeforeRenderObservable.runCoroutineAsync(coroutine);

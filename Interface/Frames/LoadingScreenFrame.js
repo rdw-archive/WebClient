@@ -106,7 +106,7 @@ class C_LoadingScreen extends API {
 	static getForegroundImagePath() {
 		return LoadingScreenFrame.getForegroundImage();
 	}
-	static scheduleLoadingScreenTask(taskExecutionFunction) {
+	static scheduleLoadingScreenTask(taskID = "LoadingScreenTask#" + new UniqueID().toString(), taskExecutionFunction) {
 		const asyncLoadingScreenTask = function* () {
 			LoadingScreenFrame.show();
 			yield;
@@ -116,9 +116,9 @@ class C_LoadingScreen extends API {
 			LoadingScreenFrame.hide();
 		};
 
-		const coroutine = C_Rendering.scheduleMultiFrameTask(asyncLoadingScreenTask);
+		const coroutine = C_Rendering.scheduleMultiFrameTask(taskID, asyncLoadingScreenTask);
 		return coroutine;
-	};
+	}
 }
 
 const LoadingScreenFrame = new LoadingScreen("LoadingScreenFrame");
