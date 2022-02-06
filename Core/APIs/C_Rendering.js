@@ -173,3 +173,17 @@ C_Rendering.addLightSource = function (name, lightSource) {
 	DEBUG(format("Adding light source %s", name));
 	this.lightSources.push(lightSource);
 };
+
+C_Rendering.scheduleMultiFrameTask = function (taskGeneratorFunction) {
+	const coroutine = taskGeneratorFunction();
+	// Event: MULTI_FRAME_TASK_SCHEDULED
+	const scene = this.getActiveScene();
+	scene.onBeforeRenderObservable.runCoroutineAsync(coroutine);
+	// Event: MULTI_FRAME_TASK_FINISHED
+
+	// this.multiFrameTask.push(taskGeneratorFunction)
+
+	return coroutine;
+};
+
+// cancelMultiFrameTask(taskGeneratorFunction)
