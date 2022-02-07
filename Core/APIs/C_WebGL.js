@@ -153,6 +153,7 @@ C_WebGL.createMesh = function (name, geometryBlueprint) {
 	}
 
 	material.wireframe = geometryBlueprint.wireframe || false;
+	mesh.hasVertexAlpha = geometryBlueprint.useVertexAlpha || false;
 	mesh.showBoundingBox = geometryBlueprint.showBoundingBox || false;
 	mesh.checkCollisions = geometryBlueprint.checkCollisions || false;
 	mesh.billboardMode =

@@ -28,6 +28,8 @@ C_Debug.drawPlane = function (worldX = 0, worldY = 0, worldZ = 0, width = 1, hei
 	ground.position.y = worldY;
 	ground.position.z = worldZ;
 	// ground.renderingGroupId = 6
+
+	return ground;
 };
 
 C_Debug.drawLine = function (sourceVector3D, destinationVector3D, color = Color.RED) {

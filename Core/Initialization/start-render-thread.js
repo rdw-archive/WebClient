@@ -11,6 +11,7 @@ function StartWebClient() {
 
 	C_Decoding.addDecoder(new BuiltinAudioDecoder());
 	C_Decoding.addDecoder(new BuiltinBitmapDecoder());
+	C_Decoding.addDecoder(new BuiltinJpegDecoder());
 
 	C_WebAudio.musicTrack.setVolume(C_Settings.getValue("musicVolume"));
 	C_WebAudio.sfxTrack.setVolume(C_Settings.getValue("sfxVolume"));

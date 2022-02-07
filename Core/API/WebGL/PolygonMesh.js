@@ -35,7 +35,7 @@ class PolygonMesh {
 		this.sceneObject = sceneObject;
 	}
 	destroy() {
-		C_Rendering.removeSceneObject(this.displayName);
+		C_Rendering.removeMesh(this.sceneObject);
 		this.sceneObject = null;
 	}
 }
