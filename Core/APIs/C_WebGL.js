@@ -166,7 +166,7 @@ C_WebGL.createMesh = function (name, geometryBlueprint) {
 	vertexData.normals = geometryBlueprint.normalVectors; // There's no reason to use flat normals, is there?
 	vertexData.colors = geometryBlueprint.vertexColors;
 	vertexData.uvs = geometryBlueprint.diffuseTextureCoordinates;
-	vertexData.applyToMesh(mesh);
+	vertexData.applyToMesh(mesh, true); // flag as updateable to allow vertex animations on the CPU;
 
 	return mesh;
 };
