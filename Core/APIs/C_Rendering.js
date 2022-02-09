@@ -131,6 +131,12 @@ C_Rendering.getNumActiveMeshes = function () {
 	return this.renderer.activeScene.meshes.length;
 };
 
+C_Rendering.enumerateActiveMeshes = function() {
+	this.renderer.activeScene.meshes.forEach((mesh)=>{
+		console.log(mesh.name)
+	})
+}
+
 C_Rendering.getActiveCamera = function () {
 	return this.renderer.activeCamera;
 };
