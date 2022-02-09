@@ -25,10 +25,10 @@ C_Rendering.switchScene = function () {
 	for (const mesh of this.meshes) {
 		DEBUG(format("Disposing mesh %s", mesh.name));
 		// TODO Streamline this
-		mesh.material.diffuseTexture.dispose();
-		mesh.material.lightmapTexture.dispose();
-		mesh.material.ambientTexture.dispose();
-		mesh.material.dispose();
+		mesh.material?.diffuseTexture?.dispose();
+		mesh.material?.lightmapTexture?.dispose();
+		mesh.material?.ambientTexture?.dispose();
+		mesh.material?.dispose();
 		mesh.dispose();
 	}
 	for (const lightSource of this.lightSources) {
@@ -37,6 +37,10 @@ C_Rendering.switchScene = function () {
 	}
 	this.meshes = [];
 	this.lightSources = [];
+
+	this.renderer.activeScene.meshes.forEach((mesh) => mesh.dispose())
+	this.renderer.activeScene.materials.forEach((material) => material.dispose())
+	this.renderer.activeScene.textures.forEach((texture) => texture.dispose())
 
 	this.setClearColor(this.defaultClearColor); // Reset in case it was changed
 };
@@ -131,11 +135,23 @@ C_Rendering.getNumActiveMeshes = function () {
 	return this.renderer.activeScene.meshes.length;
 };
 
-C_Rendering.enumerateActiveMeshes = function() {
-	this.renderer.activeScene.meshes.forEach((mesh)=>{
-		console.log(mesh.name)
-	})
-}
+C_Rendering.enumerateActiveMeshes = function () {
+	this.renderer.activeScene.meshes.forEach((mesh) => {
+		console.log(mesh.name);
+	});
+};
+
+C_Rendering.enumerateActiveMaterials = function () {
+	this.renderer.activeScene.materials.forEach((material) => {
+		console.log(material.name);
+	});
+};
+
+C_Rendering.enumerateActiveTextures = function () {
+	this.renderer.activeScene.textures.forEach((texture) => {
+		console.log(texture.name);
+	});
+};
 
 C_Rendering.getActiveCamera = function () {
 	return this.renderer.activeCamera;
