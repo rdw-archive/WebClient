@@ -38,9 +38,9 @@ C_Rendering.switchScene = function () {
 	this.meshes = [];
 	this.lightSources = [];
 
-	this.renderer.activeScene.meshes.forEach((mesh) => mesh.dispose())
-	this.renderer.activeScene.materials.forEach((material) => material.dispose())
-	this.renderer.activeScene.textures.forEach((texture) => texture.dispose())
+	this.renderer.activeScene.meshes.forEach((mesh) => mesh.dispose());
+	this.renderer.activeScene.materials.forEach((material) => material.dispose());
+	this.renderer.activeScene.textures.forEach((texture) => texture.dispose());
 
 	this.setClearColor(this.defaultClearColor); // Reset in case it was changed
 };

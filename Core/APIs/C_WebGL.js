@@ -81,27 +81,26 @@ C_WebGL.getRgbaColorFromHex = function (hexString) {
 	return BABYLON.Color4.FromHexString(hexString);
 };
 
-
 C_WebGL.createTexture = function (name = new UniqueID().toString(), bitmap = new Bitmap()) {
-		const sceneObject = new BABYLON.RawTexture.CreateRGBATexture(
-			bitmap.pixelData,
-			bitmap.width,
-			bitmap.height,
-			undefined,
-			false,
-			false
-		);
+	const sceneObject = new BABYLON.RawTexture.CreateRGBATexture(
+		bitmap.pixelData,
+		bitmap.width,
+		bitmap.height,
+		undefined,
+		false,
+		false
+	);
 
-		sceneObject.updateSamplingMode(BABYLON.Texture.TRILINEAR_SAMPLINGMODE);
-		sceneObject.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
-		sceneObject.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
+	sceneObject.updateSamplingMode(BABYLON.Texture.TRILINEAR_SAMPLINGMODE);
+	sceneObject.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
+	sceneObject.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
 
-		sceneObject.hasAlpha = true
+	sceneObject.hasAlpha = true;
 
-		sceneObject.name = name
+	sceneObject.name = name;
 
-		return sceneObject
-}
+	return sceneObject;
+};
 
 C_WebGL.createMesh = function (name, geometryBlueprint) {
 	const mesh = new BABYLON.Mesh(name);
