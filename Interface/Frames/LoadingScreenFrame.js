@@ -52,22 +52,6 @@ class LoadingScreen {
 	}
 }
 
-class API {
-	constructor() {
-		this.name = "AbstractPrototypeAPI";
-
-		this.category = "System"; // usefulness TBD
-		this.namespace = "";
-
-		this.functions = {};
-		this.events = {};
-		this.fields = {};
-	}
-	generateDocumentation() {
-		// via jsdoc?
-	}
-}
-
 // Experimental, refactor later and finalize it once the design has been tested some more
 // Not sure about the required info (jsdoc can probably infer a lot of this on its own?)
 class C_LoadingScreen extends API {
