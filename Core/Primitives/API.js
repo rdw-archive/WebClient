@@ -1,4 +1,3 @@
-
 class API {
 	constructor() {
 		this.name = "AbstractPrototypeAPI";

@@ -25,10 +25,18 @@ class Frame extends Widget {
 		this._obj.style.display = "flex";
 		this._obj.style.flexDirection = "row";
 	}
+	setFlexColumnLayout() {
+		this._obj.style.display = "flex";
+		this._obj.style.flexDirection = "column";
+	}
 	showScrollbarY() {
 		this._obj.style.overflowY = "scroll";
 	}
 	hideScrollbarY() {
 		this._obj.style.removeProperty("overflow-y");
+	}
+	setFrameStrata(strata) {}
+	setFrameLevel(level) {
+		this._obj.style.zIndex = level;
 	}
 }

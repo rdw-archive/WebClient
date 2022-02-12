@@ -251,3 +251,50 @@ C_Rendering.scheduleMultiFrameTask = function (taskID = new UniqueID().toString(
 };
 
 // cancelMultiFrameTask(taskGeneratorFunction)
+
+// C_Rendering.isPointVisible = function (worldX, worldY, worldZ, epsilon = 1) {
+// 	const frustumPlanes = C_Rendering.getActiveScene().frustumPlanes;
+// 	const point = new BABYLON.Vector3(worldX, worldY, worldZ);
+
+// 	const boundingSphere = BABYLON.BoundingSphere.CreateFromCenterAndRadius(point, epsilon)
+// 	let center = boundingSphere.centerWorld;
+// 	let radius = boundingSphere.radiusWorld;
+// 	// C_Rendering.isPointInFrustum()
+// 	for (let i = 0; i < 6; i++) {
+// 		if (frustumPlanes[i].dotCoordinate(center) <= -radius) {
+// 			return false;
+// 		}
+// 	}
+// 	return true;
+// };
+
+C_Rendering.isPointVisible = function (worldX, worldY, worldZ, epsilon = 0.05) {
+	const frustumPlanes = C_Rendering.getActiveScene().frustumPlanes;
+	const point = new BABYLON.Vector3(worldX, worldY, worldZ);
+
+	// const boundingVolume = {
+	// 	left: new BABYLON.Vector3(worldX - epsilon, worldY, worldZ),
+	// 	right: new BABYLON.Vector3(worldX + epsilon, worldY, worldZ),
+	// 	top: new BABYLON.Vector3(worldX, worldY + epsilon, worldZ),
+	// 	bottom: new BABYLON.Vector3(worldX, worldY - epsilon, worldZ),
+	// 	back: new BABYLON.Vector3(worldX, worldY, worldZ + epsilon),
+	// 	front: new BABYLON.Vector3(worldX, worldY, worldZ  - epsilon),
+	// }
+
+	// C_Rendering.isPointInFrustum()
+	for (let i = 0; i < 6; i++) {
+		// boundingVolume.forEach((position)=>{
+		// if(frustumPlanes[i].dotCoordinate(boundingVolume.left) >= 0) return true
+		// if(frustumPlanes[i].dotCoordinate(boundingVolume.right) >= 0) return true
+		// if(frustumPlanes[i].dotCoordinate(boundingVolume.top) >= 0) return true
+		// if(frustumPlanes[i].dotCoordinate(boundingVolume.bottom) >= 0) return true
+		// if(frustumPlanes[i].dotCoordinate(boundingVolume.back) >= 0) return true
+		// if(frustumPlanes[i].dotCoordinate(boundingVolume.front) >= 0) return true
+		// })
+		// With epsilon we can avoid culling things that are on the edges of the screen (can cause glitches if it's close to zero due to floating point inaccuracies)
+		if (frustumPlanes[i].dotCoordinate(point) < 0 - epsilon) {
+			return false;
+		}
+	}
+	return true;
+};

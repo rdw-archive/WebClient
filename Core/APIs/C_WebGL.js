@@ -216,7 +216,7 @@ C_WebGL.createDirectionalLight = function (name, properties) {
 
 C_WebGL.createSphere = function (name, properties) {
 	const positionVector3D = properties.position;
-	const radiusInWorldUnits = properties.radiusl;
+	const radiusInWorldUnits = properties.radius;
 	const color = properties.color;
 
 	const options = {
