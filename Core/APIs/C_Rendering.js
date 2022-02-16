@@ -55,7 +55,7 @@ C_Rendering.startRenderLoop = function () {
 		C_Rendering.renderer.renderNextFrame();
 	}
 	this.switchScene();
-	this.createDefaultLightSource(); // for easier debugging
+	// this.createDefaultLightSource(); // for easier debugging
 	this.renderer.startRendering(onCurrentFrameFinishedRendering);
 };
 
@@ -181,7 +181,10 @@ C_Rendering.getSceneObjectByName = function (name) {
 	const texture = scene.getTextureByName(name);
 	if (texture) return texture;
 
-	return mesh;
+	const lightSource = scene.getLightByName(name);
+	if (lightSource) return lightSource;
+
+	return null;
 };
 
 C_Rendering.removeMesh = function (mesh) {
