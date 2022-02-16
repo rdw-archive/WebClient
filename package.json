@@ -28,8 +28,8 @@
 		"prettier": "2.3.2"
 	},
 	"scripts": {
-		"test-addons": "electron-mocha --renderer --url=index.html \"./Interface/Addons/**/**/test-everything.js\" --colors",
-		"addon-tests": "electron-mocha --renderer --url=index.html \"./Interface/Addons/**/**/test-everything.js\" --colors",
+		"test-addons": "electron-mocha --renderer --url=index.html \"./Interface/Addons/**/**/test-everything.js\" --colors --timeout 5000",
+		"addon-tests": "electron-mocha --renderer --url=index.html \"./Interface/Addons/**/**/test-everything.js\" --colors --timeout 5000",
 		"addon-tests-debug": "electron-mocha --renderer --url=index.html \"./Interface/Addons/**/**/test-everything.js\" --colors --inspect --interactive",
 		"test-addon-performance": "electron-mocha --renderer --url=index.html \"./Interface/Addons/**/**/test-performance.js\" --colors",
 		"test-debug": "electron-mocha --inspect --interactive --config Config/electron-mocha.json",
