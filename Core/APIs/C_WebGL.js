@@ -108,6 +108,15 @@ C_WebGL.createMesh = function (name, geometryBlueprint) {
 	const material = new BABYLON.StandardMaterial(name + "Material");
 	material.backFaceCulling = false;
 
+	const ambientColor = geometryBlueprint.ambientColor;
+	if (ambientColor) {
+		material.ambientColor = new BABYLON.Color3(
+			ambientColor.red / 255,
+			ambientColor.green / 255,
+			ambientColor.blue / 255
+		);
+	}
+
 	// tbd
 	material.twoSidedLighting = true;
 	material.sideOrientation = BABYLON.Mesh.DOUBLESIDE;
@@ -154,6 +163,7 @@ C_WebGL.createMesh = function (name, geometryBlueprint) {
 		// material.lightmapTexture.invertY = true
 		material.lightmapTexture.name = name + "LightmapTexture";
 	}
+
 	if (geometryBlueprint.ambientOcclusionTextureImage) {
 		material.ambientTexture = new BABYLON.RawTexture.CreateRGBATexture(
 			geometryBlueprint.ambientOcclusionTextureImage.pixelData,

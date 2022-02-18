@@ -11,10 +11,10 @@ class AmbientLightSource extends LightSource {
 	}
 
 	getShadowColor() {
-		const shadowColor = this.sceneObject.ground;
+		const shadowColor = this.sceneObject.groundColor;
 		return new Color(shadowColor.r * 255, shadowColor.g * 255, shadowColor.b * 255);
 	}
 	setShadowColor(color) {
-		this.sceneObject.ground = new BABYLON.Color3(color.red / 255, color.green / 255, color.blue / 255);
+		this.sceneObject.groundColor = new BABYLON.Color3(color.red / 255, color.green / 255, color.blue / 255);
 	}
 }
