@@ -32,6 +32,9 @@ let C_FileSystem = {
 
 		return NODE.FileSystem.readdirSync(folderPath);
 	},
+	getFileInfo(filePath) {
+		return NODE.FileSystem.statSync(filePath);
+	},
 	fileExists(filePath) {
 		return NODE.FileSystem.existsSync(filePath);
 	},
@@ -44,6 +47,10 @@ let C_FileSystem = {
 	removeDirectory(filePath) {
 		if (!this.fileExists(filePath)) return;
 		NODE.FileSystem.rmdirSync(filePath);
+	},
+	isDirectory(filePath) {
+		const stats = this.getFileInfo(filePath);
+		return stats.isDirectory();
 	},
 	computeChecksum(filePath) {
 		const buffer = this.readFileBinary(filePath);
@@ -103,5 +110,14 @@ let C_FileSystem = {
 		const json = new TextDecoder().decode(uncompressedBuffer);
 
 		return json;
+	},
+	walk(directoryPath) {
+		const entries = WALK.walkSync(directoryPath, { stats: true });
+		entries.forEach((entry, key) => {
+			const filePath = entry.path;
+			const stats = entry.stats;
+			if (entry.stats.isDirectory()) delete entries[key];
+		});
+		return entries;
 	},
 };

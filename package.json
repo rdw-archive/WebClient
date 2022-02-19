@@ -6,6 +6,7 @@
 	"homepage": "https://revivalengine.github.io/",
 	"dependencies": {
 		"@msgpack/msgpack": "2.5.1",
+		"@nodelib/fs.walk": "1.2.8",
 		"babylonjs": "5.0.0-beta.8",
 		"babylonjs-gui": "5.0.0-beta.8",
 		"babylonjs-loaders": "5.0.0-beta.8",

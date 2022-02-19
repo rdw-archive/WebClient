@@ -12,6 +12,7 @@ const JOI = require("joi"); // C_Validation
 const UUID = require("uuid"); // UniqueID builtin
 const PNG = require("pngjs").PNG; // Bitmap serialization (better than zlib?)
 const JPEG = require("jpeg-js");
+const WALK = require("@nodelib/fs.walk"); // C_FileSystem
 
 // Yes, I really am that lazy.
 const keys = Object.keys;
