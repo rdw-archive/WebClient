@@ -15,6 +15,7 @@ const C_Rendering = {
 	lightSources: [],
 	renderCanvas: window["WorldFrame"],
 	renderer: new Renderer(window["WorldFrame"]),
+	scheduledMultiFrameTasks: {},
 };
 
 C_Rendering.loadScene = function () {};
@@ -126,4 +127,20 @@ C_Rendering.addMesh = function (name, mesh) {
 C_Rendering.addLightSource = function (name, lightSource) {
 	DEBUG(format("Adding light source %s", name));
 	this.lightSources.push(lightSource);
+};
+
+C_Rendering.getScheduledMultiFrameTask = function (taskID) {
+	return this.scheduledMultiFrameTasks[taskID];
+};
+
+C_Rendering.scheduleMultiFrameTask = function (taskID = new UniqueID().toString(), taskGeneratorFunction) {
+	// Assigning an ID to the task doesn't really do much, but it will make debugging easier when things inevitably go wrong
+	const coroutine = new Coroutine(taskID, taskGeneratorFunction);
+
+	const scene = this.getActiveScene();
+	scene.onBeforeRenderObservable.runCoroutineAsync(coroutine);
+
+	this.scheduledMultiFrameTasks[taskID] = coroutine;
+
+	return coroutine;
 };
