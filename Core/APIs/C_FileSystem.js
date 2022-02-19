@@ -30,6 +30,9 @@ let C_FileSystem = {
 
 		return NODE.FileSystem.readdirSync(folderPath);
 	},
+	getFileInfo(filePath) {
+		return NODE.FileSystem.statSync(filePath);
+	},
 	fileExists(filePath) {
 		return NODE.FileSystem.existsSync(filePath);
 	},
@@ -43,6 +46,10 @@ let C_FileSystem = {
 		if (!this.fileExists(filePath)) return;
 		NODE.FileSystem.rmdirSync(filePath);
 	},
+	isDirectory(filePath) {
+		const stats = this.getFileInfo(filePath);
+		return stats.isDirectory();
+	},
 	computeChecksum(filePath) {
 		const buffer = this.readFileBinary(filePath);
 
@@ -54,5 +61,61 @@ let C_FileSystem = {
 		if (!this.fileExists(filePath)) return;
 		DEBUG(format("Attempting to remove file %s", filePath));
 		NODE.FileSystem.unlinkSync(filePath);
+	},
+	// TBD Move to C_Compression API?
+	readCompressedFile(filePath, compressionMode) {
+		C_Profiling.startTimer("Reading file " + filePath);
+		const buffer = this.readFileBinary(filePath);
+		C_Profiling.endTimer("Reading file " + filePath);
+
+		// TODO Refactor, tests, different compression modes
+		const zlib = require("zlib");
+		C_Profiling.startTimer("Decompressing buffer (INFLATE)");
+		const uncompressedBuffer = zlib.inflateSync(buffer);
+		C_Profiling.endTimer("Decompressing buffer (INFLATE)");
+
+		// TODO Remove
+		console.log(uncompressedBuffer);
+
+		return uncompressedBuffer;
+	},
+	writeCompressedFile(filePath, buffer) {
+		C_Profiling.startTimer("Compressing buffer (INFLATE)");
+		const zlib = require("zlib");
+		const compressedBuffer = zlib.deflateSync(buffer);
+		C_Profiling.endTimer("Compressing buffer (INFLATE)");
+		this.writeFileBinary(filePath, compressedBuffer);
+	},
+	// Test: C_FileSystem.writeCompressedJSON("E:\\Test.zip", {"Hello": "World"})
+	writeCompressedJSON(filePath, json) {
+		C_Profiling.startTimer("Compressing buffer (INFLATE)");
+		const zlib = require("zlib");
+		console.log(json);
+		// const compressedBuffer = zlib.deflateSync(new TextEncoder().encode(JSON.stringify(json)));
+		C_Profiling.endTimer("Compressing buffer (INFLATE)");
+		this.writeFileBinary(filePath, compressedBuffer);
+	},
+	readCompressedJSON(filePath, compressionMode) {
+		C_Profiling.startTimer("Reading file " + filePath);
+		const compressedBuffer = this.readFileBinary(filePath);
+		C_Profiling.endTimer("Reading file " + filePath);
+		const zlib = require("zlib");
+
+		C_Profiling.startTimer("Decompressing buffer (INFLATE)");
+		const uncompressedBuffer = zlib.inflateSync(compressedBuffer);
+		C_Profiling.endTimer("Decompressing buffer (INFLATE)");
+
+		const json = new TextDecoder().decode(uncompressedBuffer);
+
+		return json;
+	},
+	walk(directoryPath) {
+		const entries = WALK.walkSync(directoryPath, { stats: true });
+		entries.forEach((entry, key) => {
+			const filePath = entry.path;
+			const stats = entry.stats;
+			if (entry.stats.isDirectory()) delete entries[key];
+		});
+		return entries;
 	},
 };
