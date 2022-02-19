@@ -1,11 +1,33 @@
 // Danger: Here be dragons (In need of refactoring)
-const C_Debug = {};
+const C_Debug = {
+	navigationMapVisualizationMesh: null,
+};
 
 C_Debug.dump = function (element, showTableOverview = false) {
 	console.log(element);
 	if (!showTableOverview) return;
 
 	console.table(element);
+};
+
+C_Debug.drawBox = function (worldX = 0, worldY = 0, worldZ = 0, width = 1, height = 1, depth = 1, wireframe = false) {
+	const box = BABYLON.CreateBox("DebugBox", { width: width, height: height, depth: depth });
+	box.position.x = worldX;
+	box.position.y = worldY;
+	box.position.z = worldZ;
+
+	box.material = new BABYLON.StandardMaterial("DebugBoxMaterial", C_Rendering.getActiveScene());
+	box.material.wireframe = wireframe;
+};
+
+C_Debug.drawPlane = function (worldX = 0, worldY = 0, worldZ = 0, width = 1, height = 1) {
+	const ground = BABYLON.CreateGround("DebugGround", { width: width, height: height }); // TODO WebGL or PolygonMesh/GeometryBlueprint
+	ground.position.x = worldX;
+	ground.position.y = worldY;
+	ground.position.z = worldZ;
+	// ground.renderingGroupId = 6
+
+	return ground;
 };
 
 C_Debug.drawLine = function (sourceVector3D, destinationVector3D, color = Color.RED) {
@@ -143,6 +165,9 @@ C_Debug.exportJSON = function (fileName, object) {
 };
 
 C_Debug.drawNavigationMap = function () {
+	// The operation should be idempotent, i.e., only one visualization mesh must be rendered at any time
+	if (this.navigationMapVisualizationMesh) C_Rendering.removeMesh(this.navigationMapVisualizationMesh);
+
 	const navMap = C_Navigation.navigationMap;
 	const heightMap = C_Navigation.heightMap;
 
@@ -151,7 +176,7 @@ C_Debug.drawNavigationMap = function () {
 		return;
 	}
 
-	const ground = BABYLON.MeshBuilder.CreateGround("ground", {
+	const ground = BABYLON.MeshBuilder.CreateGround("NavigationMapVisualization", {
 		width: 1,
 		height: 1,
 	});
@@ -160,7 +185,7 @@ C_Debug.drawNavigationMap = function () {
 	const matrices = [];
 	const colors = [];
 
-	const epsilon = 1; // anti z fighting offset; Needs a better algorithm, maybe use actual terrain geometry over navigation map?
+	const epsilon = 1; // Anti z fighting offset; Needs a better algorithm, maybe use actual terrain geometry over navigation map?
 
 	for (let v = 0; v < navMap.height; v++) {
 		for (let u = 0; u < navMap.width; u++) {
@@ -168,8 +193,9 @@ C_Debug.drawNavigationMap = function () {
 			const matrix = BABYLON.Matrix.Translation(u, heightMap.getAltitude(tileID) + epsilon, v);
 
 			matrices.push(matrix);
-			if (navMap.tiles[tileID] === false) colors.push(1, 0, 0, 1);
-			else colors.push(0, 1, 0, 1);
+			if (navMap.isObstructed(tileID)) colors.push(1, 0, 0, 1);
+			// RED
+			else colors.push(0, 1, 0, 1); // GREEN
 		}
 	}
 
@@ -178,6 +204,8 @@ C_Debug.drawNavigationMap = function () {
 	ground.thinInstanceSetAttributeAt("color", 0, colors);
 
 	C_Rendering.addMesh("NavigationMapVisualizationMesh", ground);
+
+	this.navigationMapVisualizationMesh = ground;
 };
 
 C_Debug.visualizeNormals = function (mesh, size, color) {
@@ -218,5 +246,5 @@ C_Debug.toggleNormals = function () {
 };
 
 C_Debug.inspectScene = function () {
-	C_WebGL.showDebugLayer();
+	C_WebGL.showDebugLayer({ embedMode: true });
 };
