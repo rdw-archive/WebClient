@@ -22,7 +22,7 @@
 		"electron-builder": "22.11.7",
 		"electron-mocha": "10.1.0",
 		"eslint": "8.2.0",
-		"mocha": "9.0.2",
+		"mocha": "9.2.1",
 		"prettier": "2.3.2"
 	},
 	"scripts": {
