@@ -10,6 +10,7 @@ const testSuites = {
 		"Builtins/Validators.js",
 	],
 	C_Decoding: ["API/C_Decoding/BuiltinJsonDecoder.js"],
+	C_LoadingScreen: ["API/C_LoadingScreen/test-async-task-scheduling.js"],
 	C_Settings: [
 		"API/C_Settings/getValue.js",
 		"API/C_Settings/setValue.js",

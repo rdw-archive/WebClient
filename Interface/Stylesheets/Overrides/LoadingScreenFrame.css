@@ -1,0 +1,101 @@
+#LoadingScreenFrame {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+
+	/* To center the background image */
+	text-align: center;
+
+	/* Should be same as the background image */
+	background-color: white;
+}
+
+#LoadingScreenTextBar {
+	position: fixed;
+	width: 100%;
+
+	bottom: 2%;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+
+	background-color: rgba(0, 0, 0, 0.5);
+
+	/* Frame strata = OVERLAY, level = level of the background image, plus one */
+	z-index: 10002;
+}
+
+#LoadingScreenText {
+	color: yellow;
+	font-size: var(--font-size-large);
+	font-weight: bold;
+
+	/* Frame strata = OVERLAY, level = level of the background image, plus one */
+	z-index: 10002;
+}
+
+#LoadingScreenBackgroundImage {
+	position: fixed;
+	width: 100%;
+
+	/* Anchor to the bottom, where the loading screen text is located*/
+	bottom: 0;
+	left: 0;
+
+	/* Frame strata = OVERLAY, level = level of the overlay, plus one */
+	z-index: 10001;
+}
+
+#LoadingScreenForegroundImage {
+	position: fixed;
+	/* border: 3px solid green; */
+
+	/* Scale it up a little so it looks right (has to be manually adjusted, no magic here) */
+	height: 40%;
+
+	/* Frame strata = OVERLAY, level = level of the background image, plus one */
+	z-index: 10002;
+
+	/* Anchored to the top of the screen, to make sure it doesn't overlap the progress text (at the bottom of the screen) */
+	/* Leave a bit of space at the border of the screen, or it looks bad */
+	top: 1%;
+
+	/* Horizontally centered, regardless of its rendered size */
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#LoadingScreenSpinner {
+	display: inline-block;
+
+	padding: 10px;
+
+	/* Frame strata = OVERLAY, level = level of the progress text, plus one */
+	z-index: 10003;
+}
+
+#LoadingScreenSpinner:after {
+	content: " ";
+	display: block;
+
+	width: 32px;
+	height: 32px;
+
+	border-radius: 50%;
+	border: 6px solid yellow;
+	border-color: yellow transparent yellow transparent;
+
+	animation: LoadingScreenSpinner 1.2s linear infinite;
+}
+
+@keyframes LoadingScreenSpinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
