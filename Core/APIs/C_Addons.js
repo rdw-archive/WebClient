@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 const C_Addons = {
 	ADDON_CACHE_FILE_PATH: WEBCLIENT_INTERFACE_DIR + "/addon-cache.json",
 	addonCache: new LocalCache(WEBCLIENT_INTERFACE_DIR + "/addon-cache.json"), // Loaded state for each addon - seems awkard?

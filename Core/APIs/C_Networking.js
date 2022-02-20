@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 const C_Networking = {
 	isSocketOpen: false,
 	openWebsocket: function (URL, identifier) {

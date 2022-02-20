@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 class OptionsFrame extends Widget {
 	constructor(widgetName, parentFrame, template = Enum.WIDGET_TEMPLATE_WINDOW) {
 		super(widgetName, parentFrame, template);

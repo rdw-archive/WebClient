@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 const C_Navigation = {
 	navigationMap: new NavigationMap(),
 	heightMap: new HeightMap(),

@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 // Responsibility: Loading/caching of resources (files) from disk,
 const C_Resources = {
 	cachedResources: {},

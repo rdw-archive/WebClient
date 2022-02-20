@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 class Table extends Widget {
 	constructor(widgetName, parentFrame, template) {
 		super(widgetName, parentFrame, template);

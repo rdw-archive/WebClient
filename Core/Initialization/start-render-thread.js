@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 function StartWebClient() {
 	C_Profiling.startTimer("StartWebClient");
 
