@@ -11,6 +11,7 @@ const testSuites = {
 	],
 	C_Decoding: ["API/C_Decoding/BuiltinJsonDecoder.js"],
 	C_LoadingScreen: ["API/C_LoadingScreen/test-async-task-scheduling.js"],
+	C_Math3D: ["API/Math3D/test-vector2d.js", "API/Math3D/test-vector3d.js", "API/Math3D/test-api-surface.js"],
 	C_Settings: [
 		"API/C_Settings/getValue.js",
 		"API/C_Settings/setValue.js",
