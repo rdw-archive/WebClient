@@ -102,6 +102,7 @@
 		"UniqueID": "writable",
 		"validateString": "writable",
 		"validateNumber": "writable",
+		"Vector2D": "writable",
 		"Vector3D": "writable",
 		"ViewportContainer": "writable",
 		"WebClient": "writable",
