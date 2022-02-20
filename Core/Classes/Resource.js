@@ -27,4 +27,10 @@ class Resource {
 		new Uint8Array(newBuffer).set(new Uint8Array(this.data));
 		return newBuffer;
 	}
+	rawGet() {
+		return this.data;
+	}
+	rawSet(newData) {
+		this.data = newData;
+	}
 }
