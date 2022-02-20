@@ -27,6 +27,10 @@ class Resource {
 		new Uint8Array(newBuffer).set(new Uint8Array(this.data));
 		return newBuffer;
 	}
+	toJSON() {
+		// Should work for all data types; we can't assume it's already JSON (or even ArrayBuffer)
+		return JSON.parse(JSON.stringify(this.data));
+	}
 	rawGet() {
 		return this.data;
 	}
