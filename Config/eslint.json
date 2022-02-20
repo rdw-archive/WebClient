@@ -119,6 +119,7 @@
 		"NODE": "writable",
 		"WARNING": "writable",
 		"dump": "writable",
+		"format": "readable",
 		"WEBCLIENT_ADDONS_DIR": "writable",
 		"WEBCLIENT_ASSETS_DIR": "writable",
 		"WEBCLIENT_EXPORTS_DIR": "writable",
