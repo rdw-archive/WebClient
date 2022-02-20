@@ -20,7 +20,7 @@
 	"devDependencies": {
 		"electron": "13.3.0",
 		"electron-builder": "22.11.7",
-		"electron-mocha": "10.1.0",
+		"electron-mocha": "11.0.2",
 		"eslint": "8.2.0",
 		"mocha": "9.2.1",
 		"prettier": "2.3.2"
