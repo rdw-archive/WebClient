@@ -19,6 +19,10 @@ function dump(...data) {
 	console.log(data);
 }
 
+function count(object) {
+	return Object.keys(object).length;
+}
+
 function printf(message, ...rest) {
 	// If we don't check the length, it will print an empty array when there are no parameters
 	rest.length > 0 ? console.log(message, ...rest) : console.log(message);
