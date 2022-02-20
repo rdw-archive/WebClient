@@ -23,7 +23,7 @@
 		"electron-mocha": "11.0.2",
 		"eslint": "8.2.0",
 		"mocha": "9.2.1",
-		"prettier": "2.3.2"
+		"prettier": "2.5.1"
 	},
 	"scripts": {
 		"test-addons": "electron-mocha --renderer --url=index.html \"./Interface/Addons/**/**/test-*.js\" --colors",
