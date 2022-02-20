@@ -44,6 +44,7 @@
 		"C_LoadingScreen": "writable",
 		"C_Logging": "writable",
 		"C_Macro": "writable",
+		"C_Math3D": "writable",
 		"C_Message": "writable",
 		"C_Navigation": "writable",
 		"C_Networking": "writable",
