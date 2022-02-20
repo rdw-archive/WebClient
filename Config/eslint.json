@@ -28,6 +28,7 @@
 		"assertFalse": "writable",
 		"assertNotEquals": "writable",
 		"assertNotUndefined": "writable",
+		"assertNull": "writable",
 		"assertUndefined": "writable",
 		"assertThrows": "writable",
 		"assertTypeOf": "writable",
