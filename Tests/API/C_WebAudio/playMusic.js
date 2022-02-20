@@ -3,8 +3,6 @@ describe("playMusic", () => {
 	beforeEach(() => C_WebAudio.stopMusic());
 	afterEach(() => C_WebAudio.stopMusic());
 
-	const path = require("path");
-
 	it("should be exported as part of the API surface", () => {
 		assertEquals(typeof C_WebAudio.playMusic, "function");
 	});

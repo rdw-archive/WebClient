@@ -1,6 +1,4 @@
 describe("Shared path constants", () => {
-	const path = require("path");
-
 	it("should export WEBCLIENT_ROOT_DIR", () => {
 		assertEquals(WEBCLIENT_ROOT_DIR, process.cwd());
 	});
