@@ -120,6 +120,7 @@
 		"NOTICE": "writable",
 		"NODE": "writable",
 		"WARNING": "writable",
+		"count": "writable",
 		"dump": "writable",
 		"format": "readable",
 		"WEBCLIENT_ADDONS_DIR": "writable",
