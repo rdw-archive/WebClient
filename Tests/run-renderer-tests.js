@@ -39,6 +39,7 @@ const testSuites = {
 		"API/C_WebAudio/isAudioContextInitialized.js",
 	],
 	C_Macro: ["API/Macro/restoreMacroCache.js"],
+	C_Resources: ["API/Resources/test-resource-builtin.js"],
 };
 
 for (const namespace in testSuites) {
