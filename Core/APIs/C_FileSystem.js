@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 // This API will only work if nodeIntegration is enabled (potentially insecure!), or an IPC proxy is set up
 let C_FileSystem = {
 	// Basic I/O can be blocking; it's only used for configuration or TOC (manifest) files

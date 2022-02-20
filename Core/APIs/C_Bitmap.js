@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 const C_Bitmap = {};
 
 C_Bitmap.export = function (fileName, bitmap, pixelFormat = Enum.PIXEL_FORMAT_ABGR, exportDir = WEBCLIENT_EXPORTS_DIR) {

@@ -6,8 +6,10 @@ describe("Assertions", () => {
 		"assertDeepEquals",
 		"assertFalse",
 		"assertEquals",
+		"assertNull",
 		"assertNotEquals",
 		"assertUndefined",
+		"assertNotUndefined",
 		"assertThrows",
 		"assertTypeOf",
 	];

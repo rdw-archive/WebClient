@@ -3,7 +3,10 @@ const NODE = {
 	FileSystem: require("fs"),
 	Assert: require("assert"),
 	path: require("path"),
+	format: require("util").format,
 };
+
+const format = NODE.format;
 
 // Dependencies imported via their NPM package
 const BABYLON = require("babylonjs/babylon.max"); // C_WebGL & C_Sound

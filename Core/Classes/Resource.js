@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 class Resource {
 	constructor(resourceID, isCritical = false, resourceData = []) {
 		this.resourceID = resourceID;

@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 let C_Locales = {
 	// TBD: Should this really be here? It also seems pointless to disable locales at runtime...
 	supportedLocales: {

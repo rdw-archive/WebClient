@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 // Wrapper for the BabylonJS WebGL engine (because we want streamlined APIs)
 const C_WebGL = {
 	fogModes: {

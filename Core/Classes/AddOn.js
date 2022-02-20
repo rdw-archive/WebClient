@@ -1,5 +1,3 @@
-var format = require("util").format;
-
 class AddOn {
 	constructor(addonName, isLoadOnDemand = false) {
 		this.name = addonName;
