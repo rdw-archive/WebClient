@@ -32,7 +32,10 @@ C_Resources.load = function (resourceID, isCritical = false) {
 	DEBUG(format("Loading resource %s from disk", resourceID));
 
 	const resource = new Resource(resourceID, isCritical);
+
+	C_Profiling.startTimer("Disk I/O for resource " + resourceID);
 	const fileContents = C_FileSystem.readFileBinary(resourceID);
+	C_Profiling.endTimer("Disk I/O for resource " + resourceID);
 
 	resource.data = fileContents;
 	resource.state = Enum.RESOURCE_STATE_PENDING;
