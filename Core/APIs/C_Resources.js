@@ -76,8 +76,8 @@ C_Resources.updateCachedResource = function (resourceID, updatedResource) {
 	this.cachedResources[resourceID] = updatedResource;
 };
 
-C_Resources.getCachedResourcesCount = function () {
 	return Object.keys(this.cachedResources).length;
+C_Resources.getNumCachedResources = function () {
 };
 
 C_Resources.getResourceInfo = function (resourceID) {
