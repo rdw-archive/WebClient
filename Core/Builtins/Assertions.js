@@ -40,12 +40,18 @@ function assertThrows(functionToCall, errorPropertiesMap) {
 
 function assertApproximatelyEquals(actual, expected) {
 	// Number.EPSILON is too small to work here; this should work in most cases, to the same effect
-	const tolerantEpsilon = 1e-8;
-	return assertTrue(Math.abs(actual - expected) < tolerantEpsilon);
+	const tolerantEpsilon = 1e-5;
+	const isWithinTolerance = Math.abs(actual - expected) < tolerantEpsilon;
+
+	if (isWithinTolerance) return true;
+	throw new Error(format("Assertion failure! %s should be approximately equal to %s", actual, expected));
 }
 
 function assertNotApproximatelyEquals(actual, expected) {
 	// Number.EPSILON is too small to work here; this should work in most cases, to the same effect
 	const tolerantEpsilon = 1e-8;
-	return assertFalse(Math.abs(actual - expected) < tolerantEpsilon);
+	const isWithinTolerance = Math.abs(actual - expected) < tolerantEpsilon;
+	if (!isWithinTolerance) return true;
+
+	throw new Error(format("Assertion failure! %s should not be approximately equal to %s", actual, expected));
 }
