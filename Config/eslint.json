@@ -92,6 +92,7 @@
 		"OptionsFrame": "writable",
 		"OptionsGroup": "writable",
 		"Paragraph": "writable",
+		"PngDecoder": "writable",
 		"Renderer": "writable",
 		"Resource": "writable",
 		"ScriptObject": "writable",
