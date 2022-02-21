@@ -60,6 +60,7 @@
 		"C_WebView": "writable",
 		"BinaryReader": "writable",
 		"Bitmap": "writable",
+		"BMP": "writable",
 		"BuiltinAudioDecoder": "writable",
 		"BuiltinJsonDecoder": "writable",
 		"Button": "writable",
