@@ -1,5 +1,5 @@
 describe("Aliases", () => {
-	const exportedObjects = ["BABYLON", "BITMAP", "JOI", "MESSAGEPACK", "NODE", "UUID"];
+	const exportedObjects = ["BABYLON", "JOI", "MESSAGEPACK", "NODE", "UUID"];
 	const exportedFunctions = ["dump", "printf"];
 
 	exportedObjects.forEach((namedExport) => {

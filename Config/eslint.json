@@ -113,7 +113,6 @@
 		"WebClient": "writable",
 		"Widget": "writable",
 		"BABYLON": "readable",
-		"BITMAP": "writable",
 		"BINPACK": "writable",
 		"CONSTANTS": "writable",
 		"DEBUG": "writable",
