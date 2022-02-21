@@ -80,6 +80,7 @@
 		"GLOBAL_MESSAGE_DB": "writable",
 		"GameMenuFrame": "writable",
 		"HeightMap": "writable",
+		"JpegDecoder": "writable",
 		"Label": "writable",
 		"Legend": "writable",
 		"LoadingScreenFrame": "writable",
