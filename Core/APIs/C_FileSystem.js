@@ -13,8 +13,8 @@ let C_FileSystem = {
 		const arrayBuffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
 		return arrayBuffer;
 	},
-	writeFileBinary(filePath, buffer) {
-		NODE.FileSystem.writeFileSync(filePath, buffer);
+	writeFileBinary(filePath, arrayBuffer) {
+		NODE.FileSystem.writeFileSync(filePath, Buffer.from(arrayBuffer));
 	},
 	readJSON(filePath) {
 		DEBUG(format("Reading JSON from file %s", filePath));
