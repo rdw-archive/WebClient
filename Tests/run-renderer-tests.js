@@ -18,6 +18,7 @@ const testSuites = {
 		"API/ImageProcessing/test-bmp-decoder.js",
 		"API/ImageProcessing/test-jpeg-decoder.js",
 		"API/ImageProcessing/test-png-decoder.js",
+		"API/ImageProcessing/test-bitmap-builtin.js",
 	],
 	C_LoadingScreen: ["API/C_LoadingScreen/test-async-task-scheduling.js"],
 	C_Math3D: ["API/Math3D/test-vector2d.js", "API/Math3D/test-vector3d.js", "API/Math3D/test-api-surface.js"],

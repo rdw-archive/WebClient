@@ -119,4 +119,15 @@ class Bitmap {
 	toArrayBuffer() {
 		return new Uint8ClampedArray(this.pixelData);
 	}
+	toPNG() {
+		return UPNG.encode([this.toArrayBuffer()], this.width, this.height, 0);
+	}
+	toJPEG(compressionPercentage = 0) {
+		const jpegImageData = JPEGJS.encode(
+			{ data: this.pixelData, width: this.width, height: this.height },
+			compressionPercentage
+		);
+		const jpegBytes = new Uint8ClampedArray(jpegImageData.data);
+		return jpegBytes.buffer;
+	}
 }
