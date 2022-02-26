@@ -10,7 +10,7 @@ class HeightMap {
 	getAltitude(tileID) {
 		return this.tiles[tileID];
 	}
-	toBitmap(fileName = "HeightMap.bmp") {
+	toBitmap() {
 		const pixelData = [];
 
 		let maxHeight = Number.MIN_SAFE_INTEGER;
@@ -28,10 +28,9 @@ class HeightMap {
 			const relativePixelAlpha = Math.trunc(relativeHeightPercentage * 255);
 			pixelData.push(relativePixelAlpha, relativePixelAlpha, relativePixelAlpha, relativePixelAlpha);
 		}
-
 		const bitmap = new Bitmap(pixelData, this.width, this.height);
-		bitmap.flipHorizontally();
+		bitmap.flipHorizontally(); // Tiles start at the bottom, but bitmap pixels start at the top
 
-		C_Bitmap.export(fileName, bitmap);
+		return bitmap;
 	}
 }

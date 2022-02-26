@@ -10,7 +10,7 @@ class TerrainMap {
 	getTerrainType(tileID) {
 		return this.tiles[tileID];
 	}
-	toBitmap(fileName = "TerrainMap.bmp") {
+	toBitmap() {
 		const pixelData = [];
 
 		for (let tileID = 0; tileID < this.tiles.length; tileID++) {
@@ -22,6 +22,6 @@ class TerrainMap {
 		const bitmap = new Bitmap(pixelData, this.width, this.height);
 		bitmap.flipHorizontally(); // Tiles start at the bottom, but bitmap pixels start at the top
 
-		C_Bitmap.export(fileName, bitmap);
+		return bitmap;
 	}
 }
