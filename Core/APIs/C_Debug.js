@@ -181,8 +181,6 @@ C_Debug.drawNavigationMap = function () {
 	ground.thinInstanceAdd(matrices);
 	ground.thinInstanceRegisterAttribute("color", 4);
 	ground.thinInstanceSetAttributeAt("color", 0, colors);
-
-	C_Rendering.addMesh("NavigationMapVisualizationMesh", ground);
 };
 
 C_Debug.visualizeNormals = function (mesh, size, color) {
