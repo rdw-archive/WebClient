@@ -9,7 +9,17 @@ const testSuites = {
 		"Builtins/Resource.js",
 		"Builtins/Validators.js",
 	],
-	C_Decoding: ["API/Decoding/test-binary-reader.js", "API/C_Decoding/BuiltinJsonDecoder.js"],
+	C_Decoding: [
+		"API/Decoding/test-binary-reader.js",
+		"API/C_Decoding/BuiltinJsonDecoder.js",
+		"API/Decoding/test-decoding-api.js",
+	],
+	C_ImageProcessing: [
+		"API/ImageProcessing/test-bmp-decoder.js",
+		"API/ImageProcessing/test-jpeg-decoder.js",
+		"API/ImageProcessing/test-png-decoder.js",
+		"API/ImageProcessing/test-bitmap-builtin.js",
+	],
 	C_LoadingScreen: ["API/C_LoadingScreen/test-async-task-scheduling.js"],
 	C_Math3D: ["API/Math3D/test-vector2d.js", "API/Math3D/test-vector3d.js", "API/Math3D/test-api-surface.js"],
 	C_Settings: [

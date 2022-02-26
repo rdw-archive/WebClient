@@ -10,11 +10,12 @@ const format = NODE.format;
 
 // Dependencies imported via their NPM package
 const BABYLON = require("babylonjs/babylon.max"); // C_WebGL & C_Sound
-const BITMAP = require("bmp-js"); // C_Bitmap
 const MESSAGEPACK = require("@msgpack/msgpack"); // C_Message
 const JOI = require("joi"); // C_Validation
 const UUID = require("uuid"); // UniqueID builtin
 const BINPACK = require("maxrects-packer"); // For creating spritesheets
+const UPNG = require("upng-js");
+const JPEGJS = require("jpeg-js");
 
 function dump(...data) {
 	console.log(data);
@@ -31,7 +32,8 @@ function printf(message, ...rest) {
 
 // Explicitly export so that their presence can be tested for more easily
 // BABYLON already exports itself globally by default
-window.BITMAP = BITMAP;
+window.UPNG = UPNG;
+window.JPEGJS = JPEGJS;
 window.JOI = JOI;
 window.MESSAGEPACK = MESSAGEPACK;
 window.NODE = NODE;
