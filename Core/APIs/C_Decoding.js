@@ -35,6 +35,8 @@ const C_Decoding = {
 		}
 	},
 	decodeFile(filePath) {
+		if (!C_FileSystem.fileExists(filePath)) throw new Error(format("Cannot decode %s (No such file exists)", filePath));
+
 		const resource = C_Resources.load(filePath);
 		if (resource.isReady()) return resource; // already cached = it's been decoded previously (hopefully...)
 
@@ -42,6 +44,12 @@ const C_Decoding = {
 
 		DEBUG(format("Decoding resource %s", filePath));
 		const decoder = this.getDecoderForFile(filePath);
+
+		if (!decoder)
+			throw new Error(
+				format("Cannot decode %s (file type %s is not supported)", filePath, this.getFileType(filePath).toUpperCase())
+			);
+
 		const decodedResource = this.decodeResource(resource, decoder);
 
 		C_Profiling.endTimer("Decode " + filePath);
