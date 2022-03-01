@@ -34,6 +34,7 @@
 		"assertTypeOf": "writable",
 		"AudioTrack": "writable",
 		"C_Addons": "writable",
+		"C_Camera": "writable",
 		"C_Decoding": "writable",
 		"C_Debug": "writable",
 		"C_EventSystem": "writable",
