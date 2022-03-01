@@ -122,6 +122,15 @@ C_Rendering.addMesh = function (name, mesh) {
 	this.meshes.push(mesh);
 };
 
+C_Rendering.removeMesh = function (mesh) {
+	DEBUG(format("Removing mesh %s", mesh.name));
+	mesh.material?.diffuseTexture?.dispose();
+	mesh.material?.lightmapTexture?.dispose();
+	mesh.material?.ambientTexture?.dispose();
+	mesh.material?.dispose();
+	mesh.dispose();
+};
+
 C_Rendering.addLightSource = function (name, lightSource) {
 	DEBUG(format("Adding light source %s", name));
 	this.lightSources.push(lightSource);
