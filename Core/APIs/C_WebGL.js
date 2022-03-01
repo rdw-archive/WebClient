@@ -431,7 +431,7 @@ C_WebGL.enablePostProcessing = function () {
 	if (this.pipeline) return;
 
 	const scene = C_Rendering.getActiveScene();
-	const camera = C_Rendering.getActiveCamera();
+	const camera = C_Camera.getActiveCamera();
 	const pipeline = new BABYLON.DefaultRenderingPipeline("pipeline", true, scene, [camera]);
 	this.pipeline = pipeline;
 };
@@ -519,7 +519,7 @@ C_WebGL.setBlurEffectState = function (isEnabled, kernelSize = 4) {
 C_WebGL.createBlurEffect = function (kernelSize = 4) {
 	if (this.isBlurPostProcessCreated) return;
 
-	const camera = C_Rendering.getActiveCamera();
+	const camera = C_Camera.getActiveCamera();
 	this.horizontalBlurPostProcess = new BABYLON.BlurPostProcess(
 		"Horizontal blur",
 		new BABYLON.Vector2(1.0, 0),
@@ -539,12 +539,12 @@ C_WebGL.createBlurEffect = function (kernelSize = 4) {
 };
 
 C_WebGL.disableBlurEffect = function () {
-	const camera = C_Rendering.getActiveCamera();
+	const camera = C_Camera.getActiveCamera();
 	camera.detachPostProcess(this.horizontalBlurPostProcess);
 };
 
 C_WebGL.enableBlurEffect = function () {
-	const camera = C_Rendering.getActiveCamera();
+	const camera = C_Camera.getActiveCamera();
 	camera.attachPostProcess(this.horizontalBlurPostProcess);
 };
 
@@ -552,17 +552,17 @@ C_WebGL.enableBlurEffect = function () {
 C_WebGL.createGreyscaleEffect = function (ratio = 1.0) {
 	if (this.greyscalePostProcess) return;
 
-	const camera = C_Rendering.getActiveCamera();
+	const camera = C_Camera.getActiveCamera();
 	this.greyscalePostProcess = new BABYLON.BlackAndWhitePostProcess("BlackAndWhitePostProcess", ratio, camera);
 };
 
 C_WebGL.disableGreyscaleEffect = function () {
-	const camera = C_Rendering.getActiveCamera();
+	const camera = C_Camera.getActiveCamera();
 	camera.detachPostProcess(this.greyscalePostProcess);
 };
 
 C_WebGL.enableGreyscaleEffect = function () {
-	const camera = C_Rendering.getActiveCamera();
+	const camera = C_Camera.getActiveCamera();
 	camera.attachPostProcess(this.greyscalePostProcess);
 };
 
@@ -570,17 +570,17 @@ C_WebGL.enableGreyscaleEffect = function () {
 C_WebGL.createHighlightsEffect = function (ratio = 1.0) {
 	if (this.highlightsPostProcess) return;
 
-	const camera = C_Rendering.getActiveCamera();
+	const camera = C_Camera.getActiveCamera();
 	this.highlightsPostProcess = new BABYLON.HighlightsPostProcess("HighlightsPostProcess", ratio, camera);
 };
 
 C_WebGL.disableHighlightsEffect = function () {
-	const camera = C_Rendering.getActiveCamera();
+	const camera = C_Camera.getActiveCamera();
 	camera.detachPostProcess(this.highlightsPostProcess);
 };
 
 C_WebGL.enableHighlightsEffect = function () {
-	const camera = C_Rendering.getActiveCamera();
+	const camera = C_Camera.getActiveCamera();
 	camera.attachPostProcess(this.highlightsPostProcess);
 };
 

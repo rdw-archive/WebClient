@@ -8,6 +8,11 @@ C_Debug.dump = function (element, showTableOverview = false) {
 	console.table(element);
 };
 
+C_Debug.visualizeCameraTarget = function () {
+	const targetPosition = C_Camera.getTargetWorldPosition();
+	this.drawSphere(targetPosition, 0.5, Color.GREEN);
+};
+
 C_Debug.drawLine = function (sourceVector3D, destinationVector3D, color = Color.RED) {
 	const points = [sourceVector3D, destinationVector3D];
 	const properties = {

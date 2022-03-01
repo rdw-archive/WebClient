@@ -41,6 +41,8 @@ function StartWebClient() {
 		C_Settings.saveSettingsCache();
 	});
 
+	C_Camera.enableOrbitalCamera();
+
 	WebClient.run();
 
 	C_Profiling.endTimer("StartWebClient");
