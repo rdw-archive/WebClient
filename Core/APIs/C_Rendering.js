@@ -151,3 +151,40 @@ C_Rendering.scheduleMultiFrameTask = function (taskID = new UniqueID().toString(
 
 	return coroutine;
 };
+
+C_Rendering.getSceneObjectByName = function (name) {
+	const scene = this.renderer.activeScene;
+
+	const mesh = scene.getMeshByName(name);
+	if (mesh) return mesh;
+
+	const node = scene.getNodeByName(name);
+	if (node) return node;
+
+	const material = scene.getMaterialByName(name);
+	if (material) return material;
+
+	const texture = scene.getTextureByName(name);
+	if (texture) return texture;
+
+	const lightSource = scene.getLightByName(name);
+	if (lightSource) return lightSource;
+
+	return null;
+};
+
+C_Rendering.getNumActiveTextures = function () {
+	return this.renderer.activeScene.textures.length;
+};
+
+C_Rendering.getNumActiveMaterials = function () {
+	return this.renderer.activeScene.materials.length;
+};
+
+C_Rendering.getNumActiveMeshes = function () {
+	return this.renderer.activeScene.meshes.length;
+};
+
+C_Rendering.getNumActiveAnimations = function () {
+	return this.renderer.activeScene.animations.length;
+};
