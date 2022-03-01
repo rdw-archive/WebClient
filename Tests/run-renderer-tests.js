@@ -9,6 +9,7 @@ const testSuites = {
 		"Builtins/Resource.js",
 		"Builtins/Validators.js",
 	],
+	C_Camera: ["API/Camera/test-camera-api.js"],
 	C_Decoding: [
 		"API/Decoding/test-binary-reader.js",
 		"API/C_Decoding/BuiltinJsonDecoder.js",
