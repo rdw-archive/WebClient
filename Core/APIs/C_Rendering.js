@@ -52,6 +52,7 @@ C_Rendering.setClearColor = function (color) {
 	this.renderer.activeScene.clearColor = C_WebGL.getRgbColorFromHex(this.clearColor);
 };
 
+// @deprecated (Remove after all dependent callers have been refactored to eliminate optional scene parameters)
 C_Rendering.getActiveScene = function () {
 	return this.renderer.activeScene;
 };
