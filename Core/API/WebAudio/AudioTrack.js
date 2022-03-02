@@ -4,8 +4,7 @@ class AudioTrack {
 		this.isTrackMuted = false;
 		this.useHRTF = C_Settings.getValue("useHighQualityStereo");
 
-		const currentScene = C_Rendering.getActiveScene();
-		this.soundtrack = new BABYLON.SoundTrack(currentScene);
+		this.soundtrack = new BABYLON.SoundTrack();
 	}
 	getNumSounds() {
 		return this.soundtrack.soundCollection.length;

@@ -28,8 +28,7 @@ const C_WebAudio = {
 
 		// BJS consumes the buffer, so we must copy it lest the version stored in the resource cache be rendered unusable
 		const buffer = resource.toArrayBuffer();
-		const currentScene = C_Rendering.getActiveScene();
-		const sound = new BABYLON.Sound(soundID, buffer, currentScene);
+		const sound = new BABYLON.Sound(soundID, buffer);
 
 		// For now, all background music is played automatically (to simplify the loading process) and looping (design decision)
 		sound.autoplay = true;
