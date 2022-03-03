@@ -19,20 +19,27 @@ C_Navigation.setTerrainMap = function (terrainMap) {
 	this.terrainMap = terrainMap;
 };
 
-C_Navigation.isTileObstructed = function (u, v) {
-	return this.navigationMap.isObstructed(u * v);
+C_Navigation.isTileObstructed = function (mapU, mapV) {
+	return this.navigationMap.isObstructed(this.getTileIndexFromMapPosition(mapU, mapV));
 };
 
-C_Navigation.isTileWalkable = function (u, v) {
-	return this.navigationMap.isWalkable(u * v);
+C_Navigation.isTileWalkable = function (mapU, mapV) {
+	return this.navigationMap.isWalkable(this.getTileIndexFromMapPosition(mapU, mapV));
 };
 
-C_Navigation.getTerrainAltitude = function (u, v) {
-	return this.heightMap.getAltitude(u * v);
+C_Navigation.getTerrainAltitude = function (mapU, mapV) {
+	return this.heightMap.getAltitude(this.getTileIndexFromMapPosition(mapU, mapV));
 };
 
-C_Navigation.getTerrainTypeForTile = function (u, v) {
-	return this.terrainMap.getTerrainType(u * v);
+C_Navigation.getTileIndexFromMapPosition = function (mapU, mapV) {
+	// Map coordinates start at (1, 1) but array indices start at zero
+	const offsetU = mapU - 1;
+	const offsetV = (mapV - 1) * this.heightMap.width;
+	return offsetU + offsetV;
+};
+
+C_Navigation.getTerrainTypeForTile = function (mapU, mapV) {
+	return this.terrainMap.getTerrainType(this.getTileIndexFromMapPosition(mapU, mapV));
 };
 
 C_Navigation.getNavigationMap = function () {
