@@ -4,6 +4,16 @@ const C_Navigation = {
 	terrainMap: new TerrainMap(),
 };
 
+C_Navigation.unsetNavigationMap = function () {
+	this.navigationMap = null;
+};
+C_Navigation.unsetHeightMap = function () {
+	this.heightMap = null;
+};
+C_Navigation.unsetTerrainMap = function () {
+	this.terrainMap = null;
+};
+
 C_Navigation.setNavigationMap = function (navMap) {
 	DEBUG(format("Using new navigation map with %d tiles", navMap.tiles.length));
 	this.navigationMap = navMap;
