@@ -387,7 +387,7 @@ C_WebGL.createWaterPlane = function (mapU, mapV, waterLevel) {
 C_WebGL.takeScreenshot = function () {
 	const size = { height: 1080, width: 1900 };
 	// todo async to avoid blocking
-	BABYLON.Tools.CreateScreenshot(C_Rendering.renderer, C_Rendering.renderer.activeCamera, size);
+	BABYLON.Tools.CreateScreenshot(C_Rendering.renderer._obj, C_Rendering.renderer.activeCamera, size);
 };
 
 // wip
