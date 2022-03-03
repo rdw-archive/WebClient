@@ -63,3 +63,14 @@ C_Navigation.getHeightMap = function () {
 C_Navigation.getTerrainMap = function () {
 	return this.terrainMap;
 };
+
+C_Navigation.getWorldCoordinates = function (mapU, mapV) {
+	const worldCoordinates = new Vector3D(mapU - 0.5, this.getTerrainAltitude(mapU, mapV), mapV - 0.5);
+	return worldCoordinates;
+};
+
+C_Navigation.getMapCoordinates = function (worldX, worldY, worldZ) {
+	const mapCoordinates = new Vector2D(Math.ceil(worldX + 0.5), Math.ceil(worldZ + 0.5));
+
+	return mapCoordinates;
+};
