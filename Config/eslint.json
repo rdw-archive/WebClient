@@ -82,6 +82,7 @@
 		"HeightMap": "writable",
 		"JpegDecoder": "writable",
 		"Label": "writable",
+		"LightSource": "writable",
 		"Legend": "writable",
 		"LoadingScreenFrame": "writable",
 		"LocalCache": "writable",
