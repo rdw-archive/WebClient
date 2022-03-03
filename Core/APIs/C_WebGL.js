@@ -103,41 +103,76 @@ C_WebGL.createMesh = function (name, geometryBlueprint) {
 	// material.diffuseTexture = new BABYLON.Texture(WEBCLIENT_ADDONS_DIR + "/DebugMenu/DebugTexture256_old.png");
 
 	// tbd setting to apply debug textures to everything
-	if (properties.textureFilePath) {
-		material.diffuseTexture = new BABYLON.Texture(properties.textureFilePath);
+	if (geometryBlueprint.diffuseTextureImage) {
+		material.diffuseTexture = new BABYLON.RawTexture.CreateRGBATexture(
+			geometryBlueprint.diffuseTextureImage.pixelData,
+			geometryBlueprint.diffuseTextureImage.width,
+			geometryBlueprint.diffuseTextureImage.height,
+			undefined,
+			false,
+			geometryBlueprint.flipTextureImages
+		);
 		material.diffuseTexture.noMipmap = true;
+		material.diffuseTexture.hasAlpha = true;
 		material.diffuseTexture.updateSamplingMode(BABYLON.Texture.TRILINEAR_SAMPLINGMODE);
 		material.diffuseTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
 		material.diffuseTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
+
+		material.diffuseTexture.name = name + "DiffuseTexture";
 	}
 
 	const vertexData = new BABYLON.VertexData();
 
-	if (properties.lightmapTextureFilePath) {
-		material.lightmapTexture = new BABYLON.Texture(properties.lightmapTextureFilePath);
+	if (geometryBlueprint.lightmapTextureImage) {
+		material.lightmapTexture = new BABYLON.RawTexture.CreateRGBATexture(
+			geometryBlueprint.lightmapTextureImage.pixelData,
+			geometryBlueprint.lightmapTextureImage.width,
+			geometryBlueprint.lightmapTextureImage.height,
+			undefined,
+			false,
+			geometryBlueprint.flipTextureImages
+		);
 		material.lightmapTexture.coordinatesIndex = 1; // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
-		vertexData.uvs2 = properties.lightmapUVs;
-	}
-	if (properties.ambientTextureFilePath) {
-		material.ambientTexture = new BABYLON.Texture(properties.ambientTextureFilePath);
-		material.ambientTexture.coordinatesIndex = 1; // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
-		vertexData.uvs2 = properties.lightmapUVs; // dry
-		// shadowmapTexture.coordinatesIndex = 1 // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
+		vertexData.uvs2 = geometryBlueprint.lightmapTextureCoordinates;
+		material.lightmapTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
+		material.lightmapTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
+		material.lightmapTexture.name = name + "LightmapTexture";
 	}
 
-	material.wireframe = properties.wireframe || false;
-	mesh.showBoundingBox = properties.showBoundingBox || false;
-	mesh.checkCollisions = properties.checkCollisions || false;
-	mesh.billboardMode = (properties.billboardMode && BABYLON.Mesh.BILLBOARDMODE_ALL) || BABYLON.Mesh.BILLBOARDMODE_NONE;
+	if (geometryBlueprint.ambientOcclusionTextureImage) {
+		material.ambientTexture = new BABYLON.RawTexture.CreateRGBATexture(
+			geometryBlueprint.ambientOcclusionTextureImage.pixelData,
+			geometryBlueprint.ambientOcclusionTextureImage.width,
+			geometryBlueprint.ambientOcclusionTextureImage.height,
+			undefined,
+			false,
+			geometryBlueprint.flipTextureImages
+		);
+		material.ambientTexture.coordinatesIndex = 1; // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
+		vertexData.uvs2 = geometryBlueprint.lightmapTextureCoordinates; // dry
+		material.ambientTexture.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
+		material.ambientTexture.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
+		// shadowmapTexture.coordinatesIndex = 1 // use 2nd UVs = lightmap UVs (one set of UVs per texture)?
+		// material.ambientTexture.hasAlpha = true;
+		// material.ambientTexture.invertY = true
+		material.ambientTexture.name = name + "AmbientOcclusionTexture";
+	}
+
+	material.wireframe = geometryBlueprint.wireframe || false;
+	mesh.hasVertexAlpha = geometryBlueprint.useVertexAlpha || false;
+	mesh.showBoundingBox = geometryBlueprint.showBoundingBox || false;
+	mesh.checkCollisions = geometryBlueprint.checkCollisions || false;
+	mesh.billboardMode =
+		(geometryBlueprint.billboardMode && BABYLON.Mesh.BILLBOARDMODE_ALL) || BABYLON.Mesh.BILLBOARDMODE_NONE;
 
 	mesh.material = material;
 
-	vertexData.positions = properties.vertices;
-	vertexData.indices = properties.connections;
-	vertexData.normals = properties.smoothNormals; // There's no reason to use flat normals, is there?
-	vertexData.colors = properties.vertexColors;
-	vertexData.uvs = properties.textureCoordinates;
-	vertexData.applyToMesh(mesh);
+	vertexData.positions = geometryBlueprint.vertices;
+	vertexData.indices = geometryBlueprint.connections;
+	vertexData.normals = geometryBlueprint.normalVectors; // There's no reason to use flat normals, is there?
+	vertexData.colors = geometryBlueprint.vertexColors;
+	vertexData.uvs = geometryBlueprint.diffuseTextureCoordinates;
+	vertexData.applyToMesh(mesh, true); // flag as updateable to allow vertex animations on the CPU;
 
 	return mesh;
 };
@@ -634,4 +669,25 @@ C_WebGL.createLines = function (name, properties) {
 		properties.color.alpha / 255
 	);
 	return lineSystem;
+};
+
+C_WebGL.createTexture = function (name = new UniqueID().toString(), bitmap = new Bitmap()) {
+	const sceneObject = new BABYLON.RawTexture.CreateRGBATexture(
+		bitmap.pixelData,
+		bitmap.width,
+		bitmap.height,
+		undefined,
+		false,
+		false
+	);
+
+	sceneObject.updateSamplingMode(BABYLON.Texture.TRILINEAR_SAMPLINGMODE);
+	sceneObject.wrapU = BABYLON.Texture.CLAMP_ADDRESSMODE;
+	sceneObject.wrapV = BABYLON.Texture.CLAMP_ADDRESSMODE;
+
+	sceneObject.hasAlpha = true;
+
+	sceneObject.name = name;
+
+	return sceneObject;
 };
