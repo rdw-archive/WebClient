@@ -10,6 +10,17 @@ class TerrainMap {
 	getTerrainType(tileID) {
 		return this.tiles[tileID];
 	}
+	getNumTiles() {
+		return this.tiles.length;
+	}
+	getNumTilesByTerrainType(terrainTypeID) {
+		let count = 0;
+		for (let tileID = 0; tileID < this.tiles.length; tileID += 1) {
+			if (this.getTerrainType(tileID) === terrainTypeID) count += 1;
+		}
+
+		return count;
+	}
 	toBitmap() {
 		const pixelData = [];
 
