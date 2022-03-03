@@ -1,7 +1,7 @@
 const C_Navigation = {
-	navigationMap: new NavigationMap(),
-	heightMap: new HeightMap(),
-	terrainMap: new TerrainMap(),
+	navigationMap: null,
+	heightMap: null,
+	terrainMap: null,
 };
 
 C_Navigation.unsetNavigationMap = function () {
