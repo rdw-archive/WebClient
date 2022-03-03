@@ -79,11 +79,20 @@ C_WebGL.getRgbaColorFromHex = function (hexString) {
 	return BABYLON.Color4.FromHexString(hexString);
 };
 
-C_WebGL.createMesh = function (name, properties) {
+C_WebGL.createMesh = function (name, geometryBlueprint) {
 	const mesh = new BABYLON.Mesh(name);
 
 	const material = new BABYLON.StandardMaterial(name + "Material");
 	material.backFaceCulling = false;
+
+	const ambientColor = geometryBlueprint.ambientColor;
+	if (ambientColor) {
+		material.ambientColor = new BABYLON.Color3(
+			ambientColor.red / 255,
+			ambientColor.green / 255,
+			ambientColor.blue / 255
+		);
+	}
 
 	// tbd
 	material.twoSidedLighting = true;
