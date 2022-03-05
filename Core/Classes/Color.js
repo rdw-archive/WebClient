@@ -4,9 +4,7 @@ class Color {
 	static BLUE = new Color(0, 0, 255, 255);
 	static BLACK = new Color(0, 0, 0, 255);
 	static WHITE = new Color(255, 255, 255, 255);
-	static GREY = { red: 200, green: 200, blue: 200, alpha: 255 };
 	static MAGENTA = new Color(255, 0, 255, 255);
-	static PURPLE = { red: 200, green: 0, blue: 200, alpha: 255 };
 	static TERRAIN_VISUALIZATION_COLORS = [
 		{
 			red: 165,
