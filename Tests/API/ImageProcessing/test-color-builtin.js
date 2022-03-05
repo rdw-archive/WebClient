@@ -42,4 +42,43 @@ describe("Color", () => {
 			assertEquals(color.getColorDepth(), 32);
 		});
 	});
+
+	it("should export the most commonly-used RGBA presets as human-readable shorthands", () => {
+		// This definitely needs an overhaul, but for now we can settle for 8bit colors
+		const magentaColor = Color.MAGENTA;
+		assertEquals(magentaColor.red, 255);
+		assertEquals(magentaColor.green, 0);
+		assertEquals(magentaColor.blue, 255);
+		assertEquals(magentaColor.alpha, 255);
+
+		const redColor = Color.RED;
+		assertEquals(redColor.red, 255);
+		assertEquals(redColor.green, 0);
+		assertEquals(redColor.blue, 0);
+		assertEquals(redColor.alpha, 255);
+
+		const greenColor = Color.GREEN;
+		assertEquals(greenColor.red, 0);
+		assertEquals(greenColor.green, 255);
+		assertEquals(greenColor.blue, 0);
+		assertEquals(greenColor.alpha, 255);
+
+		const blueColor = Color.BLUE;
+		assertEquals(blueColor.red, 0);
+		assertEquals(blueColor.green, 0);
+		assertEquals(blueColor.blue, 255);
+		assertEquals(blueColor.alpha, 255);
+
+		const blackColor = Color.BLACK;
+		assertEquals(blackColor.red, 0);
+		assertEquals(blackColor.green, 0);
+		assertEquals(blackColor.blue, 0);
+		assertEquals(blackColor.alpha, 255);
+
+		const whiteColor = Color.WHITE;
+		assertEquals(whiteColor.red, 255);
+		assertEquals(whiteColor.green, 255);
+		assertEquals(whiteColor.blue, 255);
+		assertEquals(whiteColor.alpha, 255);
+	});
 });
