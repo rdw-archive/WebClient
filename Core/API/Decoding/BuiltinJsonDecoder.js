@@ -7,7 +7,8 @@ class BuiltinJsonDecoder {
 		return this.fileTypes;
 	}
 	decode(resource) {
-		resource.data = JSON.parse(JSON.stringify(resource.data));
+		const textDecoder = new TextDecoder();
+		resource.data = JSON.parse(textDecoder.decode(resource.data));
 		return resource;
 	}
 }
