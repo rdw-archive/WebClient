@@ -120,7 +120,7 @@ class Bitmap {
 		return new Uint8ClampedArray(this.pixelData);
 	}
 	toPNG() {
-		return UPNG.encode([this.toArrayBuffer()], this.width, this.height, 0);
+		return UPNG.encode([this.pixelData.buffer], this.width, this.height, 0);
 	}
 	toJPEG(compressionPercentage = 0) {
 		const jpegImageData = JPEGJS.encode(
