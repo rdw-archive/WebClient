@@ -7,7 +7,10 @@ class Vector3D {
 		this.z = z;
 	}
 	normalizeInPlace() {
-		this.coordinates.normalize();
+		const magnitude = Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+		this.x *= 1 / magnitude;
+		this.y *= 1 / magnitude;
+		this.z *= 1 / magnitude;
 	}
 	clone() {
 		return new Vector3D(this.x, this.y, this.z);
