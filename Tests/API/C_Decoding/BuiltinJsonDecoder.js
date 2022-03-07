@@ -16,4 +16,20 @@ describe("BuiltinJsonDecoder", () => {
 	it("should indicate that JSON files can be decoded", () => {
 		assertTrue(supportedFormats["json"]);
 	});
+
+	describe("decode", () => {
+		it("should be able to decode buffer representations of a JSON string", () => {
+			const resource = new Resource(new UniqueID().toString());
+
+			const textEncoder = new TextEncoder();
+			const jsonString = JSON.stringify({ test: 42 });
+			const jsonBytes = textEncoder.encode(jsonString);
+
+			resource.rawSet(jsonBytes);
+
+			decoder.decode(resource);
+
+			assertEquals(resource.rawGet(), { test: 42 });
+		});
+	});
 });
