@@ -144,7 +144,7 @@ class BMP {
 
 						if (paletteIndex > colorTable.length) {
 							throw new Error(
-								"Palette index is " + paletteIndex + "but there are only" + colorTable.length + " palette entries"
+								"Palette index is " + paletteIndex + ", but there are only " + colorTable.length + " palette entries"
 							);
 						}
 
