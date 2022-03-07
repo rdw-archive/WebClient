@@ -57,4 +57,13 @@ describe("Vector3D", () => {
 			assertEquals(Vector3D.ORIGIN, new Vector3D(0, 0, 0));
 		});
 	});
+
+	describe("normalizeInPlace", () => {
+		it("should normalize the vector to unit length", () => {
+			const vector = new Vector3D(3, 1, 2);
+			vector.normalizeInPlace();
+			const normalizedVector = new Vector3D(0.8017837257372732, 0.2672612419124244, 0.5345224838248488);
+			assertEquals(vector, normalizedVector);
+		});
+	});
 });
