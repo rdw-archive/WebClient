@@ -1,4 +1,5 @@
 class BMP {
+	static NUM_PALETTE_COLORS = 256;
 	constructor() {
 		this.width = 0;
 		this.height = 0;
@@ -139,7 +140,7 @@ class BMP {
 							);
 						}
 
-						let color = colorTable[paletteIndex];
+						let color = colorTable[paletteIndex] ?? new Color(0, 0, 0, 0); // If no colors are used, all pixels are black
 
 						const pixelIndex = pixelU + pixelV * width;
 						const pixelOffset = pixelIndex * 4; // RGBA = 4 bytes per pixel

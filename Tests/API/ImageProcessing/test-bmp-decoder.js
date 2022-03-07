@@ -71,5 +71,15 @@ describe("BmpDecoder", () => {
 			assertEquals(bitmap.getHeight(), 3);
 			assertEquals(bitmap.computeChecksum(), 4148883029);
 		});
+
+		it("should be able to decode BMP files with zero used palette colors", () => {
+			const bmpPath = path.join(WEBCLIENT_FIXTURES_DIR, "no-palette.bmp");
+			const bmpResource = C_Decoding.decodeFile(bmpPath);
+
+			const bitmap = bmpResource.rawGet();
+			assertEquals(bitmap.getWidth(), 4);
+			assertEquals(bitmap.getHeight(), 4);
+			assertEquals(bitmap.computeChecksum(), 624402330);
+		});
 	});
 });
