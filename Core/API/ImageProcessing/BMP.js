@@ -32,8 +32,6 @@ class BMP {
 		}
 
 
-		if (!this.reader.hasReachedEOF())
-			throw new Error("Detected leftover bytes at the end of the structure - that doesn't seem right!");
 		this.parsePixelStorage();
 
 		delete this.reader;
