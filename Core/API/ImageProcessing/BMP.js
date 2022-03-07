@@ -25,12 +25,8 @@ class BMP {
 		this.parseFileHeader();
 		this.parseColorTable();
 
-		if (this.dataOffset !== this.reader.offset) {
-			// Fast-forwarding to the pixel data to skip the optional Gap1 portion of the file header
-			WARNING("Data offset " + this.dataOffset + " doesn't match reader offset " + this.reader.offset);
-			this.reader.offset = this.dataOffset;
-		}
-
+		// Fast-forwarding to the pixel data to skip the optional Gap1 portion of the file header
+		if (this.dataOffset !== this.reader.offset) this.reader.offset = this.dataOffset;
 
 		this.parsePixelStorage();
 
