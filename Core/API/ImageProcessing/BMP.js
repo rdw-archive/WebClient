@@ -92,9 +92,6 @@ class BMP {
 			const red = reader.getUint8();
 			const reserved = reader.getUint8();
 
-			if (reserved !== 0)
-				throw new Error("Reserved palette alpha is " + reserved + " (bitmap transparency is not currently supported");
-
 			const color = new Color(red, green, blue, 255);
 			colorTable.push(color);
 		}
