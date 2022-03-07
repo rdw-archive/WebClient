@@ -61,5 +61,25 @@ describe("BmpDecoder", () => {
 			assertFalse(bitmap.hasAlpha());
 			assertNull(bitmap.getTransparencyColor());
 		});
+
+		it("should be able to decode byte-aligned BMP files with zero padding at the end", () => {
+			const bmpPath = path.join(WEBCLIENT_FIXTURES_DIR, "byte-aligned-with-zero-padding-eof.bmp");
+			const bmpResource = C_Decoding.decodeFile(bmpPath);
+
+			const bitmap = bmpResource.rawGet();
+			assertEquals(bitmap.getWidth(), 3);
+			assertEquals(bitmap.getHeight(), 3);
+			assertEquals(bitmap.computeChecksum(), 4148883029);
+		});
+
+		it("should be able to decode BMP files with zero used palette colors", () => {
+			const bmpPath = path.join(WEBCLIENT_FIXTURES_DIR, "no-palette.bmp");
+			const bmpResource = C_Decoding.decodeFile(bmpPath);
+
+			const bitmap = bmpResource.rawGet();
+			assertEquals(bitmap.getWidth(), 4);
+			assertEquals(bitmap.getHeight(), 4);
+			assertEquals(bitmap.computeChecksum(), 624402330);
+		});
 	});
 });

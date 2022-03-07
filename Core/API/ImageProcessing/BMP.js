@@ -1,12 +1,13 @@
 class BMP {
+	static NUM_PALETTE_COLORS = 256;
 	constructor() {
 		this.width = 0;
 		this.height = 0;
 
 		this.dataOffset = 0;
 		this.compressionMode = 0;
-		this.compressedFileSizeInBytes = 0;
-		this.decompressedFileSizeInBytes = 0;
+		this.fileSizeInBytes = 0;
+		this.rawImageSizeInBytes = 0;
 		this.pixelsPerMeterU = 0;
 		this.pixelsPerMeterV = 0;
 		this.numPaddingBytesPerRow = 0;
@@ -22,23 +23,17 @@ class BMP {
 	load(buffer) {
 		this.reader = new BinaryReader(buffer);
 
-		this.parseHeader();
+		this.parseFileHeader();
 		this.parseColorTable();
 
-		if (this.dataOffset !== this.reader.offset) {
-			// Fast-forwarding to the pixel data to skip the optional Gap1 portion of the file header
-			WARNING("Data offset " + this.dataOffset + " doesn't match reader offset " + this.reader.offset);
-			this.reader.offset = this.dataOffset;
-		}
+		// Fast-forwarding to the pixel data to skip the optional Gap1 portion of the file header
+		if (this.dataOffset !== this.reader.offset) this.reader.offset = this.dataOffset;
 
-		this.parsePixelData();
-
-		if (!this.reader.hasReachedEOF())
-			throw new Error("Detected leftover bytes at the end of the structure - that doesn't seem right!");
+		this.parsePixelStorage();
 
 		delete this.reader;
 	}
-	parseHeader() {
+	parseFileHeader() {
 		const reader = this.reader;
 
 		const signature = reader.getString(2);
@@ -46,12 +41,13 @@ class BMP {
 		if (signature !== expectedSignature)
 			throw new Error("Invalid signature " + signature + "detected ('" + expectedSignature + "' expected)");
 
-		this.compressedFileSizeInBytes = reader.getUint32();
+		this.fileSizeInBytes = reader.getUint32();
 		const reserved = reader.getUint32(); // Is this ever used? Guess not...
 		this.dataOffset = reader.getUint32();
 
 		const infoHeaderSize = reader.getUint32();
-		if (infoHeaderSize !== 40) throw new Error("Header size is " + infoHeaderSize + " (should always be 40)");
+		if (infoHeaderSize !== 40)
+			throw new Error("Invalid BITMAPINFOHEADER size " + infoHeaderSize + " (should always be 40)");
 
 		const width = reader.getInt32();
 		const height = reader.getInt32();
@@ -75,7 +71,7 @@ class BMP {
 		this.compressionMode = reader.getUint32();
 		if (this.compressionMode !== 0) throw new Error("BMP compression is not currenty supported");
 
-		this.decompressedFileSizeInBytes = reader.getUint32();
+		this.rawImageSizeInBytes = reader.getUint32();
 		this.pixelsPerMeterU = reader.getUint32();
 		this.pixelsPerMeterV = reader.getUint32();
 		this.numColorsUsed = reader.getUint32();
@@ -91,14 +87,11 @@ class BMP {
 
 		const colorTable = [];
 
-		for (let tableIndex = 0; tableIndex < this.numColorsUsed; tableIndex++) {
+		for (let paletteIndex = 0; paletteIndex < BMP.NUM_PALETTE_COLORS; paletteIndex++) {
 			const blue = reader.getUint8();
 			const green = reader.getUint8();
 			const red = reader.getUint8();
 			const reserved = reader.getUint8();
-
-			if (reserved !== 0)
-				throw new Error("Reserved palette alpha is " + reserved + " (bitmap transparency is not currently supported");
 
 			const color = new Color(red, green, blue, 255);
 			colorTable.push(color);
@@ -106,7 +99,7 @@ class BMP {
 
 		this.colorTable = colorTable;
 	}
-	parsePixelData() {
+	parsePixelStorage() {
 		const reader = this.reader;
 		const width = this.width;
 		const height = this.height;
@@ -143,11 +136,11 @@ class BMP {
 
 						if (paletteIndex > colorTable.length) {
 							throw new Error(
-								"Palette index is " + paletteIndex + "but there are only" + colorTable.length + " palette entries"
+								"Palette index is " + paletteIndex + ", but there are only " + colorTable.length + " palette entries"
 							);
 						}
 
-						let color = colorTable[paletteIndex];
+						let color = colorTable[paletteIndex] ?? new Color(0, 0, 0, 0); // If no colors are used, all pixels are black
 
 						const pixelIndex = pixelU + pixelV * width;
 						const pixelOffset = pixelIndex * 4; // RGBA = 4 bytes per pixel
