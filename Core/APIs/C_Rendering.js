@@ -118,3 +118,22 @@ C_Rendering.getNumActiveMeshes = function () {
 C_Rendering.getNumActiveAnimations = function () {
 	return this.renderer.activeScene.animations.length;
 };
+
+C_Rendering.getNumActiveLights = function () {
+	return this.renderer.activeScene.lights.length;
+};
+
+C_Rendering.getNumActiveCameras = function () {
+	return this.renderer.activeScene.cameras.length;
+};
+
+C_Rendering.getNumSceneObjects = function () {
+	return (
+		this.getNumActiveMeshes() +
+		this.getNumActiveAnimations() +
+		this.getNumActiveMaterials() +
+		this.getNumActiveTextures() +
+		this.getNumActiveLights() +
+		this.getNumActiveCameras()
+	);
+};
