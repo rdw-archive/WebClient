@@ -37,4 +37,19 @@ class PolygonMesh {
 		C_Rendering.removeMesh(this.sceneObject);
 		this.sceneObject = null;
 	}
+	isShown() {
+		if (!this.sceneObject) return false;
+
+		return this.sceneObject.isVisible === true;
+	}
+	show() {
+		if (!this.sceneObject) return;
+
+		this.sceneObject.isVisible = true;
+	}
+	hide() {
+		if (!this.sceneObject) return;
+
+		this.sceneObject.isVisible = false;
+	}
 }
