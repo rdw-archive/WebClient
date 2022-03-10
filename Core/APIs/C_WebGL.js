@@ -6,6 +6,8 @@ const C_WebGL = {
 		[Enum.FOG_MODE_EXPONENTIAL]: BABYLON.Scene.FOGMODE_EXP,
 		[Enum.FOG_MODE_EXPONENTIAL_DENSE]: BABYLON.Scene.FOGMODE_EXP2,
 	},
+	meshPrototypes: {},
+	meshInstances: {},
 };
 
 C_WebGL.createCanvasRenderer = function (canvas, options) {
@@ -175,6 +177,59 @@ C_WebGL.createMesh = function (name, geometryBlueprint) {
 	vertexData.applyToMesh(mesh, true); // flag as updateable to allow vertex animations on the CPU;
 
 	return mesh;
+};
+
+C_WebGL.getInstantiationPrototype = function (rootMeshID) {
+	return this.meshPrototypes[rootMeshID];
+};
+
+C_WebGL.createInstancedMesh = function (rootMeshID, geometryBlueprint = null) {
+	const rootMesh = this.meshPrototypes[rootMeshID];
+	const prototypeSceneObject = rootMesh?.sceneObject ?? this.createMesh(rootMeshID + "#Prototype", geometryBlueprint);
+	const instanceMeshID = rootMeshID + "#Instance" + (this.getNumInstances(rootMeshID) + 1);
+	const instance = prototypeSceneObject.createInstance(instanceMeshID);
+
+	this.meshInstances[rootMeshID] = this.meshInstances[rootMeshID] ?? [];
+	this.meshInstances[rootMeshID].push(instance);
+
+	const prototypeMesh = new PolygonMesh(rootMeshID);
+	prototypeMesh.sceneObject = prototypeSceneObject;
+	this.meshPrototypes[rootMeshID] = prototypeMesh;
+
+	const mesh = new PolygonMesh(instanceMeshID);
+	mesh.sceneObject = instance;
+
+	// Prototype meshes shouldn't be rendered since they're only used for instantiation
+	prototypeMesh.hide();
+
+	return mesh;
+};
+
+C_WebGL.getNumInstances = function (rootMeshID) {
+	if (!this.meshInstances[rootMeshID]) return 0;
+
+	return this.meshInstances[rootMeshID].length;
+};
+
+C_WebGL.destroyInstancedMeshes = function (rootMeshID) {
+	const instances = this.meshInstances[rootMeshID];
+
+	if (!instances) return; // Invalid root mesh ID
+
+	// Destroy instances
+	instances.forEach((instancedMesh) => {
+		instancedMesh.dispose();
+	});
+	delete this.meshInstances[rootMeshID];
+
+	// Destroy prototype mesh
+	const rootMesh = this.meshPrototypes[rootMeshID];
+	if (!rootMesh) return; // Invalid root mesh ID
+
+	// Have to make sure the mesh is disposed first here; otherwise there will be an error inside BJS ?_?
+	rootMesh.sceneObject.dispose();
+	rootMesh.sceneObject.material.dispose();
+	delete this.meshPrototypes[rootMeshID];
 };
 
 C_WebGL.createDirectionalLight = function (name, properties) {

@@ -51,6 +51,7 @@ const testSuites = {
 		"API/C_WebAudio/isAudioAvailable.js",
 		"API/C_WebAudio/isAudioContextInitialized.js",
 	],
+	C_WebGL: ["API/WebGL/createInstancedMesh.js", "API/WebGL/getNumInstances.js", "API/WebGL/destroyInstancedMeshes.js"],
 	C_Macro: ["API/Macro/restoreMacroCache.js"],
 	C_Resources: ["API/Resources/test-resource-builtin.js"],
 };
